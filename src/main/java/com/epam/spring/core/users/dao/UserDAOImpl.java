@@ -1,9 +1,11 @@
 package com.epam.spring.core.users.dao;
 
 import com.epam.spring.core.users.User;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
+@Repository
 public class UserDAOImpl implements UserDAO {
 
     private static Map<Long, User> users = new HashMap<Long, User>();

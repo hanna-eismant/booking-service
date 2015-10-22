@@ -17,5 +17,4 @@ public interface EventService {
     List<Event> getAll();
 
     void assignAuditorium(Event event, Auditorium auditorium, Date date);
-
 }
