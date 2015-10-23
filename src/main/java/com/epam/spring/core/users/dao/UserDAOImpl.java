@@ -1,9 +1,13 @@
 package com.epam.spring.core.users.dao;
 
+import com.epam.spring.core.Util;
 import com.epam.spring.core.users.User;
 import org.springframework.stereotype.Repository;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Repository
 public class UserDAOImpl implements UserDAO {
@@ -15,7 +19,7 @@ public class UserDAOImpl implements UserDAO {
 
         Long id;
         do {
-            id = generateId();
+            id = Util.generateId();
         } while (users.containsKey(id));
 
         user.id = id;
@@ -73,10 +77,5 @@ public class UserDAOImpl implements UserDAO {
         }
 
         return result;
-    }
-
-    private static Long generateId() {
-        Random random = new Random();
-        return random.nextLong();
     }
 }

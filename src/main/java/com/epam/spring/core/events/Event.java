@@ -44,4 +44,17 @@ public class Event {
     public List<Ticket> getTickets() {
         return tickets;
     }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", airDates=" + airDates +
+                ", airTimes=" + airTimes +
+                ", basePrice=" + basePrice +
+                ", rating=" + rating +
+                ", tickets=" + tickets +
+                '}';
+    }
 }

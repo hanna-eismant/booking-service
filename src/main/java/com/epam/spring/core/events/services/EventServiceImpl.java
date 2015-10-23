@@ -30,6 +30,9 @@ public class EventServiceImpl implements EventService, ApplicationContextAware {
         Event event = context.getBean(Event.class);
         event.name = name;
         event = eventDAO.create(event);
+
+        System.out.println("Create new event: " + event);
+
         return event;
     }
 
@@ -42,7 +45,11 @@ public class EventServiceImpl implements EventService, ApplicationContextAware {
     }
 
     public List<Event> getAll() {
-        return eventDAO.findAll();
+        List<Event> all = eventDAO.findAll();
+
+        System.out.println("Find all events: " + all);
+
+        return all;
     }
 
     public void assignAuditorium(Event event, Auditorium auditorium, Date date) {
