@@ -26,9 +26,11 @@ public class EventServiceImpl implements EventService, ApplicationContextAware {
         this.eventDAO = eventDAO;
     }
 
-    public Event create(String name, List<Date> airDates, List<Date> airTimes, Integer basePrice, Rating rating) {
+    public Event create(String name, Integer basePrice, Rating rating) {
         Event event = context.getBean(Event.class);
         event.name = name;
+        event.basePrice = basePrice;
+        event.rating = rating;
         event = eventDAO.create(event);
 
         System.out.println("Create new event: " + event);
@@ -53,15 +55,12 @@ public class EventServiceImpl implements EventService, ApplicationContextAware {
     }
 
     public void assignAuditorium(Event event, Auditorium auditorium, Date date) {
-        // TODO: check date and event date
-
-        int airTimesCount = event.getAirTimes().size();
-        for (int i = 0; i < airTimesCount; i++) {
-            for (int seat = 0; seat < auditorium.seats; seat++) {
-                Ticket ticket = new Ticket(seat, event.basePrice);
-                event.getTickets().add(ticket);
-            }
+        for (int seat = 0; seat < auditorium.seats; seat++) {
+            Ticket ticket = new Ticket(seat, event.basePrice);
+            event.getTickets().add(ticket);
         }
+
+        System.out.println("Assign auditorium for event: " + event);
     }
 
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {

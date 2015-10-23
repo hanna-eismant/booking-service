@@ -1,5 +1,8 @@
 package com.epam.spring.core;
 
+import com.epam.spring.core.auditoriums.Auditorium;
+import com.epam.spring.core.auditoriums.services.AuditoriumService;
+import com.epam.spring.core.events.Event;
 import com.epam.spring.core.events.Rating;
 import com.epam.spring.core.events.services.EventService;
 import com.epam.spring.core.users.User;
@@ -7,9 +10,7 @@ import com.epam.spring.core.users.services.UserService;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 public class Runner {
@@ -30,25 +31,28 @@ public class Runner {
         User hanna = userService.register("Hanna", "Hanna@Mail", calendar.getTime());
 
         // event one
-        List<Date> eventOneDates = new ArrayList<Date>();
-
-        calendar.set(2015, Calendar.DECEMBER, 15, 14, 0);
-        eventOneDates.add(calendar.getTime());
-
-        calendar.set(2015, Calendar.DECEMBER, 2, 9, 0);
-        eventOneDates.add(calendar.getTime());
-
-        eventService.create("Birthday party", eventOneDates, eventOneDates, 25000, Rating.HIGH);
+        Event eventOne = eventService.create("Terminator 8", 5000, Rating.HIGH);
 
         // event two
-        List<Date> eventTwoDates = new ArrayList<Date>();
+        Event eventTwo = eventService.create("Just Married", 25000, Rating.LOW);
 
-        calendar.set(2015, Calendar.DECEMBER, 13, 10, 0);
-        eventTwoDates.add(calendar.getTime());
+        // auditoriums
+        AuditoriumService auditoriumService = context.getBean(AuditoriumService.class);
+        List<Auditorium> auditoriums = auditoriumService.getAuditoriums();
 
-        calendar.set(2015, Calendar.DECEMBER, 13, 16, 0);
-        eventTwoDates.add(calendar.getTime());
+        // assign
+        calendar.set(2015, Calendar.DECEMBER, 15, 14, 0);
+        eventService.assignAuditorium(eventOne, auditoriums.get(0), calendar.getTime());
 
-        eventService.create("Discussion", eventTwoDates, eventTwoDates, 25000, Rating.HIGH);
+        calendar.set(2015, Calendar.DECEMBER, 15, 23, 15);
+        eventService.assignAuditorium(eventOne, auditoriums.get(0), calendar.getTime());
+
+        calendar.set(2015, Calendar.DECEMBER, 15, 14, 0);
+        eventService.assignAuditorium(eventTwo, auditoriums.get(0), calendar.getTime());
+
+
+
+//        LocaleDate
+
     }
 }

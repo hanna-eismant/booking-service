@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 public interface EventService {
-    Event create(String name, List<Date> airDates, List<Date> airTimes, Integer basePrice, Rating rating);
+    Event create(String name, Integer basePrice, Rating rating);
 
     void remove(Event event);
 
