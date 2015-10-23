@@ -13,10 +13,7 @@ public class Runner {
 
     public static void main(String[] args) {
         context = new ClassPathXmlApplicationContext("classpath:spring.xml");
-        System.out.println(1);
         UserService userService = context.getBean(UserService.class);
-        System.out.println(2);
         User hanna = userService.register("Hanna", "Hanna@Mail", new Date());
-        System.out.println(3);
     }
 }

@@ -9,17 +9,6 @@ public class AuditoriumServiceImpl implements AuditoriumService {
 
     private List<Auditorium> auditoriums = new ArrayList<Auditorium>();
 
-    public static List<Integer> parseVip(String auditoriumVips) {
-        List<Integer> result = new ArrayList<Integer>();
-        String[] split = auditoriumVips.split(",");
-
-        for (String s : split) {
-            result.add(Integer.parseInt(s));
-        }
-
-        return result;
-    }
-
     public AuditoriumServiceImpl(List<Auditorium> auditoriums) {
         this.auditoriums = auditoriums;
     }

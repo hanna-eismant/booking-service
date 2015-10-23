@@ -16,7 +16,7 @@ public class UserDAOImpl implements UserDAO {
         Long id;
         do {
             id = generateId();
-        } while (!users.containsKey(id));
+        } while (users.containsKey(id));
 
         user.id = id;
         users.put(id, user);
