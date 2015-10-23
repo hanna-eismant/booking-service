@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
-public class UserDAOImpl implements UserDAO {
+public class UserDAOMapImpl implements UserDAO {
 
     private static Map<Long, User> users = new HashMap<Long, User>();
 

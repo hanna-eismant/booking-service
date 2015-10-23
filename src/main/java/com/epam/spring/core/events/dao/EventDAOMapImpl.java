@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
-public class EventDAOImpl implements EventDAO {
+public class EventDAOMapImpl implements EventDAO {
 
     private static Map<Long, Event> events = new HashMap<Long, Event>();
 
