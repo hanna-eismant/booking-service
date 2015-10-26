@@ -1,22 +1,17 @@
 package com.epam.spring.core.users.services;
 
+import com.epam.spring.core.AbstractIntegrationTest;
 import com.epam.spring.core.users.User;
 import org.joda.time.LocalDateTime;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Date;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:spring.xml")
-public class UserServiceIntegrationTest {
+public class UserServiceIntegrationTest extends AbstractIntegrationTest {
 
     @Autowired
     private UserService userService;
@@ -57,38 +52,21 @@ public class UserServiceIntegrationTest {
         assertEquals(hanna.email, hannaEmail);
         assertEquals(hanna.birthday, hannaBirthDay);
         hannaId = hanna.id;
-
-        admin = userService.register(adminName, adminEmail, adminBirthDay);
-        assertNotNull("Registered user cannot be null", admin);
-        assertNotNull("Registered user should have id", admin.id);
-        assertEquals(admin.name, adminName);
-        assertEquals(admin.email, adminEmail);
-        assertEquals(admin.birthday, adminBirthDay);
-        adminId = admin.id;
     }
 
     @Test
-    public void testRemove() {
+    public void testGetByIdRegistered() {
+        hanna = userService.register(hannaName, hannaEmail, hannaBirthDay);
+        hannaId = hanna.id;
 
+        User user = userService.getById(hannaId);
+        assertNotNull(user);
+        assertEquals(hannaId, hanna.id);
     }
 
     @Test
-    public void testGetById() {
-
-    }
-
-    @Test
-    public void testGetUserByEmail() {
-
-    }
-
-    @Test
-    public void testGetUsersByName() {
-
-    }
-
-    @Test
-    public void testGetBookedTickets() {
-
+    public void testGetByIdUnregistered() {
+        User user = userService.getById(1L);
+        assertNull(user);
     }
 }
