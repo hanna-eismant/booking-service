@@ -12,12 +12,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Service
+@Service("bookingService")
 public class BookingServiceImpl implements BookingService {
 
     @Autowired
     private EventService eventService;
 
+    @Autowired
     private DiscountService discountService;
 
     public EventService getEventService() {

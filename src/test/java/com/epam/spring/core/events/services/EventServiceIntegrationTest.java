@@ -23,7 +23,7 @@ public class EventServiceIntegrationTest extends AbstractIntegrationTest {
     @Before
     public void setUp() throws Exception {
         eventName = "Test event";
-        basePrice = 10.0;
+        basePrice = 10_000.0;
         rating = Rating.MID;
     }
 

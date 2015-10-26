@@ -10,6 +10,9 @@ public class DiscountServiceImpl implements DiscountService {
 
     private List<DiscountStrategy> discountStrategies;
 
+    public DiscountServiceImpl() {
+    }
+
     public DiscountServiceImpl(List<DiscountStrategy> discountStrategies) {
         this.discountStrategies = discountStrategies;
     }
