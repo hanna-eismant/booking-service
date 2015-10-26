@@ -29,6 +29,7 @@ public class UserServiceImpl implements UserService {
         this.eventService = eventService;
     }
 
+    @Override
     public User register(String name, String email, Date birthday) {
         User user = new User(name, email, birthday);
         user = userDAO.create(user);
@@ -38,24 +39,29 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
+    @Override
     public void remove(User user) {
         userDAO.remove(user);
     }
 
+    @Override
     public User getById(Long id) {
         return userDAO.findById(id);
     }
 
+    @Override
     public User getUserByEmail(String email) {
         return userDAO.findByEmail(email);
     }
 
+    @Override
     public List<User> getUsersByName(String name) {
         return userDAO.findByName(name);
     }
 
+    @Override
     public List<Ticket> getBookedTickets(User user) {
-        List<Ticket> result = new ArrayList<Ticket>();
+        List<Ticket> result = new ArrayList<>();
 
         List<Event> allEvents = eventService.getAll();
 

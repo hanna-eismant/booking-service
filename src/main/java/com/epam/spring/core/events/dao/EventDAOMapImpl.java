@@ -12,8 +12,9 @@ import java.util.Map;
 @Repository
 public class EventDAOMapImpl implements EventDAO {
 
-    private static Map<Long, Event> events = new HashMap<Long, Event>();
+    private static Map<Long, Event> events = new HashMap<>();
 
+    @Override
     public Event create(Event event) {
         Long id;
         do {
@@ -25,12 +26,14 @@ public class EventDAOMapImpl implements EventDAO {
         return event;
     }
 
+    @Override
     public void remove(Event event) {
         if (events.containsKey(event.id)) {
             events.remove(event.id);
         }
     }
 
+    @Override
     public Event findById(Long id) {
         if (events.containsKey(id)){
             return events.get(id);
@@ -39,7 +42,8 @@ public class EventDAOMapImpl implements EventDAO {
         }
     }
 
+    @Override
     public List<Event> findAll() {
-        return new ArrayList<Event>(events.values());
+        return new ArrayList<>(events.values());
     }
 }

@@ -12,8 +12,9 @@ import java.util.Map;
 @Repository
 public class UserDAOMapImpl implements UserDAO {
 
-    private static Map<Long, User> users = new HashMap<Long, User>();
+    private static Map<Long, User> users = new HashMap<>();
 
+    @Override
     public User create(User user) {
         // todo: check for name, email and birthday
 
@@ -27,6 +28,7 @@ public class UserDAOMapImpl implements UserDAO {
         return user;
     }
 
+    @Override
     public void remove(User user) {
         if (user == null) {
             throw new IllegalArgumentException("User cannot be 'null'");
@@ -39,6 +41,7 @@ public class UserDAOMapImpl implements UserDAO {
         }
     }
 
+    @Override
     public User findById(Long id) {
 
         // todo: check for id
@@ -49,6 +52,7 @@ public class UserDAOMapImpl implements UserDAO {
         }
     }
 
+    @Override
     public User findByEmail(String email) throws IllegalArgumentException {
         if (email == null) {
             throw new IllegalArgumentException("Email for search cannot be 'null'");
@@ -63,12 +67,13 @@ public class UserDAOMapImpl implements UserDAO {
         return null;
     }
 
+    @Override
     public List<User> findByName(String name) throws IllegalArgumentException {
         if (name == null) {
             throw new IllegalArgumentException("Name for search cannot be 'null'");
         }
 
-        List<User> result = new ArrayList<User>();
+        List<User> result = new ArrayList<>();
 
         for (User user : users.values()) {
             if (name.equals(user.name)) {

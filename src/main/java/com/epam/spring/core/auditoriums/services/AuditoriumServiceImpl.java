@@ -7,20 +7,23 @@ import java.util.List;
 
 public class AuditoriumServiceImpl implements AuditoriumService {
 
-    private List<Auditorium> auditoriums = new ArrayList<Auditorium>();
+    private List<Auditorium> auditoriums = new ArrayList<>();
 
     public AuditoriumServiceImpl(List<Auditorium> auditoriums) {
         this.auditoriums = auditoriums;
     }
 
+    @Override
     public List<Auditorium> getAuditoriums() {
         return auditoriums;
     }
 
+    @Override
     public Integer getSeatsNumber() {
         return null;
     }
 
+    @Override
     public Integer getVipSeats() {
         return null;
     }
