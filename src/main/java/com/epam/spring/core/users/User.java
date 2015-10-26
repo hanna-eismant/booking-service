@@ -1,18 +1,18 @@
 package com.epam.spring.core.users;
 
-import java.util.Date;
+import org.joda.time.LocalDate;
 
 public class User {
 
     public Long id;
     public String name;
     public String email;
-    public Date birthday;
+    public LocalDate birthday;
 
     public User() {
     }
 
-    public User(String name, String email, Date birthday) {
+    public User(String name, String email, LocalDate birthday) {
         this.name = name;
         this.email = email;
         this.birthday = birthday;

@@ -9,6 +9,7 @@ import com.epam.spring.core.events.services.EventService;
 import com.epam.spring.core.tickets.Ticket;
 import com.epam.spring.core.users.User;
 import com.epam.spring.core.users.services.UserService;
+import org.joda.time.LocalDate;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -31,7 +32,13 @@ public class Runner {
 
         // user
         calendar.set(2015, Calendar.DECEMBER, 15, 14, 15, 0);
-        User hanna = userService.register("Hanna", "Hanna@Mail", calendar.getTime());
+
+        User hanna = null;
+        try {
+            hanna = userService.register("Hanna", "Hanna@Mail", LocalDate.parse("1990-12-15"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         // event one
         Event eventOne = eventService.create("Terminator 8", 25_000.0, Rating.HIGH);

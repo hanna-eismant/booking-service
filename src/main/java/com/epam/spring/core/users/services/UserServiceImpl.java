@@ -5,11 +5,12 @@ import com.epam.spring.core.events.services.EventService;
 import com.epam.spring.core.tickets.Ticket;
 import com.epam.spring.core.users.User;
 import com.epam.spring.core.users.dao.UserDAO;
+import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Service("userService")
@@ -21,16 +22,41 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private EventService eventService;
 
+    @Required
     public void setUserDAO(UserDAO userDAO) {
         this.userDAO = userDAO;
     }
 
+    @Required
     public void setEventService(EventService eventService) {
         this.eventService = eventService;
     }
 
     @Override
-    public User register(String name, String email, Date birthday) {
+    public User register(String name, String email, LocalDate birthday) throws Exception {
+        // check user name
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("User name cannot be empty or 'null'");
+        }
+
+        // check user email
+        if (email == null || email.isEmpty()) {
+            throw new IllegalArgumentException("User email cannot be empty or 'null'");
+        }
+        User byEmail = userDAO.findByEmail(email);
+        if (byEmail != null) {
+            throw new Exception("User email '" + email + "' is duplicated");
+        }
+
+        // check user birthday
+        LocalDate currentDate = LocalDate.now();
+        if (birthday == null) {
+            throw new IllegalArgumentException("User birthday cannot be 'null'");
+        }
+        if (birthday.isBefore(currentDate) || birthday.isEqual(currentDate)) {
+            throw new IllegalArgumentException("User birthday cannot be in future or today");
+        }
+
         User user = new User(name, email, birthday);
         user = userDAO.create(user);
 
@@ -70,24 +96,6 @@ public class UserServiceImpl implements UserService {
             for (Ticket ticket : tickets) {
                 if (user.equals(ticket.user)) {
                     result.add(ticket);
-                }
-            }
-        }
-
-        return result;
-    }
-
-    @Override
-    public int getBookedTicketsCount(User user) {
-        int result = 0;
-
-        List<Event> allEvents = eventService.getAll();
-
-        for (Event event : allEvents) {
-            List<Ticket> tickets = event.getTickets();
-            for (Ticket ticket : tickets) {
-                if (user.equals(ticket.user)) {
-                    result++;
                 }
             }
         }

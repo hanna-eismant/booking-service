@@ -2,23 +2,59 @@ package com.epam.spring.core.users.services;
 
 import com.epam.spring.core.tickets.Ticket;
 import com.epam.spring.core.users.User;
+import org.joda.time.LocalDate;
 
-import java.util.Date;
 import java.util.List;
 
 public interface UserService {
 
-    User register(String name, String email, Date birthday);
+    /**
+     * Register new user to the Booking system.
+     *
+     * @param name     user name. Cannot be {@code null} or empty.
+     * @param email    user e-mail. Cannot be {@code null} or empty. Should be unique.
+     * @param birthday user birthday. Cannot be {@code null} or in future.
+     * @return registered user.
+     * @throws Exception                if user with passed email already registered.
+     * @throws IllegalArgumentException if any passed parameters are incorrect.
+     */
+    User register(String name, String email, LocalDate birthday) throws Exception;
 
+    /**
+     * Remove user from system.
+     *
+     * @param user user for delete.
+     */
     void remove(User user);
 
+    /**
+     * Find user with specific ID.
+     *
+     * @param id user id for search.
+     * @return found user or {@code null}.
+     */
     User getById(Long id);
 
+    /**
+     * Find user with specific email.
+     *
+     * @param email user email for search.
+     * @return found user or {@code null}.
+     */
     User getUserByEmail(String email);
 
+    /**
+     *
+     * @param name
+     * @return
+     */
     List<User> getUsersByName(String name);
 
+    /**
+     * Found all booked tickets by user.
+     *
+     * @param user
+     * @return list of all booked tickets by user. If user has no booked tickets then return empty list.
+     */
     List<Ticket> getBookedTickets(User user);
-
-    int getBookedTicketsCount(User user);
 }
