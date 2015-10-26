@@ -3,6 +3,7 @@ package com.epam.spring.core.events.services;
 import com.epam.spring.core.AbstractIntegrationTest;
 import com.epam.spring.core.events.Event;
 import com.epam.spring.core.events.Rating;
+import com.epam.spring.core.events.dao.EventDAO;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,9 @@ public class EventServiceIntegrationTest extends AbstractIntegrationTest {
     @Autowired
     private EventService eventService;
 
+    @Autowired
+    private EventDAO eventDAO;
+
     private String eventName;
     private Double basePrice;
     private Rating rating;
@@ -25,6 +29,8 @@ public class EventServiceIntegrationTest extends AbstractIntegrationTest {
         eventName = "Test event";
         basePrice = 10_000.0;
         rating = Rating.MID;
+
+        eventDAO.removeAll();
     }
 
     @Test

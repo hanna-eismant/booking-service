@@ -12,4 +12,6 @@ public interface EventDAO {
     Event findById(Long id);
 
     List<Event> findAll();
+
+    void removeAll();
 }
