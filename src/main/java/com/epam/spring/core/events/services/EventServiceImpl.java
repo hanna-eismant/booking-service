@@ -56,7 +56,7 @@ public class EventServiceImpl implements EventService, ApplicationContextAware {
 
     public void assignAuditorium(Event event, Auditorium auditorium, Date date) {
         for (int seat = 0; seat < auditorium.seats; seat++) {
-            Ticket ticket = new Ticket(seat, event.basePrice);
+            Ticket ticket = new Ticket(date, event, seat, event.basePrice);
             event.getTickets().add(ticket);
         }
 
