@@ -6,7 +6,5 @@ import com.epam.spring.core.users.User;
 import java.util.Date;
 
 public interface DiscountService {
-
-    Integer getDiscount(User user, Event event, Date date);
-
+    Double getDiscount(User user, Event event, Date date);
 }

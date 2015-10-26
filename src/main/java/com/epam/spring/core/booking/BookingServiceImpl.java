@@ -33,8 +33,9 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public Integer getTicketPrice(Event event, Date date, Integer seat, User user) {
-        return discountService.getDiscount(user, event, date);
+    public Double getTicketPrice(Event event, Date date, Integer seat, User user) {
+        Double discount = discountService.getDiscount(user, event, date);
+        return event.basePrice * discount;
     }
 
     @Override
@@ -42,7 +43,6 @@ public class BookingServiceImpl implements BookingService {
         ticket.user = user;
         ticket.discountPrice = getTicketPrice(ticket.event, ticket.date, ticket.seat, user);
     }
-
 
     @Override
     public List<Ticket> getTicketsForEvent(Event event, Date date) {

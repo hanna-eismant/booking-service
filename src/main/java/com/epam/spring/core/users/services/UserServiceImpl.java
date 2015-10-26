@@ -76,4 +76,22 @@ public class UserServiceImpl implements UserService {
 
         return result;
     }
+
+    @Override
+    public int getBookedTicketsCount(User user) {
+        int result = 0;
+
+        List<Event> allEvents = eventService.getAll();
+
+        for (Event event : allEvents) {
+            List<Ticket> tickets = event.getTickets();
+            for (Ticket ticket : tickets) {
+                if (user.equals(ticket.user)) {
+                    result++;
+                }
+            }
+        }
+
+        return result;
+    }
 }

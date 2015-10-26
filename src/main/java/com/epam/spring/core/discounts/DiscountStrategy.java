@@ -6,5 +6,5 @@ import com.epam.spring.core.users.User;
 import java.util.Date;
 
 public interface DiscountStrategy {
-    Integer calculate(User user, Event event, Date date);
+    Double calculate(User user, Event event, Date date);
 }

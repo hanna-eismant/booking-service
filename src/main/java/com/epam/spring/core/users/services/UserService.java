@@ -8,13 +8,6 @@ import java.util.List;
 
 public interface UserService {
 
-    /**
-     *
-     * @param name
-     * @param email
-     * @param birthday
-     * @return
-     */
     User register(String name, String email, Date birthday);
 
     void remove(User user);
@@ -26,4 +19,6 @@ public interface UserService {
     List<User> getUsersByName(String name);
 
     List<Ticket> getBookedTickets(User user);
+
+    int getBookedTicketsCount(User user);
 }

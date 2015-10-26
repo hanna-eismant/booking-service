@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
 
-@Service
+@Service("eventService")
 public class EventServiceImpl implements EventService, ApplicationContextAware {
 
     @Autowired
@@ -27,7 +27,7 @@ public class EventServiceImpl implements EventService, ApplicationContextAware {
     }
 
     @Override
-    public Event create(String name, Integer basePrice, Rating rating) {
+    public Event create(String name, Double basePrice, Rating rating) {
         Event event = context.getBean(Event.class);
         event.name = name;
         event.basePrice = basePrice;

@@ -13,15 +13,15 @@ public class Event {
 
     public Long id;
     public String name;
-    public Integer basePrice;
+    public Double basePrice;
     public Rating rating;
-    private List<Ticket> tickets = new ArrayList<Ticket>();
+    private List<Ticket> tickets = new ArrayList<>();
 
     public Event() {
         // todo: set id
     }
 
-    public Event(String name, Integer basePrice, Rating rating) {
+    public Event(String name, Double basePrice, Rating rating) {
         // todo: set id
         this.name = name;
         this.basePrice = basePrice;

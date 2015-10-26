@@ -11,13 +11,13 @@ public class Ticket {
     public Date date;
     public Event event;
     public Integer seat;
-    public Integer basePrice;
-    public Integer discountPrice;
+    public Double basePrice;
+    public Double discountPrice;
 
     public Ticket() {
     }
 
-    public Ticket(Date date, Event event, Integer seat, Integer basePrice) {
+    public Ticket(Date date, Event event, Integer seat, Double basePrice) {
         this.date = date;
         this.event = event;
         this.seat = seat;

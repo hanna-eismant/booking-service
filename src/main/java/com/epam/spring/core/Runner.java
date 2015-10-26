@@ -31,10 +31,10 @@ public class Runner {
         User hanna = userService.register("Hanna", "Hanna@Mail", calendar.getTime());
 
         // event one
-        Event eventOne = eventService.create("Terminator 8", 5000, Rating.HIGH);
+        Event eventOne = eventService.create("Terminator 8", 5000.0, Rating.HIGH);
 
         // event two
-        Event eventTwo = eventService.create("Just Married", 25000, Rating.LOW);
+        Event eventTwo = eventService.create("Just Married", 25000.0, Rating.LOW);
 
         // auditoriums
         AuditoriumService auditoriumService = context.getBean(AuditoriumService.class);
@@ -49,10 +49,6 @@ public class Runner {
 
         calendar.set(2015, Calendar.DECEMBER, 15, 14, 0);
         eventService.assignAuditorium(eventTwo, auditoriums.get(0), calendar.getTime());
-
-
-
-//        LocaleDate
 
     }
 }

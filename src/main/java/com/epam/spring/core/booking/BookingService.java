@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface BookingService {
 
-    Integer getTicketPrice(Event event, Date date, Integer seat, User user);
+    Double getTicketPrice(Event event, Date date, Integer seat, User user);
 
     // todo: set total price here
     void bookTicket(User user, Ticket ticket);
