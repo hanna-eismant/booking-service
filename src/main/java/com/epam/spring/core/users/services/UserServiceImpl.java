@@ -7,7 +7,6 @@ import com.epam.spring.core.users.User;
 import com.epam.spring.core.users.dao.UserDAO;
 import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -22,12 +21,10 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private EventService eventService;
 
-    @Required
     public void setUserDAO(UserDAO userDAO) {
         this.userDAO = userDAO;
     }
 
-    @Required
     public void setEventService(EventService eventService) {
         this.eventService = eventService;
     }
@@ -53,7 +50,7 @@ public class UserServiceImpl implements UserService {
         if (birthday == null) {
             throw new IllegalArgumentException("User birthday cannot be 'null'");
         }
-        if (birthday.isBefore(currentDate) || birthday.isEqual(currentDate)) {
+        if (birthday.isAfter(currentDate) || birthday.isEqual(currentDate)) {
             throw new IllegalArgumentException("User birthday cannot be in future or today");
         }
 
@@ -83,6 +80,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getUsersByName(String name) {
         return userDAO.findByName(name);
+    }
+
+    @Override
+    public List<User> getAll() {
+        return userDAO.findAll();
     }
 
     @Override

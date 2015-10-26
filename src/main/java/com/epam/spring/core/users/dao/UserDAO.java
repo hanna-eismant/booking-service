@@ -49,4 +49,16 @@ public interface UserDAO {
      * @throws IllegalArgumentException if passed name is {@code null}.
      */
     List<User> findByName(String name) throws IllegalArgumentException;
+
+    /**
+     * Find all registered users.
+     *
+     * @return list of all registered users or empty list.
+     */
+    List<User> findAll();
+
+    /**
+     * Remove all users from Booking system.
+     */
+    void removeAll();
 }

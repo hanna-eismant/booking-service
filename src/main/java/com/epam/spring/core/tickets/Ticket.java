@@ -2,13 +2,12 @@ package com.epam.spring.core.tickets;
 
 import com.epam.spring.core.events.Event;
 import com.epam.spring.core.users.User;
-
-import java.util.Date;
+import org.joda.time.LocalDateTime;
 
 public class Ticket {
 
     public User user;
-    public Date date;
+    public LocalDateTime date;
     public Event event;
     public Integer seat;
     public Double basePrice;
@@ -17,7 +16,7 @@ public class Ticket {
     public Ticket() {
     }
 
-    public Ticket(Date date, Event event, Integer seat, Double basePrice) {
+    public Ticket(LocalDateTime date, Event event, Integer seat, Double basePrice) {
         this.date = date;
         this.event = event;
         this.seat = seat;

@@ -89,4 +89,14 @@ public class UserDAOMapImpl implements UserDAO {
 
         return result;
     }
+
+    @Override
+    public List<User> findAll() {
+        return new ArrayList<>(users.values());
+    }
+
+    @Override
+    public void removeAll() {
+        users.clear();
+    }
 }

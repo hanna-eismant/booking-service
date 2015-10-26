@@ -5,6 +5,7 @@ import com.epam.spring.core.events.Event;
 import com.epam.spring.core.events.Rating;
 import com.epam.spring.core.events.dao.EventDAO;
 import com.epam.spring.core.tickets.Ticket;
+import org.joda.time.LocalDateTime;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -59,7 +60,7 @@ public class EventServiceImpl implements EventService, ApplicationContextAware {
     }
 
     @Override
-    public void assignAuditorium(Event event, Auditorium auditorium, Date date) {
+    public void assignAuditorium(Event event, Auditorium auditorium, LocalDateTime date) {
         for (int seat = 0; seat < auditorium.seats; seat++) {
             Ticket ticket = new Ticket(date, event, seat, event.basePrice);
             event.getTickets().add(ticket);

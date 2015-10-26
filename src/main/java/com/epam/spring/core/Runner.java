@@ -10,6 +10,7 @@ import com.epam.spring.core.tickets.Ticket;
 import com.epam.spring.core.users.User;
 import com.epam.spring.core.users.services.UserService;
 import org.joda.time.LocalDate;
+import org.joda.time.LocalDateTime;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -52,13 +53,13 @@ public class Runner {
 
         // assign
         calendar.set(2015, Calendar.DECEMBER, 15, 14, 0, 0);
-        eventService.assignAuditorium(eventOne, auditoriums.get(0), calendar.getTime());
+        eventService.assignAuditorium(eventOne, auditoriums.get(0), LocalDateTime.parse("2015-12-15 14:00"));
 
         calendar.set(2015, Calendar.DECEMBER, 15, 23, 15, 0);
-        eventService.assignAuditorium(eventOne, auditoriums.get(0), calendar.getTime());
+        eventService.assignAuditorium(eventOne, auditoriums.get(0), LocalDateTime.parse("2015-12-15 23:15"));
 
         calendar.set(2015, Calendar.DECEMBER, 15, 14, 0, 0);
-        eventService.assignAuditorium(eventTwo, auditoriums.get(0), calendar.getTime());
+        eventService.assignAuditorium(eventTwo, auditoriums.get(0), LocalDateTime.parse("2015-12-15 14:00"));
 
         // book ticket
         Ticket ticket = eventOne.getTickets().get(0);

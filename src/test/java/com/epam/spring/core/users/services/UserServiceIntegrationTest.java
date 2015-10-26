@@ -2,31 +2,36 @@ package com.epam.spring.core.users.services;
 
 import com.epam.spring.core.AbstractIntegrationTest;
 import com.epam.spring.core.users.User;
-import org.joda.time.LocalDateTime;
+import com.epam.spring.core.users.dao.UserDAO;
+import org.joda.time.LocalDate;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.Date;
 
 import static org.junit.Assert.*;
 
 public class UserServiceIntegrationTest extends AbstractIntegrationTest {
 
+    public static final String HANNA_BIRTHDAY = "1990-12-15";
+    public static final String ADMIN_BIRTHDAY = "1987-04-04";
+
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private UserDAO userDAO;
 
     private User hanna;
     private Long hannaId;
     private String hannaName;
     private String hannaEmail;
-    private Date hannaBirthDay;
+    private LocalDate hannaBirthDay;
 
     private User admin;
     private Long adminId;
     private String adminName;
     private String adminEmail;
-    private Date adminBirthDay;
+    private LocalDate adminBirthDay;
 
     @Before
     public void setUp() throws Exception {
@@ -34,17 +39,19 @@ public class UserServiceIntegrationTest extends AbstractIntegrationTest {
         hannaId = null;
         hannaName = "Hanna";
         hannaEmail = "Hanna@Mail";
-        hannaBirthDay = LocalDateTime.parse("1990-12-15").toDate();
+        hannaBirthDay = LocalDate.parse(HANNA_BIRTHDAY);
 
         admin = null;
         adminId = null;
         adminName = "Admin";
         adminEmail = "Admin@Mail";
-        adminBirthDay = LocalDateTime.parse("1987-04-04").toDate();
+        adminBirthDay = LocalDate.parse(ADMIN_BIRTHDAY);
+
+        userDAO.removeAll();
     }
 
     @Test
-    public void testRegister() {
+    public void testRegister() throws Exception {
         hanna = userService.register(hannaName, hannaEmail, hannaBirthDay);
         assertNotNull("Registered user cannot be null", hanna);
         assertNotNull("Registered user should have id", hanna.id);
@@ -55,7 +62,7 @@ public class UserServiceIntegrationTest extends AbstractIntegrationTest {
     }
 
     @Test
-    public void testGetByIdRegistered() {
+    public void testGetByIdRegistered() throws Exception {
         hanna = userService.register(hannaName, hannaEmail, hannaBirthDay);
         hannaId = hanna.id;
 

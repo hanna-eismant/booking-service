@@ -44,17 +44,25 @@ public interface UserService {
     User getUserByEmail(String email);
 
     /**
+     * Find users with specific name.
      *
-     * @param name
-     * @return
+     * @param name user name for search.
+     * @return found users list ir empty list.
      */
     List<User> getUsersByName(String name);
 
     /**
-     * Found all booked tickets by user.
+     * Find all booked tickets by user.
      *
-     * @param user
+     * @param user user for search.
      * @return list of all booked tickets by user. If user has no booked tickets then return empty list.
      */
     List<Ticket> getBookedTickets(User user);
+
+    /**
+     * Find all registered users.
+     *
+     * @return list of all registered users or empty list.
+     */
+    List<User> getAll();
 }

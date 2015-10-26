@@ -3,8 +3,8 @@ package com.epam.spring.core.events.services;
 import com.epam.spring.core.auditoriums.Auditorium;
 import com.epam.spring.core.events.Event;
 import com.epam.spring.core.events.Rating;
+import org.joda.time.LocalDateTime;
 
-import java.util.Date;
 import java.util.List;
 
 public interface EventService {
@@ -16,5 +16,5 @@ public interface EventService {
 
     List<Event> getAll();
 
-    void assignAuditorium(Event event, Auditorium auditorium, Date date);
+    void assignAuditorium(Event event, Auditorium auditorium, LocalDateTime date);
 }
