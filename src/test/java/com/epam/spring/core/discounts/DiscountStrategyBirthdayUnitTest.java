@@ -10,11 +10,11 @@ import static org.junit.Assert.assertEquals;
 
 public class DiscountStrategyBirthdayUnitTest {
 
-    private DiscountStrategyBirthdayImpl discountStrategyBirthday = new DiscountStrategyBirthdayImpl();
+    private DiscountStrategyBirthdayImpl discountStrategyBirthday;
 
     @Before
     public void setUp() {
-
+        discountStrategyBirthday = new DiscountStrategyBirthdayImpl();
     }
 
     @Test

@@ -10,7 +10,7 @@
             <list>
                 <bean class="com.epam.spring.core.discounts.DiscountStrategyBirthdayImpl"/>
                 <bean class="com.epam.spring.core.discounts.DiscountStrategyTenTicketImpl">
-                    <constructor-arg ref="eventService"/>
+                    <property name="userService" ref="userService"/>
                 </bean>
             </list>
         </constructor-arg>

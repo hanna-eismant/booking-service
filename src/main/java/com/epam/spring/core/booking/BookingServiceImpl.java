@@ -24,10 +24,6 @@ public class BookingServiceImpl implements BookingService {
     @Autowired
     private DiscountService discountService;
 
-    public EventService getEventService() {
-        return eventService;
-    }
-
     public void setDiscountService(DiscountService discountService) {
         this.discountService = discountService;
     }
@@ -38,8 +34,8 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public Double getTicketPrice(Event event, LocalDateTime date, Integer seat, User user) {
-        Double discount = discountService.getDiscount(user, event, date);
-        return event.basePrice * discount;
+        Double discountPercent = discountService.getDiscount(user, event, date);
+        return event.basePrice * (1 - discountPercent);
     }
 
     @Override
@@ -52,7 +48,6 @@ public class BookingServiceImpl implements BookingService {
     public List<Ticket> getTicketsForEvent(Event event, LocalDateTime date) {
         List<Ticket> result = new ArrayList<>();
         List<Ticket> tickets = event.getTickets();
-
 
 
         for (Ticket ticket : tickets) {

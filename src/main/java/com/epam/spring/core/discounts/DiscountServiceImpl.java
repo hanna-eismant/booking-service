@@ -4,7 +4,6 @@ import com.epam.spring.core.events.Event;
 import com.epam.spring.core.users.User;
 import org.joda.time.LocalDateTime;
 
-import java.util.Date;
 import java.util.List;
 
 public class DiscountServiceImpl implements DiscountService {

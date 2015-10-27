@@ -3,6 +3,7 @@ package com.epam.spring.core.auditoriums.services;
 import com.epam.spring.core.AbstractIntegrationTest;
 import com.epam.spring.core.auditoriums.Auditorium;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,7 +25,7 @@ public class AuditoriumServiceIntegrationTest extends AbstractIntegrationTest {
     private Integer auditoriumTwoSeats = 12;
     private List<Integer> auditoriumTwoVipseats = new ArrayList<>(Collections.singletonList(2));
 
-
+    @Autowired
     private AuditoriumService auditoriumService;
 
     @Test
