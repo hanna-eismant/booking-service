@@ -7,7 +7,7 @@ public class Auditorium {
 
     public String name;
     public Integer seats;
-    private List<Integer> vipSeats = new ArrayList<Integer>();
+    private List<Integer> vipSeats = new ArrayList<>();
 
     public Auditorium() {
     }

@@ -18,7 +18,7 @@ public class AuditoriumServiceIntegrationTest extends AbstractIntegrationTest {
     // data from test properties files
 
     private String auditoriumOneName = "auditorium test one";
-    private Integer auditoriumOneSseats = 24;
+    private Integer auditoriumOneSeats = 24;
     private List<Integer> auditoriumOneVipseats = new ArrayList<>(Arrays.asList(4, 5, 6, 7, 8, 9, 10));
 
     private String auditoriumTwoName = "auditorium test two";
@@ -34,5 +34,19 @@ public class AuditoriumServiceIntegrationTest extends AbstractIntegrationTest {
 
         assertNotNull(auditoriums);
         assertEquals(2, auditoriums.size());
+
+        Auditorium auditoriumOne = auditoriums.get(0);
+        assertNotNull(auditoriumOne);
+        assertEquals(auditoriumOneName, auditoriumOne.name);
+        assertEquals(auditoriumOneSeats, auditoriumOne.seats);
+        assertNotNull(auditoriumOneVipseats);
+        assertEquals(auditoriumOneVipseats.size(), auditoriumOne.getVipSeats().size());
+
+        Auditorium auditoriumTwo = auditoriums.get(1);
+        assertNotNull(auditoriumTwo);
+        assertEquals(auditoriumTwoName, auditoriumTwo.name);
+        assertEquals(auditoriumTwoSeats, auditoriumTwo.seats);
+        assertNotNull(auditoriumTwoVipseats);
+        assertEquals(auditoriumTwoVipseats.size(), auditoriumTwo.getVipSeats().size());
     }
 }
