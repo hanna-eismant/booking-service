@@ -18,11 +18,9 @@ public class Event {
     private List<Ticket> tickets = new ArrayList<>();
 
     public Event() {
-        // todo: set id
     }
 
     public Event(String name, Double basePrice, Rating rating) {
-        // todo: set id
         this.name = name;
         this.basePrice = basePrice;
         this.rating = rating;

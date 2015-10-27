@@ -14,7 +14,6 @@ public class DiscountStrategyBirthdayImpl implements DiscountStrategy {
 
     @Override
     public Double calculate(User user, Event event, LocalDateTime date) {
-        // todo: check parameters
 
         int compare = COMPARATOR.compare(date.toDateTime(), user.birthday.toDateTime(LocalTime.now()));
         if (compare == 0) {
