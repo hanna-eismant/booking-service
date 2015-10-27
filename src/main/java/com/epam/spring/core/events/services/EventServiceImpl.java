@@ -31,6 +31,11 @@ public class EventServiceImpl implements EventService, ApplicationContextAware {
         Event event = context.getBean(Event.class);
         event.name = name;
         event.basePrice = basePrice;
+
+        if (Rating.HIGH.equals(rating)) {
+            event.basePrice *= 1.2;
+        }
+
         event.rating = rating;
         event = eventDAO.create(event);
 
@@ -57,7 +62,7 @@ public class EventServiceImpl implements EventService, ApplicationContextAware {
     @Override
     public void assignAuditorium(Event event, Auditorium auditorium, LocalDateTime date) {
         for (int seat = 0; seat < auditorium.seats; seat++) {
-            Ticket ticket = new Ticket(date, event, seat, event.basePrice);
+            Ticket ticket = new Ticket(date, event, seat, auditorium.getVipSeats().contains(seat), event.basePrice);
             event.getTickets().add(ticket);
         }
 

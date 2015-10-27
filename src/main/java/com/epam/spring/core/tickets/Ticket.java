@@ -10,17 +10,20 @@ public class Ticket {
     public LocalDateTime date;
     public Event event;
     public Integer seat;
+    public boolean isVip;
     public Double basePrice;
     public Double discountPrice;
 
-    public Ticket() {
-    }
-
-    public Ticket(LocalDateTime date, Event event, Integer seat, Double basePrice) {
+    public Ticket(LocalDateTime date, Event event, Integer seat, boolean isVip, Double basePrice) {
         this.date = date;
         this.event = event;
         this.seat = seat;
+        this.isVip = isVip;
         this.basePrice = basePrice;
+
+        if (this.isVip) {
+            this.basePrice *= 2;
+        }
     }
 
     @Override
@@ -29,6 +32,7 @@ public class Ticket {
                 "user=" + user +
                 ", date=" + date +
                 ", seat=" + seat +
+                ", isVip=" + isVip +
                 ", basePrice=" + basePrice +
                 ", discountPrice=" + discountPrice +
                 '}';
