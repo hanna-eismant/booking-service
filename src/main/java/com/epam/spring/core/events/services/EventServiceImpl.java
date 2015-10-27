@@ -12,7 +12,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 
 @Service("eventService")
@@ -52,11 +51,7 @@ public class EventServiceImpl implements EventService, ApplicationContextAware {
 
     @Override
     public List<Event> getAll() {
-        List<Event> all = eventDAO.findAll();
-
-        System.out.println("Find all events: " + all);
-
-        return all;
+        return eventDAO.findAll();
     }
 
     @Override

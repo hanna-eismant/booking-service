@@ -53,17 +53,27 @@ public class Runner {
 
         // assign
         calendar.set(2015, Calendar.DECEMBER, 15, 14, 0, 0);
-        eventService.assignAuditorium(eventOne, auditoriums.get(0), LocalDateTime.parse("2015-12-15 14:00"));
+        eventService.assignAuditorium(eventOne, auditoriums.get(0), LocalDateTime.parse("2015-12-15T14:00:00.000"));
 
         calendar.set(2015, Calendar.DECEMBER, 15, 23, 15, 0);
-        eventService.assignAuditorium(eventOne, auditoriums.get(0), LocalDateTime.parse("2015-12-15 23:15"));
+        eventService.assignAuditorium(eventOne, auditoriums.get(0), LocalDateTime.parse("2015-12-15T23:15:00.000"));
 
         calendar.set(2015, Calendar.DECEMBER, 15, 14, 0, 0);
-        eventService.assignAuditorium(eventTwo, auditoriums.get(0), LocalDateTime.parse("2015-12-15 14:00"));
+        eventService.assignAuditorium(eventTwo, auditoriums.get(0), LocalDateTime.parse("2015-12-16T14:00:00.000"));
 
         // book ticket
-        Ticket ticket = eventOne.getTickets().get(0);
-        bookingService.bookTicket(hanna, ticket);
+        for (int i = 1; i <4; i++) {
+            bookingService.bookTicket(hanna, eventOne.getTickets().get(i));
+        }
 
+        for (int i = 0; i <6; i++) {
+            bookingService.bookTicket(hanna, eventTwo.getTickets().get(i));
+        }
+
+        System.out.println("Hanna's tickets:");
+
+        for (Ticket ticket : userService.getBookedTickets(hanna)) {
+            System.out.println(ticket);
+        }
     }
 }
