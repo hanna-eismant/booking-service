@@ -37,7 +37,7 @@ public class Event {
                 ", name='" + name + '\'' +
                 ", basePrice=" + basePrice +
                 ", rating=" + rating +
-                ", tickets(" + tickets.size() + ")=" + tickets +
+                ", tickets(" + tickets.size() + ")=" +
                 '}';
     }
 }

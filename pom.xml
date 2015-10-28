@@ -82,9 +82,16 @@
                     <target>1.7</target>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.epam.spring.core.Runner</mainClass>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
-
-
 
 </project>

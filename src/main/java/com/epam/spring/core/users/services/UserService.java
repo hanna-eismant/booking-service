@@ -66,5 +66,8 @@ public interface UserService {
      */
     List<User> getAll();
 
+    /**
+     * Calculate how many tickets has booked specified user.
+     */
     int getBookedTicketsCount(User user);
 }

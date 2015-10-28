@@ -21,4 +21,13 @@ public class Auditorium {
     public List<Integer> getVipSeats() {
         return vipSeats;
     }
+
+    @Override
+    public String toString() {
+        return "Auditorium{" +
+                "name='" + name + '\'' +
+                ", seats=" + seats +
+                ", vipSeats=" + vipSeats +
+                '}';
+    }
 }

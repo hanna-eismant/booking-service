@@ -57,6 +57,7 @@ public class UserServiceImpl implements UserService {
         User user = new User(name, email, birthday);
         user = userDAO.create(user);
 
+        System.out.println();
         System.out.println("Register new user: " + user);
 
         return user;

@@ -70,7 +70,9 @@ public class Runner {
             bookingService.bookTicket(hanna, eventTwo.getTickets().get(i));
         }
 
+        System.out.println();
         System.out.println("Hanna's tickets:");
+        System.out.println();
 
         for (Ticket ticket : userService.getBookedTickets(hanna)) {
             System.out.println(ticket);
