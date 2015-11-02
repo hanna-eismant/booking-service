@@ -23,13 +23,4 @@ public class AuditoriumServiceImpl implements AuditoriumService {
         return auditoriums;
     }
 
-    @Override
-    public Integer getSeatsNumber() {
-        return null;
-    }
-
-    @Override
-    public Integer getVipSeats() {
-        return null;
-    }
 }

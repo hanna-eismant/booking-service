@@ -8,7 +8,4 @@ public interface AuditoriumService {
 
     List<Auditorium> getAuditoriums();
 
-    Integer getSeatsNumber();
-
-    Integer getVipSeats();
 }

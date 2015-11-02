@@ -2,10 +2,8 @@ package com.epam.spring.core.booking;
 
 import com.epam.spring.core.discounts.DiscountService;
 import com.epam.spring.core.events.Event;
-import com.epam.spring.core.events.services.EventService;
 import com.epam.spring.core.tickets.Ticket;
 import com.epam.spring.core.users.User;
-import org.joda.time.DateTimeComparator;
 import org.joda.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,20 +14,11 @@ import java.util.List;
 @Service("bookingService")
 public class BookingServiceImpl implements BookingService {
 
-    private static final DateTimeComparator COMPARATOR = DateTimeComparator.getInstance();
-
-    @Autowired
-    private EventService eventService;
-
     @Autowired
     private DiscountService discountService;
 
     public void setDiscountService(DiscountService discountService) {
         this.discountService = discountService;
-    }
-
-    public void setEventService(EventService eventService) {
-        this.eventService = eventService;
     }
 
     @Override
@@ -50,7 +39,6 @@ public class BookingServiceImpl implements BookingService {
     public List<Ticket> getTicketsForEvent(Event event, LocalDateTime date) {
         List<Ticket> result = new ArrayList<>();
         List<Ticket> tickets = event.getTickets();
-
 
         for (Ticket ticket : tickets) {
             if (date.equals(ticket.date)) {
