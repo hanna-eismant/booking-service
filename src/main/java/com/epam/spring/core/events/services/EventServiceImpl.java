@@ -6,21 +6,21 @@ import com.epam.spring.core.events.Rating;
 import com.epam.spring.core.events.dao.EventDAO;
 import com.epam.spring.core.tickets.Ticket;
 import org.joda.time.LocalDateTime;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Service;
 
+import javax.inject.Provider;
 import java.util.List;
 
 @Service("eventService")
-public class EventServiceImpl implements EventService, ApplicationContextAware {
+public class EventServiceImpl implements EventService {
 
     @Autowired
     private EventDAO eventDAO;
 
-    private ApplicationContext context;
+    @Autowired
+    private Provider<Event> eventProvider;
+
 
     public void setEventDAO(EventDAO eventDAO) {
         this.eventDAO = eventDAO;
@@ -28,7 +28,7 @@ public class EventServiceImpl implements EventService, ApplicationContextAware {
 
     @Override
     public Event create(String name, Double basePrice, Rating rating) {
-        Event event = context.getBean(Event.class);
+        Event event = eventProvider.get();
         event.name = name;
         event.basePrice = basePrice;
 
@@ -69,10 +69,5 @@ public class EventServiceImpl implements EventService, ApplicationContextAware {
 
         System.out.println();
         System.out.println("Assign auditorium for event: " + event);
-    }
-
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        context = applicationContext;
     }
 }
