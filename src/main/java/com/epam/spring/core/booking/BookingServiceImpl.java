@@ -31,7 +31,6 @@ public class BookingServiceImpl implements BookingService {
     public void bookTicket(User user, Ticket ticket) {
         ticket.user = user;
         ticket.discountPrice = getTicketPrice(ticket.event, ticket.date, ticket.seat, user);
-        System.out.println();
         System.out.println("Booked ticket " + ticket);
     }
 

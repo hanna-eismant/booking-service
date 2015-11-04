@@ -39,7 +39,6 @@ public class EventServiceImpl implements EventService {
         event.rating = rating;
         event = eventDAO.create(event);
 
-        System.out.println();
         System.out.println("Create new event: " + event);
 
         return event;
@@ -67,7 +66,6 @@ public class EventServiceImpl implements EventService {
             event.getTickets().add(ticket);
         }
 
-        System.out.println();
         System.out.println("Assign auditorium for event: " + event);
     }
 }
