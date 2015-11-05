@@ -3,17 +3,15 @@ package com.epam.spring.core.users.services;
 import com.epam.spring.core.AbstractIntegrationTest;
 import com.epam.spring.core.users.User;
 import com.epam.spring.core.users.dao.UserDAO;
-import org.joda.time.LocalDate;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import static com.epam.spring.core.TestUtils.*;
 import static org.junit.Assert.*;
 
 public class UserServiceIntegrationTest extends AbstractIntegrationTest {
-
-    public static final String HANNA_BIRTHDAY = "1990-12-15";
-    public static final String ADMIN_BIRTHDAY = "1987-04-04";
 
     @Autowired
     private UserService userService;
@@ -21,54 +19,38 @@ public class UserServiceIntegrationTest extends AbstractIntegrationTest {
     @Autowired
     private UserDAO userDAO;
 
-    private User hanna;
-    private Long hannaId;
-    private String hannaName;
-    private String hannaEmail;
-    private LocalDate hannaBirthDay;
-
-    private User admin;
-    private Long adminId;
-    private String adminName;
-    private String adminEmail;
-    private LocalDate adminBirthDay;
+    private User user;
+    private Long userId;
 
     @Before
     public void setUp() throws Exception {
-        hanna = null;
-        hannaId = null;
-        hannaName = "Hanna";
-        hannaEmail = "Hanna@Mail";
-        hannaBirthDay = LocalDate.parse(HANNA_BIRTHDAY);
+        user = null;
+        userId = null;
+    }
 
-        admin = null;
-        adminId = null;
-        adminName = "Admin";
-        adminEmail = "Admin@Mail";
-        adminBirthDay = LocalDate.parse(ADMIN_BIRTHDAY);
-
+    @After
+    public void tearDown() {
         userDAO.removeAll();
     }
 
     @Test
     public void testRegister() throws Exception {
-        hanna = userService.register(hannaName, hannaEmail, hannaBirthDay);
-        assertNotNull("Registered user cannot be null", hanna);
-        assertNotNull("Registered user should have id", hanna.id);
-        assertEquals(hanna.name, hannaName);
-        assertEquals(hanna.email, hannaEmail);
-        assertEquals(hanna.birthday, hannaBirthDay);
-        hannaId = hanna.id;
+        user = userService.register(USER_NAME, USER_EMAIL, USER_BIRTHDAY);
+        assertNotNull("Registered user cannot be null", user);
+        assertNotNull("Registered user should have id", user.id);
+        assertEquals(user.name, USER_NAME);
+        assertEquals(user.email, USER_EMAIL);
+        assertEquals(user.birthday, USER_BIRTHDAY);
     }
 
     @Test
     public void testGetByIdRegistered() throws Exception {
-        hanna = userService.register(hannaName, hannaEmail, hannaBirthDay);
-        hannaId = hanna.id;
+        user = userService.register(USER_NAME, USER_EMAIL, USER_BIRTHDAY);
+        userId = user.id;
 
-        User user = userService.getById(hannaId);
-        assertNotNull(user);
-        assertEquals(hannaId, hanna.id);
+        User userTest = userService.getById(userId);
+        assertNotNull(userTest);
+        assertEquals(userId, userTest.id);
     }
 
     @Test

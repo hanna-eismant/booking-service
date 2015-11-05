@@ -1,5 +1,6 @@
 package com.epam.spring.core.discounts;
 
+import com.epam.spring.core.discounts.strategies.DiscountStrategyTenTicketImpl;
 import com.epam.spring.core.users.User;
 import com.epam.spring.core.users.services.UserService;
 import org.joda.time.LocalDateTime;

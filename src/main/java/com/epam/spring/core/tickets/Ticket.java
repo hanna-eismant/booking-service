@@ -29,7 +29,8 @@ public class Ticket {
     @Override
     public String toString() {
         return "Ticket{" +
-                "user=" + user +
+               "event='" +  event.name +
+                "', user=" + user +
                 ", date=" + date +
                 ", seat=" + seat +
                 ", isVip=" + isVip +

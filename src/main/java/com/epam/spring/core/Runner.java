@@ -3,7 +3,6 @@ package com.epam.spring.core;
 import com.epam.spring.core.auditoriums.Auditorium;
 import com.epam.spring.core.auditoriums.services.AuditoriumService;
 import com.epam.spring.core.booking.BookingService;
-import com.epam.spring.core.discounts.DiscountStatistic;
 import com.epam.spring.core.events.Event;
 import com.epam.spring.core.events.Rating;
 import com.epam.spring.core.events.services.EventService;
@@ -69,7 +68,7 @@ public class Runner {
             bookingService.bookTicket(hanna, eventTwo.getTickets().get(i));
         }
 
-        for (int i = 10; i < 13; i++) {
+        for (int i = 10; i < 16; i++) {
             bookingService.bookTicket(admin, eventOne.getTickets().get(i));
         }
 
@@ -89,11 +88,5 @@ public class Runner {
         for (Ticket ticket : adminTickets) {
             System.out.println(ticket);
         }
-
-        // statistics
-
-        System.out.println();
-        DiscountStatistic discountStatistic = context.getBean(DiscountStatistic.class);
-        discountStatistic.print();
     }
 }

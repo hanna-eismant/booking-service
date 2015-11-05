@@ -16,7 +16,8 @@
 
     <aop:aspectj-autoproxy proxy-target-class="true"/>
 
-    <bean id="discountStatistic" class="com.epam.spring.core.discounts.DiscountStatistic" />
+    <bean id="discountStatistic" class="com.epam.spring.core.discounts.statistics.DiscountStatisticMapImpl" />
+    <bean id="bookingStatistic" class="com.epam.spring.core.booking.BookingStatistic"/>
     <bean id="eventStatistic" class="com.epam.spring.core.events.EventStatistic"/>
 
 </beans>

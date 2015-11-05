@@ -1,4 +1,4 @@
-package com.epam.spring.core.discounts;
+package com.epam.spring.core.discounts.strategies;
 
 import com.epam.spring.core.events.Event;
 import com.epam.spring.core.users.User;

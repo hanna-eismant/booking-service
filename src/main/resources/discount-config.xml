@@ -8,8 +8,8 @@
     <bean id="discountService" class="com.epam.spring.core.discounts.DiscountServiceImpl">
         <constructor-arg>
             <list>
-                <bean class="com.epam.spring.core.discounts.DiscountStrategyBirthdayImpl"/>
-                <bean class="com.epam.spring.core.discounts.DiscountStrategyTenTicketImpl">
+                <bean class="com.epam.spring.core.discounts.strategies.DiscountStrategyBirthdayImpl"/>
+                <bean class="com.epam.spring.core.discounts.strategies.DiscountStrategyTenTicketImpl">
                     <property name="userService" ref="userService"/>
                 </bean>
             </list>
