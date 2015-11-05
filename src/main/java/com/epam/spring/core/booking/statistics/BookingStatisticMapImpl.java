@@ -36,6 +36,15 @@ public class BookingStatisticMapImpl implements BookingStatistic {
         }
 
         bookedCounter.put(event, bookedCounter.get(event) + 1);
+
+        // if we book ticket then call getTicketPrice() within bookTicket()
+        // therefore we increment priceQueriedCounter here
+
+        if (!priceQueriedCounter.containsKey(event)) {
+            priceQueriedCounter.put(event, 0);
+        }
+
+        priceQueriedCounter.put(event, priceQueriedCounter.get(event) + 1);
     }
 
     @Override
