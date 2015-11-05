@@ -12,7 +12,7 @@
 
     <import resource="discount-config.xml"/>
     <import resource="statistic-config.xml"/>
-    <import resource="database-config-test.xml"/>
+    <import resource="database-config.xml"/>
 
     <context:component-scan base-package="com.epam.spring.core.*"/>
 
