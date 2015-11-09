@@ -1,6 +1,5 @@
-package com.epam.spring.core.discounts;
+package com.epam.spring.core.discounts.strategies;
 
-import com.epam.spring.core.discounts.strategies.DiscountStrategyBirthdayImpl;
 import com.epam.spring.core.users.User;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;

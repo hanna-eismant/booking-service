@@ -1,4 +1,4 @@
-package com.epam.spring.core.discounts;
+package com.epam.spring.core.discounts.statistics;
 
 import com.epam.spring.core.AbstractStatisticIntegrationTest;
 import com.epam.spring.core.discounts.strategies.DiscountStrategy;
