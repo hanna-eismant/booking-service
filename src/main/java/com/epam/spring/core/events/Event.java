@@ -1,5 +1,6 @@
 package com.epam.spring.core.events;
 
+import com.epam.spring.core.BaseEntity;
 import com.epam.spring.core.tickets.Ticket;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -9,9 +10,8 @@ import java.util.List;
 
 @Component
 @Scope("prototype")
-public class Event {
+public class Event extends BaseEntity{
 
-    public Long id;
     public String name;
     public Double basePrice;
     public Rating rating;

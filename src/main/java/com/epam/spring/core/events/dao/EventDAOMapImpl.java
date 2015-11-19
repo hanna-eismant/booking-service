@@ -45,8 +45,4 @@ public class EventDAOMapImpl implements EventDAO {
         return new ArrayList<>(events.values());
     }
 
-    @Override
-    public void removeAll() {
-        events.clear();
-    }
 }
