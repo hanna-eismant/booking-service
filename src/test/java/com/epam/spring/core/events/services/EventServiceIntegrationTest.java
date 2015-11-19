@@ -32,9 +32,9 @@ public class EventServiceIntegrationTest extends AbstractIntegrationTest {
     public void testRemove() {
         int oldSize = eventService.getAll().size();
 
-        eventService.remove(EVENT_REMOVE);
+        eventService.remove(EVENT_GAMER);
 
-        Event event = eventService.getById(EVENT_REMOVE.id);
+        Event event = eventService.getById(EVENT_GAMER.id);
         int newSize = eventService.getAll().size();
 
         assertNull(event);
@@ -59,9 +59,6 @@ public class EventServiceIntegrationTest extends AbstractIntegrationTest {
         List<Event> allEvents = eventService.getAll();
 
         assertNotNull(allEvents);
-        // 2 events from sql
-        // maybe has 1 from create test
-        // maybe has not 1 from remove test
-        assertTrue(allEvents.size() >= 2);
+        assertEquals(allEvents.size(), 2);
     }
 }

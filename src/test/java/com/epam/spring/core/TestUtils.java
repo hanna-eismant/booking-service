@@ -16,7 +16,6 @@ public class TestUtils {
 
     public static Event EVENT_HOBBIT = new Event();
     public static Event EVENT_GAMER = new Event();
-    public static Event EVENT_REMOVE = new Event();
 
 
     static {
@@ -39,11 +38,6 @@ public class TestUtils {
         EVENT_GAMER.name = "The Gamer";
         EVENT_GAMER.basePrice = 5_000.0;
         EVENT_GAMER.rating = Rating.MID;
-
-        EVENT_REMOVE.id = 253L;
-        EVENT_REMOVE.name = "Remove";
-        EVENT_REMOVE.basePrice = 1_000.0;
-        EVENT_REMOVE.rating = Rating.LOW;
     }
 
 
