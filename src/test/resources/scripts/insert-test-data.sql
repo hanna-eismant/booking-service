@@ -12,6 +12,9 @@ VALUES (255, 'Hobbit', '8000.0', 'HIGH');
 INSERT INTO events (id, name, base_price, rating)
 VALUES (254, 'The Gamer', '5000.0', 'MID');
 
+INSERT INTO events (id, name, base_price, rating)
+VALUES (253, 'Remove', '1000.0', 'LOW');
+
 -- tickets for event 'Hobbit'  (base price = 8_000 * 1.2 <- HIGH rating)
 INSERT INTO tickets (id, seat, is_vip, date, price, discount_price, event_id, user_id)
 VALUES (255, 1, FALSE, '2015-06-06T14:00:00.000', 9600, NULL, 255, NULL),

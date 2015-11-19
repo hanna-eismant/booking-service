@@ -11,33 +11,39 @@ public class TestUtils {
     // ********
     // data inserted thru sql
     // ********
-    public static User jhon = new User();
-    public static User jane = new User();
+    public static User USER_JHON = new User();
+    public static User USER_JANE = new User();
 
-    public static Event hobbit = new Event();
-    public static Event gamer = new Event();
+    public static Event EVENT_HOBBIT = new Event();
+    public static Event EVENT_GAMER = new Event();
+    public static Event EVENT_REMOVE = new Event();
 
 
     static {
-        jhon.id = 255L;
-        jhon.name = "jhon";
-        jhon.email = "jhon@mail";
-        jhon.birthday = LocalDate.parse("1987-05-05");
+        USER_JHON.id = 255L;
+        USER_JHON.name = "jhon";
+        USER_JHON.email = "jhon@mail";
+        USER_JHON.birthday = LocalDate.parse("1987-05-05");
 
-        jane.id = 254L;
-        jane.name = "jane";
-        jane.email = "jane@mail";
-        jane.birthday = LocalDate.parse("1986-10-17");
+        USER_JANE.id = 254L;
+        USER_JANE.name = "jane";
+        USER_JANE.email = "jane@mail";
+        USER_JANE.birthday = LocalDate.parse("1986-10-17");
 
-        hobbit.id = 255L;
-        hobbit.name = "Hobbit";
-        hobbit.basePrice = 9_600.0;
-        hobbit.rating = Rating.HIGH;
+        EVENT_HOBBIT.id = 255L;
+        EVENT_HOBBIT.name = "Hobbit";
+        EVENT_HOBBIT.basePrice = 9_600.0;
+        EVENT_HOBBIT.rating = Rating.HIGH;
 
-        gamer.id = 254L;
-        gamer.name = "The Gamer";
-        gamer.basePrice = 5_000.0;
-        gamer.rating = Rating.MID;
+        EVENT_GAMER.id = 254L;
+        EVENT_GAMER.name = "The Gamer";
+        EVENT_GAMER.basePrice = 5_000.0;
+        EVENT_GAMER.rating = Rating.MID;
+
+        EVENT_REMOVE.id = 253L;
+        EVENT_REMOVE.name = "Remove";
+        EVENT_REMOVE.basePrice = 1_000.0;
+        EVENT_REMOVE.rating = Rating.LOW;
     }
 
 

@@ -2,14 +2,12 @@ package com.epam.spring.core.events.dao;
 
 import com.epam.spring.core.Util;
 import com.epam.spring.core.events.Event;
-import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Repository("eventDAO")
 public class EventDAOMapImpl implements EventDAO {
 
     private static Map<Long, Event> events = new HashMap<>();
