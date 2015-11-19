@@ -1,10 +1,10 @@
 package com.epam.spring.core.users;
 
+import com.epam.spring.core.BaseEntity;
 import org.joda.time.LocalDate;
 
-public class User {
+public class User extends BaseEntity{
 
-    public Long id;
     public String name;
     public String email;
     public LocalDate birthday;

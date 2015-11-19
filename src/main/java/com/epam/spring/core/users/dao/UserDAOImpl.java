@@ -1,10 +1,9 @@
 package com.epam.spring.core.users.dao;
 
+import com.epam.spring.core.AbstractBaseDAOImpl;
 import com.epam.spring.core.users.User;
 import org.joda.time.LocalDate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
@@ -13,8 +12,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.sql.Types.*;
+
 @Repository("userDAO")
-public class UserDAOImpl implements UserDAO {
+public class UserDAOImpl extends AbstractBaseDAOImpl<User> implements UserDAO {
 
     private static final String CREATE_SQL = "INSERT INTO users (id,name,email,birthday) VALUES (?,?,?,?)";
     private static final String REMOVE_SQL = "DELETE FROM users WHERE id = ?";
@@ -22,51 +23,13 @@ public class UserDAOImpl implements UserDAO {
     private static final String FIND_BY_EMAIL_SQL = "SELECT * FROM users WHERE email = ?";
     private static final String FIND_BY_NAME_SQL = "SELECT * FROM users WHERE name = ?";
     private static final String FIND_ALL_SQL = "SELECT * FROM users";
-    private static final String REMOVE_ALL_SQL = "DELETE FROM users";
-
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
-
-    private static long userIdCounter = 0;
 
     @Override
-    public User create(User user) throws IllegalArgumentException {
-        if (user == null) {
-            throw new IllegalArgumentException("User cannot be 'null'");
-        }
+    public User create(User entity) throws IllegalArgumentException {
+        args = new Object[]{entity.id, entity.name, entity.email, entity.birthday.toString()};
+        argTypes = new int[]{BIGINT, VARCHAR, VARCHAR, VARCHAR};
 
-        user.id = ++userIdCounter;
-
-        jdbcTemplate.update(CREATE_SQL, user.id, user.name, user.email, user.birthday.toString());
-        return findById(user.id);
-    }
-
-    @Override
-    public void remove(User user) throws IllegalArgumentException {
-        if (user == null) {
-            throw new IllegalArgumentException("User cannot be 'null'");
-        }
-
-        if (user.id == null) {
-            throw new IllegalArgumentException("User id cannot be 'null'");
-        }
-
-        jdbcTemplate.update(REMOVE_SQL, user.id);
-    }
-
-    @Override
-    public User findById(Long id) throws IllegalArgumentException {
-        if (id == null) {
-            throw new IllegalArgumentException("Id for search cannot be 'null'");
-        }
-
-        User user = null;
-        try {
-            user = jdbcTemplate.queryForObject(FIND_BY_ID_SQL, new Object[]{id}, new UserRowMapper());
-        } catch (EmptyResultDataAccessException e) {
-            // if no user find, then return null
-        }
-        return user;
+        return super.create(entity);
     }
 
     @Override
@@ -77,7 +40,7 @@ public class UserDAOImpl implements UserDAO {
 
         User user = null;
         try {
-            user = jdbcTemplate.queryForObject(FIND_BY_EMAIL_SQL, new Object[]{email}, new UserRowMapper());
+            user = jdbcTemplate.queryForObject(FIND_BY_EMAIL_SQL, new Object[]{email}, createMapper());
         } catch (EmptyResultDataAccessException e) {
             // if no user found, then return null
         }
@@ -92,7 +55,7 @@ public class UserDAOImpl implements UserDAO {
 
         List<User> users = new ArrayList<>();
         try {
-            users = jdbcTemplate.query(FIND_BY_NAME_SQL, new Object[]{name}, new UserRowMapper());
+            users = jdbcTemplate.query(FIND_BY_NAME_SQL, new Object[]{name}, createMapper());
         } catch (EmptyResultDataAccessException e) {
             // if no users found, then return empty list
         }
@@ -100,21 +63,29 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public List<User> findAll() {
-        List<User> users = new ArrayList<>();
-        try {
-            users = jdbcTemplate.query(FIND_ALL_SQL, new Object[]{}, new UserRowMapper());
-        } catch (EmptyResultDataAccessException e) {
-            // if no users found, then return empty list
-        }
-        return users;
+    protected String getCreateSql() {
+        return CREATE_SQL;
     }
 
     @Override
-    public void removeAll() {
-        jdbcTemplate.update(REMOVE_ALL_SQL);
+    protected String getRemoveSql() {
+        return REMOVE_SQL;
     }
 
+    @Override
+    protected String getFindByIdSql() {
+        return FIND_BY_ID_SQL;
+    }
+
+    @Override
+    protected String getFindAllSql() {
+        return FIND_ALL_SQL;
+    }
+
+    @Override
+    protected RowMapper<User> createMapper() {
+        return new UserRowMapper();
+    }
 
     class UserRowMapper implements RowMapper<User> {
 

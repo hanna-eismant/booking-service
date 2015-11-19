@@ -2,8 +2,6 @@ package com.epam.spring.core.users.services;
 
 import com.epam.spring.core.AbstractIntegrationTest;
 import com.epam.spring.core.users.User;
-import com.epam.spring.core.users.dao.UserDAO;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +14,6 @@ public class UserServiceIntegrationTest extends AbstractIntegrationTest {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private UserDAO userDAO;
-
     private User user;
     private Long userId;
 
@@ -26,11 +21,6 @@ public class UserServiceIntegrationTest extends AbstractIntegrationTest {
     public void setUp() throws Exception {
         user = null;
         userId = null;
-    }
-
-    @After
-    public void tearDown() {
-        userDAO.removeAll();
     }
 
     @Test

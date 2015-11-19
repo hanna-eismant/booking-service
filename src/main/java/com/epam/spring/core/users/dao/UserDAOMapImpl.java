@@ -94,8 +94,8 @@ public class UserDAOMapImpl implements UserDAO {
         return new ArrayList<>(users.values());
     }
 
-    @Override
-    public void removeAll() {
-        users.clear();
-    }
+//    @Override
+//    public void removeAll() {
+//        users.clear();
+//    }
 }

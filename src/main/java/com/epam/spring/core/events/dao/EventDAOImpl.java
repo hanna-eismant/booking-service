@@ -22,7 +22,7 @@ public class EventDAOImpl extends AbstractBaseDAOImpl<Event> implements EventDAO
     @Override
     public Event create(Event entity) throws IllegalArgumentException {
         args = new Object[]{entity.id, entity.name, entity.basePrice, entity.rating.toString()};
-        argTypes = new int[] {INTEGER, VARCHAR, DOUBLE, VARCHAR};
+        argTypes = new int[] {BIGINT, VARCHAR, DOUBLE, VARCHAR};
 
         return super.create(entity);
     }

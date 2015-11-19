@@ -8,7 +8,7 @@ import org.springframework.jdbc.core.RowMapper;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.sql.Types.INTEGER;
+import static java.sql.Types.BIGINT;
 
 public abstract class AbstractBaseDAOImpl<T extends BaseEntity> implements BaseDAO<T> {
 
@@ -16,11 +16,11 @@ public abstract class AbstractBaseDAOImpl<T extends BaseEntity> implements BaseD
     protected JdbcTemplate jdbcTemplate;
 
     // first inserted row will have id = 1
-    protected static long idCounter = 0;
+    protected long idCounter = 0;
 
     // parameters for create statement
-    protected Object[] args = new Object[] {};
-    protected int[] argTypes = new  int[] {};
+    protected Object[] args = new Object[] {0};
+    protected int[] argTypes = new  int[] {BIGINT};
 
     @Override
     public T create(T entity) throws IllegalArgumentException {
@@ -31,28 +31,40 @@ public abstract class AbstractBaseDAOImpl<T extends BaseEntity> implements BaseD
         entity.id = ++idCounter;
 
         args[0] = entity.id;
-        argTypes[0] = INTEGER;
+        argTypes[0] = BIGINT;
 
         jdbcTemplate.update(getCreateSql(), args, argTypes);
         return findById(entity.id);
     }
 
     @Override
-    public void remove(T t) {
-        jdbcTemplate.update(getRemoveSql(), t.id);
+    public void remove(T entity) throws IllegalArgumentException {
+        if (entity == null) {
+            throw new IllegalArgumentException("Entity cannot be 'null'");
+        }
+
+        if (entity.id == null) {
+            throw new IllegalArgumentException("Entity id cannot be 'null'");
+        }
+
+        jdbcTemplate.update(getRemoveSql(), entity.id);
     }
 
     @Override
-    public T findById(Long id) {
-        T event = null;
+    public T findById(Long id) throws IllegalArgumentException {
+        if (id == null) {
+            throw new IllegalArgumentException("Id for search cannot be 'null'");
+        }
+
+        T entity = null;
 
         try {
-            event = jdbcTemplate.queryForObject(getFindByIdSql(), new Object[]{id}, createMapper());
+            entity = jdbcTemplate.queryForObject(getFindByIdSql(), new Object[]{id}, createMapper());
         } catch (EmptyResultDataAccessException e) {
             // if no row found then return null
         }
 
-        return event;
+        return entity;
     }
 
     @Override

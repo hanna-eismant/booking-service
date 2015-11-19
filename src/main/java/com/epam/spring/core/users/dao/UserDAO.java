@@ -51,15 +51,15 @@ public interface UserDAO extends BaseDAO<User> {
      */
     List<User> findByName(String name) throws IllegalArgumentException;
 
-    /**
-     * Find all registered users.
-     *
-     * @return list of all registered users or empty list.
-     */
-    List<User> findAll();
+//    /**
+//     * Find all registered users.
+//     *
+//     * @return list of all registered users or empty list.
+//     */
+//    List<User> findAll();
 
-    /**
-     * Remove all users from Booking system.
-     */
-    void removeAll();
+//    /**
+//     * Remove all users from Booking system.
+//     */
+//    void removeAll();
 }
