@@ -1,10 +1,11 @@
 package com.epam.spring.core.tickets;
 
+import com.epam.spring.core.BaseEntity;
 import com.epam.spring.core.events.Event;
 import com.epam.spring.core.users.User;
 import org.joda.time.LocalDateTime;
 
-public class Ticket {
+public class Ticket extends BaseEntity {
 
     public User user;
     public LocalDateTime date;
@@ -13,6 +14,9 @@ public class Ticket {
     public boolean isVip;
     public Double basePrice;
     public Double discountPrice;
+
+    public Ticket() {
+    }
 
     public Ticket(LocalDateTime date, Event event, Integer seat, boolean isVip, Double basePrice) {
         this.date = date;
@@ -29,7 +33,8 @@ public class Ticket {
     @Override
     public String toString() {
         return "Ticket{" +
-               "event='" +  event.name +
+                "id=" + id +
+                ", event='" + event.name +
                 "', user=" + user +
                 ", date=" + date +
                 ", seat=" + seat +

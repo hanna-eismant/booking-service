@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Component
 @Scope("prototype")
@@ -39,5 +40,21 @@ public class Event extends BaseEntity{
                 ", rating=" + rating +
                 ", tickets(" + tickets.size() + ")=" +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Event event = (Event) o;
+        return  Objects.equals(id, event.id) &&
+                Objects.equals(name, event.name) &&
+                Objects.equals(basePrice, event.basePrice) &&
+                rating == event.rating;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, basePrice, rating);
     }
 }

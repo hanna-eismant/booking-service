@@ -15,12 +15,10 @@ public class UserServiceIntegrationTest extends AbstractIntegrationTest {
     private UserService userService;
 
     private User user;
-    private Long userId;
 
     @Before
     public void setUp() throws Exception {
         user = null;
-        userId = null;
     }
 
     @Test
@@ -35,12 +33,13 @@ public class UserServiceIntegrationTest extends AbstractIntegrationTest {
 
     @Test
     public void testGetByIdRegistered() throws Exception {
-        user = userService.register(USER_NAME, USER_EMAIL, USER_BIRTHDAY);
-        userId = user.id;
+        User userTest = userService.getById(USER_JANE.id);
 
-        User userTest = userService.getById(userId);
         assertNotNull(userTest);
-        assertEquals(userId, userTest.id);
+        assertEquals(USER_JANE.id, userTest.id);
+        assertEquals(USER_JANE.name, userTest.name);
+        assertEquals(USER_JANE.email, userTest.email);
+        assertEquals(USER_JANE.birthday, userTest.birthday);
     }
 
     @Test
