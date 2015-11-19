@@ -27,7 +27,7 @@ public class UserDAOImpl implements UserDAO {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    private static int userIdCounter = 0;
+    private static long userIdCounter = 0;
 
     @Override
     public User create(User user) throws IllegalArgumentException {
@@ -35,7 +35,7 @@ public class UserDAOImpl implements UserDAO {
             throw new IllegalArgumentException("User cannot be 'null'");
         }
 
-        user.id = (long) ++userIdCounter;
+        user.id = ++userIdCounter;
 
         jdbcTemplate.update(CREATE_SQL, user.id, user.name, user.email, user.birthday.toString());
         return findById(user.id);
@@ -79,7 +79,7 @@ public class UserDAOImpl implements UserDAO {
         try {
             user = jdbcTemplate.queryForObject(FIND_BY_EMAIL_SQL, new Object[]{email}, new UserRowMapper());
         } catch (EmptyResultDataAccessException e) {
-            // if no user find, then return null
+            // if no user found, then return null
         }
         return user;
     }

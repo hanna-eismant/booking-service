@@ -38,7 +38,7 @@ public class EventServiceIntegrationTest extends AbstractIntegrationTest {
         int newSize = eventService.getAll().size();
 
         assertNull(event);
-        assertEquals(oldSize, newSize);
+        assertEquals(--oldSize, newSize);
     }
 
     @Test

@@ -6,10 +6,8 @@ import com.epam.spring.core.booking.BookingService;
 import com.epam.spring.core.booking.statistics.BookingStatistic;
 import com.epam.spring.core.discounts.statistics.DiscountStatistic;
 import com.epam.spring.core.events.Event;
-import com.epam.spring.core.events.dao.EventDAO;
 import com.epam.spring.core.events.services.EventService;
 import com.epam.spring.core.users.User;
-import com.epam.spring.core.users.dao.UserDAO;
 import com.epam.spring.core.users.services.UserService;
 import org.junit.After;
 import org.junit.Before;
@@ -20,11 +18,6 @@ import java.util.List;
 import static com.epam.spring.core.TestUtils.*;
 
 public abstract class AbstractStatisticIntegrationTest extends AbstractIntegrationTest {
-    @Autowired
-    protected UserDAO userDAO;
-
-    @Autowired
-    protected EventDAO eventDAO;
 
     @Autowired
     protected UserService userService;
@@ -80,8 +73,6 @@ public abstract class AbstractStatisticIntegrationTest extends AbstractIntegrati
 
     @After
     public void tearDown() {
-        userDAO.removeAll();
-        eventDAO.removeAll();
         discountStatistic.removeAll();
         bookingStatistic.removeAll();
     }

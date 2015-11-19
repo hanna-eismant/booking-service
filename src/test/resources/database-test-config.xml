@@ -16,7 +16,7 @@
     </bean>
 
     <jdbc:initialize-database data-source="fileDataSource" ignore-failures="DROPS">
-        <jdbc:script location="scripts/create-db.sql"/>
+        <jdbc:script location="scripts/recreate-db.sql"/>
         <jdbc:script location="scripts/insert-test-data.sql"/>
     </jdbc:initialize-database>
 

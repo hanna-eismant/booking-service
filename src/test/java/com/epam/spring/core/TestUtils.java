@@ -32,7 +32,7 @@ public class TestUtils {
 
         EVENT_HOBBIT.id = 255L;
         EVENT_HOBBIT.name = "Hobbit";
-        EVENT_HOBBIT.basePrice = 9_600.0;
+        EVENT_HOBBIT.basePrice = 8_000.0;
         EVENT_HOBBIT.rating = Rating.HIGH;
 
         EVENT_GAMER.id = 254L;
