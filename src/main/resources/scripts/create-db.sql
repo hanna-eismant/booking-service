@@ -1,3 +1,4 @@
+DROP TABLE users IF EXISTS;
 CREATE TABLE users (
   id       INTEGER PRIMARY KEY,
   name     VARCHAR(255),
@@ -5,6 +6,7 @@ CREATE TABLE users (
   birthday VARCHAR(255)
 );
 
+DROP TABLE events IF EXISTS;
 CREATE TABLE events (
   id         INTEGER PRIMARY KEY,
   name       VARCHAR(255),
@@ -12,6 +14,7 @@ CREATE TABLE events (
   rating     VARCHAR(255)
 );
 
+DROP TABLE tickets IF EXISTS;
 CREATE TABLE tickets (
   id             INTEGER PRIMARY KEY,
   seat           INTEGER,

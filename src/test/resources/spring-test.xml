@@ -43,6 +43,7 @@
             <list>
                 <value>classpath:auditorium.one-test.properties</value>
                 <value>classpath:auditorium.two-test.properties</value>
+                <value>classpath:jdbc-test.properties</value>
             </list>
         </property>
         <property name="ignoreResourceNotFound" value="true"/>

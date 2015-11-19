@@ -94,7 +94,7 @@ public class UserDAOImpl implements UserDAO {
         try {
             users = jdbcTemplate.query(FIND_BY_NAME_SQL, new Object[]{name}, new UserRowMapper());
         } catch (EmptyResultDataAccessException e) {
-            // if no users find, then return empty list
+            // if no users found, then return empty list
         }
         return users;
     }
@@ -105,7 +105,7 @@ public class UserDAOImpl implements UserDAO {
         try {
             users = jdbcTemplate.query(FIND_ALL_SQL, new Object[]{}, new UserRowMapper());
         } catch (EmptyResultDataAccessException e) {
-            // if no users find, then return empty list
+            // if no users found, then return empty list
         }
         return users;
     }
