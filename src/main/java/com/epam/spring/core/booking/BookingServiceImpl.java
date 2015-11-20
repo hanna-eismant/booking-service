@@ -9,7 +9,6 @@ import org.joda.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service("bookingService")
@@ -36,16 +35,12 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public List<Ticket> getTicketsForEvent(Event event, LocalDateTime date) {
-        List<Ticket> result = new ArrayList<>();
-        ticketDAO.findByEventAndDate(event, date);
-        return result;
+        return ticketDAO.findByEventAndDate(event, date);
     }
 
     @Override
     public List<Ticket> getFreeTicketsForEvent(Event event, LocalDateTime date) {
-        List<Ticket> result = new ArrayList<>();
-        ticketDAO.findFreeByEventAndDate(event, date);
-        return result;
+        return ticketDAO.findFreeByEventAndDate(event, date);
     }
 
     public void setDiscountService(DiscountService discountService) {
