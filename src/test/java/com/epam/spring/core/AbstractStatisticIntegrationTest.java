@@ -29,6 +29,9 @@ public abstract class AbstractStatisticIntegrationTest extends AbstractIntegrati
 
     @Before
     public void setUp() throws Exception {
+        discountStatistic.removeAll();
+        bookingStatistic.removeAll();
+
         totalBookedTickets = jhonBookedTickets + janeBookedTickets;
 
         List<Ticket> tickets = bookingService.getFreeTicketsForEvent(HOBBIT_EVENT, HOBBIT_TIME_ONE);
