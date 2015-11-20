@@ -69,15 +69,15 @@ public abstract class AbstractBaseDAOImpl<T extends BaseEntity> implements BaseD
 
     @Override
     public List<T> findAll() {
-        List<T> events = new ArrayList<>();
+        List<T> entities = new ArrayList<>();
 
         try {
-            events = jdbcTemplate.query(getFindAllSql(), new Object[]{}, createMapper());
+            entities = jdbcTemplate.query(getFindAllSql(), new Object[]{}, createMapper());
         } catch (EmptyResultDataAccessException e) {
             // if no rows found then return empty list
         }
 
-        return events;
+        return entities;
     }
 
     abstract protected String getCreateSql();

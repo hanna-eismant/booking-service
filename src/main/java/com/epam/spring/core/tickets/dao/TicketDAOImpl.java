@@ -7,11 +7,13 @@ import com.epam.spring.core.tickets.Ticket;
 import com.epam.spring.core.users.User;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.sql.Types.*;
@@ -27,6 +29,12 @@ public class TicketDAOImpl extends AbstractBaseDAOImpl<Ticket> implements Ticket
             "u.id AS u_id, u.name AS u_name, u.email, u.birthday, " +
             "e.id AS e_id, e.name AS e_name, e.base_price, e.rating " +
             "FROM tickets t LEFT JOIN users u ON t.user_id = u.id LEFT JOIN events e ON t.event_id = e.id WHERE t.id = ?";
+
+    private static final String FIND_BY_EVENT_SQL = "SELECT " +
+            "t.id AS t_id, t.seat, t.is_vip, t.date, t.price, t.discount_price, t.event_id, t.user_id, " +
+            "u.id AS u_id, u.name AS u_name, u.email, u.birthday, " +
+            "e.id AS e_id, e.name AS e_name, e.base_price, e.rating " +
+            "FROM tickets t LEFT JOIN users u ON t.user_id = u.id LEFT JOIN events e ON t.event_id = e.id WHERE e.id = ?";
 
     private static final String FIND_ALL_SQL = "SELECT " +
             "t.id AS t_id, t.seat, t.is_vip, t.date, t.price, t.discount_price, t.event_id, t.user_id, " +
@@ -56,7 +64,15 @@ public class TicketDAOImpl extends AbstractBaseDAOImpl<Ticket> implements Ticket
 
     @Override
     public List<Ticket> findByEvent(Event event) {
-        return null;
+        List<Ticket> entities = new ArrayList<>();
+
+        try {
+            entities = jdbcTemplate.query(FIND_BY_EVENT_SQL, new Object[]{event.id}, createMapper());
+        } catch (EmptyResultDataAccessException e) {
+            // if no rows found then return empty list
+        }
+
+        return entities;
     }
 
     @Override

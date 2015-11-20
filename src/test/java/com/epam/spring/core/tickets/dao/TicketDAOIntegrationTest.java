@@ -63,9 +63,19 @@ public class TicketDAOIntegrationTest extends AbstractIntegrationTest {
         assertNotNull("Found ticket list should not be 'null'", gamerTickets);
         assertEquals("Found ticket list have incorrect size", 12, gamerTickets.size());
 
+        for (Ticket ticket : gamerTickets) {
+            assertNotNull("Result list should not contains 'null'", ticket);
+            assertEquals("Result list has incorrect ticket " + ticket, EVENT_GAMER, ticket.event);
+        }
+
         List<Ticket> hobbitTickets = ticketDAO.findByEvent(EVENT_HOBBIT);
         assertNotNull("Found ticket list should not be 'null'", hobbitTickets);
         assertEquals("Found ticket list have incorrect size", 24, hobbitTickets.size());
+
+        for (Ticket ticket : hobbitTickets) {
+            assertNotNull("Result list should not contains 'null'", ticket);
+            assertEquals("Result list has incorrect ticket " + ticket, EVENT_HOBBIT, ticket.event);
+        }
     }
 
     @Test
