@@ -90,18 +90,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<Ticket> getBookedTickets(User user) {
         List<Ticket> result = new ArrayList<>();
-
         List<Event> allEvents = eventService.getAll();
-
-        for (Event event : allEvents) {
-            List<Ticket> tickets = event.getTickets();
-            for (Ticket ticket : tickets) {
-                if (user.equals(ticket.user)) {
-                    result.add(ticket);
-                }
-            }
-        }
-
+        // todo: call appropriate DAO method
         return result;
     }
 

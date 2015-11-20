@@ -1,12 +1,9 @@
 package com.epam.spring.core.events;
 
 import com.epam.spring.core.BaseEntity;
-import com.epam.spring.core.tickets.Ticket;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 @Component
@@ -16,7 +13,6 @@ public class Event extends BaseEntity{
     public String name;
     public Double basePrice;
     public Rating rating;
-    private List<Ticket> tickets = new ArrayList<>();
 
     public Event() {
     }
@@ -27,10 +23,6 @@ public class Event extends BaseEntity{
         this.rating = rating;
     }
 
-    public List<Ticket> getTickets() {
-        return tickets;
-    }
-
     @Override
     public String toString() {
         return "Event{" +
@@ -38,7 +30,6 @@ public class Event extends BaseEntity{
                 ", name='" + name + '\'' +
                 ", basePrice=" + basePrice +
                 ", rating=" + rating +
-                ", tickets(" + tickets.size() + ")=" +
                 '}';
     }
 

@@ -1,14 +1,9 @@
 package com.epam.spring.core;
 
-import com.epam.spring.core.auditoriums.Auditorium;
-import com.epam.spring.core.auditoriums.services.AuditoriumService;
 import com.epam.spring.core.booking.BookingService;
 import com.epam.spring.core.booking.statistics.BookingStatistic;
 import com.epam.spring.core.discounts.statistics.DiscountStatistic;
-import com.epam.spring.core.events.Event;
-import com.epam.spring.core.events.services.EventService;
-import com.epam.spring.core.users.User;
-import com.epam.spring.core.users.services.UserService;
+import com.epam.spring.core.tickets.Ticket;
 import org.junit.After;
 import org.junit.Before;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,15 +15,6 @@ import static com.epam.spring.core.TestUtils.*;
 public abstract class AbstractStatisticIntegrationTest extends AbstractIntegrationTest {
 
     @Autowired
-    protected UserService userService;
-
-    @Autowired
-    protected EventService eventService;
-
-    @Autowired
-    protected AuditoriumService auditoriumService;
-
-    @Autowired
     protected BookingService bookingService;
 
     @Autowired
@@ -37,37 +23,23 @@ public abstract class AbstractStatisticIntegrationTest extends AbstractIntegrati
     @Autowired
     protected DiscountStatistic discountStatistic;
 
-    protected User user;
-    protected User admin;
-    protected Event event;
-
-    protected Integer userBookedTickets = 5;
-    protected Integer adminBookedTickets = 3;
+    protected Integer jhonBookedTickets = 5;
+    protected Integer janeBookedTickets = 3;
     protected Integer totalBookedTickets;
 
     @Before
     public void setUp() throws Exception {
-        List<Auditorium> auditoriums = auditoriumService.getAuditoriums();
+        totalBookedTickets = jhonBookedTickets + janeBookedTickets;
 
-        totalBookedTickets = userBookedTickets + adminBookedTickets;
-
-        // create user
-        user = userService.register(USER_NAME, USER_EMAIL, USER_BIRTHDAY);
-        admin = userService.register(ADMIN_NAME, ADMIN_EMAIL, ADMIN_BIRTHDAY);
-
-        // create event
-        event = eventService.create(EVENT_NAME, BASE_PRICE, RATING);
-
-        // assign event
-        eventService.assignAuditorium(event, auditoriums.get(0), EVENT_DATE);
+        List<Ticket> tickets = bookingService.getFreeTicketsForEvent(EVENT_HOBBIT, TIME_HOBBIT);
 
         // book tickets
-        for (int i = 1; i < userBookedTickets + 1; i++) {
-            bookingService.bookTicket(user, event.getTickets().get(i));
+        for (int i = 1; i < jhonBookedTickets + 1; i++) {
+            bookingService.bookTicket(USER_JHON, tickets.get(i));
         }
 
-        for (int i = 10; i < adminBookedTickets + 10; i++) {
-            bookingService.bookTicket(admin, event.getTickets().get(i));
+        for (int i = 10; i < janeBookedTickets + 10; i++) {
+            bookingService.bookTicket(USER_JANE, tickets.get(i));
         }
     }
 

@@ -20,6 +20,7 @@ public class TestUtils {
 
     public static Ticket TICKET = new Ticket();
 
+    public static LocalDateTime TIME_HOBBIT = LocalDateTime.parse("2015-06-06T14:00:00.000");
 
     static {
         USER_JHON.id = 255L;
@@ -46,7 +47,7 @@ public class TestUtils {
         TICKET.id = 251L;
         TICKET.seat = 5;
         TICKET.isVip = true;
-        TICKET.date = LocalDateTime.parse("2015-06-06T14:00:00.000");
+        TICKET.date = TIME_HOBBIT;
         TICKET.basePrice = 19_200d;
         TICKET.event = EVENT_HOBBIT;
     }

@@ -18,4 +18,6 @@ public interface BookingService {
     void bookTicket(User user, Ticket ticket);
 
     List<Ticket> getTicketsForEvent(Event event, LocalDateTime date);
+
+    List<Ticket> getFreeTicketsForEvent(Event event, LocalDateTime date);
 }

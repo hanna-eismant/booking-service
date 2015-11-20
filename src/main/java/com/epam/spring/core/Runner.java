@@ -59,17 +59,20 @@ public class Runner {
         eventService.assignAuditorium(eventOne, auditoriums.get(0), LocalDateTime.parse("2015-12-15T23:15:00.000"));
         eventService.assignAuditorium(eventTwo, auditoriums.get(0), LocalDateTime.parse("2015-12-16T14:00:00.000"));
 
+        List<Ticket> ticketsOne = bookingService.getFreeTicketsForEvent(eventOne, LocalDateTime.parse("2015-12-15T14:00:00.000"));
+        List<Ticket> ticketsTwo = bookingService.getFreeTicketsForEvent(eventTwo, LocalDateTime.parse("2015-12-16T14:00:00.000"));
+
         // book ticket
         for (int i = 1; i < 4; i++) {
-            bookingService.bookTicket(hanna, eventOne.getTickets().get(i));
+            bookingService.bookTicket(hanna, ticketsOne.get(i));
         }
 
         for (int i = 0; i < 6; i++) {
-            bookingService.bookTicket(hanna, eventTwo.getTickets().get(i));
+            bookingService.bookTicket(hanna, ticketsTwo.get(i));
         }
 
         for (int i = 10; i < 16; i++) {
-            bookingService.bookTicket(admin, eventOne.getTickets().get(i));
+            bookingService.bookTicket(admin, ticketsOne.get(i));
         }
 
         List<Ticket> hannaTickets = userService.getBookedTickets(hanna);

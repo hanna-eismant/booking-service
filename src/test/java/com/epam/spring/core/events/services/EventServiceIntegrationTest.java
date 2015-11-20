@@ -24,8 +24,6 @@ public class EventServiceIntegrationTest extends AbstractIntegrationTest {
         assertEquals(EVENT_NAME, event.name);
         assertEquals(BASE_PRICE, event.basePrice);
         assertEquals(RATING, event.rating);
-        assertNotNull(event.getTickets());
-        assertTrue(event.getTickets().isEmpty());
     }
 
     @Test
@@ -50,8 +48,6 @@ public class EventServiceIntegrationTest extends AbstractIntegrationTest {
         assertEquals(EVENT_HOBBIT.name, event.name);
         assertEquals(EVENT_HOBBIT.basePrice, event.basePrice);
         assertEquals(EVENT_HOBBIT.rating, event.rating);
-
-        // todo: test tickets
     }
 
     @Test

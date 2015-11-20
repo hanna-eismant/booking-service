@@ -21,7 +21,6 @@ public class EventServiceImpl implements EventService {
     @Autowired
     private Provider<Event> eventProvider;
 
-
     public void setEventDAO(EventDAO eventDAO) {
         this.eventDAO = eventDAO;
     }
@@ -63,7 +62,7 @@ public class EventServiceImpl implements EventService {
     public void assignAuditorium(Event event, Auditorium auditorium, LocalDateTime date) {
         for (int seat = 0; seat < auditorium.seats; seat++) {
             Ticket ticket = new Ticket(date, event, seat, auditorium.getVipSeats().contains(seat), event.basePrice);
-            event.getTickets().add(ticket);
+            // todo: need implementation
         }
 
         System.out.println("Assign auditorium for event: " + event);

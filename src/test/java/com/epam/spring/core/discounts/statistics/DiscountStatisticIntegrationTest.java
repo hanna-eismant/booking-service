@@ -7,6 +7,7 @@ import com.epam.spring.core.discounts.strategies.DiscountStrategyTenTicketImpl;
 import com.epam.spring.core.users.User;
 import org.junit.Test;
 
+import static com.epam.spring.core.TestUtils.*;
 import static org.junit.Assert.*;
 
 public class DiscountStatisticIntegrationTest extends AbstractStatisticIntegrationTest {
@@ -27,13 +28,13 @@ public class DiscountStatisticIntegrationTest extends AbstractStatisticIntegrati
 
     @Test
     public void testCountTenTicket() {
-        Integer userStatistic = discountStatistic.getTenTicketStatistic(user);
-        assertNotNull(userStatistic);
-        assertEquals(userBookedTickets, userStatistic);
+        Integer jhonStatistic = discountStatistic.getTenTicketStatistic(USER_JHON);
+        assertNotNull(jhonStatistic);
+        assertEquals(jhonBookedTickets, jhonStatistic);
 
-        Integer adminStatistic = discountStatistic.getTenTicketStatistic(admin);
-        assertNotNull(adminStatistic);
-        assertEquals(adminBookedTickets, adminStatistic);
+        Integer janeStatistic = discountStatistic.getTenTicketStatistic(USER_JANE);
+        assertNotNull(janeStatistic);
+        assertEquals(janeBookedTickets, janeStatistic);
 
         Integer unknownUserStatistic = discountStatistic.getTenTicketStatistic(new User());
         assertNull(unknownUserStatistic);
@@ -41,13 +42,13 @@ public class DiscountStatisticIntegrationTest extends AbstractStatisticIntegrati
 
     @Test
     public void testCountBirthday() {
-        Integer userStatistic = discountStatistic.getBirthdayStatistic(user);
-        assertNotNull(userStatistic);
-        assertEquals(userBookedTickets, userStatistic);
+        Integer jhonStatistic = discountStatistic.getBirthdayStatistic(USER_JHON);
+        assertNotNull(jhonStatistic);
+        assertEquals(jhonBookedTickets, jhonStatistic);
 
-        Integer adminStatistic = discountStatistic.getBirthdayStatistic(admin);
-        assertNotNull(adminStatistic);
-        assertEquals(adminBookedTickets, adminStatistic);
+        Integer janeStatistic = discountStatistic.getBirthdayStatistic(USER_JANE);
+        assertNotNull(janeStatistic);
+        assertEquals(janeBookedTickets, janeStatistic);
 
         Integer unknownUserStatistic = discountStatistic.getBirthdayStatistic(new User());
         assertNull(unknownUserStatistic);

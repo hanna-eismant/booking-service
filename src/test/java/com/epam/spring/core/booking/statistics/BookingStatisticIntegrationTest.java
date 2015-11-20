@@ -4,13 +4,14 @@ import com.epam.spring.core.AbstractStatisticIntegrationTest;
 import com.epam.spring.core.events.Event;
 import org.junit.Test;
 
+import static com.epam.spring.core.TestUtils.*;
 import static org.junit.Assert.*;
 
 public class BookingStatisticIntegrationTest extends AbstractStatisticIntegrationTest {
 
     @Test
     public void testCountBooked() {
-        Integer bookedStatistic = bookingStatistic.getBookedStatistic(event);
+        Integer bookedStatistic = bookingStatistic.getBookedStatistic(EVENT_HOBBIT);
         assertNotNull("Booked Statistic for event with booked tickets cannot be null", bookedStatistic);
         assertEquals("Booked Statistic for event with booked tickets is incorrect", totalBookedTickets, bookedStatistic);
 
@@ -20,7 +21,7 @@ public class BookingStatisticIntegrationTest extends AbstractStatisticIntegratio
 
     @Test
     public void testCountPriceQueried() {
-        Integer priceQueriedStatistic = bookingStatistic.getPriceQueriedStatistic(event);
+        Integer priceQueriedStatistic = bookingStatistic.getPriceQueriedStatistic(EVENT_HOBBIT);
         assertNotNull("Price Queried Statistic for event with booked tickets cannot be null", priceQueriedStatistic);
         assertEquals("Price Queried Statistic for event with booked tickets is incorrect", totalBookedTickets, priceQueriedStatistic);
 
