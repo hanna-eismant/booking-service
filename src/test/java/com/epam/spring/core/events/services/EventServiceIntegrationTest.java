@@ -25,7 +25,7 @@ public class EventServiceIntegrationTest extends AbstractIntegrationTest {
         assertNotNull(event);
         assertNotNull(event.id);
         assertEquals(EVENT_NAME, event.name);
-        assertEquals(BASE_PRICE, event.basePrice);
+        assertEquals(BASE_PRICE_WITH_RATING, event.basePrice);
         assertEquals(RATING, event.rating);
     }
 
@@ -33,9 +33,9 @@ public class EventServiceIntegrationTest extends AbstractIntegrationTest {
     public void testRemove() {
         int oldSize = eventService.getAll().size();
 
-        eventService.remove(EVENT_GAMER);
+        eventService.remove(GAMER_EVENT);
 
-        Event event = eventService.getById(EVENT_GAMER.id);
+        Event event = eventService.getById(GAMER_EVENT.id);
         int newSize = eventService.getAll().size();
 
         assertNull(event);
@@ -44,13 +44,13 @@ public class EventServiceIntegrationTest extends AbstractIntegrationTest {
 
     @Test
     public void testGetById() {
-        Event event = eventService.getById(EVENT_HOBBIT.id);
+        Event event = eventService.getById(HOBBIT_EVENT.id);
 
         assertNotNull(event);
-        assertEquals(EVENT_HOBBIT.id, event.id);
-        assertEquals(EVENT_HOBBIT.name, event.name);
-        assertEquals(EVENT_HOBBIT.basePrice, event.basePrice);
-        assertEquals(EVENT_HOBBIT.rating, event.rating);
+        assertEquals(HOBBIT_EVENT.id, event.id);
+        assertEquals(HOBBIT_EVENT.name, event.name);
+        assertEquals(HOBBIT_EVENT.basePrice, event.basePrice);
+        assertEquals(HOBBIT_EVENT.rating, event.rating);
     }
 
     @Test
@@ -70,7 +70,7 @@ public class EventServiceIntegrationTest extends AbstractIntegrationTest {
 
         LocalDateTime eventDate = LocalDateTime.parse("2015-03-03T15:30:00.000");
 
-        List<Ticket> tickets = eventService.assignAuditorium(EVENT_HOBBIT, auditorium, eventDate);
+        List<Ticket> tickets = eventService.assignAuditorium(HOBBIT_EVENT, auditorium, eventDate);
 
         assertNotNull("Created ticket list cannot be 'null'", tickets);
         assertEquals("Created ticket list should have same size like seats count at assigned auditorium",
@@ -84,7 +84,7 @@ public class EventServiceIntegrationTest extends AbstractIntegrationTest {
             assertNotNull("Created ticket should have seat number", ticket.seat);
             assertNull("Created ticket cannot contain discount price", ticket.discountPrice);
             assertNull("Created ticket cannot contain user", ticket.user);
-            assertEquals("Created ticket contain incorrect event", EVENT_HOBBIT, ticket.event);
+            assertEquals("Created ticket contain incorrect event", HOBBIT_EVENT, ticket.event);
             assertEquals("Created ticket contain incorrect date", eventDate, ticket.date);
         }
     }

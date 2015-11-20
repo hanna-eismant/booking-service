@@ -28,10 +28,10 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public void bookTicket(User user, Ticket ticket) {
+    public Ticket bookTicket(User user, Ticket ticket) {
         ticket.user = user;
         ticket.discountPrice = getTicketPrice(ticket.event, ticket.date, ticket.seat, user);
-        // todo: call appropriate DAO method
+        return ticketDAO.update(ticket);
     }
 
     @Override

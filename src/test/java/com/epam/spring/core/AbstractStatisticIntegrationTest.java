@@ -31,7 +31,7 @@ public abstract class AbstractStatisticIntegrationTest extends AbstractIntegrati
     public void setUp() throws Exception {
         totalBookedTickets = jhonBookedTickets + janeBookedTickets;
 
-        List<Ticket> tickets = bookingService.getFreeTicketsForEvent(EVENT_HOBBIT, TIME_HOBBIT_ONE);
+        List<Ticket> tickets = bookingService.getFreeTicketsForEvent(HOBBIT_EVENT, HOBBIT_TIME_ONE);
 
         // book tickets
         for (int i = 1; i < jhonBookedTickets + 1; i++) {

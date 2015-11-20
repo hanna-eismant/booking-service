@@ -33,14 +33,25 @@ public class TestUtils {
     public static User USER_JHON = new User();
     public static User USER_JANE = new User();
 
-    public static Event EVENT_HOBBIT = new Event();
-    public static Event EVENT_GAMER = new Event();
+    public static int JHON_BOOKED_COUNT = 10;
+    public static int JANE_BOOKED_COUNT = 3;
+
+    public static Event HOBBIT_EVENT = new Event();
+    public static Event GAMER_EVENT = new Event();
 
     public static Ticket TICKET = new Ticket();
 
-    public static LocalDateTime TIME_HOBBIT_ONE = LocalDateTime.parse("2015-06-06T14:00:00.000");
-//    public static LocalDateTime TIME_HOBBIT_TWO = LocalDateTime.parse("2015-06-07T22:00:00.000");
-    public static LocalDateTime TIME_GAMER = LocalDateTime.parse("2015-10-17T20:00:00.000");
+    public static LocalDateTime HOBBIT_TIME_ONE = LocalDateTime.parse("2015-06-06T14:00:00.000");
+    public static LocalDateTime HOBBIT_TIME_TWO = LocalDateTime.parse("2015-06-07T22:00:00.000");
+    public static LocalDateTime GAMER_TIME = LocalDateTime.parse("2015-10-17T20:00:00.000");
+
+    public static int HOBBIT_TOTAL_TICKETS_ONE = 24;
+    public static int HOBBIT_FREE_TICKETS_ONE = 23;
+    public static int HOBBIT_TOTAL_TICKETS_TWO = 24;
+    public static int HOBBIT_FREE_TICKETS_TWO = 24;
+
+    public static int GAMER_TOTAL_TICKETS = 12;
+    public static int GAMER_FREE_TICKETS = 0;
 
     static {
         USER_JHON.id = 255L;
@@ -53,24 +64,25 @@ public class TestUtils {
         USER_JANE.email = "jane@mail";
         USER_JANE.birthday = LocalDate.parse("1986-10-17");
 
-        EVENT_HOBBIT.id = 255L;
-        EVENT_HOBBIT.name = "Hobbit";
-        EVENT_HOBBIT.basePrice = 8_000.0;
-        EVENT_HOBBIT.rating = Rating.HIGH;
+        HOBBIT_EVENT.id = 255L;
+        HOBBIT_EVENT.name = "Hobbit";
+        HOBBIT_EVENT.basePrice = 8_000.0;
+        HOBBIT_EVENT.rating = Rating.HIGH;
 
-        EVENT_GAMER.id = 254L;
-        EVENT_GAMER.name = "The Gamer";
-        EVENT_GAMER.basePrice = 5_000.0;
-        EVENT_GAMER.rating = Rating.MID;
+        GAMER_EVENT.id = 254L;
+        GAMER_EVENT.name = "The Gamer";
+        GAMER_EVENT.basePrice = 5_000.0;
+        GAMER_EVENT.rating = Rating.MID;
 
         // (251, 5, TRUE, '2015-06-06T14:00:00.000', 19200, NULL, 255, NULL),
         TICKET.id = 251L;
         TICKET.seat = 5;
         TICKET.isVip = true;
-        TICKET.date = TIME_HOBBIT_ONE;
+        TICKET.date = HOBBIT_TIME_ONE;
         TICKET.basePrice = 19_200d;
-        TICKET.event = EVENT_HOBBIT;
+        TICKET.event = HOBBIT_EVENT;
     }
+
 
     // ********
     // new data for test (will be inserted thru tests)
@@ -91,7 +103,8 @@ public class TestUtils {
     // event
     public static final String EVENT_NAME = "Test event";
     public static final Double BASE_PRICE = 10_000.0;
-    public static final Rating RATING = Rating.MID;
+    public static final Double BASE_PRICE_WITH_RATING = 12_000.0;
+    public static final Rating RATING = Rating.HIGH;
 
     public static final String EVENT_DATE_S = "2015-06-06T14:00:00.000";
     public static final LocalDateTime EVENT_DATE = LocalDateTime.parse(EVENT_DATE_S);

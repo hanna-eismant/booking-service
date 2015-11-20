@@ -1,16 +1,24 @@
 -- users
 INSERT INTO users (id, name, email, birthday)
 VALUES (255, 'jhon', 'jhon@mail', '1987-05-05');
+-- 10 tickets
 
 INSERT INTO users (id, name, email, birthday)
 VALUES (254, 'jane', 'jane@mail', '1986-10-17');
+-- 3 tickets
 
 -- events
 INSERT INTO events (id, name, base_price, rating)
 VALUES (255, 'Hobbit', '8000.0', 'HIGH');
+-- 2015-06-06T14:00:00.000 -> total 24 tickets
+--                         -> free 23 tickets
+-- 2015-06-07T22:00:00.000 -> total 24 tickets
+--                         -> free 24 tickets
 
 INSERT INTO events (id, name, base_price, rating)
 VALUES (254, 'The Gamer', '5000.0', 'MID');
+-- 2015-10-17T20:00:00.000 -> total 12 tickets
+--                         -> free 0 tickets
 
 -- tickets for event 'Hobbit'  (base price = 8_000 * 1.2 <- HIGH rating)
 INSERT INTO tickets (id, seat, is_vip, date, price, discount_price, event_id, user_id)

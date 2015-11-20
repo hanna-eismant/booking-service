@@ -14,8 +14,10 @@ public interface BookingService {
     /**
      * Assign ticket to user.
      * Inside this method final price (with discount) is calculated and set to ticket.
+     *
+     * @return updated ticket with information about user and discount price.
      */
-    void bookTicket(User user, Ticket ticket);
+    Ticket bookTicket(User user, Ticket ticket);
 
     List<Ticket> getTicketsForEvent(Event event, LocalDateTime date);
 
