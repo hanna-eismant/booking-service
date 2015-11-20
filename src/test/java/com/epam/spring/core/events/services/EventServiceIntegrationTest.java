@@ -25,7 +25,7 @@ public class EventServiceIntegrationTest extends AbstractIntegrationTest {
         assertNotNull(event);
         assertNotNull(event.id);
         assertEquals(EVENT_NAME, event.name);
-        assertEquals(BASE_PRICE_WITH_RATING, event.basePrice);
+        assertEquals(BASE_PRICE, event.basePrice);
         assertEquals(RATING, event.rating);
     }
 

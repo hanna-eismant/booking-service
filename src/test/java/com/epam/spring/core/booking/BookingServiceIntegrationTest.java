@@ -8,42 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 import static com.epam.spring.core.TestConstants.*;
-import static com.epam.spring.core.auditoriums.TestUtils.checkFreeTickets;
+import static com.epam.spring.core.TestUtils.checkFreeTickets;
 import static org.junit.Assert.*;
 
 public class BookingServiceIntegrationTest extends AbstractIntegrationTest {
 
     @Autowired
     private BookingService bookingService;
-
-    @Test
-    public void testGetTicketPrice() {
-        /*
-        base for event - 8_000
-        base fir event with rating - 9_600 (+20%)
-        vip - no
-        10th - no
-        birthday - no
-
-        result - 9_600
-         */
-        Double ticketPriceOne = bookingService.getTicketPrice(HOBBIT_EVENT, HOBBIT_TIME_ONE, 4, USER_JANE);
-        assertNotNull("Calculated ticket price cannot be 'null'", ticketPriceOne);
-        assertEquals(Double.valueOf(9_600.0d), ticketPriceOne);
-
-        /*
-        base for event - 8_000
-        base fir event with rating - 9_600 (+20%)
-        vip - yes - 19_200
-        10th - no
-        birthday - yes (-5%)
-
-        result - 18_240
-         */
-        Double ticketPriceTwo = bookingService.getTicketPrice(HOBBIT_EVENT, GAMER_TIME, 2, USER_JANE);
-        assertNotNull("Calculated ticket price cannot be 'null'", ticketPriceTwo);
-        assertEquals(Double.valueOf(18_240.0d), ticketPriceTwo);
-    }
 
     @Test
     public void testBookTicket() {

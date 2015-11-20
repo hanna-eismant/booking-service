@@ -9,8 +9,6 @@ import java.util.List;
 
 public interface BookingService {
 
-    Double getTicketPrice(Event event, LocalDateTime date, Integer seat, User user);
-
     /**
      * Assign ticket to user.
      * Inside this method final price (with discount) is calculated and set to ticket.

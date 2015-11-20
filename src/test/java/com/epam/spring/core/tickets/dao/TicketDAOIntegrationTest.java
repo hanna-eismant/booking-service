@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 import static com.epam.spring.core.TestConstants.*;
-import static com.epam.spring.core.auditoriums.TestUtils.checkFreeTickets;
+import static com.epam.spring.core.TestUtils.checkFreeTickets;
 import static org.junit.Assert.*;
 
 public class TicketDAOIntegrationTest extends AbstractIntegrationTest {

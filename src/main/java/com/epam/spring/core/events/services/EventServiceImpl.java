@@ -6,6 +6,7 @@ import com.epam.spring.core.events.Rating;
 import com.epam.spring.core.events.dao.EventDAO;
 import com.epam.spring.core.tickets.Ticket;
 import com.epam.spring.core.tickets.dao.TicketDAO;
+import com.epam.spring.core.tickets.seervices.TicketService;
 import org.joda.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,16 +27,14 @@ public class EventServiceImpl implements EventService {
     @Autowired
     private Provider<Event> eventProvider;
 
+    @Autowired
+    private TicketService ticketService;
+
     @Override
     public Event create(String name, Double basePrice, Rating rating) {
         Event event = eventProvider.get();
         event.name = name;
         event.basePrice = basePrice;
-
-        if (Rating.HIGH.equals(rating)) {
-            event.basePrice *= 1.2;
-        }
-
         event.rating = rating;
         event = eventDAO.create(event);
 
@@ -62,20 +61,14 @@ public class EventServiceImpl implements EventService {
         List<Ticket> tickets = new ArrayList<>();
 
         for (int seat = 0; seat < auditorium.seats; seat++) {
-            Ticket ticket = new Ticket(date, event, seat, auditorium.getVipSeats().contains(seat), event.basePrice);
+            Double ticketPrice =
+                    ticketService.getTicketPrice(event, date, seat, auditorium.getVipSeats().contains(seat), null);
+            Ticket ticket = new Ticket(date, event, seat, auditorium.getVipSeats().contains(seat), ticketPrice);
             // maybe save all tickets at once
             ticket = ticketDAO.create(ticket);
             tickets.add(ticket);
         }
 
         return tickets;
-    }
-
-    public void setEventDAO(EventDAO eventDAO) {
-        this.eventDAO = eventDAO;
-    }
-
-    public void setTicketDAO(TicketDAO ticketDAO) {
-        this.ticketDAO = ticketDAO;
     }
 }

@@ -24,10 +24,6 @@ public class Ticket extends BaseEntity {
         this.seat = seat;
         this.isVip = isVip;
         this.basePrice = basePrice;
-
-        if (this.isVip) {
-            this.basePrice *= 2;
-        }
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.epam.spring.core.auditoriums;
+package com.epam.spring.core;
 
 import com.epam.spring.core.events.Event;
 import com.epam.spring.core.tickets.Ticket;

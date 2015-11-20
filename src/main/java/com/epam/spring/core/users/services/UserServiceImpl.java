@@ -1,15 +1,13 @@
 package com.epam.spring.core.users.services;
 
-import com.epam.spring.core.events.Event;
-import com.epam.spring.core.events.services.EventService;
 import com.epam.spring.core.tickets.Ticket;
+import com.epam.spring.core.tickets.dao.TicketDAO;
 import com.epam.spring.core.users.User;
 import com.epam.spring.core.users.dao.UserDAO;
 import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service("userService")
@@ -19,15 +17,7 @@ public class UserServiceImpl implements UserService {
     private UserDAO userDAO;
 
     @Autowired
-    private EventService eventService;
-
-    public void setUserDAO(UserDAO userDAO) {
-        this.userDAO = userDAO;
-    }
-
-    public void setEventService(EventService eventService) {
-        this.eventService = eventService;
-    }
+    private TicketDAO ticketDAO;
 
     @Override
     public User register(String name, String email, LocalDate birthday) throws Exception {
@@ -87,10 +77,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<Ticket> getBookedTickets(User user) {
-        List<Ticket> result = new ArrayList<>();
-        List<Event> allEvents = eventService.getAll();
-        // todo: call appropriate DAO method
-        return result;
+        return ticketDAO.findByUser(user);
     }
 
     @Override
