@@ -5,25 +5,13 @@ import com.epam.spring.core.auditoriums.Auditorium;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
+import static com.epam.spring.core.TestUtils.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 public class AuditoriumServiceIntegrationTest extends AbstractIntegrationTest {
-
-    // data from test properties files
-
-    private String auditoriumOneName = "auditorium test one";
-    private Integer auditoriumOneSeats = 24;
-    private List<Integer> auditoriumOneVipseats = new ArrayList<>(Arrays.asList(4, 5, 6, 7, 8, 9, 10));
-
-    private String auditoriumTwoName = "auditorium test two";
-    private Integer auditoriumTwoSeats = 12;
-    private List<Integer> auditoriumTwoVipseats = new ArrayList<>(Collections.singletonList(2));
 
     @Autowired
     private AuditoriumService auditoriumService;
@@ -37,16 +25,16 @@ public class AuditoriumServiceIntegrationTest extends AbstractIntegrationTest {
 
         Auditorium auditoriumOne = auditoriums.get(0);
         assertNotNull(auditoriumOne);
-        assertEquals(auditoriumOneName, auditoriumOne.name);
-        assertEquals(auditoriumOneSeats, auditoriumOne.seats);
-        assertNotNull(auditoriumOneVipseats);
-        assertEquals(auditoriumOneVipseats.size(), auditoriumOne.getVipSeats().size());
+        assertEquals(AUDITORIUM_ONE_NAME, auditoriumOne.name);
+        assertEquals(AUDITORIUM_ONE_SEATS, auditoriumOne.seats);
+        assertNotNull(AUDITORIUM_ONE_VIPSEATS);
+        assertEquals(AUDITORIUM_ONE_VIPSEATS.size(), auditoriumOne.getVipSeats().size());
 
         Auditorium auditoriumTwo = auditoriums.get(1);
         assertNotNull(auditoriumTwo);
-        assertEquals(auditoriumTwoName, auditoriumTwo.name);
-        assertEquals(auditoriumTwoSeats, auditoriumTwo.seats);
-        assertNotNull(auditoriumTwoVipseats);
-        assertEquals(auditoriumTwoVipseats.size(), auditoriumTwo.getVipSeats().size());
+        assertEquals(AUDITORIUM_TWO_NAME, auditoriumTwo.name);
+        assertEquals(AUDITORIUM_TWO_SEATS, auditoriumTwo.seats);
+        assertNotNull(AUDITORIUM_TWO_VIPSEATS);
+        assertEquals(AUDITORIUM_TWO_VIPSEATS.size(), auditoriumTwo.getVipSeats().size());
     }
 }

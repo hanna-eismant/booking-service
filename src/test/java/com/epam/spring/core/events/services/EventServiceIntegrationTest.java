@@ -1,7 +1,10 @@
 package com.epam.spring.core.events.services;
 
 import com.epam.spring.core.AbstractIntegrationTest;
+import com.epam.spring.core.auditoriums.Auditorium;
 import com.epam.spring.core.events.Event;
+import com.epam.spring.core.tickets.Ticket;
+import org.joda.time.LocalDateTime;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -56,5 +59,33 @@ public class EventServiceIntegrationTest extends AbstractIntegrationTest {
 
         assertNotNull(allEvents);
         assertEquals(allEvents.size(), 2);
+    }
+
+    @Test
+    public void testAssignAuditorium() {
+        Auditorium auditorium = new Auditorium();
+        auditorium.name = AUDITORIUM_ONE_NAME;
+        auditorium.seats = AUDITORIUM_ONE_SEATS;
+        auditorium.getVipSeats().addAll(AUDITORIUM_ONE_VIPSEATS);
+
+        LocalDateTime eventDate = LocalDateTime.parse("2015-03-03T15:30:00.000");
+
+        List<Ticket> tickets = eventService.assignAuditorium(EVENT_HOBBIT, auditorium, eventDate);
+
+        assertNotNull("Created ticket list cannot be 'null'", tickets);
+        assertEquals("Created ticket list should have same size like seats count at assigned auditorium",
+                auditorium.seats.longValue(), tickets.size());
+
+        for (Ticket ticket : tickets) {
+            assertNotNull("Created ticket list cannot contain 'null'", ticket);
+            assertNotNull("Created ticket should have id", ticket.id);
+            assertNotNull("Created ticket should have price", ticket.basePrice);
+            assertNotEquals("Created ticket have incorrect price", 0.0d, ticket.basePrice);
+            assertNotNull("Created ticket should have seat number", ticket.seat);
+            assertNull("Created ticket cannot contain discount price", ticket.discountPrice);
+            assertNull("Created ticket cannot contain user", ticket.user);
+            assertEquals("Created ticket contain incorrect event", EVENT_HOBBIT, ticket.event);
+            assertEquals("Created ticket contain incorrect date", eventDate, ticket.date);
+        }
     }
 }

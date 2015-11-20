@@ -7,7 +7,25 @@ import com.epam.spring.core.users.User;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 public class TestUtils {
+
+    // ********
+    // data from test properties files
+    // ********
+
+    public static String AUDITORIUM_ONE_NAME = "auditorium test one";
+    public static Integer AUDITORIUM_ONE_SEATS = 24;
+    public static List<Integer> AUDITORIUM_ONE_VIPSEATS = new ArrayList<>(Arrays.asList(4, 5, 6, 7, 8, 9, 10));
+
+    public static String AUDITORIUM_TWO_NAME = "auditorium test two";
+    public static Integer AUDITORIUM_TWO_SEATS = 12;
+    public static List<Integer> AUDITORIUM_TWO_VIPSEATS = new ArrayList<>(Collections.singletonList(2));
+
 
     // ********
     // data inserted thru sql

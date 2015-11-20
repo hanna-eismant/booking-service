@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Provider;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service("eventService")
@@ -59,12 +60,14 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public void assignAuditorium(Event event, Auditorium auditorium, LocalDateTime date) {
+    public List<Ticket> assignAuditorium(Event event, Auditorium auditorium, LocalDateTime date) {
+        List<Ticket> tickets = new ArrayList<>();
+
         for (int seat = 0; seat < auditorium.seats; seat++) {
             Ticket ticket = new Ticket(date, event, seat, auditorium.getVipSeats().contains(seat), event.basePrice);
             // todo: need implementation
         }
 
-        System.out.println("Assign auditorium for event: " + event);
+        return tickets;
     }
 }
