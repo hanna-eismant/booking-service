@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static com.epam.spring.core.TestUtils.*;
+import static com.epam.spring.core.TestConstants.*;
 import static org.junit.Assert.*;
 
 public class UserServiceIntegrationTest extends AbstractIntegrationTest {

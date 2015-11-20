@@ -4,7 +4,7 @@ import com.epam.spring.core.AbstractStatisticIntegrationTest;
 import com.epam.spring.core.events.Event;
 import org.junit.Test;
 
-import static com.epam.spring.core.TestUtils.*;
+import static com.epam.spring.core.TestConstants.*;
 import static org.junit.Assert.*;
 
 public class BookingStatisticIntegrationTest extends AbstractStatisticIntegrationTest {

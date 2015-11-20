@@ -7,7 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-import static com.epam.spring.core.TestUtils.*;
+import static com.epam.spring.core.TestConstants.*;
+import static com.epam.spring.core.auditoriums.TestUtils.checkFreeTickets;
 import static org.junit.Assert.*;
 
 public class TicketDAOIntegrationTest extends AbstractIntegrationTest {
@@ -85,25 +86,13 @@ public class TicketDAOIntegrationTest extends AbstractIntegrationTest {
         assertNotNull("Found ticket list should not be 'null'", gamerTickets);
         assertEquals("Found ticket list have incorrect size", GAMER_FREE_TICKETS, gamerTickets.size());
 
-        for (Ticket ticket : gamerTickets) {
-            assertNotNull("Result list should not contains 'null'", ticket);
-            assertEquals("Result list has ticket with incorrect event", GAMER_EVENT, ticket.event);
-            assertEquals("Result list has ticket with incorrect date", GAMER_TIME, ticket.date);
-            assertNull("Free ticket cannot contain user", ticket.user);
-            assertNull("Free ticket cannot contain discount price", ticket.discountPrice);
-        }
+        checkFreeTickets(gamerTickets, GAMER_EVENT, GAMER_TIME);
 
         List<Ticket> hobbitTickets = ticketDAO.findFreeByEventAndDate(HOBBIT_EVENT, HOBBIT_TIME_ONE);
         assertNotNull("Found ticket list should not be 'null'", hobbitTickets);
         assertEquals("Found ticket list have incorrect size", HOBBIT_FREE_TICKETS_ONE, hobbitTickets.size());
 
-        for (Ticket ticket : hobbitTickets) {
-            assertNotNull("Result list should not contains 'null'", ticket);
-            assertEquals("Result list has ticket with incorrect event", HOBBIT_EVENT, ticket.event);
-            assertEquals("Result list has ticket with incorrect date", HOBBIT_TIME_ONE, ticket.date);
-            assertNull("Free ticket cannot contain user", ticket.user);
-            assertNull("Free ticket cannot contain discount price", ticket.discountPrice);
-        }
+        checkFreeTickets(hobbitTickets, HOBBIT_EVENT, HOBBIT_TIME_ONE);
     }
 
     @Test

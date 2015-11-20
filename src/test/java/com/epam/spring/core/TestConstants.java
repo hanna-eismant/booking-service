@@ -12,8 +12,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class TestUtils {
-
+public abstract class TestConstants {
     // ********
     // data from test properties files
     // ********

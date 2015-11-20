@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-import static com.epam.spring.core.TestUtils.*;
+import static com.epam.spring.core.TestConstants.*;
 
 public abstract class AbstractStatisticIntegrationTest extends AbstractIntegrationTest {
 
