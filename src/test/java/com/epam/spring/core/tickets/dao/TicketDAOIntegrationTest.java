@@ -80,6 +80,33 @@ public class TicketDAOIntegrationTest extends AbstractIntegrationTest {
     }
 
     @Test
+    public void testFindFreeByEventAndDate() {
+        List<Ticket> gamerTickets = ticketDAO.findFreeByEventAndDate(GAMER_EVENT, GAMER_TIME);
+        assertNotNull("Found ticket list should not be 'null'", gamerTickets);
+        assertEquals("Found ticket list have incorrect size", GAMER_FREE_TICKETS, gamerTickets.size());
+
+        for (Ticket ticket : gamerTickets) {
+            assertNotNull("Result list should not contains 'null'", ticket);
+            assertEquals("Result list has ticket with incorrect event", GAMER_EVENT, ticket.event);
+            assertEquals("Result list has ticket with incorrect date", GAMER_TIME, ticket.date);
+            assertNull("Free ticket cannot contain user", ticket.user);
+            assertNull("Free ticket cannot contain discount price", ticket.discountPrice);
+        }
+
+        List<Ticket> hobbitTickets = ticketDAO.findFreeByEventAndDate(HOBBIT_EVENT, HOBBIT_TIME_ONE);
+        assertNotNull("Found ticket list should not be 'null'", hobbitTickets);
+        assertEquals("Found ticket list have incorrect size", HOBBIT_FREE_TICKETS_ONE, hobbitTickets.size());
+
+        for (Ticket ticket : hobbitTickets) {
+            assertNotNull("Result list should not contains 'null'", ticket);
+            assertEquals("Result list has ticket with incorrect event", HOBBIT_EVENT, ticket.event);
+            assertEquals("Result list has ticket with incorrect date", HOBBIT_TIME_ONE, ticket.date);
+            assertNull("Free ticket cannot contain user", ticket.user);
+            assertNull("Free ticket cannot contain discount price", ticket.discountPrice);
+        }
+    }
+
+    @Test
     public void testFindByUser() {
         List<Ticket> jhonTickets = ticketDAO.findByUser(USER_JHON);
         assertNotNull("Found ticket list should not be 'null'", jhonTickets);

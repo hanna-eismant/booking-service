@@ -37,14 +37,14 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public List<Ticket> getTicketsForEvent(Event event, LocalDateTime date) {
         List<Ticket> result = new ArrayList<>();
-        // todo: call appropriate DAO method
+        ticketDAO.findByEventAndDate(event, date);
         return result;
     }
 
     @Override
     public List<Ticket> getFreeTicketsForEvent(Event event, LocalDateTime date) {
         List<Ticket> result = new ArrayList<>();
-        ticketDAO.findByEventAndDate(event, date);
+        ticketDAO.findFreeByEventAndDate(event, date);
         return result;
     }
 
