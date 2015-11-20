@@ -38,7 +38,9 @@ public class TestUtils {
 
     public static Ticket TICKET = new Ticket();
 
-    public static LocalDateTime TIME_HOBBIT = LocalDateTime.parse("2015-06-06T14:00:00.000");
+    public static LocalDateTime TIME_HOBBIT_ONE = LocalDateTime.parse("2015-06-06T14:00:00.000");
+//    public static LocalDateTime TIME_HOBBIT_TWO = LocalDateTime.parse("2015-06-07T22:00:00.000");
+    public static LocalDateTime TIME_GAMER = LocalDateTime.parse("2015-10-17T20:00:00.000");
 
     static {
         USER_JHON.id = 255L;
@@ -65,7 +67,7 @@ public class TestUtils {
         TICKET.id = 251L;
         TICKET.seat = 5;
         TICKET.isVip = true;
-        TICKET.date = TIME_HOBBIT;
+        TICKET.date = TIME_HOBBIT_ONE;
         TICKET.basePrice = 19_200d;
         TICKET.event = EVENT_HOBBIT;
     }

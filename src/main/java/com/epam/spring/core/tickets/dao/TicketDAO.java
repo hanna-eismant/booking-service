@@ -4,6 +4,7 @@ import com.epam.spring.core.BaseDAO;
 import com.epam.spring.core.events.Event;
 import com.epam.spring.core.tickets.Ticket;
 import com.epam.spring.core.users.User;
+import org.joda.time.LocalDateTime;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ public interface TicketDAO extends BaseDAO<Ticket>{
 
     Ticket update(Ticket ticket);
 
-    List<Ticket> findByEvent(Event event);
-
     List<Ticket> findByUser(User user);
+
+    List<Ticket> findByEventAndDate(Event event, LocalDateTime date);
 }

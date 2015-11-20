@@ -30,8 +30,8 @@ public class TicketDAOImpl extends AbstractBaseDAOImpl<Ticket> implements Ticket
     private static final String CREATE_SQL = "INSERT INTO tickets (id, seat, is_vip, date, price, event_id) VALUES (?,?,?,?,?,?)";
     private static final String REMOVE_SQL = "DELETE FROM tickets WHERE id = ?";
     private static final String FIND_BY_ID_SQL = "SELECT " + COLUMN_LIST + JOIN + " WHERE t.id = ?";
-    private static final String FIND_BY_EVENT_SQL = "SELECT " + COLUMN_LIST +  JOIN + " WHERE e.id = ?";
-    private static final String FIND_BY_USER_SQL = "SELECT " + COLUMN_LIST + JOIN + " WHERE u.id = ?";
+    private static final String FIND_BY_EVENT_AND_DATE_SQL = "SELECT " + COLUMN_LIST +  JOIN + " WHERE t.event_id = ? AND t.date = ?";
+    private static final String FIND_BY_USER_SQL = "SELECT " + COLUMN_LIST + JOIN + " WHERE t.user_id = ?";
     private static final String FIND_ALL_SQL = "SELECT " + COLUMN_LIST + JOIN;
     private static final String UPDATE_SQL = "UPDATE tickets SET discount_price=?, user_id=? WHERE id = ?";
 
@@ -54,11 +54,11 @@ public class TicketDAOImpl extends AbstractBaseDAOImpl<Ticket> implements Ticket
     }
 
     @Override
-    public List<Ticket> findByEvent(Event event) {
+    public List<Ticket> findByEventAndDate(Event event, LocalDateTime date) {
         List<Ticket> entities = new ArrayList<>();
 
         try {
-            entities = jdbcTemplate.query(FIND_BY_EVENT_SQL, new Object[]{event.id}, createMapper());
+            entities = jdbcTemplate.query(FIND_BY_EVENT_AND_DATE_SQL, new Object[]{event.id, date.toString()}, createMapper());
         } catch (EmptyResultDataAccessException e) {
             // if no rows found then return empty list
         }
