@@ -34,7 +34,7 @@ public class Ticket extends BaseEntity {
     public String toString() {
         return "Ticket{" +
                 "id=" + id +
-                ", event='" + event.name +
+                ", event='" + (event == null ? "" : event.name) +
                 "', user=" + user +
                 ", date=" + date +
                 ", seat=" + seat +
