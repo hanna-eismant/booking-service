@@ -21,27 +21,18 @@ import static java.sql.Types.*;
 @Repository
 public class TicketDAOImpl extends AbstractBaseDAOImpl<Ticket> implements TicketDAO {
 
+    private static final String COLUMN_LIST = "t.id AS t_id, t.seat, t.is_vip, t.date, t.price, t.discount_price, t.event_id, t.user_id, " +
+            "u.id AS u_id, u.name AS u_name, u.email, u.birthday, " +
+            "e.id AS e_id, e.name AS e_name, e.base_price, e.rating ";
+
+    private static final String JOIN = "FROM tickets t LEFT JOIN users u ON t.user_id = u.id LEFT JOIN events e ON t.event_id = e.id";
+
     private static final String CREATE_SQL = "INSERT INTO tickets (id, seat, is_vip, date, price, event_id) VALUES (?,?,?,?,?,?)";
     private static final String REMOVE_SQL = "DELETE FROM tickets WHERE id = ?";
-
-    private static final String FIND_BY_ID_SQL = "SELECT " +
-            "t.id AS t_id, t.seat, t.is_vip, t.date, t.price, t.discount_price, t.event_id, t.user_id, " +
-            "u.id AS u_id, u.name AS u_name, u.email, u.birthday, " +
-            "e.id AS e_id, e.name AS e_name, e.base_price, e.rating " +
-            "FROM tickets t LEFT JOIN users u ON t.user_id = u.id LEFT JOIN events e ON t.event_id = e.id WHERE t.id = ?";
-
-    private static final String FIND_BY_EVENT_SQL = "SELECT " +
-            "t.id AS t_id, t.seat, t.is_vip, t.date, t.price, t.discount_price, t.event_id, t.user_id, " +
-            "u.id AS u_id, u.name AS u_name, u.email, u.birthday, " +
-            "e.id AS e_id, e.name AS e_name, e.base_price, e.rating " +
-            "FROM tickets t LEFT JOIN users u ON t.user_id = u.id LEFT JOIN events e ON t.event_id = e.id WHERE e.id = ?";
-
-    private static final String FIND_ALL_SQL = "SELECT " +
-            "t.id AS t_id, t.seat, t.is_vip, t.date, t.price, t.discount_price, t.event_id, t.user_id, " +
-            "u.id AS u_id, u.name AS u_name, u.email, u.birthday, " +
-            "e.id AS e_id, e.name AS e_name, e.base_price, e.rating " +
-            "FROM tickets t LEFT JOIN users u ON t.user_id = u.id LEFT JOIN events e ON t.event_id = e.id";
-
+    private static final String FIND_BY_ID_SQL = "SELECT " + COLUMN_LIST + JOIN + " WHERE t.id = ?";
+    private static final String FIND_BY_EVENT_SQL = "SELECT " + COLUMN_LIST +  JOIN + " WHERE e.id = ?";
+    private static final String FIND_BY_USER_SQL = "SELECT " + COLUMN_LIST + JOIN + " WHERE u.id = ?";
+    private static final String FIND_ALL_SQL = "SELECT " + COLUMN_LIST + JOIN;
     private static final String UPDATE_SQL = "UPDATE tickets SET discount_price=?, user_id=? WHERE id = ?";
 
 
@@ -76,8 +67,16 @@ public class TicketDAOImpl extends AbstractBaseDAOImpl<Ticket> implements Ticket
     }
 
     @Override
-    public List<User> findByUser(User user) {
-        return null;
+    public List<Ticket> findByUser(User user) {
+        List<Ticket> entities = new ArrayList<>();
+
+        try {
+            entities = jdbcTemplate.query(FIND_BY_USER_SQL, new Object[]{user.id}, createMapper());
+        } catch (EmptyResultDataAccessException e) {
+            // if no rows found then return empty list
+        }
+
+        return entities;
     }
 
     @Override

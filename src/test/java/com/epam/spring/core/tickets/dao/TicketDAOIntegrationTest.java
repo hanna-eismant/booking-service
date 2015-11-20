@@ -2,7 +2,6 @@ package com.epam.spring.core.tickets.dao;
 
 import com.epam.spring.core.AbstractIntegrationTest;
 import com.epam.spring.core.tickets.Ticket;
-import com.epam.spring.core.users.User;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -80,12 +79,22 @@ public class TicketDAOIntegrationTest extends AbstractIntegrationTest {
 
     @Test
     public void testFindByUser() {
-        List<User> jhonTickets = ticketDAO.findByUser(USER_JHON);
+        List<Ticket> jhonTickets = ticketDAO.findByUser(USER_JHON);
         assertNotNull("Found ticket list should not be 'null'", jhonTickets);
         assertEquals("Found ticket list have incorrect size", 10, jhonTickets.size());
 
-        List<User> janeTickets = ticketDAO.findByUser(USER_JANE);
+        for (Ticket ticket : jhonTickets) {
+            assertNotNull("Result list should not contains 'null'", ticket);
+            assertEquals("Result list has incorrect ticket " + ticket, USER_JHON, ticket.user);
+        }
+
+        List<Ticket> janeTickets = ticketDAO.findByUser(USER_JANE);
         assertNotNull("Found ticket list should not be 'null'", janeTickets);
         assertEquals("Found ticket list have incorrect size", 3, janeTickets.size());
+
+        for (Ticket ticket : janeTickets) {
+            assertNotNull("Result list should not contains 'null'", ticket);
+            assertEquals("Result list has incorrect ticket " + ticket, USER_JANE, ticket.user);
+        }
     }
 }

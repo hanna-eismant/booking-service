@@ -13,5 +13,5 @@ public interface TicketDAO extends BaseDAO<Ticket>{
 
     List<Ticket> findByEvent(Event event);
 
-    List<User> findByUser(User user);
+    List<Ticket> findByUser(User user);
 }
