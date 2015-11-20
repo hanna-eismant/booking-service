@@ -5,6 +5,7 @@ import com.epam.spring.core.events.Event;
 import com.epam.spring.core.events.Rating;
 import com.epam.spring.core.events.dao.EventDAO;
 import com.epam.spring.core.tickets.Ticket;
+import com.epam.spring.core.tickets.dao.TicketDAO;
 import org.joda.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,11 +21,10 @@ public class EventServiceImpl implements EventService {
     private EventDAO eventDAO;
 
     @Autowired
-    private Provider<Event> eventProvider;
+    private TicketDAO ticketDAO;
 
-    public void setEventDAO(EventDAO eventDAO) {
-        this.eventDAO = eventDAO;
-    }
+    @Autowired
+    private Provider<Event> eventProvider;
 
     @Override
     public Event create(String name, Double basePrice, Rating rating) {
@@ -38,8 +38,6 @@ public class EventServiceImpl implements EventService {
 
         event.rating = rating;
         event = eventDAO.create(event);
-
-        System.out.println("Create new event: " + event);
 
         return event;
     }
@@ -65,9 +63,19 @@ public class EventServiceImpl implements EventService {
 
         for (int seat = 0; seat < auditorium.seats; seat++) {
             Ticket ticket = new Ticket(date, event, seat, auditorium.getVipSeats().contains(seat), event.basePrice);
-            // todo: need implementation
+            // maybe save all tickets at once
+            ticket = ticketDAO.create(ticket);
+            tickets.add(ticket);
         }
 
         return tickets;
+    }
+
+    public void setEventDAO(EventDAO eventDAO) {
+        this.eventDAO = eventDAO;
+    }
+
+    public void setTicketDAO(TicketDAO ticketDAO) {
+        this.ticketDAO = ticketDAO;
     }
 }
