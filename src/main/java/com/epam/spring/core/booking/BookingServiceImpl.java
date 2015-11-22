@@ -3,7 +3,7 @@ package com.epam.spring.core.booking;
 import com.epam.spring.core.events.Event;
 import com.epam.spring.core.tickets.Ticket;
 import com.epam.spring.core.tickets.dao.TicketDAO;
-import com.epam.spring.core.tickets.seervices.TicketService;
+import com.epam.spring.core.tickets.services.TicketService;
 import com.epam.spring.core.users.User;
 import org.joda.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.epam.spring.core.tickets.seervices;
+package com.epam.spring.core.tickets.services;
 
 import com.epam.spring.core.events.Event;
 import com.epam.spring.core.users.User;

@@ -6,7 +6,7 @@ import com.epam.spring.core.events.Rating;
 import com.epam.spring.core.events.dao.EventDAO;
 import com.epam.spring.core.tickets.Ticket;
 import com.epam.spring.core.tickets.dao.TicketDAO;
-import com.epam.spring.core.tickets.seervices.TicketService;
+import com.epam.spring.core.tickets.services.TicketService;
 import org.joda.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
