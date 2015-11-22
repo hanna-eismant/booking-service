@@ -1,4 +1,4 @@
-package com.epam.spring.core;
+package com.epam.spring.core.shared;
 
 import java.util.List;
 

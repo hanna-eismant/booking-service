@@ -1,6 +1,6 @@
 package com.epam.spring.core.events.dao;
 
-import com.epam.spring.core.AbstractBaseDAOImpl;
+import com.epam.spring.core.shared.AbstractBaseDAOImpl;
 import com.epam.spring.core.events.Event;
 import com.epam.spring.core.events.Rating;
 import org.springframework.jdbc.core.RowMapper;

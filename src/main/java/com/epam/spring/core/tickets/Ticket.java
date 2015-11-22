@@ -1,6 +1,6 @@
 package com.epam.spring.core.tickets;
 
-import com.epam.spring.core.BaseEntity;
+import com.epam.spring.core.shared.BaseEntity;
 import com.epam.spring.core.events.Event;
 import com.epam.spring.core.users.User;
 import org.joda.time.LocalDateTime;

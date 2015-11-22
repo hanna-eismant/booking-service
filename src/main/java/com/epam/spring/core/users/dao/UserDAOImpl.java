@@ -1,6 +1,6 @@
 package com.epam.spring.core.users.dao;
 
-import com.epam.spring.core.AbstractBaseDAOImpl;
+import com.epam.spring.core.shared.AbstractBaseDAOImpl;
 import com.epam.spring.core.users.User;
 import org.joda.time.LocalDate;
 import org.springframework.dao.EmptyResultDataAccessException;

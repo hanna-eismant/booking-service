@@ -1,6 +1,6 @@
 package com.epam.spring.core.users;
 
-import com.epam.spring.core.BaseEntity;
+import com.epam.spring.core.shared.BaseEntity;
 import org.joda.time.LocalDate;
 
 import java.util.Objects;

@@ -1,6 +1,6 @@
 package com.epam.spring.core.users.dao;
 
-import com.epam.spring.core.BaseDAO;
+import com.epam.spring.core.shared.BaseDAO;
 import com.epam.spring.core.users.User;
 
 import java.util.List;

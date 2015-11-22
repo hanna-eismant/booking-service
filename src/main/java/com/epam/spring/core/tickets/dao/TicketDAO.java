@@ -1,6 +1,6 @@
 package com.epam.spring.core.tickets.dao;
 
-import com.epam.spring.core.BaseDAO;
+import com.epam.spring.core.shared.BaseDAO;
 import com.epam.spring.core.events.Event;
 import com.epam.spring.core.tickets.Ticket;
 import com.epam.spring.core.users.User;

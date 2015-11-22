@@ -1,6 +1,6 @@
 package com.epam.spring.core.events;
 
-import com.epam.spring.core.BaseEntity;
+import com.epam.spring.core.shared.BaseEntity;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 

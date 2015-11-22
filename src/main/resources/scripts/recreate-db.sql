@@ -39,3 +39,14 @@ ALTER TABLE tickets ADD FOREIGN KEY (event_id) REFERENCES events (id)
   ON DELETE CASCADE;
 ALTER TABLE tickets ADD FOREIGN KEY (user_id) REFERENCES users (id)
   ON DELETE SET NULL;
+
+DROP TABLE statistic
+IF EXISTS;
+
+CREATE TABLE statistic (
+  id      BIGINT PRIMARY KEY,
+  type    VARCHAR(255) NOT NULL,
+  counter BIGINT
+);
+
+ALTER TABLE statistic ADD CONSTRAINT statistic_type UNIQUE (type);
