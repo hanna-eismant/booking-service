@@ -25,11 +25,14 @@ public class BookingStatisticIntegrationTest extends AbstractStatisticIntegratio
 
     @Test
     public void testCountPriceQueried() {
-        Integer priceQueriedStatistic = bookingStatistic.getPriceQueriedStatistic(HOBBIT_EVENT);
+        Long priceQueriedStatistic = bookingStatistic.getPriceQueriedStatistic(HOBBIT_EVENT);
         assertNotNull("Price Queried Statistic for event with booked tickets cannot be null", priceQueriedStatistic);
         assertEquals("Price Queried Statistic for event with booked tickets is incorrect", totalBookedTickets, priceQueriedStatistic);
 
-        Integer notPriceQueriedStatistic = bookingStatistic.getPriceQueriedStatistic(new Event());
+        Event absenteeEvent = new Event();
+        absenteeEvent.name = "Absentee event";
+
+        Long notPriceQueriedStatistic = bookingStatistic.getPriceQueriedStatistic(absenteeEvent);
         assertNotNull("Price Queried Statistic for event without booked tickets cannot be null", notPriceQueriedStatistic);
         assertEquals("Price Queried Statistic for event without booked tickets should be zero", Long.valueOf(0L), notPriceQueriedStatistic);
     }

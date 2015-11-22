@@ -12,11 +12,9 @@ public interface DiscountStatistic {
 
     void countBirthday(User user, Event event, LocalDateTime date);
 
-    Integer getTotalStatistic(Class<?> strategy);
+    Long getTotalStatistic(Class<?> strategy);
 
-    Integer getTenTicketStatistic(User user);
+    Long getTenTicketStatistic(User user);
 
-    Integer getBirthdayStatistic(User user);
-
-    void removeAll();
+    Long getBirthdayStatistic(User user);
 }

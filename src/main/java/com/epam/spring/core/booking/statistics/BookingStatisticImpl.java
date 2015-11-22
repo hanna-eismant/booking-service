@@ -12,9 +12,6 @@ import org.aspectj.lang.annotation.Aspect;
 import org.joda.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.HashMap;
-import java.util.Map;
-
 @Aspect
 public class BookingStatisticImpl implements BookingStatistic {
 
@@ -23,18 +20,6 @@ public class BookingStatisticImpl implements BookingStatistic {
 
     @Autowired
     private StatisticDAO statisticDAO;
-
-
-    /**
-     * How many times tickets were booked for each event.
-     */
-    private Map<Event, Integer> bookedCounter = new HashMap<>();
-
-    /**
-     * How many times prices were queried for each event.
-     */
-    private Map<Event, Integer> priceQueriedCounter = new HashMap<>();
-
 
     @Override
     @AfterReturning(value = "execution(* com.epam.spring.core.booking.BookingService*.bookTicket(..)) && args(user,ticket)", argNames = "user,ticket")
@@ -50,11 +35,7 @@ public class BookingStatisticImpl implements BookingStatistic {
     @Override
     @Around(value = "execution(* com.epam.spring.core.booking.BookingService*.getTicketPrice(..)) && args(event,date,seat,user)", argNames = "joinPoint,event,date,seat,user")
     public Object countPriceQueried(ProceedingJoinPoint joinPoint, Event event, LocalDateTime date, Integer seat, User user) throws Throwable {
-        if (!priceQueriedCounter.containsKey(event)) {
-            priceQueriedCounter.put(event, 0);
-        }
-
-        priceQueriedCounter.put(event, priceQueriedCounter.get(event) + 1);
+        statisticDAO.incrementCounter(PRICE_QUERIED_NAME, event.name);
         return joinPoint.proceed(new Object[]{event, date, seat, user});
     }
 
@@ -65,11 +46,8 @@ public class BookingStatisticImpl implements BookingStatistic {
     }
 
     @Override
-    public Integer getPriceQueriedStatistic(Event event) {
-        if (priceQueriedCounter.containsKey(event)) {
-            return priceQueriedCounter.get(event);
-        }
-
-        return null;
+    public Long getPriceQueriedStatistic(Event event) {
+        Statistic statistic = statisticDAO.findByNameAndType(PRICE_QUERIED_NAME, event.name);
+        return statistic.counter;
     }
 }

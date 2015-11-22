@@ -13,5 +13,5 @@ public interface BookingStatistic {
 
     Long getBookedStatistic(Event event);
 
-    Integer getPriceQueriedStatistic(Event event);
+    Long getPriceQueriedStatistic(Event event);
 }
