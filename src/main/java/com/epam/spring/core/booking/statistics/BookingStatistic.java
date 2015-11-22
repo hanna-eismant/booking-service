@@ -11,9 +11,7 @@ public interface BookingStatistic {
 
     Object countPriceQueried(ProceedingJoinPoint joinPoint, Event event, LocalDateTime date, Integer seat, User user) throws Throwable;
 
-    Integer getBookedStatistic(Event event);
+    Long getBookedStatistic(Event event);
 
     Integer getPriceQueriedStatistic(Event event);
-
-    void removeAll();
 }

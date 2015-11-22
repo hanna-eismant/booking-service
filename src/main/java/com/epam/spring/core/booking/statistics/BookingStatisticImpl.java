@@ -1,6 +1,8 @@
 package com.epam.spring.core.booking.statistics;
 
 import com.epam.spring.core.events.Event;
+import com.epam.spring.core.shared.Statistic;
+import com.epam.spring.core.shared.StatisticDAO;
 import com.epam.spring.core.tickets.Ticket;
 import com.epam.spring.core.users.User;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -8,12 +10,20 @@ import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.joda.time.LocalDateTime;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @Aspect
-public class BookingStatisticMapImpl implements BookingStatistic {
+public class BookingStatisticImpl implements BookingStatistic {
+
+    private static final String BOOKED_NAME = "booked";
+    private static final String PRICE_QUERIED_NAME = "price queried";
+
+    @Autowired
+    private StatisticDAO statisticDAO;
+
 
     /**
      * How many times tickets were booked for each event.
@@ -31,20 +41,10 @@ public class BookingStatisticMapImpl implements BookingStatistic {
     public void countBooked(User user, Ticket ticket) {
         Event event = ticket.event;
 
-        if (!bookedCounter.containsKey(event)) {
-            bookedCounter.put(event, 0);
-        }
-
-        bookedCounter.put(event, bookedCounter.get(event) + 1);
-
+        statisticDAO.incrementCounter(BOOKED_NAME, event.name);
         // if we book ticket then call getTicketPrice() within bookTicket()
         // therefore we increment priceQueriedCounter here
-
-        if (!priceQueriedCounter.containsKey(event)) {
-            priceQueriedCounter.put(event, 0);
-        }
-
-        priceQueriedCounter.put(event, priceQueriedCounter.get(event) + 1);
+        statisticDAO.incrementCounter(PRICE_QUERIED_NAME, event.name);
     }
 
     @Override
@@ -59,12 +59,9 @@ public class BookingStatisticMapImpl implements BookingStatistic {
     }
 
     @Override
-    public Integer getBookedStatistic(Event event) {
-        if (bookedCounter.containsKey(event)) {
-            return bookedCounter.get(event);
-        }
-
-        return null;
+    public Long getBookedStatistic(Event event) {
+        Statistic statistic = statisticDAO.findByNameAndType(BOOKED_NAME, event.name);
+        return statistic.counter;
     }
 
     @Override
@@ -74,11 +71,5 @@ public class BookingStatisticMapImpl implements BookingStatistic {
         }
 
         return null;
-    }
-
-    @Override
-    public void removeAll() {
-        bookedCounter.clear();
-        priceQueriedCounter.clear();
     }
 }

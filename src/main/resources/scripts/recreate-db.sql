@@ -45,8 +45,9 @@ IF EXISTS;
 
 CREATE TABLE statistic (
   id      BIGINT PRIMARY KEY,
+  name    VARCHAR(255) NOT NULL,
   type    VARCHAR(255) NOT NULL,
   counter BIGINT
 );
 
-ALTER TABLE statistic ADD CONSTRAINT statistic_type UNIQUE (type);
+ALTER TABLE statistic ADD CONSTRAINT statistic_name_type UNIQUE (name, type);

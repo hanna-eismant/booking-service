@@ -4,7 +4,6 @@ import com.epam.spring.core.booking.BookingService;
 import com.epam.spring.core.booking.statistics.BookingStatistic;
 import com.epam.spring.core.discounts.statistics.DiscountStatistic;
 import com.epam.spring.core.tickets.Ticket;
-import org.junit.After;
 import org.junit.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -23,15 +22,12 @@ public abstract class AbstractStatisticIntegrationTest extends AbstractIntegrati
     @Autowired
     protected DiscountStatistic discountStatistic;
 
-    protected Integer jhonBookedTickets = 5;
-    protected Integer janeBookedTickets = 3;
-    protected Integer totalBookedTickets;
+    protected Long jhonBookedTickets = 5L;
+    protected Long janeBookedTickets = 3L;
+    protected Long totalBookedTickets;
 
     @Before
     public void setUp() throws Exception {
-        discountStatistic.removeAll();
-        bookingStatistic.removeAll();
-
         totalBookedTickets = jhonBookedTickets + janeBookedTickets;
 
         List<Ticket> tickets = bookingService.getFreeTicketsForEvent(HOBBIT_EVENT, HOBBIT_TIME_ONE);
@@ -44,11 +40,5 @@ public abstract class AbstractStatisticIntegrationTest extends AbstractIntegrati
         for (int i = 10; i < janeBookedTickets + 10; i++) {
             bookingService.bookTicket(USER_JANE, tickets.get(i));
         }
-    }
-
-    @After
-    public void tearDown() {
-        discountStatistic.removeAll();
-        bookingStatistic.removeAll();
     }
 }
