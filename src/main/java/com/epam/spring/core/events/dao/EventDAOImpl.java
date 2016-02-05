@@ -14,17 +14,26 @@ import static java.sql.Types.*;
 @Repository("eventDAO")
 public class EventDAOImpl extends AbstractBaseDAOImpl<Event> implements EventDAO {
 
+    private long idCounter = 0;
+
     private static final String CREATE_SQL = "INSERT INTO events (id,name,base_price,rating) VALUES (?,?,?,?)";
     private static final String REMOVE_SQL = "DELETE FROM events WHERE id = ?";
     private static final String FIND_BY_ID_SQL = "SELECT * FROM events WHERE id = ?";
     private static final String FIND_ALL_SQL = "SELECT * FROM events";
 
     @Override
-    public Event create(Event entity) throws IllegalArgumentException {
-        args = new Object[]{entity.id, entity.name, entity.basePrice, entity.rating.toString()};
-        argTypes = new int[] {BIGINT, VARCHAR, DOUBLE, VARCHAR};
+    protected long generateId() {
+        return ++idCounter;
+    }
 
-        return super.create(entity);
+    @Override
+    protected int[] getArgTypes() {
+        return new int[] {BIGINT, VARCHAR, DOUBLE, VARCHAR};
+    }
+
+    @Override
+    protected Object[] getArgs(final Event entity) {
+        return new Object[]{entity.id, entity.name, entity.basePrice, entity.rating.toString()};
     }
 
     @Override

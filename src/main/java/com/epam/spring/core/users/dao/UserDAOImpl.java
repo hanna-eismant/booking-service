@@ -17,20 +17,14 @@ import static java.sql.Types.*;
 @Repository("userDAO")
 public class UserDAOImpl extends AbstractBaseDAOImpl<User> implements UserDAO {
 
+    private long idCounter = 0;
+
     private static final String CREATE_SQL = "INSERT INTO users (id,name,email,birthday) VALUES (?,?,?,?)";
     private static final String REMOVE_SQL = "DELETE FROM users WHERE id = ?";
     private static final String FIND_BY_ID_SQL = "SELECT * FROM users WHERE id = ?";
     private static final String FIND_BY_EMAIL_SQL = "SELECT * FROM users WHERE email = ?";
     private static final String FIND_BY_NAME_SQL = "SELECT * FROM users WHERE name = ?";
     private static final String FIND_ALL_SQL = "SELECT * FROM users";
-
-    @Override
-    public User create(User entity) throws IllegalArgumentException {
-        args = new Object[]{entity.id, entity.name, entity.email, entity.birthday.toString()};
-        argTypes = new int[]{BIGINT, VARCHAR, VARCHAR, VARCHAR};
-
-        return super.create(entity);
-    }
 
     @Override
     public User findByEmail(String email) throws IllegalArgumentException {
@@ -60,6 +54,21 @@ public class UserDAOImpl extends AbstractBaseDAOImpl<User> implements UserDAO {
             // if no users found, then return empty list
         }
         return users;
+    }
+
+    @Override
+    protected long generateId() {
+        return ++idCounter;
+    }
+
+    @Override
+    protected int[] getArgTypes() {
+        return new int[]{BIGINT, VARCHAR, VARCHAR, VARCHAR};
+    }
+
+    @Override
+    protected Object[] getArgs(final User entity) {
+        return new Object[]{entity.id, entity.name, entity.email, entity.birthday.toString()};
     }
 
     @Override

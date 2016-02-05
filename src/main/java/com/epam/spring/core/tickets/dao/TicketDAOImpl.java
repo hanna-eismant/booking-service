@@ -21,6 +21,8 @@ import static java.sql.Types.*;
 @Repository
 public class TicketDAOImpl extends AbstractBaseDAOImpl<Ticket> implements TicketDAO {
 
+    private long idCounter = 0;
+
     private static final String COLUMN_LIST = "t.id AS t_id, t.seat, t.is_vip, t.date, t.price, t.discount_price, t.event_id, t.user_id, " +
             "u.id AS u_id, u.name AS u_name, u.email, u.birthday, " +
             "e.id AS e_id, e.name AS e_name, e.base_price, e.rating ";
@@ -36,19 +38,10 @@ public class TicketDAOImpl extends AbstractBaseDAOImpl<Ticket> implements Ticket
     private static final String FIND_ALL_SQL = "SELECT " + COLUMN_LIST + JOIN;
     private static final String UPDATE_SQL = "UPDATE tickets SET discount_price=?, user_id=? WHERE id = ?";
 
-
-    @Override
-    public Ticket create(Ticket entity) throws IllegalArgumentException {
-        args = new Object[]{entity.id, entity.seat, entity.isVip, entity.date.toString(), entity.basePrice, entity.event.id};
-        argTypes = new int[]{BIGINT, INTEGER, BOOLEAN, VARCHAR, DOUBLE, BIGINT};
-
-        return super.create(entity);
-    }
-
     @Override
     public Ticket update(Ticket entity) {
-        args = new Object[]{entity.discountPrice, entity.user.id, entity.id};
-        argTypes = new int[]{DOUBLE, BIGINT, BIGINT};
+        Object[] args = new Object[]{entity.discountPrice, entity.user.id, entity.id};
+        int[] argTypes = new int[]{DOUBLE, BIGINT, BIGINT};
 
         jdbcTemplate.update(UPDATE_SQL, args, argTypes);
         return findById(entity.id);
@@ -91,6 +84,21 @@ public class TicketDAOImpl extends AbstractBaseDAOImpl<Ticket> implements Ticket
         }
 
         return entities;
+    }
+
+    @Override
+    protected long generateId() {
+        return ++idCounter;
+    }
+
+    @Override
+    protected int[] getArgTypes() {
+        return new int[]{BIGINT, INTEGER, BOOLEAN, VARCHAR, DOUBLE, BIGINT};
+    }
+
+    @Override
+    protected Object[] getArgs(final Ticket entity) {
+        return new Object[]{entity.id, entity.seat, entity.isVip, entity.date.toString(), entity.basePrice, entity.event.id};
     }
 
     @Override

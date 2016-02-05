@@ -15,25 +15,16 @@ public abstract class AbstractBaseDAOImpl<T extends BaseEntity> implements BaseD
     @Autowired
     protected JdbcTemplate jdbcTemplate;
 
-    // IMPORTANT: thread-unsafe
-    // first inserted row will have id = 1
-    protected long idCounter = 0;
-
-    // IMPORTANT: thread-unsafe
-    // parameters for create statement
-    protected Object[] args = new Object[] {0};
-
-    // IMPORTANT: thread-unsafe
-    protected int[] argTypes = new  int[] {BIGINT};
-
-    // IMPORTANT: thread-unsafe
     @Override
     public T create(T entity) throws IllegalArgumentException {
         if (entity == null) {
             throw new IllegalArgumentException("Entity cannot be 'null'");
         }
 
-        entity.id = ++idCounter;
+        entity.id = generateId();
+
+        Object[] args = getArgs(entity);
+        int[] argTypes = getArgTypes();
 
         args[0] = entity.id;
         argTypes[0] = BIGINT;
@@ -84,6 +75,10 @@ public abstract class AbstractBaseDAOImpl<T extends BaseEntity> implements BaseD
 
         return entities;
     }
+
+    abstract protected long generateId();
+    abstract protected int[] getArgTypes();
+    abstract protected Object[] getArgs(final T entity);
 
     abstract protected String getCreateSql();
     abstract protected String getRemoveSql();

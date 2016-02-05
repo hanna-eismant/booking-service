@@ -13,21 +13,14 @@ import static java.sql.Types.VARCHAR;
 @Repository
 public class StatisticDAOImpl extends AbstractBaseDAOImpl<Statistic> implements StatisticDAO {
 
+    private long idCounter = 0;
+
     private static final String CREATE_SQL = "INSERT INTO statistic (id,name,type,counter) VALUES (?,?,?,?)";
     private static final String REMOVE_SQL = "DELETE FROM statistic WHERE id = ?";
     private static final String FIND_BY_ID_SQL = "SELECT * FROM statistic WHERE id = ?";
     private static final String FIND_BY_NAME_AND_TYPE_SQL = "SELECT * FROM statistic WHERE name = ? AND type = ?";
     private static final String FIND_ALL_SQL = "SELECT * FROM statistic";
     private static final String UPDATE_SQL = "UPDATE statistic SET counter = ? WHERE id = ?";
-
-
-    @Override
-    public Statistic create(Statistic entity) throws IllegalArgumentException {
-        args = new Object[]{entity.id, entity.name, entity.type, entity.counter};
-        argTypes = new int[]{BIGINT, VARCHAR, VARCHAR, BIGINT};
-
-        return super.create(entity);
-    }
 
     @Override
     public Statistic findByNameAndType(String name, String type) throws IllegalArgumentException {
@@ -57,11 +50,26 @@ public class StatisticDAOImpl extends AbstractBaseDAOImpl<Statistic> implements 
     public Statistic incrementCounter(String name, String type) throws IllegalArgumentException {
         Statistic statistic = findByNameAndType(name, type);
         statistic.counter++;
-        args = new Object[]{statistic.counter, statistic.id};
-        argTypes = new int[]{BIGINT, BIGINT};
+        Object[] args = new Object[]{statistic.counter, statistic.id};
+        int[] argTypes = new int[]{BIGINT, BIGINT};
 
         jdbcTemplate.update(UPDATE_SQL, args, argTypes);
         return findById(statistic.id);
+    }
+
+    @Override
+    protected long generateId() {
+        return ++idCounter;
+    }
+
+    @Override
+    protected int[] getArgTypes() {
+        return new int[]{BIGINT, VARCHAR, VARCHAR, BIGINT};
+    }
+
+    @Override
+    protected Object[] getArgs(final Statistic entity) {
+        return new Object[]{entity.id, entity.name, entity.type, entity.counter};
     }
 
     @Override
