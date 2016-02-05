@@ -3,3 +3,7 @@
 *.jar
 
 db/
+testdb.tmp/
+target/
+
+run.bat
