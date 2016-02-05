@@ -33,8 +33,7 @@
         </bean>
     </util:list>
 
-    <bean id="auditoriumService" class="com.epam.spring.core.auditoriums.services.AuditoriumServiceImpl"
-          init-method="init">
+    <bean id="auditoriumService" class="com.epam.spring.core.auditoriums.services.AuditoriumServiceImpl">
         <constructor-arg ref="auditoriumList"/>
     </bean>
 

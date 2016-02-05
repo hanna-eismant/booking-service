@@ -17,7 +17,7 @@ public class DiscountStrategyTenTicketImpl implements DiscountStrategy {
     public Double calculate(User user, Event event, LocalDateTime date) {
         int ticketsCount = userService.getBookedTicketsCount(user);
 
-        if ((ticketsCount % 10) == 9) {
+        if ((ticketsCount % 10) == 9) { // todo: magic numbers!
             return 0.5;
         } else {
             return 0.0;

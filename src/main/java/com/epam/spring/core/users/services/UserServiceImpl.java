@@ -82,6 +82,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int getBookedTicketsCount(User user) {
+        // todo: create special request to get count
         return getBookedTickets(user).size();
     }
 }

@@ -37,12 +37,4 @@ public class BookingServiceImpl implements BookingService {
     public List<Ticket> getFreeTicketsForEvent(Event event, LocalDateTime date) {
         return ticketDAO.findFreeByEventAndDate(event, date);
     }
-
-    public void setTicketService(TicketService ticketService) {
-        this.ticketService = ticketService;
-    }
-
-    public void setTicketDAO(TicketDAO ticketDAO) {
-        this.ticketDAO = ticketDAO;
-    }
 }

@@ -136,6 +136,7 @@ public class TicketDAOImpl extends AbstractBaseDAOImpl<Ticket> implements Ticket
             ticket.isVip = rs.getBoolean("is_vip");
             ticket.date = LocalDateTime.parse(rs.getString("date"));
             ticket.basePrice = (rs.getDouble("price") == 0.0d ? null : rs.getDouble("price"));
+
             // rs.getDouble("discount_price") return 0 if column contains null
             ticket.discountPrice = (rs.getDouble("discount_price") == 0.0d ? null : rs.getDouble("discount_price"));
 

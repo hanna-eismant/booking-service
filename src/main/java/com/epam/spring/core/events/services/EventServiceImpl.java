@@ -64,7 +64,7 @@ public class EventServiceImpl implements EventService {
             Double ticketPrice =
                     ticketService.getTicketPrice(event, date, seat, auditorium.getVipSeats().contains(seat), null);
             Ticket ticket = new Ticket(date, event, seat, auditorium.getVipSeats().contains(seat), ticketPrice);
-            // maybe save all tickets at once
+            // todo: save all tickets at once
             ticket = ticketDAO.create(ticket);
             tickets.add(ticket);
         }

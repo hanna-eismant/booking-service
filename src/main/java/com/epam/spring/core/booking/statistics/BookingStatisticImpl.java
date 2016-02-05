@@ -27,6 +27,7 @@ public class BookingStatisticImpl implements BookingStatistic {
         Event event = ticket.event;
 
         statisticDAO.incrementCounter(BOOKED_NAME, event.name);
+
         // if we book ticket then call getTicketPrice() within bookTicket()
         // therefore we increment priceQueriedCounter here
         statisticDAO.incrementCounter(PRICE_QUERIED_NAME, event.name);

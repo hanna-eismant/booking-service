@@ -13,11 +13,6 @@ public class AuditoriumServiceImpl implements AuditoriumService {
         this.auditoriums = auditoriums;
     }
 
-    public void init() {
-        System.out.println();
-        System.out.println(auditoriums);
-    }
-
     @Override
     public List<Auditorium> getAuditoriums() {
         return auditoriums;

@@ -3,7 +3,6 @@ package com.epam.spring.core.tickets.services;
 import com.epam.spring.core.discounts.DiscountService;
 import com.epam.spring.core.events.Event;
 import com.epam.spring.core.events.Rating;
-import com.epam.spring.core.tickets.dao.TicketDAO;
 import com.epam.spring.core.users.User;
 import org.joda.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +10,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class TicketServiceImpl implements TicketService {
-
-    @Autowired
-    private TicketDAO ticketDAO;
 
     @Autowired
     private DiscountService discountService;
@@ -24,11 +20,11 @@ public class TicketServiceImpl implements TicketService {
         Double resultPrice = event.basePrice;
 
         if (Rating.HIGH.equals(event.rating)) {
-            resultPrice *= 1.2d;
+            resultPrice *= 1.2d; // todo: magic number!
         }
 
         if (isVip) {
-            resultPrice *= 2.0d;
+            resultPrice *= 2.0d; // todo: magic number!
         }
 
         if (user != null) {
