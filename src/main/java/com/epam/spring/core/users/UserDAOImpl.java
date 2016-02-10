@@ -8,8 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import static java.sql.Types.BIGINT;
 import static java.sql.Types.VARCHAR;
@@ -42,18 +40,18 @@ public class UserDAOImpl extends AbstractBaseDAOImpl<User> implements UserDAO {
     }
 
     @Override
-    public List<User> findByName(String name) throws IllegalArgumentException {
+    public User findByName(String name) throws IllegalArgumentException {
         if (name == null) {
             throw new IllegalArgumentException("Name for search cannot be 'null'");
         }
 
-        List<User> users = new ArrayList<>();
+        User user = null;
         try {
-            users = jdbcTemplate.query(FIND_BY_NAME_SQL, new Object[]{name}, createMapper());
+            user = jdbcTemplate.queryForObject(FIND_BY_NAME_SQL, new Object[]{name}, createMapper());
         } catch (EmptyResultDataAccessException e) {
             // if no users found, then return empty list
         }
-        return users;
+        return user;
     }
 
     @Override

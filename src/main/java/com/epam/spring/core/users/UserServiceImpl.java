@@ -19,19 +19,25 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User register(String name, String email, LocalDate birthday) throws Exception {
-        // check user name
+        // check user's name
         if (name == null || name.isEmpty()) {
             throw new IllegalArgumentException("User name cannot be empty or 'null'");
         }
 
-        // check user email
+        // check user's email
         if (email == null || email.isEmpty()) {
             throw new IllegalArgumentException("User email cannot be empty or 'null'");
         }
-        User byEmail = userDAO.findByEmail(email);
-        if (byEmail != null) {
+
+        User forCheck = userDAO.findByEmail(email);
+        if (forCheck != null) {
             throw new Exception("User email '" + email + "' is duplicated");
         }
+        forCheck = userDAO.findByName(name);
+        if (forCheck != null) {
+            throw new Exception("User name '" + name + "' is duplicated");
+        }
+
 
         // check user birthday
         LocalDate currentDate = LocalDate.now();
@@ -59,12 +65,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUserByEmail(String email) {
+    public User getByEmail(String email) {
         return userDAO.findByEmail(email);
     }
 
     @Override
-    public List<User> getUsersByName(String name) {
+    public User getByName(String name) {
         return userDAO.findByName(name);
     }
 

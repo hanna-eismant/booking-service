@@ -1,0 +1,7 @@
+#parse('layouts/header.vm')
+
+<h3>Information about $user.name</h3>
+
+
+
+#parse('layouts/footer.vm')

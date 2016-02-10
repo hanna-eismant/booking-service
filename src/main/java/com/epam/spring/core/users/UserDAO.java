@@ -2,8 +2,6 @@ package com.epam.spring.core.users;
 
 import com.epam.spring.core.shared.BaseDAO;
 
-import java.util.List;
-
 public interface UserDAO extends BaseDAO<User> {
 
     /**
@@ -16,11 +14,11 @@ public interface UserDAO extends BaseDAO<User> {
     User findByEmail(String email) throws IllegalArgumentException;
 
     /**
-     * Find registered users with specify name.
+     * Find registered user with specify name.
      *
      * @param name user name for search.
-     * @return list with found users or empty list.
+     * @return found user or {@code null}.
      * @throws IllegalArgumentException if passed name is {@code null}.
      */
-    List<User> findByName(String name) throws IllegalArgumentException;
+    User findByName(String name) throws IllegalArgumentException;
 }

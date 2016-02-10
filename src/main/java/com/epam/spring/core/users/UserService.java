@@ -10,7 +10,7 @@ public interface UserService {
     /**
      * Register new user to the Booking system.
      *
-     * @param name     user name. Cannot be {@code null} or empty.
+     * @param name     user name. Cannot be {@code null} or empty. Should be unique.
      * @param email    user e-mail. Cannot be {@code null} or empty. Should be unique.
      * @param birthday user birthday. Cannot be {@code null} or in future.
      * @return registered user.
@@ -40,15 +40,15 @@ public interface UserService {
      * @param email user email for search.
      * @return found user or {@code null}.
      */
-    User getUserByEmail(String email);
+    User getByEmail(String email);
 
     /**
      * Find users with specific name.
      *
      * @param name user name for search.
-     * @return found users list ir empty list.
+     * @return found user or {@code null}.
      */
-    List<User> getUsersByName(String name);
+    User getByName(String name);
 
     /**
      * Find all booked tickets by user.
