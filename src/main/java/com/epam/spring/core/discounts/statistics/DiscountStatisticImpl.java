@@ -29,7 +29,7 @@ public class DiscountStatisticImpl implements DiscountStatistic {
     }
 
     @Override
-    @Before(value = "execution(* com.epam.spring.core.discounts.strategies.DiscountStrategyTenTic   ketImpl.calculate(..)) && args(user,event,date)", argNames = "user,event,date")
+    @Before(value = "execution(* com.epam.spring.core.discounts.strategies.DiscountStrategyTenTicketImpl.calculate(..)) && args(user,event,date)", argNames = "user,event,date")
     public void countTenTicket(User user, Event event, LocalDateTime date) {
         statisticDAO.incrementCounter(TEN_TICKET_DISCOUNT_NAME, user.name);
     }

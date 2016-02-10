@@ -2,6 +2,7 @@ package com.epam.spring.core.users.services;
 
 import com.epam.spring.core.AbstractIntegrationTest;
 import com.epam.spring.core.users.User;
+import com.epam.spring.core.users.UserService;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

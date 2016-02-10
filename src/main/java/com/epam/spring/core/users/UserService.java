@@ -1,7 +1,6 @@
-package com.epam.spring.core.users.services;
+package com.epam.spring.core.users;
 
 import com.epam.spring.core.tickets.Ticket;
-import com.epam.spring.core.users.User;
 import org.joda.time.LocalDate;
 
 import java.util.List;

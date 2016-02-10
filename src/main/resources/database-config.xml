@@ -16,7 +16,7 @@
     </bean>
 
     <jdbc:initialize-database data-source="fileDataSource" ignore-failures="DROPS">
-        <jdbc:script location="scripts/recreate-db.sql"/>
+        <jdbc:script location="classpath:scripts/recreate-db.sql"/>
     </jdbc:initialize-database>
 
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">

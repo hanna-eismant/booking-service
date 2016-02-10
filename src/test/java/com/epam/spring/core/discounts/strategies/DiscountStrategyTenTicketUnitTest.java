@@ -1,7 +1,7 @@
 package com.epam.spring.core.discounts.strategies;
 
 import com.epam.spring.core.users.User;
-import com.epam.spring.core.users.services.UserService;
+import com.epam.spring.core.users.UserService;
 import org.joda.time.LocalDateTime;
 import org.junit.Before;
 import org.junit.Test;

@@ -1,0 +1,6 @@
+#parse('layouts/header.vm')
+
+
+Hello!
+
+#parse('layouts/footer.vm')

@@ -1,9 +1,7 @@
-package com.epam.spring.core.users.services;
+package com.epam.spring.core.users;
 
 import com.epam.spring.core.tickets.Ticket;
 import com.epam.spring.core.tickets.dao.TicketDAO;
-import com.epam.spring.core.users.User;
-import com.epam.spring.core.users.dao.UserDAO;
 import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,6 @@
-package com.epam.spring.core.users.dao;
+package com.epam.spring.core.users;
 
 import com.epam.spring.core.shared.AbstractBaseDAOImpl;
-import com.epam.spring.core.users.User;
 import org.joda.time.LocalDate;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowMapper;
@@ -12,7 +11,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.sql.Types.*;
+import static java.sql.Types.BIGINT;
+import static java.sql.Types.VARCHAR;
 
 @Repository("userDAO")
 public class UserDAOImpl extends AbstractBaseDAOImpl<User> implements UserDAO {
