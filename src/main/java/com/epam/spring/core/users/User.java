@@ -20,6 +20,18 @@ public class User extends BaseEntity {
         this.birthday = birthday;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public LocalDate getBirthday() {
+        return birthday;
+    }
+
     @Override
     public String toString() {
         return "User{" +

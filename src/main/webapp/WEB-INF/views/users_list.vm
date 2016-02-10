@@ -1,0 +1,9 @@
+#parse('layouts/header.vm')
+
+<h3>Users list</h3>
+
+#foreach( $user in $users )
+<p>$user.name ($user.email)</p>
+#end
+
+#parse('layouts/footer.vm')
