@@ -1,8 +1,6 @@
-package com.epam.spring.core.events.services;
+package com.epam.spring.core.events;
 
 import com.epam.spring.core.auditoriums.Auditorium;
-import com.epam.spring.core.events.Event;
-import com.epam.spring.core.events.Rating;
 import com.epam.spring.core.tickets.Ticket;
 import org.joda.time.LocalDateTime;
 

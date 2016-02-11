@@ -1,15 +1,15 @@
-package com.epam.spring.core.events.dao;
+package com.epam.spring.core.events;
 
 import com.epam.spring.core.shared.AbstractBaseDAOImpl;
-import com.epam.spring.core.events.Event;
-import com.epam.spring.core.events.Rating;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import static java.sql.Types.*;
+import static java.sql.Types.BIGINT;
+import static java.sql.Types.DOUBLE;
+import static java.sql.Types.VARCHAR;
 
 @Repository("eventDAO")
 public class EventDAOImpl extends AbstractBaseDAOImpl<Event> implements EventDAO {

@@ -1,7 +1,6 @@
-package com.epam.spring.core.events.dao;
+package com.epam.spring.core.events;
 
 import com.epam.spring.core.shared.BaseDAO;
-import com.epam.spring.core.events.Event;
 
 public interface EventDAO extends BaseDAO<Event> {
 

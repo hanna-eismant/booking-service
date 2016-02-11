@@ -3,6 +3,7 @@ package com.epam.spring.core.events.services;
 import com.epam.spring.core.AbstractIntegrationTest;
 import com.epam.spring.core.auditoriums.Auditorium;
 import com.epam.spring.core.events.Event;
+import com.epam.spring.core.events.EventService;
 import com.epam.spring.core.tickets.Ticket;
 import org.joda.time.LocalDateTime;
 import org.junit.Test;

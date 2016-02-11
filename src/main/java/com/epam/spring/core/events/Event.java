@@ -23,6 +23,22 @@ public class Event extends BaseEntity{
         this.rating = rating;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Double getBasePrice() {
+        return basePrice;
+    }
+
+    public Rating getRating() {
+        return rating;
+    }
+
     @Override
     public String toString() {
         return "Event{" +
