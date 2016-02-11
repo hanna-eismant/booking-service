@@ -22,9 +22,9 @@ public class TicketServiceImpl implements TicketService {
     @Override
     public Double getTicketPrice(Event event, LocalDateTime date, Integer seat, boolean isVip, User user) {
         Double discountPercent = 0.0d;
-        Double resultPrice = event.basePrice;
+        Double resultPrice = event.getBasePrice();
 
-        if (Rating.HIGH.equals(event.rating)) {
+        if (Rating.HIGH.equals(event.getRating())) {
             resultPrice *= 1.2d; // todo: magic number!
         }
 

@@ -1,5 +1,13 @@
 package com.epam.spring.core.shared;
 
 public abstract class BaseEntity {
-    public Long id;
+    private Long id;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(final Long _id) {
+        id = _id;
+    }
 }

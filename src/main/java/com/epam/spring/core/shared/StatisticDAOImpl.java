@@ -37,9 +37,9 @@ public class StatisticDAOImpl extends AbstractBaseDAOImpl<Statistic> implements 
             statistic = jdbcTemplate.queryForObject(FIND_BY_NAME_AND_TYPE_SQL, new Object[]{name, type}, createMapper());
         } catch (EmptyResultDataAccessException e) {
             // if no statistic found, then create for name/type and counter = 0;
-            statistic.name = name;
-            statistic.type = type;
-            statistic.counter = 0L;
+            statistic.setName(name);
+            statistic.setType(type);
+            statistic.setCounter(0L);
             statistic = create(statistic);
         }
 
@@ -49,12 +49,12 @@ public class StatisticDAOImpl extends AbstractBaseDAOImpl<Statistic> implements 
     @Override
     public Statistic incrementCounter(String name, String type) throws IllegalArgumentException {
         Statistic statistic = findByNameAndType(name, type);
-        statistic.counter++;
-        Object[] args = new Object[]{statistic.counter, statistic.id};
+        statistic.setCounter(statistic.getCounter() + 1);
+        Object[] args = new Object[]{statistic.getCounter(), statistic.getId()};
         int[] argTypes = new int[]{BIGINT, BIGINT};
 
         jdbcTemplate.update(UPDATE_SQL, args, argTypes);
-        return findById(statistic.id);
+        return findById(statistic.getId());
     }
 
     @Override
@@ -69,7 +69,7 @@ public class StatisticDAOImpl extends AbstractBaseDAOImpl<Statistic> implements 
 
     @Override
     protected Object[] getArgs(final Statistic entity) {
-        return new Object[]{entity.id, entity.name, entity.type, entity.counter};
+        return new Object[]{entity.getId(), entity.getName(), entity.getType(), entity.getCounter()};
     }
 
     @Override
@@ -103,10 +103,10 @@ public class StatisticDAOImpl extends AbstractBaseDAOImpl<Statistic> implements 
         @Override
         public Statistic mapRow(ResultSet resultSet, int i) throws SQLException {
             Statistic statistic = new Statistic();
-            statistic.id = resultSet.getLong("id");
-            statistic.name = resultSet.getString("name");
-            statistic.type = resultSet.getString("type");
-            statistic.counter = resultSet.getLong("counter");
+            statistic.setId(resultSet.getLong("id"));
+            statistic.setName(resultSet.getString("name"));
+            statistic.setType(resultSet.getString("type"));
+            statistic.setCounter(resultSet.getLong("counter"));
 
             return statistic;
         }

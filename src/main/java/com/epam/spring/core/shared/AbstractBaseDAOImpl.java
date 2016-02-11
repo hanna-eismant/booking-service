@@ -21,16 +21,16 @@ public abstract class AbstractBaseDAOImpl<T extends BaseEntity> implements BaseD
             throw new IllegalArgumentException("Entity cannot be 'null'");
         }
 
-        entity.id = generateId();
+        entity.setId(generateId());
 
         Object[] args = getArgs(entity);
         int[] argTypes = getArgTypes();
 
-        args[0] = entity.id;
+        args[0] = entity.getId();
         argTypes[0] = BIGINT;
 
         jdbcTemplate.update(getCreateSql(), args, argTypes);
-        return findById(entity.id);
+        return findById(entity.getId());
     }
 
     @Override
@@ -39,11 +39,11 @@ public abstract class AbstractBaseDAOImpl<T extends BaseEntity> implements BaseD
             throw new IllegalArgumentException("Entity cannot be 'null'");
         }
 
-        if (entity.id == null) {
+        if (entity.getId() == null) {
             throw new IllegalArgumentException("Entity id cannot be 'null'");
         }
 
-        jdbcTemplate.update(getRemoveSql(), entity.id);
+        jdbcTemplate.update(getRemoveSql(), entity.getId());
     }
 
     @Override

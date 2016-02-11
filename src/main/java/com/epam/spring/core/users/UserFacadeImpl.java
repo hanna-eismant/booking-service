@@ -24,9 +24,9 @@ public class UserFacadeImpl implements UserFacade {
 
         Map<String, Object> result = new HashMap<>(4);
 
-        result.put("name", user.name);
-        result.put("email", user.email);
-        result.put("birthday", user.birthday);
+        result.put("name", user.getName());
+        result.put("email", user.getEmail());
+        result.put("birthday", user.getBirthday());
         result.put("ticketsCount", ticketsCount);
 
         return result;

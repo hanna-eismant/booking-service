@@ -1,6 +1,4 @@
-package com.epam.spring.core.auditoriums.services;
-
-import com.epam.spring.core.auditoriums.Auditorium;
+package com.epam.spring.core.auditoriums;
 
 import java.util.ArrayList;
 import java.util.List;

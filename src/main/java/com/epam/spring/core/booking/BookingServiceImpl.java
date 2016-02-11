@@ -9,6 +9,7 @@ import org.joda.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service("bookingService")
@@ -23,18 +24,22 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public Ticket bookTicket(User user, Ticket ticket) {
-        ticket.user = user;
-        ticket.discountPrice = ticketService.getTicketPrice(ticket.event, ticket.date, ticket.seat, ticket.isVip, user);
+//        todo: change after refactoring data model
+
+//        ticket.setUser(user);
+//        ticket.setDiscountPrice(ticketService.getTicketPrice(ticket.event, ticket.date, ticket.getSeat(), ticket.isVip(), user));
         return ticketDAO.update(ticket);
     }
 
     @Override
     public List<Ticket> getTicketsForEvent(Event event, LocalDateTime date) {
-        return ticketDAO.findByEventAndDate(event, date);
+        //        todo: change after refactoring data model
+        return Collections.emptyList(); //ticketDAO.findByEventAndDate(event, date);
     }
 
     @Override
     public List<Ticket> getFreeTicketsForEvent(Event event, LocalDateTime date) {
-        return ticketDAO.findFreeByEventAndDate(event, date);
+        //        todo: change after refactoring data model
+        return Collections.emptyList();//ticketDAO.findFreeByEventAndDate(event, date);
     }
 }

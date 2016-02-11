@@ -33,7 +33,7 @@ public class EventDAOImpl extends AbstractBaseDAOImpl<Event> implements EventDAO
 
     @Override
     protected Object[] getArgs(final Event entity) {
-        return new Object[]{entity.id, entity.name, entity.basePrice, entity.rating.toString()};
+        return new Object[]{entity.getId(), entity.getName(), entity.getBasePrice(), entity.getRating().toString()};
     }
 
     @Override
@@ -66,10 +66,10 @@ public class EventDAOImpl extends AbstractBaseDAOImpl<Event> implements EventDAO
         @Override
         public Event mapRow(ResultSet rs, int rowNum) throws SQLException {
             Event event = new Event();
-            event.id = rs.getLong("id");
-            event.name = rs.getString("name");
-            event.basePrice = rs.getDouble("base_price");
-            event.rating = Rating.valueOf(rs.getString("rating"));
+            event.setId(rs.getLong("id"));
+            event.setName(rs.getString("name"));
+            event.setBasePrice(rs.getDouble("base_price"));
+            event.setRating(Rating.valueOf(rs.getString("rating")));
 
             return event;
         }

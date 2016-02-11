@@ -1,42 +1,63 @@
 package com.epam.spring.core.tickets;
 
+import com.epam.spring.core.events.EventInstance;
 import com.epam.spring.core.shared.BaseEntity;
-import com.epam.spring.core.events.Event;
 import com.epam.spring.core.users.User;
-import org.joda.time.LocalDateTime;
 
 public class Ticket extends BaseEntity {
 
-    public User user;
-    public LocalDateTime date;
-    public Event event;
-    public Integer seat;
-    public boolean isVip;
-    public Double basePrice;
-    public Double discountPrice;
+    private User user;
+    private Integer seat;
+    private boolean isVip;
+    private Double basePrice;
+    private Double discountPrice;
+    private EventInstance eventInstance;
 
-    public Ticket() {
+    public User getUser() {
+        return user;
     }
 
-    public Ticket(LocalDateTime date, Event event, Integer seat, boolean isVip, Double basePrice) {
-        this.date = date;
-        this.event = event;
-        this.seat = seat;
-        this.isVip = isVip;
-        this.basePrice = basePrice;
+    public void setUser(final User _user) {
+        user = _user;
     }
 
-    @Override
-    public String toString() {
-        return "Ticket{" +
-                "id=" + id +
-                ", event='" + (event == null ? "" : event.name) +
-                "', user=" + user +
-                ", date=" + date +
-                ", seat=" + seat +
-                ", isVip=" + isVip +
-                ", basePrice=" + basePrice +
-                ", discountPrice=" + discountPrice +
-                '}';
+    public Integer getSeat() {
+        return seat;
+    }
+
+    public void setSeat(final Integer _seat) {
+        seat = _seat;
+    }
+
+    public boolean isVip() {
+        return isVip;
+    }
+
+    public void setVip(final boolean _vip) {
+        isVip = _vip;
+    }
+
+    public Double getBasePrice() {
+        return basePrice;
+    }
+
+    public void setBasePrice(final Double _basePrice) {
+        basePrice = _basePrice;
+    }
+
+    public Double getDiscountPrice() {
+        return discountPrice;
+    }
+
+    public void setDiscountPrice(final Double _discountPrice) {
+        discountPrice = _discountPrice;
+    }
+
+    public EventInstance getEventInstance() {
+        return eventInstance;
+    }
+
+    public void setEventInstance(final EventInstance _eventInstance) {
+        eventInstance = _eventInstance;
     }
 }

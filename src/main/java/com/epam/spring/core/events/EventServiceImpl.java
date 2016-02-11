@@ -30,9 +30,9 @@ public class EventServiceImpl implements EventService {
     @Override
     public Event create(String name, Double basePrice, Rating rating) {
         Event event = eventProvider.get();
-        event.name = name;
-        event.basePrice = basePrice;
-        event.rating = rating;
+        event.setName(name);
+        event.setBasePrice(basePrice);
+        event.setRating(rating);
         event = eventDAO.create(event);
 
         return event;
@@ -57,13 +57,14 @@ public class EventServiceImpl implements EventService {
     public List<Ticket> assignAuditorium(Event event, Auditorium auditorium, LocalDateTime date) {
         List<Ticket> tickets = new ArrayList<>();
 
-        for (int seat = 0; seat < auditorium.seats; seat++) {
+        for (int seat = 0; seat < auditorium.getSeats(); seat++) {
             Double ticketPrice =
                     ticketService.getTicketPrice(event, date, seat, auditorium.getVipSeats().contains(seat), null);
-            Ticket ticket = new Ticket(date, event, seat, auditorium.getVipSeats().contains(seat), ticketPrice);
+            // todo: change after refactor data model
+            // Ticket ticket = new Ticket(date, event, seat, auditorium.getVipSeats().contains(seat), ticketPrice);
             // todo: save all tickets at once
-            ticket = ticketDAO.create(ticket);
-            tickets.add(ticket);
+//            ticket = ticketDAO.create(ticket);
+//            tickets.add(ticket);
         }
 
         return tickets;

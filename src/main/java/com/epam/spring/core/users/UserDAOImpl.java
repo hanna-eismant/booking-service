@@ -66,7 +66,7 @@ public class UserDAOImpl extends AbstractBaseDAOImpl<User> implements UserDAO {
 
     @Override
     protected Object[] getArgs(final User entity) {
-        return new Object[]{entity.id, entity.name, entity.email, entity.birthday.toString()};
+        return new Object[]{entity.getId(), entity.getName(), entity.getEmail(), entity.getBirthday().toString()};
     }
 
     @Override
@@ -99,10 +99,10 @@ public class UserDAOImpl extends AbstractBaseDAOImpl<User> implements UserDAO {
         @Override
         public User mapRow(ResultSet rs, int rowNum) throws SQLException {
             User user = new User();
-            user.id = rs.getLong("id");
-            user.name = rs.getString("name");
-            user.email = rs.getString("email");
-            user.birthday = LocalDate.parse(rs.getString("birthday"));
+            user.setId(rs.getLong("id"));
+            user.setName(rs.getString("name"));
+            user.setEmail(rs.getString("email"));
+            user.setBirthday(LocalDate.parse(rs.getString("birthday")));
             return user;
         }
     }

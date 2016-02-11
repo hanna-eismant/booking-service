@@ -31,32 +31,32 @@ public class DiscountStatisticImpl implements DiscountStatistic {
     @Override
     @Before(value = "execution(* com.epam.spring.core.discounts.strategies.DiscountStrategyTenTicketImpl.calculate(..)) && args(user,event,date)", argNames = "user,event,date")
     public void countTenTicket(User user, Event event, LocalDateTime date) {
-        statisticDAO.incrementCounter(TEN_TICKET_DISCOUNT_NAME, user.name);
+        statisticDAO.incrementCounter(TEN_TICKET_DISCOUNT_NAME, user.getName());
     }
 
 
     @Override
     @AfterReturning(value = "execution(* com.epam.spring.core.discounts.strategies.DiscountStrategyBirthdayImpl.calculate(..))&& args(user,event,date)", argNames = "user,event,date")
     public void countBirthday(User user, Event event, LocalDateTime date) {
-        statisticDAO.incrementCounter(BIRTHDAY_DISCOUNT_NAME, user.name);
+        statisticDAO.incrementCounter(BIRTHDAY_DISCOUNT_NAME, user.getName());
     }
 
 
     @Override
     public Long getTotalStatistic(Class<?> strategy) {
         Statistic statistic = statisticDAO.findByNameAndType(TOTAL_DISCOUNT_NAME, strategy.getSimpleName());
-        return statistic.counter;
+        return statistic.getCounter();
     }
 
     @Override
     public Long getTenTicketStatistic(User user) {
-        Statistic statistic = statisticDAO.findByNameAndType(TEN_TICKET_DISCOUNT_NAME, user.name);
-        return statistic.counter;
+        Statistic statistic = statisticDAO.findByNameAndType(TEN_TICKET_DISCOUNT_NAME, user.getName());
+        return statistic.getCounter();
     }
 
     @Override
     public Long getBirthdayStatistic(User user) {
-        Statistic statistic = statisticDAO.findByNameAndType(BIRTHDAY_DISCOUNT_NAME, user.name);
-        return statistic.counter;
+        Statistic statistic = statisticDAO.findByNameAndType(BIRTHDAY_DISCOUNT_NAME, user.getName());
+        return statistic.getCounter();
     }
 }
