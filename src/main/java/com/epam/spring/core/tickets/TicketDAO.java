@@ -1,8 +1,7 @@
-package com.epam.spring.core.tickets.dao;
+package com.epam.spring.core.tickets;
 
-import com.epam.spring.core.shared.BaseDAO;
 import com.epam.spring.core.events.Event;
-import com.epam.spring.core.tickets.Ticket;
+import com.epam.spring.core.shared.BaseDAO;
 import com.epam.spring.core.users.User;
 import org.joda.time.LocalDateTime;
 

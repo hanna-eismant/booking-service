@@ -1,6 +1,5 @@
 package com.epam.spring.core.users;
 
-import com.epam.spring.core.tickets.Ticket;
 import org.joda.time.LocalDate;
 
 import java.util.List;
@@ -51,22 +50,10 @@ public interface UserService {
     User getByName(String name);
 
     /**
-     * Find all booked tickets by user.
-     *
-     * @param user user for search.
-     * @return list of all booked tickets by user. If user has no booked tickets then return empty list.
-     */
-    List<Ticket> getBookedTickets(User user);
-
-    /**
      * Find all registered users.
      *
      * @return list of all registered users or empty list.
      */
     List<User> getAll();
 
-    /**
-     * Calculate how many tickets has booked specified user.
-     */
-    int getBookedTicketsCount(User user);
 }

@@ -1,4 +1,4 @@
-package com.epam.spring.core.tickets.services;
+package com.epam.spring.core.tickets;
 
 import com.epam.spring.core.discounts.DiscountService;
 import com.epam.spring.core.events.Event;
@@ -8,8 +8,13 @@ import org.joda.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
+import java.util.List;
+
+@Service("ticketService")
 public class TicketServiceImpl implements TicketService {
+
+    @Autowired
+    private TicketDAO ticketDAO;
 
     @Autowired
     private DiscountService discountService;
@@ -32,5 +37,16 @@ public class TicketServiceImpl implements TicketService {
         }
 
         return resultPrice * (1 - discountPercent);
+    }
+
+    @Override
+    public List<Ticket> getBookedTickets(User user) {
+        return ticketDAO.findByUser(user);
+    }
+
+    @Override
+    public int getBookedTicketsCount(User user) {
+        // todo: create special request to get count
+        return getBookedTickets(user).size();
     }
 }

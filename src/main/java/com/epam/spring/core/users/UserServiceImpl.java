@@ -1,7 +1,5 @@
 package com.epam.spring.core.users;
 
-import com.epam.spring.core.tickets.Ticket;
-import com.epam.spring.core.tickets.dao.TicketDAO;
 import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,9 +11,6 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDAO userDAO;
-
-    @Autowired
-    private TicketDAO ticketDAO;
 
     @Override
     public User register(String name, String email, LocalDate birthday) throws Exception {
@@ -77,16 +72,5 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getAll() {
         return userDAO.findAll();
-    }
-
-    @Override
-    public List<Ticket> getBookedTickets(User user) {
-        return ticketDAO.findByUser(user);
-    }
-
-    @Override
-    public int getBookedTicketsCount(User user) {
-        // todo: create special request to get count
-        return getBookedTickets(user).size();
     }
 }

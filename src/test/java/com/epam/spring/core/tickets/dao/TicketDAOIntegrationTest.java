@@ -2,6 +2,7 @@ package com.epam.spring.core.tickets.dao;
 
 import com.epam.spring.core.AbstractIntegrationTest;
 import com.epam.spring.core.tickets.Ticket;
+import com.epam.spring.core.tickets.TicketDAO;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

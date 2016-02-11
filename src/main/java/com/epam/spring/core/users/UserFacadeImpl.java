@@ -1,5 +1,6 @@
 package com.epam.spring.core.users;
 
+import com.epam.spring.core.tickets.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,10 +14,13 @@ public class UserFacadeImpl implements UserFacade {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private TicketService ticketService;
+
     @Override
     public Map<String, Object> getUserInfo(final String name) {
         User user = userService.getByName(name);
-        int ticketsCount = userService.getBookedTicketsCount(user);
+        int ticketsCount = ticketService.getBookedTicketsCount(user);
 
         Map<String, Object> result = new HashMap<>(4);
 

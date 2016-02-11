@@ -4,12 +4,19 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                            http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
 
-    <bean id="discountService" class="com.epam.spring.core.discounts.DiscountServiceImpl">
+    <bean id="discountService" class="com.epam.spring.core.discounts.DiscountServiceImpl"
+          lazy-init="true">
         <constructor-arg>
             <list>
-                <bean class="com.epam.spring.core.discounts.strategies.DiscountStrategyBirthdayImpl"/>
-                <bean class="com.epam.spring.core.discounts.strategies.DiscountStrategyTenTicketImpl">
+                <bean class="com.epam.spring.core.discounts.strategies.DiscountStrategyBirthdayImpl"
+                      id="discountStrategyBirthday"
+                      lazy-init="true"/>
+
+                <bean class="com.epam.spring.core.discounts.strategies.DiscountStrategyTenTicketImpl"
+                      id="discountStrategyTenTicket"
+                      lazy-init="true">
                     <property name="userService" ref="userService"/>
+                    <property name="ticketService" ref="ticketService"/>
                 </bean>
             </list>
         </constructor-arg>

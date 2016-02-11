@@ -1,6 +1,7 @@
 package com.epam.spring.core.tickets.services;
 
 import com.epam.spring.core.AbstractIntegrationTest;
+import com.epam.spring.core.tickets.TicketService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
