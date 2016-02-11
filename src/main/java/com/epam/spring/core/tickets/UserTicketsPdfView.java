@@ -26,20 +26,20 @@ public class UserTicketsPdfView extends AbstractPdfView {
         paragraph.setSpacingAfter(20);
         document.add(paragraph);
 
-        PdfPTable table = new PdfPTable(3);
+        PdfPTable table = new PdfPTable(5);
         table.getDefaultCell().setFixedHeight(20);
         table.setWidthPercentage(100);
 
-//        table.addCell(new Phrase("Date", tableHeaderFont));
-//        table.addCell(new Phrase("Event", tableHeaderFont));
+        table.addCell(new Phrase("Date", tableHeaderFont));
+        table.addCell(new Phrase("Event", tableHeaderFont));
         table.addCell(new Phrase("Sit number", tableHeaderFont));
         table.addCell(new Phrase("Base price", tableHeaderFont));
         table.addCell(new Phrase("Discount price", tableHeaderFont));
 
         List<Ticket> tickets = (List<Ticket>) model.get("tickets");
         for (Ticket ticket : tickets) {
-//            table.addCell(new Phrase(ticket.date.toString("MM/dd/yyyy"), textFont));
-//            table.addCell(new Phrase(ticket.event.name, textFont));
+            table.addCell(new Phrase(ticket.getEventInstance().getDate().toString("MM/dd/yyyy"), textFont));
+            table.addCell(new Phrase(ticket.getEventInstance().getEvent().getName(), textFont));
 
             String seat = ticket.getSeat().toString();
             if (ticket.isVip()) {

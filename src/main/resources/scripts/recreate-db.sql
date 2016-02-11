@@ -15,7 +15,7 @@ CREATE TABLE tickets (
 DROP TABLE event_instances
 IF EXISTS;
 
-CREATE TABLE event_instances (
+  CREATE TABLE event_instances (
   id         BIGINT PRIMARY KEY,
   date       VARCHAR(255) NOT NULL,
   auditorium VARCHAR(255) NOT NULL,
