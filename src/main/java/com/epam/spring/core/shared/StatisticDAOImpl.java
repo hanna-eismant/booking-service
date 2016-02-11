@@ -68,7 +68,7 @@ public class StatisticDAOImpl extends AbstractBaseDAOImpl<Statistic> implements 
     }
 
     @Override
-    protected Object[] getArgs(final Statistic entity) {
+    protected Object[] getArgsForCreate(final Statistic entity) {
         return new Object[]{entity.getId(), entity.getName(), entity.getType(), entity.getCounter()};
     }
 

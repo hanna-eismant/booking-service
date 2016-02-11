@@ -32,7 +32,7 @@ public class EventDAOImpl extends AbstractBaseDAOImpl<Event> implements EventDAO
     }
 
     @Override
-    protected Object[] getArgs(final Event entity) {
+    protected Object[] getArgsForCreate(final Event entity) {
         return new Object[]{entity.getId(), entity.getName(), entity.getBasePrice(), entity.getRating().toString()};
     }
 

@@ -99,7 +99,7 @@ public class TicketDAOImpl extends AbstractBaseDAOImpl<Ticket> implements Ticket
     }
 
     @Override
-    protected Object[] getArgs(final Ticket entity) {
+    protected Object[] getArgsForCreate(final Ticket entity) {
         return new Object[]{entity.getId(), entity.getSeat(), entity.isVip(), entity.getBasePrice(), entity.getEventInstance().getId()};
     }
 

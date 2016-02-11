@@ -65,7 +65,7 @@ public class UserDAOImpl extends AbstractBaseDAOImpl<User> implements UserDAO {
     }
 
     @Override
-    protected Object[] getArgs(final User entity) {
+    protected Object[] getArgsForCreate(final User entity) {
         return new Object[]{entity.getId(), entity.getName(), entity.getEmail(), entity.getBirthday().toString()};
     }
 

@@ -23,7 +23,7 @@ public abstract class AbstractBaseDAOImpl<T extends BaseEntity> implements BaseD
 
         entity.setId(generateId());
 
-        Object[] args = getArgs(entity);
+        Object[] args = getArgsForCreate(entity);
         int[] argTypes = getArgTypes();
 
         args[0] = entity.getId();
@@ -78,7 +78,7 @@ public abstract class AbstractBaseDAOImpl<T extends BaseEntity> implements BaseD
 
     abstract protected long generateId();
     abstract protected int[] getArgTypes();
-    abstract protected Object[] getArgs(final T entity);
+    abstract protected Object[] getArgsForCreate(final T entity);
 
     abstract protected String getCreateSql();
     abstract protected String getRemoveSql();

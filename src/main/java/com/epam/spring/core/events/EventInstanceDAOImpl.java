@@ -27,7 +27,7 @@ public class EventInstanceDAOImpl extends AbstractBaseDAOImpl<EventInstance> imp
     }
 
     @Override
-    protected Object[] getArgs(final EventInstance entity) {
+    protected Object[] getArgsForCreate(final EventInstance entity) {
         return new Object[]{entity.getId(), entity.getDate(), entity.getAuditorium().getName(), entity.getEvent().getId()};
     }
 
