@@ -31,4 +31,9 @@
         <property name="suffix" value=".vm"/>
     </bean>
 
+    <bean class="org.springframework.web.servlet.view.XmlViewResolver"
+          id="xmlViewResolver">
+        <property name="location" value="/WEB-INF/pdf-views.xml"/>
+    </bean>
+
 </beans>

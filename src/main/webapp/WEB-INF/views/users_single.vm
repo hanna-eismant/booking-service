@@ -18,7 +18,7 @@
   </tr>
   <tr>
     <td>booked tickets:</td>
-    <td>$ticketsCount tickets</td>
+    <td>$ticketsCount tickets (<a href="/tickets/$name/tickets.pdf">download pdf</a>)</td>
   </tr>
   </tbody>
 </table>
