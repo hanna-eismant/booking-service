@@ -1,7 +1,26 @@
 #parse('layouts/header.vm')
 
-<h3>Information about $user.name</h3>
+<h3>Information about $name</h3>
 
-
+<table class="table">
+  <tbody>
+  <tr>
+    <td class="col-xs">name:</td>
+    <td>$name</td>
+  </tr>
+  <tr>
+    <td>e-mail:</td>
+    <td>$email</td>
+  </tr>
+  <tr>
+    <td>bithday:</td>
+    <td>$birthday</td>
+  </tr>
+  <tr>
+    <td>booked tickets:</td>
+    <td>$ticketsCount tickets</td>
+  </tr>
+  </tbody>
+</table>
 
 #parse('layouts/footer.vm')
