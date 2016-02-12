@@ -20,9 +20,15 @@
         <td>$ins.auditorium.name</td>
         <td>
             $ins.freeTicketCount form $ins.auditorium.seats
-            (<a href="#">more information</a>)
+          (<a href="#">more information</a>)
         </td>
-        <td><a class="btn btn-primary btn-xs" role="button" href="/tickets/book/$ins.id">Book ticket</a></td>
+        <td>
+            #if ($ins.freeTicketCount != 0)
+              <a class="btn btn-primary btn-xs" role="button" href="/tickets/book/$ins.id">
+                Book ticket
+              </a>
+            #end
+        </td>
       </tr>
       #end
   </tbody>
