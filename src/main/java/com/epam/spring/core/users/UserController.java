@@ -1,5 +1,6 @@
 package com.epam.spring.core.users;
 
+import com.epam.spring.core.shared.BookingFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,11 +17,11 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 public class UserController {
 
     @Autowired
-    private UserFacade userFacade;
+    private BookingFacade bookingFacade;
 
     @RequestMapping(method = GET)
     public ModelAndView get() {
-        List<User> users = userFacade.getAllUsersInfo();
+        List<User> users = bookingFacade.getAllUsersInfo();
 
         ModelAndView view = new ModelAndView("users_list");
         view.addObject("users", users);
@@ -30,7 +31,7 @@ public class UserController {
 
     @RequestMapping(value = "/{name}", method = GET)
     public ModelAndView get(@PathVariable("name") String name) {
-        Map<String, Object> userInfo = userFacade.getUserInfo(name);
+        Map<String, Object> userInfo = bookingFacade.getUserInfo(name);
 
         ModelAndView view = new ModelAndView("users_single");
         view.addAllObjects(userInfo);

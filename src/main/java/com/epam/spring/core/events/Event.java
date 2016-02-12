@@ -4,6 +4,9 @@ import com.epam.spring.core.shared.BaseEntity;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 @Scope("prototype")
 public class Event extends BaseEntity{
@@ -11,6 +14,7 @@ public class Event extends BaseEntity{
     private String name;
     private Double basePrice;
     private Rating rating;
+    private List<EventInstance> eventInstances = new ArrayList<>();
 
 
     public String getName() {
@@ -35,5 +39,9 @@ public class Event extends BaseEntity{
 
     public void setRating(final Rating _rating) {
         rating = _rating;
+    }
+
+    public List<EventInstance> getEventInstances() {
+        return eventInstances;
     }
 }

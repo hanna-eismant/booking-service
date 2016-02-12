@@ -5,6 +5,7 @@ import com.epam.spring.core.shared.BaseEntity;
 import com.epam.spring.core.tickets.Ticket;
 import org.joda.time.LocalDateTime;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EventInstance extends BaseEntity {
@@ -12,7 +13,7 @@ public class EventInstance extends BaseEntity {
     private Event event;
     private LocalDateTime date;
     private Auditorium auditorium;
-    private List<Ticket> tickets;
+    private List<Ticket> tickets = new ArrayList<>();
 
     public Event getEvent() {
         return event;
