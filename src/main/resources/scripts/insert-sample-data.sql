@@ -21,7 +21,7 @@ VALUES (254, 'The Gamer', '5000.0', 'MID');
 --                         -> free 0 tickets
 
 INSERT INTO events (id, name, base_price, rating)
-VALUES (253, 'The Gamer', '7000.0', 'MID'),
+VALUES (253, 'The Gamer II', '7000.0', 'MID'),
   (252, 'Movie', '9000.0', 'MID'),
   (251, 'Kung-Fu Panda', '10000.0', 'MID'),
   (250, 'Another', '12000.0', 'MID'),

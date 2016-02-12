@@ -30,8 +30,10 @@ public class EventController {
 
     @RequestMapping(value = "/{eventId}", method = GET)
     public ModelAndView get(@PathVariable("eventId") Long eventId) {
+        Event event = bookingFacade.getEventInfo(eventId);
 
         ModelAndView view = new ModelAndView("events_single");
+        view.addObject("event", event);
 
         return view;
 

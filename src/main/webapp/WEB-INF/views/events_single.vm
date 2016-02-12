@@ -1,9 +1,32 @@
 #parse('layouts/header.vm')
 
-<h3>Event information</h3>
+<h3>Event information
+  <small>$event.name</small>
+</h3>
 
-#foreach( $event in $events )
-<p><a href="/events/$event.id">$event.name</a></p>
-#end
+<table class="table table-striped">
+  <thead>
+  <tr class="info">
+    <td><strong>Date</strong></td>
+    <td><strong>Auditorium</strong></td>
+    <td><strong>Free tickets</strong></td>
+    <td></td>
+  </tr>
+  </thead>
+  <tbody>
+      #foreach( $ins in $event.eventInstances )
+      <tr>
+        <td>$ins.date.toString("MM/dd/yyyy HH:mm")</td>
+        <td>$ins.auditorium.name</td>
+        <td>
+            $ins.freeTicketCount form $ins.auditorium.seats
+            (<a href="#">more information</a>)
+        </td>
+        <td><a class="btn btn-primary btn-xs" role="button" href="/tickets/book/$ins.id">Book ticket</a></td>
+      </tr>
+      #end
+  </tbody>
+</table>
+
 
 #parse('layouts/footer.vm')

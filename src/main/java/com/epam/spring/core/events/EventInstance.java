@@ -14,6 +14,7 @@ public class EventInstance extends BaseEntity {
     private LocalDateTime date;
     private Auditorium auditorium;
     private List<Ticket> tickets = new ArrayList<>();
+    private int freeTicketCount;
 
     public Event getEvent() {
         return event;
@@ -41,5 +42,13 @@ public class EventInstance extends BaseEntity {
 
     public List<Ticket> getTickets() {
         return tickets;
+    }
+
+    public int getFreeTicketCount() {
+        return freeTicketCount;
+    }
+
+    public void setFreeTicketCount(final int _freeTicketCount) {
+        freeTicketCount = _freeTicketCount;
     }
 }

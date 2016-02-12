@@ -106,6 +106,13 @@
             <version>${velocity.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity-tools</artifactId>
+            <version>2.0</version>
+        </dependency>
+
+
         <!-- Pdf library -->
         <dependency>
             <groupId>com.itextpdf</groupId>

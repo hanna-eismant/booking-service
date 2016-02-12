@@ -17,6 +17,4 @@ public interface BookingFacade {
     List<Event> getAllEventsInfo();
 
     Event getEventInfo(final Long eventId);
-
-
 }

@@ -20,12 +20,16 @@ public class EventInstanceDAOImpl extends AbstractBaseDAOImpl<EventInstance> imp
 
     private long idCounter = 0;
 
+    private static final String COLUMN_LIST = "i.id AS i_id, i.date, i.auditorium, i.event_id, COUNT(t.id) AS free_tickets";
+    private static final String JOIN = " FROM event_instances i LEFT JOIN tickets t ON t.event_instance_id = i.id";
+
     private static final String CREATE_SQL = "INSERT INTO event_instances (id,date,auditorium,event_id) VALUES (?,?,?,?)";
     private static final String REMOVE_SQL = "DELETE FROM event_instances WHERE id = ?";
-    private static final String FIND_BY_ID_SQL = "SELECT * FROM event_instances WHERE id = ?";
-    private static final String FIND_ALL_SQL = "SELECT * FROM event_instances";
 
-    private static final String FIND_BY_EVENT_SQL = "SELECT * FROM event_instances WHERE event_id = ?";
+    private static final String FIND_BY_ID_SQL = "SELECT " + COLUMN_LIST + JOIN + " WHERE i.id = ? AND t.user_id IS NULL GROUP BY i.id";
+    private static final String FIND_ALL_SQL = "SELECT " + COLUMN_LIST + JOIN + " WHERE t.user_id IS NULL GROUP BY i.id ORDER BY i.id DESC";
+
+    private static final String FIND_BY_EVENT_SQL = "SELECT " + COLUMN_LIST + JOIN + " WHERE event_id = ? AND t.user_id IS NULL GROUP BY i.id";
 
     @Autowired
     private AuditoriumService auditoriumService;
@@ -86,9 +90,10 @@ public class EventInstanceDAOImpl extends AbstractBaseDAOImpl<EventInstance> imp
     protected RowMapper<EventInstance> createMapper() {
         return (rs, rowNum) -> {
             EventInstance instance = new EventInstance();
-            instance.setId(rs.getLong("id"));
+            instance.setId(rs.getLong("i_id"));
             instance.setDate(LocalDateTime.parse(rs.getString("date")));
             instance.setAuditorium(auditoriumService.getAuditorium(rs.getString("auditorium")));
+            instance.setFreeTicketCount(rs.getInt("free_tickets"));
             return instance;
         };
     }
