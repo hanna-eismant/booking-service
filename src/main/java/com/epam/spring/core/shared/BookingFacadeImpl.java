@@ -6,15 +6,27 @@ import com.epam.spring.core.tickets.Ticket;
 import com.epam.spring.core.tickets.TicketService;
 import com.epam.spring.core.users.User;
 import com.epam.spring.core.users.UserService;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.stream.JsonReader;
+import org.joda.time.LocalDate;
+import org.joda.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Component("bookingFacade")
 public class BookingFacadeImpl implements BookingFacade {
+
+    private Gson gson;
 
     @Autowired
     private EventService eventService;
@@ -25,6 +37,13 @@ public class BookingFacadeImpl implements BookingFacade {
     @Autowired
     private TicketService ticketService;
 
+    @PostConstruct
+    private void init() {
+        GsonBuilder builder = new GsonBuilder();
+        builder.registerTypeAdapter(LocalDate.class, new LocalDateGSONAdapter());
+        builder.registerTypeAdapter(LocalDateTime.class, new LocalDateTimeGSONAdapter());
+        gson = builder.create();
+    }
 
     @Override
     public List<Event> getAllEventsInfo() {
@@ -68,4 +87,19 @@ public class BookingFacadeImpl implements BookingFacade {
 
         return result;
     }
+
+    @Override
+    public void parseUsers(final InputStream inputStream) throws IOException {
+        Reader reader = new InputStreamReader(inputStream);
+        JsonReader jsonReader = new JsonReader(reader);
+
+        jsonReader.beginArray();
+
+        while (jsonReader.hasNext()) {
+            System.out.println("bu!");
+            User user = gson.fromJson(jsonReader, User.class);
+            System.out.println(user);
+        }
+    }
 }
+

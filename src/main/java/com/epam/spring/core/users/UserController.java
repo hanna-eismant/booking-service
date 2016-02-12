@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 
@@ -43,11 +45,9 @@ public class UserController {
     }
 
     @RequestMapping(value = "/upload", method = POST)
-    public ModelAndView upload(@RequestParam MultipartFile usersInfoFile) {
-
-        System.out.println(usersInfoFile.getName());
-
-
+    public ModelAndView upload(@RequestParam MultipartFile usersInfoFile) throws IOException {
+        InputStream inputStream = usersInfoFile.getInputStream();
+        bookingFacade.parseUsers(inputStream);
         return null;
     }
 }
