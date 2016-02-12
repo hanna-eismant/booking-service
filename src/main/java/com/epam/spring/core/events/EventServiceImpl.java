@@ -2,7 +2,6 @@ package com.epam.spring.core.events;
 
 import com.epam.spring.core.auditoriums.Auditorium;
 import com.epam.spring.core.tickets.Ticket;
-import com.epam.spring.core.tickets.TicketDAO;
 import com.epam.spring.core.tickets.TicketService;
 import org.joda.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,7 @@ public class EventServiceImpl implements EventService {
     private EventDAO eventDAO;
 
     @Autowired
-    private TicketDAO ticketDAO;
+    private EventInstanceDAO eventInstanceDAO;
 
     @Autowired
     private Provider<Event> eventProvider;
@@ -45,7 +44,10 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public Event getById(Long id) {
-        return eventDAO.findById(id);
+        Event event = eventDAO.findById(id);
+        List<EventInstance> instances = eventInstanceDAO.getByEvent(event.getId());
+        event.getEventInstances().addAll(instances);
+        return event;
     }
 
     @Override

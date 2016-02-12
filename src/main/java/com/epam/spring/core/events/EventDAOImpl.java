@@ -18,13 +18,8 @@ public class EventDAOImpl extends AbstractBaseDAOImpl<Event> implements EventDAO
 
     private static final String CREATE_SQL = "INSERT INTO events (id,name,base_price,rating) VALUES (?,?,?,?)";
     private static final String REMOVE_SQL = "DELETE FROM events WHERE id = ?";
-
-    // todo: use join to fetch event instance collection
     private static final String FIND_BY_ID_SQL = "SELECT * FROM events WHERE id = ?";
-
-    private static final String FIND_ALL_SQL = "SELECT * FROM events";
-
-    // todo: override get by id → into one event object insert list of instances
+    private static final String FIND_ALL_SQL = "SELECT * FROM events  ORDER BY event_id ASC";
 
     @Override
     protected long generateId() {

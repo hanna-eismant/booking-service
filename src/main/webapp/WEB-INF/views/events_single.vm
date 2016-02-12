@@ -1,0 +1,9 @@
+#parse('layouts/header.vm')
+
+<h3>Event information</h3>
+
+#foreach( $event in $events )
+<p><a href="/events/$event.id">$event.name</a></p>
+#end
+
+#parse('layouts/footer.vm')

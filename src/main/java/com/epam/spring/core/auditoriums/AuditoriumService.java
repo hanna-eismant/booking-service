@@ -6,4 +6,5 @@ public interface AuditoriumService {
 
     List<Auditorium> getAuditoriums();
 
+    Auditorium getAuditorium(final String name);
 }

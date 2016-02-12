@@ -1,12 +1,21 @@
 package com.epam.spring.core.events;
 
+import com.epam.spring.core.auditoriums.AuditoriumService;
 import com.epam.spring.core.shared.AbstractBaseDAOImpl;
+import org.joda.time.LocalDateTime;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static java.sql.Types.BIGINT;
 import static java.sql.Types.DOUBLE;
 import static java.sql.Types.VARCHAR;
 
+@Repository("eventInstanceDAO")
 public class EventInstanceDAOImpl extends AbstractBaseDAOImpl<EventInstance> implements EventInstanceDAO {
 
     private long idCounter = 0;
@@ -16,6 +25,28 @@ public class EventInstanceDAOImpl extends AbstractBaseDAOImpl<EventInstance> imp
     private static final String FIND_BY_ID_SQL = "SELECT * FROM event_instances WHERE id = ?";
     private static final String FIND_ALL_SQL = "SELECT * FROM event_instances";
 
+    private static final String FIND_BY_EVENT_SQL = "SELECT * FROM event_instances WHERE event_id = ?";
+
+    @Autowired
+    private AuditoriumService auditoriumService;
+
+
+    @Override
+    public List<EventInstance> getByEvent(final Long eventId) {
+        if (eventId == null) {
+            throw new IllegalArgumentException("Event id for search cannot be 'null'");
+        }
+
+        List<EventInstance> list = new ArrayList<>();
+        try {
+            list = jdbcTemplate.query(FIND_BY_EVENT_SQL, new Object[]{eventId}, createMapper());
+        } catch (EmptyResultDataAccessException e) {
+            // if no entities found, then return empty list
+        }
+
+        return list;
+    }
+
     @Override
     protected long generateId() {
         return ++idCounter;
@@ -23,7 +54,7 @@ public class EventInstanceDAOImpl extends AbstractBaseDAOImpl<EventInstance> imp
 
     @Override
     protected int[] getArgTypes() {
-        return new int[] {BIGINT, VARCHAR, DOUBLE, VARCHAR};
+        return new int[]{BIGINT, VARCHAR, DOUBLE, VARCHAR};
     }
 
     @Override
@@ -53,6 +84,12 @@ public class EventInstanceDAOImpl extends AbstractBaseDAOImpl<EventInstance> imp
 
     @Override
     protected RowMapper<EventInstance> createMapper() {
-        return null;
+        return (rs, rowNum) -> {
+            EventInstance instance = new EventInstance();
+            instance.setId(rs.getLong("id"));
+            instance.setDate(LocalDateTime.parse(rs.getString("date")));
+            instance.setAuditorium(auditoriumService.getAuditorium(rs.getString("auditorium")));
+            return instance;
+        };
     }
 }

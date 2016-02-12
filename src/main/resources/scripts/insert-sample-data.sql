@@ -20,6 +20,15 @@ VALUES (254, 'The Gamer', '5000.0', 'MID');
 -- 2015-10-17T20:00:00.000 -> total 12 tickets
 --                         -> free 0 tickets
 
+INSERT INTO events (id, name, base_price, rating)
+VALUES (253, 'The Gamer', '7000.0', 'MID'),
+  (252, 'Movie', '9000.0', 'MID'),
+  (251, 'Kung-Fu Panda', '10000.0', 'MID'),
+  (250, 'Another', '12000.0', 'MID'),
+  (249, '', '8000.0', 'MID'),
+  (248, 'Kung-Fu Panda 2', '5000.0', 'MID'),
+  (247, 'Star Wars: Episode 10', '6000.0', 'MID');
+
 --
 INSERT INTO event_instances (id, date, auditorium, event_id)
 VALUES (255, '2015-06-06T14:00:00.000', 'auditorium one', 255),

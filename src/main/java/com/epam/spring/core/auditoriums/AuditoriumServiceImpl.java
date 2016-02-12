@@ -16,4 +16,16 @@ public class AuditoriumServiceImpl implements AuditoriumService {
         return auditoriums;
     }
 
+    @Override
+    public Auditorium getAuditorium(final String name) {
+        Auditorium  res = null;
+
+        for (Auditorium auditorium : auditoriums) {
+            if (name.equals(auditorium.getName())) {
+                res = auditorium;
+            }
+        }
+
+        return res;
+    }
 }
