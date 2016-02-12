@@ -52,5 +52,9 @@ public class UserTicketsPdfView extends AbstractPdfView {
         }
 
         document.add(table);
+
+        // force to download file and not show in browser
+        String filename = "tickets_" + user.getName() + ".pdf";
+        response.setHeader("Content-Disposition", "attachment; filename=\"" + filename + "\"");
     }
 }
