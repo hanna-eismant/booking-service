@@ -3,7 +3,7 @@
 <h3>Users list</h3>
 
 #foreach( $user in $users )
-<p><a href="/users/$user.name">$user.name</a> ($user.email)</p>
+<div class="row"><p><a href="/users/$user.name">$user.name</a> ($user.email)</p></div>
 #end
 
 #parse('layouts/footer.vm')
