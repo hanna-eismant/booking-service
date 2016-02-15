@@ -46,7 +46,7 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public List<Ticket> getForShow(final Long showId) {
-        return null;
+        return ticketDAO.findByShow(showId);
     }
 
     @Override

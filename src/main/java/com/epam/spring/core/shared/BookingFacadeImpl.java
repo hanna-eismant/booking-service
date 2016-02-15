@@ -2,6 +2,7 @@ package com.epam.spring.core.shared;
 
 import com.epam.spring.core.events.Event;
 import com.epam.spring.core.events.EventService;
+import com.epam.spring.core.events.Show;
 import com.epam.spring.core.tickets.Ticket;
 import com.epam.spring.core.tickets.TicketService;
 import com.epam.spring.core.users.User;
@@ -106,10 +107,12 @@ public class BookingFacadeImpl implements BookingFacade {
     }
 
     @Override
-    public Map<String, Object> getEventTickets(final Long insId) throws NotFoundException {
+    public Map<String, Object> getEventTickets(final Long showId) throws NotFoundException {
         Map<String, Object> result = new HashMap<>();
-        List<Ticket> tickets = ticketService.getForShow(insId);
+        Show show = eventService.getShow(showId);
+        List<Ticket> tickets = ticketService.getForShow(showId);
         result.put("tickets", tickets);
+        result.put("show", show);
         return result;
     }
 

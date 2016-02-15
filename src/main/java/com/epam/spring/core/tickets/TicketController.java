@@ -29,11 +29,11 @@ public class TicketController {
         return view;
     }
 
-    @RequestMapping(value = "/{insId}/event_tickets.pdf", method = GET)
-    public ModelAndView getEventTicketsPdf(@PathVariable("insId") Long insId) throws NotFoundException {
-        Map<String, Object> eventTickets = bookingFacade.getEventTickets(insId);
+    @RequestMapping(value = "/{showId}/event_tickets.pdf", method = GET)
+    public ModelAndView getEventTicketsPdf(@PathVariable("showId") Long showId) throws NotFoundException {
+        Map<String, Object> eventTickets = bookingFacade.getEventTickets(showId);
 
-        ModelAndView view = new ModelAndView("eventTicketsPdfView");
+        ModelAndView view = new ModelAndView("showTicketsPdfView");
         view.addAllObjects(eventTickets);
 
         return view;

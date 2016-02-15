@@ -20,17 +20,17 @@ public class ShowDAOImpl extends AbstractBaseDAOImpl<Show> implements ShowDAO {
 
     private long idCounter = 0;
 
-    private static final String COLUMN_LIST = "i.id AS i_id, i.date, i.auditorium, i.event_id, COUNT(t.id) AS free_tickets";
-    private static final String JOIN = " FROM shows i LEFT JOIN tickets t ON t.show_id = i.id AND t.user_id IS NULL";
-    private static final String END = " GROUP BY i.id ORDER BY i.date DESC";
+    private static final String COLUMN_LIST = "s.id AS s_id, s.date, s.auditorium, s.event_id, COUNT(t.id) AS free_tickets";
+    private static final String JOIN = " FROM shows s LEFT JOIN tickets t ON t.show_id = s.id AND t.user_id IS NULL";
+    private static final String END = " GROUP BY s.id ORDER BY s.date DESC";
 
     private static final String CREATE_SQL = "INSERT INTO shows (id,date,auditorium,event_id) VALUES (?,?,?,?)";
     private static final String REMOVE_SQL = "DELETE FROM shows WHERE id = ?";
 
-    private static final String FIND_BY_ID_SQL = "SELECT " + COLUMN_LIST + JOIN + " WHERE i.id = ?" + END;
+    private static final String FIND_BY_ID_SQL = "SELECT " + COLUMN_LIST + JOIN + " WHERE s.id = ?" + END;
     private static final String FIND_ALL_SQL = "SELECT " + COLUMN_LIST + JOIN + END;
 
-    private static final String FIND_BY_EVENT_SQL = "SELECT " + COLUMN_LIST + JOIN + " WHERE i.event_id = ?" + END;
+    private static final String FIND_BY_EVENT_SQL = "SELECT " + COLUMN_LIST + JOIN + " WHERE s.event_id = ?" + END;
 
     @Autowired
     private AuditoriumService auditoriumService;
@@ -91,7 +91,7 @@ public class ShowDAOImpl extends AbstractBaseDAOImpl<Show> implements ShowDAO {
     protected RowMapper<Show> createMapper() {
         return (rs, rowNum) -> {
             Show show = new Show();
-            show.setId(rs.getLong("i_id"));
+            show.setId(rs.getLong("s_id"));
             show.setDate(LocalDateTime.parse(rs.getString("date")));
             show.setAuditorium(auditoriumService.getAuditorium(rs.getString("auditorium")));
             show.setFreeTicketCount(rs.getInt("free_tickets"));

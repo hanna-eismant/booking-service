@@ -57,8 +57,11 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Show getShow(final Long insId) {
-        return showDAO.findById(insId);
+    public Show getShow(final Long showId) {
+        Show show = showDAO.findById(showId);
+        Event event = eventDAO.findByShow(showId);
+        show.setEvent(event);
+        return show;
     }
 
     @Override
