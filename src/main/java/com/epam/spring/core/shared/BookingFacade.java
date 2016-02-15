@@ -23,4 +23,6 @@ public interface BookingFacade {
     Map<String, List<User>> parseUsers(InputStream inputStream) throws IOException;
 
     Map<String, List<Event>> parseEvents(InputStream inputStream) throws IOException;
+
+    Map<String,Object> getEventTickets(Long insId) throws NotFoundException;
 }

@@ -17,4 +17,6 @@ public interface EventService {
     List<Event> getAll();
 
     List<Ticket> assignAuditorium(Event event, Auditorium auditorium, LocalDateTime date);
+
+    EventInstance getInstance(Long insId);
 }

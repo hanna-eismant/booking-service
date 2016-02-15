@@ -57,6 +57,11 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
+    public EventInstance getInstance(final Long insId) {
+        return eventInstanceDAO.findById(insId);
+    }
+
+    @Override
     public List<Event> getAll() {
         return eventDAO.findAll();
     }

@@ -26,7 +26,7 @@
         <td>$ins.auditorium.name</td>
         <td>
             $ins.freeTicketCount form $ins.auditorium.seats
-          (<a href="/events/tickets">more information</a>)
+          (<a href="/tickets/name/user_tickets.pdf">more information</a>)
         </td>
         <td>
             #if ($ins.freeTicketCount != 0)

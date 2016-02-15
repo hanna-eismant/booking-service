@@ -19,12 +19,22 @@ public class TicketController {
     @Autowired
     private BookingFacade bookingFacade;
 
-    @RequestMapping(value = "/{userName}/tickets.pdf", method = GET)
-    public ModelAndView getPdf(@PathVariable("userName") String userName) throws NotFoundException {
+    @RequestMapping(value = "/{userName}/user_tickets.pdf", method = GET)
+    public ModelAndView getUserTicketsPdf(@PathVariable("userName") String userName) throws NotFoundException {
         Map<String, Object> userTickets = bookingFacade.getUserTickets(userName);
 
         ModelAndView view = new ModelAndView("userTicketsPdfView");
         view.addAllObjects(userTickets);
+
+        return view;
+    }
+
+    @RequestMapping(value = "/{insId}/event_tickets.pdf", method = GET)
+    public ModelAndView getEventTicketsPdf(@PathVariable("insId") Long insId) throws NotFoundException {
+        Map<String, Object> eventTickets = bookingFacade.getEventTickets(insId);
+
+        ModelAndView view = new ModelAndView("eventTicketsPdfView");
+        view.addAllObjects(eventTickets);
 
         return view;
     }

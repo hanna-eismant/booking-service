@@ -106,6 +106,14 @@ public class BookingFacadeImpl implements BookingFacade {
     }
 
     @Override
+    public Map<String, Object> getEventTickets(final Long insId) throws NotFoundException {
+        Map<String, Object> result = new HashMap<>();
+        List<Ticket> tickets = ticketService.getForShow(insId);
+        result.put("tickets", tickets);
+        return result;
+    }
+
+    @Override
     public Map<String, List<User>> parseUsers(final InputStream inputStream) throws IOException {
         Reader reader = new InputStreamReader(inputStream);
         JsonReader jsonReader = new JsonReader(reader);

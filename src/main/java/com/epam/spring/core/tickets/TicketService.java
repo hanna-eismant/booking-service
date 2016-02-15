@@ -22,4 +22,6 @@ public interface TicketService {
      * Calculate how many tickets has booked specified user.
      */
     int getBookedTicketsCount(User user);
+
+    List<Ticket> getForShow(Long insId);
 }
