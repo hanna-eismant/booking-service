@@ -15,34 +15,34 @@ import static java.sql.Types.BIGINT;
 import static java.sql.Types.DOUBLE;
 import static java.sql.Types.VARCHAR;
 
-@Repository("eventInstanceDAO")
-public class EventInstanceDAOImpl extends AbstractBaseDAOImpl<EventInstance> implements EventInstanceDAO {
+@Repository("showDAO")
+public class ShowDAOImpl extends AbstractBaseDAOImpl<Show> implements ShowDAO {
 
     private long idCounter = 0;
 
     private static final String COLUMN_LIST = "i.id AS i_id, i.date, i.auditorium, i.event_id, COUNT(t.id) AS free_tickets";
-    private static final String JOIN = " FROM event_instances i LEFT JOIN tickets t ON t.event_instance_id = i.id AND t.user_id IS NULL";
+    private static final String JOIN = " FROM shows i LEFT JOIN tickets t ON t.show_id = i.id AND t.user_id IS NULL";
     private static final String END = " GROUP BY i.id ORDER BY i.date DESC";
 
-    private static final String CREATE_SQL = "INSERT INTO event_instances (id,date,auditorium,event_id) VALUES (?,?,?,?)";
-    private static final String REMOVE_SQL = "DELETE FROM event_instances WHERE id = ?";
+    private static final String CREATE_SQL = "INSERT INTO shows (id,date,auditorium,event_id) VALUES (?,?,?,?)";
+    private static final String REMOVE_SQL = "DELETE FROM shows WHERE id = ?";
 
     private static final String FIND_BY_ID_SQL = "SELECT " + COLUMN_LIST + JOIN + " WHERE i.id = ?" + END;
     private static final String FIND_ALL_SQL = "SELECT " + COLUMN_LIST + JOIN + END;
 
-    private static final String FIND_BY_EVENT_SQL = "SELECT " + COLUMN_LIST + JOIN + " WHERE event_id = ?" + END;
+    private static final String FIND_BY_EVENT_SQL = "SELECT " + COLUMN_LIST + JOIN + " WHERE i.event_id = ?" + END;
 
     @Autowired
     private AuditoriumService auditoriumService;
 
 
     @Override
-    public List<EventInstance> getByEvent(final Long eventId) {
+    public List<Show> getByEvent(final Long eventId) {
         if (eventId == null) {
             throw new IllegalArgumentException("Event id for search cannot be 'null'");
         }
 
-        List<EventInstance> list = new ArrayList<>();
+        List<Show> list = new ArrayList<>();
         try {
             list = jdbcTemplate.query(FIND_BY_EVENT_SQL, new Object[]{eventId}, createMapper());
         } catch (EmptyResultDataAccessException e) {
@@ -63,7 +63,7 @@ public class EventInstanceDAOImpl extends AbstractBaseDAOImpl<EventInstance> imp
     }
 
     @Override
-    protected Object[] getArgsForCreate(final EventInstance entity) {
+    protected Object[] getArgsForCreate(final Show entity) {
         return new Object[]{entity.getId(), entity.getDate(), entity.getAuditorium().getName(), entity.getEvent().getId()};
     }
 
@@ -88,14 +88,14 @@ public class EventInstanceDAOImpl extends AbstractBaseDAOImpl<EventInstance> imp
     }
 
     @Override
-    protected RowMapper<EventInstance> createMapper() {
+    protected RowMapper<Show> createMapper() {
         return (rs, rowNum) -> {
-            EventInstance instance = new EventInstance();
-            instance.setId(rs.getLong("i_id"));
-            instance.setDate(LocalDateTime.parse(rs.getString("date")));
-            instance.setAuditorium(auditoriumService.getAuditorium(rs.getString("auditorium")));
-            instance.setFreeTicketCount(rs.getInt("free_tickets"));
-            return instance;
+            Show show = new Show();
+            show.setId(rs.getLong("i_id"));
+            show.setDate(LocalDateTime.parse(rs.getString("date")));
+            show.setAuditorium(auditoriumService.getAuditorium(rs.getString("auditorium")));
+            show.setFreeTicketCount(rs.getInt("free_tickets"));
+            return show;
         };
     }
 }

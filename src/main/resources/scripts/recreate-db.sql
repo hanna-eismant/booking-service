@@ -7,15 +7,15 @@ CREATE TABLE tickets (
   is_vip            BOOLEAN NOT NULL,
   price             DOUBLE  NOT NULL,
   discount_price    DOUBLE,
-  event_instance_id INTEGER NOT NULL,
+  show_id INTEGER NOT NULL,
   user_id           INTEGER
 );
 
 
-DROP TABLE event_instances
+DROP TABLE shows
 IF EXISTS;
 
-  CREATE TABLE event_instances (
+CREATE TABLE shows (
   id         BIGINT PRIMARY KEY,
   date       VARCHAR(255) NOT NULL,
   auditorium VARCHAR(255) NOT NULL,
@@ -45,10 +45,10 @@ CREATE TABLE events (
   rating     VARCHAR(255) NOT NULL
 );
 
-ALTER TABLE event_instances ADD FOREIGN KEY (event_id) REFERENCES events (id)
+ALTER TABLE shows ADD FOREIGN KEY (event_id) REFERENCES events (id)
   ON DELETE CASCADE;
 
-ALTER TABLE tickets ADD FOREIGN KEY (event_instance_id) REFERENCES event_instances (id)
+ALTER TABLE tickets ADD FOREIGN KEY (show_id) REFERENCES shows (id)
   ON DELETE CASCADE;
 ALTER TABLE tickets ADD FOREIGN KEY (user_id) REFERENCES users (id)
   ON DELETE SET NULL;

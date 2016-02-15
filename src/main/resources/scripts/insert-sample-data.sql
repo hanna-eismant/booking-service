@@ -30,13 +30,13 @@ VALUES (253, 'The Gamer II', '7000.0', 'MID'),
   (247, 'Star Wars: Episode 10', '6000.0', 'MID');
 
 --
-INSERT INTO event_instances (id, date, auditorium, event_id)
+INSERT INTO shows (id, date, auditorium, event_id)
 VALUES (255, '2015-06-06T14:00:00.000', 'auditorium one', 255),
   (254, '2015-06-07T22:00:00.000', 'auditorium one', 255),
   (253, '2015-10-17T20:00:00.000', 'auditorium two', 254);
 
 -- tickets for event 'Hobbit'  (base price = 8_000 * 1.2 <- HIGH rating)
-INSERT INTO tickets (id, seat, is_vip, price, discount_price, event_instance_id, user_id)
+INSERT INTO tickets (id, seat, is_vip, price, discount_price, show_id, user_id)
 VALUES (255, 1, FALSE, 9600, NULL, 255, NULL),
   (254, 2, FALSE, 9600, 4800, 255, 255), -- 10
   (253, 3, FALSE, 9600, NULL, 255, NULL),
@@ -62,7 +62,7 @@ VALUES (255, 1, FALSE, 9600, NULL, 255, NULL),
   (233, 23, FALSE, 9600, NULL, 255, NULL),
   (232, 24, FALSE, 9600, NULL, 255, NULL);
 
-INSERT INTO tickets (id, seat, is_vip, price, discount_price, event_instance_id, user_id)
+INSERT INTO tickets (id, seat, is_vip, price, discount_price, show_id, user_id)
 VALUES (219, 1, FALSE, 9600, NULL, 254, NULL),
   (218, 2, FALSE, 9600, NULL, 254, NULL),
   (217, 3, FALSE, 9600, NULL, 254, NULL),
@@ -89,7 +89,7 @@ VALUES (219, 1, FALSE, 9600, NULL, 254, NULL),
   (196, 24, FALSE, 9600, NULL, 254, NULL);
 
 -- tickets for event 'The Gamer'
-INSERT INTO tickets (id, seat, is_vip, price, discount_price, event_instance_id, user_id)
+INSERT INTO tickets (id, seat, is_vip, price, discount_price, show_id, user_id)
 VALUES (231, 1, FALSE, 5000, 5000, 253, 255), -- 1
   (230, 2, TRUE, 10000, 9500, 253, 254),
   (229, 3, FALSE, 5000, 4750, 253, 254),

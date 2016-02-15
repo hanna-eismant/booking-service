@@ -23,5 +23,5 @@ public interface TicketService {
      */
     int getBookedTicketsCount(User user);
 
-    List<Ticket> getForShow(Long insId);
+    List<Ticket> getForShow(Long showId);
 }

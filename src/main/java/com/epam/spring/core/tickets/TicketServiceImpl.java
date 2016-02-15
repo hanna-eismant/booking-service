@@ -45,6 +45,11 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
+    public List<Ticket> getForShow(final Long showId) {
+        return null;
+    }
+
+    @Override
     public int getBookedTicketsCount(User user) {
         // todo: create special request to get count
         return getBookedTickets(user).size();

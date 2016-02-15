@@ -38,8 +38,8 @@ public class UserTicketsPdfView extends AbstractPdfView {
 
         List<Ticket> tickets = (List<Ticket>) model.get("tickets");
         for (Ticket ticket : tickets) {
-            table.addCell(new Phrase(ticket.getEventInstance().getDate().toString("MM/dd/yyyy"), textFont));
-            table.addCell(new Phrase(ticket.getEventInstance().getEvent().getName(), textFont));
+            table.addCell(new Phrase(ticket.getShow().getDate().toString("MM/dd/yyyy"), textFont));
+            table.addCell(new Phrase(ticket.getShow().getEvent().getName(), textFont));
 
             String seat = ticket.getSeat().toString();
             if (ticket.isVip()) {

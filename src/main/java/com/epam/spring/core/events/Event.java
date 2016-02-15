@@ -14,7 +14,7 @@ public class Event extends BaseEntity{
     private String name;
     private Double basePrice;
     private Rating rating;
-    private List<EventInstance> eventInstances = new ArrayList<>();
+    private List<Show> shows = new ArrayList<>();
 
 
     public String getName() {
@@ -41,7 +41,7 @@ public class Event extends BaseEntity{
         rating = _rating;
     }
 
-    public List<EventInstance> getEventInstances() {
-        return eventInstances;
+    public List<Show> getShows() {
+        return shows;
     }
 }

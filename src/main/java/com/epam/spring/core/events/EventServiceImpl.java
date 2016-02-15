@@ -19,7 +19,7 @@ public class EventServiceImpl implements EventService {
     private EventDAO eventDAO;
 
     @Autowired
-    private EventInstanceDAO eventInstanceDAO;
+    private ShowDAO showDAO;
 
     @Autowired
     private Provider<Event> eventProvider;
@@ -51,14 +51,14 @@ public class EventServiceImpl implements EventService {
             throw new NotFoundException("Event doesn't exist");
         }
 
-        List<EventInstance> instances = eventInstanceDAO.getByEvent(event.getId());
-        event.getEventInstances().addAll(instances);
+        List<Show> shows = showDAO.getByEvent(event.getId());
+        event.getShows().addAll(shows);
         return event;
     }
 
     @Override
-    public EventInstance getInstance(final Long insId) {
-        return eventInstanceDAO.findById(insId);
+    public Show getShow(final Long insId) {
+        return showDAO.findById(insId);
     }
 
     @Override

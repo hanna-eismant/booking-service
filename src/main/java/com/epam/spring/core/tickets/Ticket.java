@@ -1,6 +1,6 @@
 package com.epam.spring.core.tickets;
 
-import com.epam.spring.core.events.EventInstance;
+import com.epam.spring.core.events.Show;
 import com.epam.spring.core.shared.BaseEntity;
 import com.epam.spring.core.users.User;
 
@@ -11,7 +11,7 @@ public class Ticket extends BaseEntity {
     private boolean isVip;
     private Double basePrice;
     private Double discountPrice;
-    private EventInstance eventInstance;
+    private Show show;
 
     public User getUser() {
         return user;
@@ -53,11 +53,11 @@ public class Ticket extends BaseEntity {
         discountPrice = _discountPrice;
     }
 
-    public EventInstance getEventInstance() {
-        return eventInstance;
+    public Show getShow() {
+        return show;
     }
 
-    public void setEventInstance(final EventInstance _eventInstance) {
-        eventInstance = _eventInstance;
+    public void setShow(final Show _show) {
+        show = _show;
     }
 }

@@ -8,7 +8,7 @@
   Assign auditorium
 </a>
 
-#if($event.eventInstances.size() != 0)
+#if($event.shows.size() != 0)
 
 <table class="table table-striped">
   <thead>
@@ -20,17 +20,17 @@
   </tr>
   </thead>
   <tbody>
-      #foreach( $ins in $event.eventInstances )
+      #foreach( $show in $event.shows )
       <tr>
-        <td>$ins.date.toString("MM/dd/yyyy HH:mm")</td>
-        <td>$ins.auditorium.name</td>
+        <td>$show.date.toString("MM/dd/yyyy HH:mm")</td>
+        <td>$show.auditorium.name</td>
         <td>
-            $ins.freeTicketCount form $ins.auditorium.seats
+            $show.freeTicketCount form $show.auditorium.seats
           (<a href="/tickets/name/user_tickets.pdf">more information</a>)
         </td>
         <td>
-            #if ($ins.freeTicketCount != 0)
-              <a class="btn btn-primary btn-xs" role="button" href="/tickets/book/$ins.id">
+            #if ($show.freeTicketCount != 0)
+              <a class="btn btn-primary btn-xs" role="button" href="/tickets/book/$show.id">
                 Book ticket
               </a>
             #end

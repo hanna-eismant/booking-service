@@ -1,7 +1,7 @@
 package com.epam.spring.core.tickets;
 
 import com.epam.spring.core.events.Event;
-import com.epam.spring.core.events.EventInstance;
+import com.epam.spring.core.events.Show;
 import com.epam.spring.core.events.Rating;
 import com.epam.spring.core.shared.AbstractBaseDAOImpl;
 import com.epam.spring.core.users.User;
@@ -25,15 +25,15 @@ import static java.sql.Types.VARCHAR;
 @Repository
 public class TicketDAOImpl extends AbstractBaseDAOImpl<Ticket> implements TicketDAO {
 
-    private static final String COLUMN_LIST = "t.id AS t_id, t.seat, t.is_vip, t.price, t.discount_price, t.user_id, t.event_instance_id, " +
+    private static final String COLUMN_LIST = "t.id AS t_id, t.seat, t.is_vip, t.price, t.discount_price, t.user_id, t.show_id, " +
             "u.id AS u_id, u.name AS u_name, u.email, u.birthday, " +
-            "i.id AS i_id, i.date, i.auditorium, i.event_id, " +
+            "s.id AS s_id, s.date, s.auditorium, s.event_id, " +
             "e.id AS e_id, e.name AS e_name, e.base_price, e.rating ";
-    private static final String JOIN = "FROM tickets t LEFT JOIN users u ON t.user_id = u.id LEFT JOIN event_instances i ON t.event_instance_id = i.id LEFT JOIN events e ON i.event_id = e.id";
-    private static final String CREATE_SQL = "INSERT INTO tickets (id, seat, is_vip, price, event_instance_id) VALUES (?,?,?,?,?)";
+    private static final String JOIN = "FROM tickets t LEFT JOIN users u ON t.user_id = u.id LEFT JOIN shows s ON t.show_id = s.id LEFT JOIN events e ON s.event_id = e.id";
+    private static final String CREATE_SQL = "INSERT INTO tickets (id, seat, is_vip, price, show_id) VALUES (?,?,?,?,?)";
     private static final String REMOVE_SQL = "DELETE FROM tickets WHERE id = ?";
     private static final String FIND_BY_ID_SQL = "SELECT " + COLUMN_LIST + JOIN + " WHERE t.id = ?";
-    private static final String FIND_BY_EVENT_AND_DATE_SQL = "SELECT " + COLUMN_LIST + JOIN + " WHERE i.event_id = ? AND i.date = ?";
+    private static final String FIND_BY_EVENT_AND_DATE_SQL = "SELECT " + COLUMN_LIST + JOIN + " WHERE s.event_id = ? AND s.date = ?";
     private static final String FIND_FREE_BY_EVENT_AND_DATE_SQL = FIND_BY_EVENT_AND_DATE_SQL + " AND t.user_id IS NULL";
     private static final String FIND_BY_USER_SQL = "SELECT " + COLUMN_LIST + JOIN + " WHERE t.user_id = ?";
     private static final String FIND_ALL_SQL = "SELECT " + COLUMN_LIST + JOIN;
@@ -100,7 +100,7 @@ public class TicketDAOImpl extends AbstractBaseDAOImpl<Ticket> implements Ticket
 
     @Override
     protected Object[] getArgsForCreate(final Ticket entity) {
-        return new Object[]{entity.getId(), entity.getSeat(), entity.isVip(), entity.getBasePrice(), entity.getEventInstance().getId()};
+        return new Object[]{entity.getId(), entity.getSeat(), entity.isVip(), entity.getBasePrice(), entity.getShow().getId()};
     }
 
     @Override
@@ -141,9 +141,9 @@ public class TicketDAOImpl extends AbstractBaseDAOImpl<Ticket> implements Ticket
             // rs.getDouble("discount_price") return 0 if column contains null
             ticket.setDiscountPrice(rs.getDouble("discount_price") == 0.0d ? null : rs.getDouble("discount_price"));
 
-            EventInstance eventInstance = new EventInstance();
-            eventInstance.setId(rs.getLong("i_id"));
-            eventInstance.setDate(LocalDateTime.parse(rs.getString("date")));
+            Show show = new Show();
+            show.setId(rs.getLong("s_id"));
+            show.setDate(LocalDateTime.parse(rs.getString("date")));
 
             Event event = new Event();
             event.setId(rs.getLong("e_id"));
@@ -151,8 +151,8 @@ public class TicketDAOImpl extends AbstractBaseDAOImpl<Ticket> implements Ticket
             event.setBasePrice(rs.getDouble("base_price"));
             event.setRating(Rating.valueOf(rs.getString("rating")));
 
-            eventInstance.setEvent(event);
-            ticket.setEventInstance(eventInstance);
+            show.setEvent(event);
+            ticket.setShow(show);
 
             long userId = rs.getLong("user_id");
 

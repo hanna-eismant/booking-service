@@ -8,7 +8,7 @@ import org.joda.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EventInstance extends BaseEntity {
+public class Show extends BaseEntity {
 
     private Event event;
     private LocalDateTime date;
