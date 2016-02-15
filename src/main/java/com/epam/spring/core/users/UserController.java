@@ -47,7 +47,15 @@ public class UserController {
     @RequestMapping(value = "/upload", method = POST)
     public ModelAndView upload(@RequestParam MultipartFile usersInfoFile) throws IOException {
         InputStream inputStream = usersInfoFile.getInputStream();
-        bookingFacade.parseUsers(inputStream);
-        return null;
+        ModelAndView view = new ModelAndView("users_upload");
+
+        try {
+            Map<String, List<User>> result = bookingFacade.parseUsers(inputStream);
+            view.addAllObjects(result);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return view;
     }
 }

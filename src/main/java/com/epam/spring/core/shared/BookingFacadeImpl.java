@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -89,17 +90,29 @@ public class BookingFacadeImpl implements BookingFacade {
     }
 
     @Override
-    public void parseUsers(final InputStream inputStream) throws IOException {
+    public Map<String, List<User>> parseUsers(final InputStream inputStream) throws IOException {
         Reader reader = new InputStreamReader(inputStream);
         JsonReader jsonReader = new JsonReader(reader);
 
         jsonReader.beginArray();
+        List<User> error = new ArrayList<>();
+        List<User> success = new ArrayList<>();
 
         while (jsonReader.hasNext()) {
-            System.out.println("bu!");
             User user = gson.fromJson(jsonReader, User.class);
-            System.out.println(user);
+            try {
+                userService.register(user.getName(), user.getEmail(), user.getBirthday());
+                success.add(user);
+            } catch (Exception _e) {
+                error.add(user);
+            }
         }
+
+        Map<String,List<User>> result = new HashMap<>(2);
+        result.put("error", error);
+        result.put("success", success);
+
+        return result;
     }
 }
 

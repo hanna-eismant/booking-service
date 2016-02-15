@@ -3,7 +3,6 @@ package com.epam.spring.core.shared;
 import com.epam.spring.core.events.Event;
 import com.epam.spring.core.users.User;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
@@ -20,5 +19,5 @@ public interface BookingFacade {
 
     Event getEventInfo(final Long eventId);
 
-    void parseUsers(InputStream inputStream) throws IOException;
+    Map<String, List<User>> parseUsers(InputStream inputStream) throws Exception;
 }

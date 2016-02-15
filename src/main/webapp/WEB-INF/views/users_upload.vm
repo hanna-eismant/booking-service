@@ -1,0 +1,24 @@
+#parse('layouts/header.vm')
+
+<h3>Upload users</h3>
+
+<div class="text-success"><strong>Next users has been successful uploaded:</strong></div>
+
+<ul>
+    #foreach( $user in $success )
+      <li><a href="/users/$user.name">$user.name</a> ($user.email)</li>
+    #end
+</ul>
+
+
+<div class="text-warning"><strong>Next users has not been uploaded:</strong></div>
+
+<ul>
+    #foreach( $user in $error )
+      <li><a href="/users/$user.name">$user.name</a> ($user.email)</li>
+    #end
+</ul>
+
+
+#parse('layouts/footer.vm')
+
