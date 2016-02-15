@@ -54,6 +54,6 @@ public interface UserService {
      *
      * @return list of all registered users or empty list.
      */
-    List<User> getAll();
+    List<UserEntity> getAll();
 
 }

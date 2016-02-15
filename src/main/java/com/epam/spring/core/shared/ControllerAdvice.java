@@ -6,6 +6,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.util.NestedServletException;
 
+import javax.servlet.ServletException;
+
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 
@@ -33,6 +35,15 @@ public class ControllerAdvice {
     @ExceptionHandler(NestedServletException.class)
     @ResponseStatus(INTERNAL_SERVER_ERROR)
     public ModelAndView internalServletError(Exception e) {
+        e.printStackTrace();
+        ModelAndView view = new ModelAndView("500");
+        view.addObject("message", e.getMessage());
+        return view;
+    }
+
+    @ExceptionHandler(ServletException.class)
+    @ResponseStatus(INTERNAL_SERVER_ERROR)
+    public ModelAndView onServletException(ServletException e) {
         e.printStackTrace();
         ModelAndView view = new ModelAndView("500");
         view.addObject("message", e.getMessage());

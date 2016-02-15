@@ -29,7 +29,6 @@
         <property name="cache" value="true"/>
         <property name="prefix" value=""/>
         <property name="suffix" value=".vm"/>
-        <property name="toolboxConfigLocation" value="WEB-INF/velocity-toolbox.xml"/>
     </bean>
 
     <bean class="org.springframework.web.servlet.view.XmlViewResolver"
