@@ -2,23 +2,22 @@
 
 <h3>Upload users</h3>
 
+#if($success.size() != 0)
 <div class="text-success"><strong>Next users has been successful uploaded:</strong></div>
-
 <ul>
     #foreach( $user in $success )
       <li><a href="/users/$user.name">$user.name</a> ($user.email)</li>
     #end
 </ul>
+#end
 
-
+#if($error.size() != 0)
 <div class="text-warning"><strong>Next users has not been uploaded:</strong></div>
-
 <ul>
     #foreach( $user in $error )
       <li>$user.name ($user.email)</li>
     #end
 </ul>
-
+#end
 
 #parse('layouts/footer.vm')
-

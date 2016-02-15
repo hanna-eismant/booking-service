@@ -4,6 +4,12 @@
   <small>$event.name</small>
 </h3>
 
+<a class="btn btn-primary btn-s" style="margin-bottom: 15px;" role="button" href="/event/$event.name/assign">
+  Assign auditorium
+</a>
+
+#if($event.eventInstances.size() != 0)
+
 <table class="table table-striped">
   <thead>
   <tr class="info">
@@ -20,7 +26,7 @@
         <td>$ins.auditorium.name</td>
         <td>
             $ins.freeTicketCount form $ins.auditorium.seats
-          (<a href="#">more information</a>)
+          (<a href="/events/tickets">more information</a>)
         </td>
         <td>
             #if ($ins.freeTicketCount != 0)
@@ -34,5 +40,6 @@
   </tbody>
 </table>
 
+#end
 
 #parse('layouts/footer.vm')
