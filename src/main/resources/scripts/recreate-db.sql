@@ -45,6 +45,8 @@ CREATE TABLE events (
   rating     VARCHAR(255) NOT NULL
 );
 
+ALTER TABLE events ADD CONSTRAINT event_name UNIQUE (name);
+
 ALTER TABLE shows ADD FOREIGN KEY (event_id) REFERENCES events (id)
   ON DELETE CASCADE;
 

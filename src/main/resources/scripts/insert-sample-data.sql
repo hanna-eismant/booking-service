@@ -20,14 +20,14 @@ VALUES (254, 'The Gamer', '5000.0', 'MID');
 -- 2015-10-17T20:00:00.000 -> total 12 tickets
 --                         -> free 0 tickets
 
-INSERT INTO events (id, name, base_price, rating)
-VALUES (253, 'The Gamer II', '7000.0', 'MID'),
-  (252, 'Movie', '9000.0', 'MID'),
-  (251, 'Kung-Fu Panda', '10000.0', 'MID'),
-  (250, 'Another', '12000.0', 'MID'),
-  (249, 'Star Wars: Episode 1', '8000.0', 'MID'),
-  (248, 'Kung-Fu Panda 2', '5000.0', 'MID'),
-  (247, 'Star Wars: Episode 10', '6000.0', 'MID');
+-- INSERT INTO events (id, name, base_price, rating)
+-- VALUES (253, 'The Gamer II', '7000.0', 'MID'),
+--   (252, 'Movie', '9000.0', 'MID'),
+--   (251, 'Kung-Fu Panda', '10000.0', 'MID'),
+--   (250, 'Another', '12000.0', 'MID'),
+--   (249, 'Star Wars: Episode 1', '8000.0', 'MID'),
+--   (248, 'Kung-Fu Panda 2', '5000.0', 'MID'),
+--   (247, 'Star Wars: Episode 10', '6000.0', 'MID');
 
 --
 INSERT INTO shows (id, date, auditorium, event_id)
