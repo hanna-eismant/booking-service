@@ -1,6 +1,7 @@
 package com.epam.spring.core.tickets;
 
 import com.epam.spring.core.shared.BookingFacade;
+import com.epam.spring.core.shared.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +20,7 @@ public class TicketController {
     private BookingFacade bookingFacade;
 
     @RequestMapping(value = "/{userName}/tickets.pdf", method = GET)
-    public ModelAndView getPdf(@PathVariable("userName") String userName) {
+    public ModelAndView getPdf(@PathVariable("userName") String userName) throws NotFoundException {
         Map<String, Object> userTickets = bookingFacade.getUserTickets(userName);
 
         ModelAndView view = new ModelAndView("userTicketsPdfView");

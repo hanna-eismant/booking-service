@@ -1,6 +1,7 @@
 package com.epam.spring.core.users;
 
 import com.epam.spring.core.shared.BookingFacade;
+import com.epam.spring.core.shared.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,7 +36,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/{name}", method = GET)
-    public ModelAndView get(@PathVariable("name") String name) {
+    public ModelAndView get(@PathVariable("name") String name) throws NotFoundException {
         Map<String, Object> userInfo = bookingFacade.getUserInfo(name);
 
         ModelAndView view = new ModelAndView("users_single");

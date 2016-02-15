@@ -52,13 +52,24 @@ public class BookingFacadeImpl implements BookingFacade {
     }
 
     @Override
-    public Event getEventInfo(final Long eventId) {
-        return eventService.getById(eventId);
+    public Event getEventInfo(final Long eventId) throws NotFoundException {
+        Event event = eventService.getById(eventId);
+
+        if (event == null) {
+            throw new NotFoundException("Event doesn't exist");
+        }
+
+        return event;
     }
 
     @Override
-    public Map<String, Object> getUserInfo(final String name) {
+    public Map<String, Object> getUserInfo(final String name) throws NotFoundException {
         User user = userService.getByName(name);
+
+        if (user == null) {
+            throw new NotFoundException("User doesn't exist");
+        }
+
         int ticketsCount = ticketService.getBookedTicketsCount(user);
 
         Map<String, Object> result = new HashMap<>(4);
@@ -77,10 +88,15 @@ public class BookingFacadeImpl implements BookingFacade {
     }
 
     @Override
-    public Map<String, Object> getUserTickets(final String userName) {
+    public Map<String, Object> getUserTickets(final String userName) throws NotFoundException {
         Map<String, Object> result = new HashMap<>();
 
         User user = userService.getByName(userName);
+
+        if (user == null) {
+            throw new NotFoundException("User doesn't exist");
+        }
+
         List<Ticket> tickets = ticketService.getBookedTickets(user);
 
         result.put("user", user);
@@ -103,7 +119,8 @@ public class BookingFacadeImpl implements BookingFacade {
             try {
                 user = userService.register(user.getName(), user.getEmail(), user.getBirthday());
                 success.add(user);
-            } catch (Exception _e) {
+            } catch (Exception e) {
+                e.printStackTrace();
                 error.add(user);
             }
         }

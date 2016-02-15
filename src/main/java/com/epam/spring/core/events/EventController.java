@@ -1,6 +1,7 @@
 package com.epam.spring.core.events;
 
 import com.epam.spring.core.shared.BookingFacade;
+import com.epam.spring.core.shared.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,7 +36,7 @@ public class EventController {
     }
 
     @RequestMapping(value = "/{eventId}", method = GET)
-    public ModelAndView get(@PathVariable("eventId") Long eventId) {
+    public ModelAndView get(@PathVariable("eventId") Long eventId) throws NotFoundException {
         Event event = bookingFacade.getEventInfo(eventId);
 
         ModelAndView view = new ModelAndView("events_single");

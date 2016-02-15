@@ -1,0 +1,9 @@
+#parse('layouts/header.vm')
+
+<h3>Not found</h3>
+
+#if($message)
+<p>$message</p>
+#end
+
+#parse('layouts/footer.vm')

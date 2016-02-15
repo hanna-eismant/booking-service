@@ -1,6 +1,7 @@
 package com.epam.spring.core.events;
 
 import com.epam.spring.core.auditoriums.Auditorium;
+import com.epam.spring.core.shared.NotFoundException;
 import com.epam.spring.core.tickets.Ticket;
 import org.joda.time.LocalDateTime;
 
@@ -11,7 +12,7 @@ public interface EventService {
 
     void remove(Event event);
 
-    Event getById(Long id);
+    Event getById(Long id) throws NotFoundException;
 
     List<Event> getAll();
 

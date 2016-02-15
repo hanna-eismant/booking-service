@@ -1,6 +1,7 @@
 package com.epam.spring.core.events;
 
 import com.epam.spring.core.auditoriums.Auditorium;
+import com.epam.spring.core.shared.NotFoundException;
 import com.epam.spring.core.tickets.Ticket;
 import com.epam.spring.core.tickets.TicketService;
 import org.joda.time.LocalDateTime;
@@ -43,8 +44,13 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public Event getById(Long id) {
+    public Event getById(Long id) throws NotFoundException {
         Event event = eventDAO.findById(id);
+
+        if (event == null) {
+            throw new NotFoundException("Event doesn't exist");
+        }
+
         List<EventInstance> instances = eventInstanceDAO.getByEvent(event.getId());
         event.getEventInstances().addAll(instances);
         return event;

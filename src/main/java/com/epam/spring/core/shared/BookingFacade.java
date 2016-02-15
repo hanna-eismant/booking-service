@@ -10,15 +10,15 @@ import java.util.Map;
 
 public interface BookingFacade {
 
-    Map<String, Object> getUserTickets(final String userName);
+    Map<String, Object> getUserTickets(final String userName) throws NotFoundException;
 
-    Map<String, Object> getUserInfo(final String name);
+    Map<String, Object> getUserInfo(final String name) throws NotFoundException;
 
     List<User> getAllUsersInfo();
 
     List<Event> getAllEventsInfo();
 
-    Event getEventInfo(final Long eventId);
+    Event getEventInfo(final Long eventId) throws NotFoundException;
 
     Map<String, List<User>> parseUsers(InputStream inputStream) throws IOException;
 
