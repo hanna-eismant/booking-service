@@ -15,7 +15,7 @@
 
 <ul>
     #foreach( $user in $error )
-      <li><a href="/users/$user.name">$user.name</a> ($user.email)</li>
+      <li>$user.name ($user.email)</li>
     #end
 </ul>
 

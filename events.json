@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Gattaca",
+    "basePrice": "20000.0",
+    "rating": "HIGH"
+  },
+  {
+    "name": "Bleach",
+    "basePrice": "8000.0",
+    "rating": "MID"
+  },
+  {
+    "name": "Star Wars: Episode 5",
+    "basePrice": "10000.0",
+    "rating": "MID"
+  }
+]

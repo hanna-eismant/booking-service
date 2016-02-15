@@ -101,14 +101,41 @@ public class BookingFacadeImpl implements BookingFacade {
         while (jsonReader.hasNext()) {
             User user = gson.fromJson(jsonReader, User.class);
             try {
-                userService.register(user.getName(), user.getEmail(), user.getBirthday());
+                user = userService.register(user.getName(), user.getEmail(), user.getBirthday());
                 success.add(user);
             } catch (Exception _e) {
                 error.add(user);
             }
         }
 
-        Map<String,List<User>> result = new HashMap<>(2);
+        Map<String, List<User>> result = new HashMap<>(2);
+        result.put("error", error);
+        result.put("success", success);
+
+        return result;
+    }
+
+    @Override
+    public Map<String, List<Event>> parseEvents(final InputStream inputStream) throws IOException {
+        Reader reader = new InputStreamReader(inputStream);
+        JsonReader jsonReader = new JsonReader(reader);
+
+        jsonReader.beginArray();
+        List<Event> error = new ArrayList<>();
+        List<Event> success = new ArrayList<>();
+
+        while (jsonReader.hasNext()) {
+            Event event = gson.fromJson(jsonReader, Event.class);
+            try {
+                event = eventService.create(event.getName(), event.getBasePrice(), event.getRating());
+                success.add(event);
+            } catch (Exception e) {
+                e.printStackTrace();
+                error.add(event);
+            }
+        }
+
+        Map<String, List<Event>> result = new HashMap<>(2);
         result.put("error", error);
         result.put("success", success);
 

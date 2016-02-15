@@ -25,7 +25,7 @@ VALUES (253, 'The Gamer II', '7000.0', 'MID'),
   (252, 'Movie', '9000.0', 'MID'),
   (251, 'Kung-Fu Panda', '10000.0', 'MID'),
   (250, 'Another', '12000.0', 'MID'),
-  (249, '', '8000.0', 'MID'),
+  (249, 'Star Wars: Episode 1', '8000.0', 'MID'),
   (248, 'Kung-Fu Panda 2', '5000.0', 'MID'),
   (247, 'Star Wars: Episode 10', '6000.0', 'MID');
 

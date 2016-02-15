@@ -1,0 +1,23 @@
+#parse('layouts/header.vm')
+
+<h3>Upload users</h3>
+
+<div class="text-success"><strong>Next events has been successful uploaded:</strong></div>
+
+<ul>
+    #foreach( $event in $success )
+      <li><a href="/events/$event.id">$event.name</a></li>
+    #end
+</ul>
+
+
+<div class="text-warning"><strong>Next events has not been uploaded:</strong></div>
+
+<ul>
+    #foreach( $event in $error )
+      <li>$event.name</li>
+    #end
+</ul>
+
+
+#parse('layouts/footer.vm')

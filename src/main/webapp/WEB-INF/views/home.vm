@@ -8,7 +8,6 @@
     <form method="post" enctype="multipart/form-data" action="/users/upload">
 
       <div class="form-group">
-        <label for="usersInfoFile">File input</label>
         <input type="file" id="usersInfoFile" name="usersInfoFile" accept=".json">
         <p class="help-block">Select JSON-file wich store users infromation.</p>
       </div>
@@ -24,8 +23,7 @@
     <form method="post" enctype="multipart/form-data" action="/events/upload">
 
       <div class="form-group">
-        <label for="eventsInfoFile">File input</label>
-        <input type="file" id="eventsInfoFile">
+        <input type="file" id="eventsInfoFile" name="eventsInfoFile" accept=".json">
         <p class="help-block">Select JSON-file wich store events infromation.</p>
       </div>
 
