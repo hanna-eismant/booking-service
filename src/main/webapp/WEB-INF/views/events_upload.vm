@@ -2,7 +2,7 @@
 
 <h3>Upload users</h3>
 
-#if($success.size() != 0)
+#if($success.size() != 0 && !$message)
 <div class="text-success"><strong>Next events has been successful uploaded:</strong></div>
 <ul>
     #foreach( $event in $success )
@@ -11,13 +11,17 @@
 </ul>
 #end
 
-#if($error.size() != 0)
+#if($error.size() != 0 && !$message)
 <div class="text-warning"><strong>Next events has not been uploaded:</strong></div>
 <ul>
     #foreach( $event in $error )
       <li>$event.name</li>
     #end
 </ul>
+#end
+
+#if($message)
+<div class="text-danger"><strong>$message</strong></div>
 #end
 
 #parse('layouts/footer.vm')

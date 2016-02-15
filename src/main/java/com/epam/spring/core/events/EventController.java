@@ -55,8 +55,9 @@ public class EventController {
         try {
             Map<String, List<Event>> result = bookingFacade.parseEvents(inputStream);
             view.addAllObjects(result);
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
+            view.addObject("message", "Cannot parse file");
         }
 
         return view;

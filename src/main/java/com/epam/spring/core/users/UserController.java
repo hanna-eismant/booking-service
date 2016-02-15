@@ -53,8 +53,9 @@ public class UserController {
         try {
             Map<String, List<User>> result = bookingFacade.parseUsers(inputStream);
             view.addAllObjects(result);
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
+            view.addObject("message", "Cannot parse file");
         }
 
         return view;
