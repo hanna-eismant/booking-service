@@ -15,6 +15,10 @@ public class Auditorium {
         vipSeats = _vipSeats;
     }
 
+    public Auditorium() {
+
+    }
+
     public String getName() {
         return name;
     }

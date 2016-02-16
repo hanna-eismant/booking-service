@@ -22,7 +22,7 @@
         <!-- Database -->
         <hsqldb.version>2.3.2</hsqldb.version>
         <springdata.version>1.9.2.RELEASE</springdata.version>
-        <javax.persistence.version>1.0.2</javax.persistence.version>
+        <javaee.version>7.0</javaee.version>
         <hibernate.version>5.1.0.Final</hibernate.version>
 
         <!-- Advanced libs -->
@@ -117,10 +117,16 @@
             <version>${javax.inject.version}</version>
         </dependency>
 
+        <!--<dependency>-->
+            <!--<groupId>javax.persistence</groupId>-->
+            <!--<artifactId>persistence-api</artifactId>-->
+            <!--<version>${javax.persistence.version}</version>-->
+        <!--</dependency>-->
+
         <dependency>
-            <groupId>javax.persistence</groupId>
-            <artifactId>persistence-api</artifactId>
-            <version>${javax.persistence.version}</version>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>${javaee.version}</version>
         </dependency>
 
         <dependency>

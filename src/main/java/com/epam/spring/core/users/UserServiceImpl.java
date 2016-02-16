@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService {
 //    EntityManager entityManager;
 
     @Override
-    public User register(String name, String email, LocalDate birthday) throws Exception {
+    public User register(String name, String email, LocalDate birthday) {
         return null;
 
 //        // check user's name

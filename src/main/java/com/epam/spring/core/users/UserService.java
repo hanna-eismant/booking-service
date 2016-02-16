@@ -16,7 +16,7 @@ public interface UserService {
      * @throws Exception                if user with passed email already registered.
      * @throws IllegalArgumentException if any passed parameters are incorrect.
      */
-    User register(String name, String email, LocalDate birthday) throws Exception;
+    User register(String name, String email, LocalDate birthday);
 
     /**
      * Remove user from system.
