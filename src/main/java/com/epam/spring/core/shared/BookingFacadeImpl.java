@@ -6,7 +6,6 @@ import com.epam.spring.core.events.Show;
 import com.epam.spring.core.tickets.Ticket;
 import com.epam.spring.core.tickets.TicketService;
 import com.epam.spring.core.users.User;
-import com.epam.spring.core.users.UserEntity;
 import com.epam.spring.core.users.UserService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -25,7 +24,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Component("bookingFacade")
 public class BookingFacadeImpl implements BookingFacade {
@@ -87,13 +85,7 @@ public class BookingFacadeImpl implements BookingFacade {
 
     @Override
     public List<User> getAllUsersInfo() {
-        List<UserEntity> entities = userService.getAll();
-        List<User> users = new ArrayList<>(entities.size());
-
-        users.addAll(entities.stream()
-                .map(entity -> new User(entity.getName(), entity.getEmail(), entity.getBirthday())).collect(Collectors.toList()));
-
-        return users;
+        return userService.getAll();
     }
 
     @Override

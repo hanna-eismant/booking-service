@@ -37,7 +37,7 @@ public class UserServiceIntegrationTest extends AbstractIntegrationTest {
 
     @Test
     public void testGetAll() {
-        List<UserEntity> all = userService.getAll();
+        List<User> all = userService.getAll();
         assertNotNull("Found list of users cannot be null", all);
         assertEquals("Found list of users has incorrect size", 2, all.size());
     }

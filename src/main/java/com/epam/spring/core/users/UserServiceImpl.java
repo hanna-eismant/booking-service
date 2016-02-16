@@ -2,11 +2,11 @@ package com.epam.spring.core.users;
 
 import com.epam.spring.core.shared.DuplicateException;
 import com.epam.spring.core.shared.NotFoundException;
-import com.google.common.collect.Lists;
 import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service("userService")
@@ -110,7 +110,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserEntity> getAll() {
-        return Lists.newArrayList(userRepository.findAll());
+    public List<User> getAll() {
+        Iterable<UserEntity> allEntities = userRepository.findAll();
+        List<User> result = new ArrayList<>();
+
+        for (UserEntity userEntity : allEntities) {
+            User user = new User(userEntity.getName(), userEntity.getEmail(), userEntity.getBirthday());
+            user.setId(userEntity.getId());
+            result.add(user);
+        }
+
+        return result;
     }
 }
