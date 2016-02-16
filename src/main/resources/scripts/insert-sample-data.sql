@@ -1,44 +1,44 @@
 -- users
 INSERT INTO users (id, name, email, birthday)
-VALUES (255, 'jhon', 'jhon@mail', '1987-05-05');
+VALUES (1, 'jhon', 'jhon@mail', '1987-05-05');
 -- 10 tickets
 
 INSERT INTO users (id, name, email, birthday)
-VALUES (254, 'jane', 'jane@mail', '1986-10-17');
+VALUES (2, 'jane', 'jane@mail', '1986-10-17');
 -- 3 tickets
 
 -- events
 INSERT INTO events (id, name, base_price, rating)
-VALUES (255, 'Hobbit', '8000.0', 'HIGH');
+VALUES (1, 'Hobbit', '8000.0', 'HIGH');
 -- 2015-06-06T14:00:00.000 -> total 24 tickets
 --                         -> free 23 tickets
 -- 2015-06-07T22:00:00.000 -> total 24 tickets
 --                         -> free 24 tickets
 
 INSERT INTO events (id, name, base_price, rating)
-VALUES (254, 'The Gamer', '5000.0', 'MID');
+VALUES (2, 'The Gamer', '5000.0', 'MID');
 -- 2015-10-17T20:00:00.000 -> total 12 tickets
 --                         -> free 0 tickets
 
--- INSERT INTO events (id, name, base_price, rating)
--- VALUES (253, 'The Gamer II', '7000.0', 'MID'),
---   (252, 'Movie', '9000.0', 'MID'),
---   (251, 'Kung-Fu Panda', '10000.0', 'MID'),
---   (250, 'Another', '12000.0', 'MID'),
---   (249, 'Star Wars: Episode 1', '8000.0', 'MID'),
---   (248, 'Kung-Fu Panda 2', '5000.0', 'MID'),
---   (247, 'Star Wars: Episode 10', '6000.0', 'MID');
+INSERT INTO events (id, name, base_price, rating)
+VALUES (3, 'The Gamer II', '7000.0', 'MID'),
+  (4, 'Movie', '9000.0', 'MID'),
+  (5, 'Kung-Fu Panda', '10000.0', 'MID'),
+  (6, 'Another', '12000.0', 'MID'),
+  (7, 'Star Wars: Episode 1', '8000.0', 'MID'),
+  (8, 'Kung-Fu Panda 2', '5000.0', 'MID'),
+  (9, 'Star Wars: Episode 10', '6000.0', 'MID');
 
 --
 INSERT INTO shows (id, date, auditorium, event_id)
-VALUES (255, '2015-06-06T14:00:00.000', 'auditorium one', 255),
-  (254, '2015-06-07T22:00:00.000', 'auditorium one', 255),
-  (253, '2015-10-17T20:00:00.000', 'auditorium two', 254);
+VALUES (255, '2015-06-06T14:00:00.000', 'auditorium one', 1),
+  (254, '2015-06-07T22:00:00.000', 'auditorium one', 1),
+  (253, '2015-10-17T20:00:00.000', 'auditorium two', 2);
 
 -- tickets for event 'Hobbit'  (base price = 8_000 * 1.2 <- HIGH rating)
 INSERT INTO tickets (id, seat, is_vip, price, discount_price, show_id, user_id)
 VALUES (255, 1, FALSE, 9600, NULL, 255, NULL),
-  (254, 2, FALSE, 9600, 4800, 255, 255), -- 10
+  (254, 2, FALSE, 9600, 4800, 255, 1), -- 10
   (253, 3, FALSE, 9600, NULL, 255, NULL),
   (252, 4, FALSE, 9600, NULL, 255, NULL),
   (251, 5, TRUE, 19200, NULL, 255, NULL),
@@ -90,18 +90,18 @@ VALUES (219, 1, FALSE, 9600, NULL, 254, NULL),
 
 -- tickets for event 'The Gamer'
 INSERT INTO tickets (id, seat, is_vip, price, discount_price, show_id, user_id)
-VALUES (231, 1, FALSE, 5000, 5000, 253, 255), -- 1
-  (230, 2, TRUE, 10000, 9500, 253, 254),
-  (229, 3, FALSE, 5000, 4750, 253, 254),
-  (228, 4, FALSE, 5000, 4750, 253, 254),
-  (227, 5, FALSE, 5000, 5000, 253, 255), -- 2
-  (226, 6, FALSE, 5000, 5000, 253, 255), -- 3
-  (225, 7, FALSE, 5000, 5000, 253, 255), -- 4
-  (224, 8, FALSE, 5000, 5000, 253, 255), -- 5
-  (223, 9, FALSE, 5000, 5000, 253, 255), -- 6
-  (222, 10, FALSE, 5000, 5000, 253, 255), -- 7
-  (221, 11, FALSE, 5000, 5000, 253, 255), -- 8
-  (220, 12, FALSE, 5000, 5000, 253, 255); -- 9
+VALUES (231, 1, FALSE, 5000, 5000, 253, 1), -- 1
+  (230, 2, TRUE, 10000, 9500, 253, 2),
+  (229, 3, FALSE, 5000, 4750, 253, 2),
+  (228, 4, FALSE, 5000, 4750, 253, 2),
+  (227, 5, FALSE, 5000, 5000, 253, 1), -- 2
+  (226, 6, FALSE, 5000, 5000, 253, 1), -- 3
+  (225, 7, FALSE, 5000, 5000, 253, 1), -- 4
+  (224, 8, FALSE, 5000, 5000, 253, 1), -- 5
+  (223, 9, FALSE, 5000, 5000, 253, 1), -- 6
+  (222, 10, FALSE, 5000, 5000, 253, 1), -- 7
+  (221, 11, FALSE, 5000, 5000, 253, 1), -- 8
+  (220, 12, FALSE, 5000, 5000, 253, 1); -- 9
 
 
 -- statistic

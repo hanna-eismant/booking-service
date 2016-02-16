@@ -67,7 +67,6 @@ public class UserServiceImpl implements UserService {
 
         User result = new User(userEntity.getName(), userEntity.getEmail(), userEntity.getBirthday());
         result.setId(userEntity.getId());
-
         return result;
     }
 
@@ -86,7 +85,6 @@ public class UserServiceImpl implements UserService {
 
         User result = new User(userEntity.getName(), userEntity.getEmail(), userEntity.getBirthday());
         result.setId(userEntity.getId());
-
         return result;
     }
 
@@ -105,7 +103,6 @@ public class UserServiceImpl implements UserService {
 
         User result = new User(userEntity.getName(), userEntity.getEmail(), userEntity.getBirthday());
         result.setId(userEntity.getId());
-
         return result;
     }
 

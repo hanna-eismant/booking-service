@@ -63,12 +63,12 @@ public abstract class TestConstants {
         USER_JANE.setEmail("jane@mail");
         USER_JANE.setBirthday(LocalDate.parse("1986-10-17"));
 
-        HOBBIT_EVENT.setId(255L);
+        HOBBIT_EVENT.setId(1L);
         HOBBIT_EVENT.setName("Hobbit");
         HOBBIT_EVENT.setBasePrice(8_000.0);
         HOBBIT_EVENT.setRating(Rating.HIGH);
 
-        GAMER_EVENT.setId(254L);
+        GAMER_EVENT.setId(2L);
         GAMER_EVENT.setName("The Gamer");
         GAMER_EVENT.setBasePrice(5_000.0);
         GAMER_EVENT.setRating(Rating.MID);

@@ -15,7 +15,7 @@ import static java.sql.Types.VARCHAR;
 @Repository("eventDAO")
 public class EventDAOImpl extends AbstractBaseDAOImpl<Event> implements EventDAO {
 
-    private long idCounter = 0;
+    private long idCounter = 10;
 
     private static final String COLUMN_LIST = "";
 

@@ -16,6 +16,14 @@ public class Event extends BaseEntity{
     private Rating rating;
     private List<Show> shows = new ArrayList<>();
 
+    public Event() {
+    }
+
+    public Event(final String _name, final Double _basePrice, final Rating _rating) {
+        name = _name;
+        basePrice = _basePrice;
+        rating = _rating;
+    }
 
     public String getName() {
         return name;

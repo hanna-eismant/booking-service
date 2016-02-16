@@ -1,6 +1,7 @@
 package com.epam.spring.core.events;
 
 import com.epam.spring.core.auditoriums.Auditorium;
+import com.epam.spring.core.shared.DuplicateException;
 import com.epam.spring.core.shared.NotFoundException;
 import com.epam.spring.core.tickets.Ticket;
 import com.epam.spring.core.tickets.TicketService;
@@ -8,7 +9,6 @@ import org.joda.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.inject.Provider;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,57 +16,82 @@ import java.util.List;
 public class EventServiceImpl implements EventService {
 
     @Autowired
-    private EventDAO eventDAO;
+    private EventRepository eventRepository;
 
     @Autowired
     private ShowDAO showDAO;
 
     @Autowired
-    private Provider<Event> eventProvider;
-
-    @Autowired
     private TicketService ticketService;
 
     @Override
-    public Event create(String name, Double basePrice, Rating rating) {
-        Event event = eventProvider.get();
-        event.setName(name);
-        event.setBasePrice(basePrice);
-        event.setRating(rating);
-        event = eventDAO.create(event);
+    public Event create(String name, Double basePrice, Rating rating)
+            throws IllegalArgumentException, DuplicateException {
 
-        return event;
-    }
+        // check event name
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("Event name cannot be empty or 'null'");
+        }
+        if (eventRepository.existsByName(name)) {
+            throw new DuplicateException("Event with name '" + name + "' already exist");
+        }
 
-    @Override
-    public void remove(Event event) {
-        eventDAO.remove(event);
+        // check base price
+        if (basePrice == null || basePrice.equals(0.0)) {
+            throw new IllegalArgumentException("Event base price cannot be zero or 'null'");
+        }
+
+        // check rating
+        if (rating == null) {
+            throw new IllegalArgumentException("Event rating cannot be 'null'");
+        }
+
+        EventEntity eventEntity = new EventEntity(name, basePrice, rating);
+        EventEntity save = eventRepository.save(eventEntity);
+
+        Event result = new Event(eventEntity.getName(), eventEntity.getBasePrice(), eventEntity.getRating());
+        result.setId(save.getId());
+        return result;
     }
 
     @Override
     public Event getById(Long id) throws NotFoundException {
-        Event event = eventDAO.findById(id);
-
-        if (event == null) {
-            throw new NotFoundException("Event doesn't exist");
+        // check id
+        if (id == null) {
+            throw new IllegalArgumentException("Id for search cannot be 'null'");
         }
 
-        List<Show> shows = showDAO.getByEvent(event.getId());
-        event.getShows().addAll(shows);
-        return event;
+        EventEntity eventEntity = eventRepository.findOne(id);
+
+        if (eventEntity == null) {
+            throw new NotFoundException("Event with id '" + id + "' doesn't exist");
+        }
+
+        Event result = new Event(eventEntity.getName(), eventEntity.getBasePrice(), eventEntity.getRating());
+        result.setId(eventEntity.getId());
+        return result;
     }
 
     @Override
     public Show getShow(final Long showId) {
         Show show = showDAO.findById(showId);
-        Event event = eventDAO.findByShow(showId);
-        show.setEvent(event);
+//        Event event = eventDAO.findByShow(showId);
+//        show.setEvent(event);
         return show;
     }
 
     @Override
     public List<Event> getAll() {
-        return eventDAO.findAll();
+        Iterable<EventEntity> allEntities = eventRepository.findAll();
+        List<Event> result = new ArrayList<>();
+
+        for (EventEntity eventEntity : allEntities) {
+            Event event = new Event(eventEntity.getName(), eventEntity.getBasePrice(), eventEntity.getRating());
+            event.setId(eventEntity.getId());
+            result.add(event);
+        }
+
+        return result;
     }
 
     @Override
