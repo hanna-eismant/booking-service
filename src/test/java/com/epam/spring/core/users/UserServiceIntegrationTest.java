@@ -1,6 +1,7 @@
 package com.epam.spring.core.users;
 
 import com.epam.spring.core.AbstractIntegrationTest;
+import com.epam.spring.core.shared.DuplicateException;
 import com.epam.spring.core.shared.NotFoundException;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class UserServiceIntegrationTest extends AbstractIntegrationTest {
     private UserService userService;
 
     @Test
-    public void testRegister() {
+    public void testRegister() throws DuplicateException {
         User user = userService.register(USER_NAME, USER_EMAIL, USER_BIRTHDAY);
         assertNotNull("Registered user cannot be null", user);
         assertNotNull("Registered user should have id", user.getId());
@@ -29,8 +30,8 @@ public class UserServiceIntegrationTest extends AbstractIntegrationTest {
         assertEquals("Registered user has incorrect birthday", user.getBirthday(), USER_BIRTHDAY);
     }
 
-    @Test(expected = Exception.class)
-    public void testRegisterDuplicate() {
+    @Test(expected = DuplicateException.class)
+    public void testRegisterDuplicate() throws DuplicateException {
         userService.register(USER_JANE.getName(), USER_JANE.getEmail(), USER_JANE.getBirthday());
     }
 
@@ -42,7 +43,7 @@ public class UserServiceIntegrationTest extends AbstractIntegrationTest {
     }
 
     @Test
-    public void testGetByIdRegistered() {
+    public void testGetByIdRegistered() throws NotFoundException {
         User userTest = userService.getById(USER_JANE.getId());
         assertNotNull("Found user cannot be null", userTest);
         assertEquals("Found user has incorrect id", USER_JANE.getId(), userTest.getId());
@@ -52,7 +53,7 @@ public class UserServiceIntegrationTest extends AbstractIntegrationTest {
     }
 
     @Test
-    public void testGetByEmailRegistered() {
+    public void testGetByEmailRegistered() throws NotFoundException {
         User userTest = userService.getByEmail(USER_JANE.getEmail());
         assertNotNull("Found user cannot be null", userTest);
         assertEquals("Found user has incorrect id", USER_JANE.getId(), userTest.getId());
@@ -62,7 +63,7 @@ public class UserServiceIntegrationTest extends AbstractIntegrationTest {
     }
 
     @Test
-    public void testGetByNameRegistered() {
+    public void testGetByNameRegistered() throws NotFoundException {
         User userTest = userService.getByName(USER_JANE.getName());
         assertNotNull("Found user cannot be null", userTest);
         assertEquals("Found user has incorrect id", USER_JANE.getId(), userTest.getId());
@@ -72,17 +73,17 @@ public class UserServiceIntegrationTest extends AbstractIntegrationTest {
     }
 
     @Test(expected = NotFoundException.class)
-    public void testGetByIdUnregistered() {
-        userService.getById(1L);
+    public void testGetByIdUnregistered() throws NotFoundException {
+        userService.getById(1_000L);
     }
 
     @Test(expected = NotFoundException.class)
-    public void testGetByEmailUnregistered() {
-        userService.getById(1L);
+    public void testGetByEmailUnregistered() throws NotFoundException {
+        userService.getByEmail("qqqqqqq");
     }
 
     @Test(expected = NotFoundException.class)
-    public void testGetByNameUnregistered() {
-        userService.getById(1L);
+    public void testGetByNameUnregistered() throws NotFoundException {
+        userService.getByName("qqqqqqqq");
     }
 }

@@ -6,6 +6,7 @@ import org.joda.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -14,7 +15,7 @@ import javax.persistence.Table;
 public class UserEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false, unique = true)
@@ -26,6 +27,15 @@ public class UserEntity {
     @Column(nullable = false)
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDateAsString")
     private LocalDate birthday;
+
+    public UserEntity() {
+    }
+
+    public UserEntity(final String _name, final String _email, final LocalDate _birthday) {
+        name = _name;
+        email = _email;
+        birthday = _birthday;
+    }
 
     public Long getId() {
         return id;

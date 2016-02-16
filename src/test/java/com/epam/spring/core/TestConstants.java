@@ -53,12 +53,12 @@ public abstract class TestConstants {
     public static int GAMER_FREE_TICKETS = 0;
 
     static {
-        USER_JHON.setId(255L);
+        USER_JHON.setId(1L);
         USER_JHON.setName("jhon");
         USER_JHON.setEmail("jhon@mail");
         USER_JHON.setBirthday(LocalDate.parse("1987-05-05"));
 
-        USER_JANE.setId(254L);
+        USER_JANE.setId(2L);
         USER_JANE.setName("jane");
         USER_JANE.setEmail("jane@mail");
         USER_JANE.setBirthday(LocalDate.parse("1986-10-17"));
