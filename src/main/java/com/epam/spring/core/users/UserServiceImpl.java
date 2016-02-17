@@ -1,12 +1,13 @@
 package com.epam.spring.core.users;
 
 import com.epam.spring.core.shared.DuplicateException;
+import com.epam.spring.core.shared.Mapper;
 import com.epam.spring.core.shared.NotFoundException;
+import ma.glasnost.orika.MapperFacade;
 import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service("userService")
@@ -14,6 +15,8 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    private MapperFacade mapper = Mapper.getMapper();
 
     @Override
     public User register(String name, String email, LocalDate birthday)
@@ -47,9 +50,7 @@ public class UserServiceImpl implements UserService {
         UserEntity userEntity = new UserEntity(name, email, birthday);
         UserEntity save = userRepository.save(userEntity);
 
-        User result = new User(save.getName(), save.getEmail(), save.getBirthday());
-        result.setId(save.getId());
-        return result;
+        return mapper.map(save, User.class);
     }
 
     @Override
@@ -65,9 +66,7 @@ public class UserServiceImpl implements UserService {
             throw new NotFoundException("User with id '" + id + "' doesn't exist");
         }
 
-        User result = new User(userEntity.getName(), userEntity.getEmail(), userEntity.getBirthday());
-        result.setId(userEntity.getId());
-        return result;
+        return mapper.map(userEntity, User.class);
     }
 
     @Override
@@ -101,22 +100,12 @@ public class UserServiceImpl implements UserService {
             throw new NotFoundException("User with name '" + name + "' doesn't exist");
         }
 
-        User result = new User(userEntity.getName(), userEntity.getEmail(), userEntity.getBirthday());
-        result.setId(userEntity.getId());
-        return result;
+        return mapper.map(userEntity, User.class);
     }
 
     @Override
     public List<User> getAll() {
         Iterable<UserEntity> allEntities = userRepository.findAll();
-        List<User> result = new ArrayList<>();
-
-        for (UserEntity userEntity : allEntities) {
-            User user = new User(userEntity.getName(), userEntity.getEmail(), userEntity.getBirthday());
-            user.setId(userEntity.getId());
-            result.add(user);
-        }
-
-        return result;
+        return mapper.mapAsList(allEntities, User.class);
     }
 }

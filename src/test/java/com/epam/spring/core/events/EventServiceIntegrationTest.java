@@ -60,7 +60,6 @@ public class EventServiceIntegrationTest extends AbstractIntegrationTest {
     @Test
     public void testGetShowById() throws NotFoundException {
         Show show = eventService.getShowById(1L);
-
         assertNotNull(show);
     }
 
