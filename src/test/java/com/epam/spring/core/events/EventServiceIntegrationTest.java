@@ -11,6 +11,7 @@ import java.util.List;
 import static com.epam.spring.core.TestConstants.BASE_PRICE;
 import static com.epam.spring.core.TestConstants.EVENT_NAME;
 import static com.epam.spring.core.TestConstants.HOBBIT_EVENT;
+import static com.epam.spring.core.TestConstants.HOBBIT_SHOW_ONE;
 import static com.epam.spring.core.TestConstants.RATING;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -59,8 +60,14 @@ public class EventServiceIntegrationTest extends AbstractIntegrationTest {
 
     @Test
     public void testGetShowById() throws NotFoundException {
-        Show show = eventService.getShowById(1L);
-        assertNotNull(show);
+        Show show = eventService.getShowById(HOBBIT_SHOW_ONE.getId());
+        assertNotNull("Found show cannot be null", show);
+        assertEquals("Found show has incorrect id", HOBBIT_SHOW_ONE.getId(), show.getId());
+        assertEquals("Found show has incorrect date", HOBBIT_SHOW_ONE.getDate(), show.getDate());
+        assertEquals("Found show has incorrect auditorium", HOBBIT_SHOW_ONE.getAuditorium(), show.getAuditorium());
+        assertEquals("Found show has incorrect event", HOBBIT_SHOW_ONE.getEvent(), show.getEvent());
+        assertNotNull("Found show has 'null' tickets list", show.getTickets());
+        assertEquals("Found show has incorrect total tickets count", HOBBIT_SHOW_ONE.getTickets().size(), show.getTickets().size());
+        assertEquals("Found show has incorrect free tickets count", HOBBIT_SHOW_ONE.getFreeTicketCount(), show.getFreeTicketCount());
     }
-
 }
