@@ -33,6 +33,7 @@
         <itext.version>5.5.8</itext.version>
         <orika.version>1.4.6</orika.version>
         <javassist.version>3.19.0-GA</javassist.version>
+        <guava.version>19.0</guava.version>
 
         <!-- Tests -->
         <junit.version>4.12</junit.version>
@@ -170,6 +171,13 @@
             <artifactId>javassist</artifactId>
             <version>${javassist.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
+
 
         <!-- Database -->
 

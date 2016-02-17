@@ -1,6 +1,7 @@
 package com.epam.spring.core.users;
 
 import com.epam.spring.core.shared.BaseEntity;
+import com.google.common.base.Objects;
 import org.joda.time.LocalDate;
 
 public class User extends BaseEntity {
@@ -40,5 +41,21 @@ public class User extends BaseEntity {
 
     public void setBirthday(final LocalDate _birthday) {
         birthday = _birthday;
+    }
+
+    @Override
+    public boolean equals(final Object _o) {
+        if (this == _o) return true;
+        if (_o == null || getClass() != _o.getClass()) return false;
+        User user = (User) _o;
+        return Objects.equal(getId(), user.getId()) &&
+                Objects.equal(getName(), user.getName()) &&
+                Objects.equal(getEmail(), user.getEmail()) &&
+                Objects.equal(getBirthday(), user.getBirthday());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(getId(), getName(), getEmail(), getBirthday());
     }
 }

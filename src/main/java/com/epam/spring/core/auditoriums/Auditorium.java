@@ -1,5 +1,7 @@
 package com.epam.spring.core.auditoriums;
 
+import com.google.common.base.Objects;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,5 +39,20 @@ public class Auditorium {
 
     public List<Integer> getVipSeats() {
         return vipSeats;
+    }
+
+    @Override
+    public boolean equals(final Object _o) {
+        if (this == _o) return true;
+        if (_o == null || getClass() != _o.getClass()) return false;
+        Auditorium that = (Auditorium) _o;
+        return Objects.equal(getName(), that.getName()) &&
+                Objects.equal(getSeats(), that.getSeats()) &&
+                Objects.equal(getVipSeats(), that.getVipSeats());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(getName(), getSeats(), getVipSeats());
     }
 }

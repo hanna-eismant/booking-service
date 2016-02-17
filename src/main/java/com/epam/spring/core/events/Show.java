@@ -3,6 +3,7 @@ package com.epam.spring.core.events;
 import com.epam.spring.core.auditoriums.Auditorium;
 import com.epam.spring.core.shared.BaseEntity;
 import com.epam.spring.core.tickets.Ticket;
+import com.google.common.base.Objects;
 import org.joda.time.LocalDateTime;
 
 import java.util.ArrayList;
@@ -59,5 +60,23 @@ public class Show extends BaseEntity {
 
     public void setFreeTicketCount(final int _freeTicketCount) {
         freeTicketCount = _freeTicketCount;
+    }
+
+    @Override
+    public boolean equals(final Object _o) {
+        if (this == _o) return true;
+        if (_o == null || getClass() != _o.getClass()) return false;
+        Show show = (Show) _o;
+        return Objects.equal(getId(), show.getId()) &&
+                getFreeTicketCount() == show.getFreeTicketCount() &&
+                Objects.equal(getEvent(), show.getEvent()) &&
+                Objects.equal(getDate(), show.getDate()) &&
+                Objects.equal(getAuditorium(), show.getAuditorium()) &&
+                Objects.equal(getTickets(), show.getTickets());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(getId(), getEvent(), getDate(), getAuditorium(), getTickets(), getFreeTicketCount());
     }
 }

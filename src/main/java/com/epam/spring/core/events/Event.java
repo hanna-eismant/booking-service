@@ -1,6 +1,7 @@
 package com.epam.spring.core.events;
 
 import com.epam.spring.core.shared.BaseEntity;
+import com.google.common.base.Objects;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -9,7 +10,7 @@ import java.util.List;
 
 @Component
 @Scope("prototype")
-public class Event extends BaseEntity{
+public class Event extends BaseEntity {
 
     private String name;
     private Double basePrice;
@@ -51,5 +52,22 @@ public class Event extends BaseEntity{
 
     public List<Show> getShows() {
         return shows;
+    }
+
+    @Override
+    public boolean equals(final Object _o) {
+        if (this == _o) return true;
+        if (_o == null || getClass() != _o.getClass()) return false;
+        Event event = (Event) _o;
+        return Objects.equal(getId(), event.getId()) &&
+                Objects.equal(getName(), event.getName()) &&
+                Objects.equal(getBasePrice(), event.getBasePrice()) &&
+                getRating() == event.getRating() &&
+                Objects.equal(getShows(), event.getShows());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(getId(), getName(), getBasePrice(), getRating(), getShows());
     }
 }
