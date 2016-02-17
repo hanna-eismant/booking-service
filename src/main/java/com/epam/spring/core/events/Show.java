@@ -16,6 +16,15 @@ public class Show extends BaseEntity {
     private List<Ticket> tickets = new ArrayList<>();
     private int freeTicketCount;
 
+    public Show() {
+    }
+
+    public Show(final Event _event, final LocalDateTime _date, final int _freeTicketCount) {
+        event = _event;
+        date = _date;
+        freeTicketCount = _freeTicketCount;
+    }
+
     public Event getEvent() {
         return event;
     }

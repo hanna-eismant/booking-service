@@ -1,6 +1,7 @@
 package com.epam.spring.core.events;
 
 import com.epam.spring.core.auditoriums.Auditorium;
+import com.epam.spring.core.auditoriums.AuditoriumService;
 import com.epam.spring.core.shared.DuplicateException;
 import com.epam.spring.core.shared.NotFoundException;
 import com.epam.spring.core.tickets.Ticket;
@@ -19,7 +20,10 @@ public class EventServiceImpl implements EventService {
     private EventRepository eventRepository;
 
     @Autowired
-    private ShowDAO showDAO;
+    private ShowRepository showRepository;
+
+    @Autowired
+    private AuditoriumService auditoriumService;
 
     @Autowired
     private TicketService ticketService;
@@ -67,16 +71,31 @@ public class EventServiceImpl implements EventService {
             throw new NotFoundException("Event with id '" + id + "' doesn't exist");
         }
 
+        // todo: map show list
+
         Event result = new Event(eventEntity.getName(), eventEntity.getBasePrice(), eventEntity.getRating());
         result.setId(eventEntity.getId());
         return result;
     }
 
     @Override
-    public Show getShow(final Long showId) {
-        Show show = showDAO.findById(showId);
-//        Event event = eventDAO.findByShow(showId);
-//        show.setEvent(event);
+    public Show getShowById(final Long showId) throws NotFoundException {
+        // check id
+        if (showId == null) {
+            throw new IllegalArgumentException("Id for search cannot be 'null'");
+        }
+
+        ShowEntity showEntity = showRepository.findOne(showId);
+
+        if (showEntity == null) {
+            throw new NotFoundException("Show with id '" + showId + "' doesn't exist");
+        }
+
+        Event event = new Event(showEntity.getEvent().getName(), showEntity.getEvent().getBasePrice(), showEntity.getEvent().getRating());
+        event.setId(showEntity.getEvent().getId());
+        Show show = new Show(event, showEntity.getDate(), 0);
+        show.setAuditorium(auditoriumService.getAuditorium(showEntity.getAuditorium()));
+        show.setId(showEntity.getId());
         return show;
     }
 

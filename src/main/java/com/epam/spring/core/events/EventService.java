@@ -42,5 +42,5 @@ public interface EventService {
 
     List<Ticket> assignAuditorium(Event event, Auditorium auditorium, LocalDateTime date);
 
-    Show getShow(Long showId);
+    Show getShowById(Long showId) throws NotFoundException;
 }

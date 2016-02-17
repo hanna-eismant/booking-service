@@ -109,7 +109,7 @@ public class BookingFacadeImpl implements BookingFacade {
     @Override
     public Map<String, Object> getEventTickets(final Long showId) throws NotFoundException {
         Map<String, Object> result = new HashMap<>();
-        Show show = eventService.getShow(showId);
+        Show show = eventService.getShowById(showId);
         List<Ticket> tickets = ticketService.getForShow(showId);
         result.put("tickets", tickets);
         result.put("show", show);

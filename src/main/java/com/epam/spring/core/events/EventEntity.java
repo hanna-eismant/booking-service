@@ -4,10 +4,14 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "events")
@@ -27,8 +31,8 @@ public class EventEntity {
     @Enumerated(value = EnumType.STRING)
     private Rating rating;
 
-//    @OneToMany(targetEntity = )
-//    private List<Show> shows = new ArrayList<>();
+    @OneToMany(targetEntity = ShowEntity.class, mappedBy = "event", fetch = FetchType.EAGER)
+    private List<ShowEntity> shows = new ArrayList<>();
 
     public EventEntity() {
     }
@@ -71,7 +75,7 @@ public class EventEntity {
         rating = _rating;
     }
 
-//    public List<Show> getShows() {
-//        return shows;
-//    }
+    public List<ShowEntity> getShows() {
+        return shows;
+    }
 }

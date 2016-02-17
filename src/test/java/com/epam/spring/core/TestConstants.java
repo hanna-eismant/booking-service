@@ -2,6 +2,7 @@ package com.epam.spring.core;
 
 import com.epam.spring.core.events.Event;
 import com.epam.spring.core.events.Rating;
+import com.epam.spring.core.events.Show;
 import com.epam.spring.core.tickets.Ticket;
 import com.epam.spring.core.users.User;
 import org.joda.time.LocalDate;
@@ -32,11 +33,13 @@ public abstract class TestConstants {
     public static User USER_JHON = new User();
     public static User USER_JANE = new User();
 
-    public static int JHON_BOOKED_COUNT = 10;
-    public static int JANE_BOOKED_COUNT = 3;
+//    public static int JHON_BOOKED_COUNT = 10;
+//    public static int JANE_BOOKED_COUNT = 3;
 
     public static Event HOBBIT_EVENT = new Event();
     public static Event GAMER_EVENT = new Event();
+
+    public static Show HOBBIT_SHOW_ONE = new Show();
 
     public static Ticket TICKET = new Ticket();
 
@@ -46,8 +49,8 @@ public abstract class TestConstants {
 
     public static int HOBBIT_TOTAL_TICKETS_ONE = 24;
     public static int HOBBIT_FREE_TICKETS_ONE = 23;
-    public static int HOBBIT_TOTAL_TICKETS_TWO = 24;
-    public static int HOBBIT_FREE_TICKETS_TWO = 24;
+//    public static int HOBBIT_TOTAL_TICKETS_TWO = 24;
+//    public static int HOBBIT_FREE_TICKETS_TWO = 24;
 
     public static int GAMER_TOTAL_TICKETS = 12;
     public static int GAMER_FREE_TICKETS = 0;
@@ -67,6 +70,12 @@ public abstract class TestConstants {
         HOBBIT_EVENT.setName("Hobbit");
         HOBBIT_EVENT.setBasePrice(8_000.0);
         HOBBIT_EVENT.setRating(Rating.HIGH);
+
+        HOBBIT_SHOW_ONE.setId(1L);
+        HOBBIT_SHOW_ONE.setEvent(HOBBIT_EVENT);
+        HOBBIT_SHOW_ONE.setDate(HOBBIT_TIME_ONE);
+        HOBBIT_SHOW_ONE.setAuditorium(null);
+        HOBBIT_SHOW_ONE.setFreeTicketCount(HOBBIT_FREE_TICKETS_ONE);
 
         GAMER_EVENT.setId(2L);
         GAMER_EVENT.setName("The Gamer");
