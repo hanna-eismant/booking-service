@@ -29,11 +29,16 @@ VALUES (3, 'The Gamer II', '7000.0', 'MID'),
   (8, 'Kung-Fu Panda 2', '5000.0', 'MID'),
   (9, 'Star Wars: Episode 10', '6000.0', 'MID');
 
+
+INSERT INTO auditoriums (id, name, seats, vip_seats)
+    VALUES(1, 'Big party hall', 24, ARRAY[4,5,6,7,8,9,10]),
+    (2, 'Family hall', 12, ARRAY[2]);
+
 --
-INSERT INTO shows (id, date, auditorium, event_id)
-VALUES (1, '2015-06-06T14:00:00.000', 'auditorium one', 1),
-  (2, '2015-06-07T22:00:00.000', 'auditorium one', 1),
-  (3, '2015-10-17T20:00:00.000', 'auditorium two', 2);
+INSERT INTO shows (id, date, auditorium_id, event_id)
+VALUES (1, '2015-06-06T14:00:00.000', 1, 1),
+  (2, '2015-06-07T22:00:00.000', 1, 1),
+  (3, '2015-10-17T20:00:00.000', 2, 2);
 
 -- tickets for event 'Hobbit'  (base price = 8_000 * 1.2 <- HIGH rating)
 INSERT INTO tickets (id, seat, is_vip, price, discount_price, show_id, user_id)

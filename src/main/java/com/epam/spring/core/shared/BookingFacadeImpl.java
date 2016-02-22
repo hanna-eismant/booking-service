@@ -98,7 +98,7 @@ public class BookingFacadeImpl implements BookingFacade {
             throw new NotFoundException("User doesn't exist");
         }
 
-        List<Ticket> tickets = ticketService.getBookedTickets(user);
+        List<Ticket> tickets = ticketService.getBookedTickets(userName);
 
         result.put("user", user);
         result.put("tickets", tickets);

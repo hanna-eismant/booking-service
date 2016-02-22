@@ -3,7 +3,9 @@ package com.epam.spring.core.tickets;
 import com.epam.spring.core.discounts.DiscountService;
 import com.epam.spring.core.events.Event;
 import com.epam.spring.core.events.Rating;
+import com.epam.spring.core.shared.Mapper;
 import com.epam.spring.core.users.User;
+import ma.glasnost.orika.MapperFacade;
 import org.joda.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,8 +15,10 @@ import java.util.List;
 @Service("ticketService")
 public class TicketServiceImpl implements TicketService {
 
+    private MapperFacade mapper = Mapper.getMapper();
+
     @Autowired
-    private TicketDAO ticketDAO;
+    private TicketRepository ticketRepository;
 
     @Autowired
     private DiscountService discountService;
@@ -40,18 +44,20 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public List<Ticket> getBookedTickets(User user) {
-        return ticketDAO.findByUser(user);
+    public List<Ticket> getBookedTickets(String userName) {
+        List<TicketEntity> ticketEntities = ticketRepository.findByUser(userName);
+        return mapper.mapAsList(ticketEntities, Ticket.class);
     }
 
     @Override
     public List<Ticket> getForShow(final Long showId) {
-        return ticketDAO.findByShow(showId);
+        List<TicketEntity> ticketEntities = ticketRepository.findByShow(showId);
+        return mapper.mapAsList(ticketEntities, Ticket.class);
     }
 
     @Override
     public int getBookedTicketsCount(User user) {
         // todo: create special request to get count
-        return getBookedTickets(user).size();
+        return 0;//getBookedTickets(user).size();
     }
 }

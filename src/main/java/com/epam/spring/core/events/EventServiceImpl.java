@@ -18,13 +18,13 @@ import java.util.List;
 @Service("eventService")
 public class EventServiceImpl implements EventService {
 
+    private MapperFacade mapper = Mapper.getMapper();
+
     @Autowired
     private EventRepository eventRepository;
 
     @Autowired
     private ShowRepository showRepository;
-
-    private MapperFacade mapper = Mapper.getMapper();
 
     @Autowired
     private AuditoriumService auditoriumService;
@@ -73,6 +73,11 @@ public class EventServiceImpl implements EventService {
             throw new NotFoundException("Event with id '" + id + "' doesn't exist");
         }
 
+        for (ShowEntity showEntity : eventEntity.getShows()) {
+            int freeTickets = showRepository.countFreeTickets(showEntity.getId());
+            showEntity.setFreeTicketCount(freeTickets);
+        }
+
         return mapper.map(eventEntity, Event.class);
     }
 
@@ -89,14 +94,10 @@ public class EventServiceImpl implements EventService {
             throw new NotFoundException("Show with id '" + showId + "' doesn't exist");
         }
 
-        return mapper.map(showEntity, Show.class);
+        int freeTickets = showRepository.countFreeTickets(showEntity.getId());
+        showEntity.setFreeTicketCount(freeTickets);
 
-//        Event event = new Event(showEntity.getEvent().getName(), showEntity.getEvent().getBasePrice(), showEntity.getEvent().getRating());
-//        event.setId(showEntity.getEvent().getId());
-//        Show show = new Show(event, showEntity.getDate(), 0);
-//        show.setAuditorium(auditoriumService.getAuditorium(showEntity.getAuditorium()));
-//        show.setId(showEntity.getId());
-//        return show;
+        return mapper.map(showEntity, Show.class);
     }
 
     @Override

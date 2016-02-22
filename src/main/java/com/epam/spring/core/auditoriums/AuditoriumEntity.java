@@ -2,25 +2,33 @@ package com.epam.spring.core.auditoriums;
 
 import com.google.common.base.Objects;
 
+import javax.persistence.Column;
+import javax.persistence.Convert;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Auditorium {
+@Entity
+@Table(name = "auditoriums")
+public class AuditoriumEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false)
     private Integer seats;
+
+    @Column(name = "vip_seats", columnDefinition = "INTEGER ARRAY")
+    @Convert(converter = com.epam.spring.core.shared.ListToArrayConveter.class)
     private List<Integer> vipSeats = new ArrayList<>();
-
-    public Auditorium(final String _name, final Integer _seats, final List<Integer> _vipSeats) {
-        name = _name;
-        seats = _seats;
-        vipSeats = _vipSeats;
-    }
-
-    public Auditorium() {
-
-    }
 
     public Long getId() {
         return id;
@@ -50,12 +58,16 @@ public class Auditorium {
         return vipSeats;
     }
 
+    public void setVipSeats(final List<Integer> _vipSeats) {
+        vipSeats = _vipSeats;
+    }
+
     @Override
     public boolean equals(final Object _o) {
         if (this == _o) return true;
         if (_o == null || getClass() != _o.getClass()) return false;
-        Auditorium that = (Auditorium) _o;
-        return  Objects.equal(getId(), that.getId()) &&
+        AuditoriumEntity that = (AuditoriumEntity) _o;
+        return Objects.equal(getId(), that.getId()) &&
                 Objects.equal(getName(), that.getName()) &&
                 Objects.equal(getSeats(), that.getSeats());
     }

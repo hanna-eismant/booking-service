@@ -62,12 +62,11 @@ public class Event extends BaseEntity {
         return Objects.equal(getId(), event.getId()) &&
                 Objects.equal(getName(), event.getName()) &&
                 Objects.equal(getBasePrice(), event.getBasePrice()) &&
-                getRating() == event.getRating() &&
-                Objects.equal(getShows(), event.getShows());
+                getRating() == event.getRating();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(getId(), getName(), getBasePrice(), getRating(), getShows());
+        return Objects.hashCode(getId(), getName(), getBasePrice(), getRating());
     }
 }

@@ -67,16 +67,15 @@ public class Show extends BaseEntity {
         if (this == _o) return true;
         if (_o == null || getClass() != _o.getClass()) return false;
         Show show = (Show) _o;
-        return Objects.equal(getId(), show.getId()) &&
-                getFreeTicketCount() == show.getFreeTicketCount() &&
+        return getFreeTicketCount() == show.getFreeTicketCount() &&
+                Objects.equal(getId(), show.getId()) &&
                 Objects.equal(getEvent(), show.getEvent()) &&
                 Objects.equal(getDate(), show.getDate()) &&
-                Objects.equal(getAuditorium(), show.getAuditorium()) &&
-                Objects.equal(getTickets(), show.getTickets());
+                Objects.equal(getAuditorium(), show.getAuditorium());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(getId(), getEvent(), getDate(), getAuditorium(), getTickets(), getFreeTicketCount());
+        return Objects.hashCode(getId(), getEvent(), getDate(), getAuditorium(), getFreeTicketCount());
     }
 }

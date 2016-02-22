@@ -2,7 +2,6 @@ package com.epam.spring.core.booking;
 
 import com.epam.spring.core.events.Event;
 import com.epam.spring.core.tickets.Ticket;
-import com.epam.spring.core.tickets.TicketDAO;
 import com.epam.spring.core.tickets.TicketService;
 import com.epam.spring.core.users.User;
 import org.joda.time.LocalDateTime;
@@ -18,17 +17,13 @@ public class BookingServiceImpl implements BookingService {
     @Autowired
     private TicketService ticketService;
 
-    @Autowired
-    private TicketDAO ticketDAO;
-
-
     @Override
     public Ticket bookTicket(User user, Ticket ticket) {
 //        todo: change after refactoring data model
 
 //        ticket.setUser(user);
 //        ticket.setDiscountPrice(ticketService.getTicketPrice(ticket.event, ticket.date, ticket.getSeat(), ticket.isVip(), user));
-        return ticketDAO.update(ticket);
+        return null;//ticketDAO.update(ticket);
     }
 
     @Override

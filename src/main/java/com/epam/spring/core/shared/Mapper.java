@@ -1,5 +1,7 @@
 package com.epam.spring.core.shared;
 
+import com.epam.spring.core.auditoriums.Auditorium;
+import com.epam.spring.core.auditoriums.AuditoriumEntity;
 import com.epam.spring.core.events.Event;
 import com.epam.spring.core.events.EventEntity;
 import com.epam.spring.core.events.Show;
@@ -30,6 +32,10 @@ public class Mapper {
                 .register();
 
         mapperFactory.classMap(ShowEntity.class, Show.class)
+                .byDefault()
+                .register();
+
+        mapperFactory.classMap(AuditoriumEntity.class, Auditorium.class)
                 .byDefault()
                 .register();
     }

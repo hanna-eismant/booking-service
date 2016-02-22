@@ -25,7 +25,7 @@
         <td>$show.date.toString("MM/dd/yyyy HH:mm")</td>
         <td>$show.auditorium.name</td>
         <td>
-            $show.freeTicketCount form $show.auditorium.seats
+            $show.freeTicketCount form $show.tickets.size()
           (<a href="/tickets/$show.id/event_tickets.pdf">more information</a>)
         </td>
         <td>

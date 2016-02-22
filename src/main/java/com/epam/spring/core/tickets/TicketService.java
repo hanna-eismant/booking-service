@@ -11,17 +11,22 @@ public interface TicketService {
     Double getTicketPrice(Event event, LocalDateTime date, Integer seat, boolean isVip, User user);
 
     /**
-     * Find all booked tickets by user.
+     * Find all booked tickets by user's name.
      *
-     * @param user user for search.
+     * @param userName user's name for search.
      * @return list of all booked tickets by user. If user has no booked tickets then return empty list.
      */
-    List<Ticket> getBookedTickets(User user);
+    List<Ticket> getBookedTickets(String userName);
 
     /**
-     * Calculate how many tickets has booked specified user.
+     * Calculate how many tickets has booked by specified user.
      */
     int getBookedTicketsCount(User user);
 
+    /**
+     *
+     * @param showId
+     * @return
+     */
     List<Ticket> getForShow(Long showId);
 }

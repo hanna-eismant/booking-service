@@ -1,5 +1,7 @@
 package com.epam.spring.core.events;
 
+import com.google.common.base.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -10,8 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "events")
@@ -32,7 +34,7 @@ public class EventEntity {
     private Rating rating;
 
     @OneToMany(targetEntity = ShowEntity.class, mappedBy = "event", fetch = FetchType.EAGER)
-    private List<ShowEntity> shows = new ArrayList<>();
+    private Set<ShowEntity> shows = new LinkedHashSet<>();
 
     public EventEntity() {
     }
@@ -75,7 +77,23 @@ public class EventEntity {
         rating = _rating;
     }
 
-    public List<ShowEntity> getShows() {
+    public Set<ShowEntity> getShows() {
         return shows;
+    }
+
+    @Override
+    public boolean equals(final Object _o) {
+        if (this == _o) return true;
+        if (_o == null || getClass() != _o.getClass()) return false;
+        EventEntity that = (EventEntity) _o;
+        return Objects.equal(getId(), that.getId()) &&
+                Objects.equal(getName(), that.getName()) &&
+                Objects.equal(getBasePrice(), that.getBasePrice()) &&
+                getRating() == that.getRating();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(getId(), getName(), getBasePrice(), getRating());
     }
 }

@@ -1,31 +1,29 @@
 package com.epam.spring.core.auditoriums;
 
-import java.util.ArrayList;
+import com.epam.spring.core.shared.Mapper;
+import ma.glasnost.orika.MapperFacade;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
+@Service("auditoriumService")
 public class AuditoriumServiceImpl implements AuditoriumService {
 
-    private List<Auditorium> auditoriums = new ArrayList<>();
+    private MapperFacade mapper = Mapper.getMapper();
 
-    public AuditoriumServiceImpl(List<Auditorium> auditoriums) {
-        this.auditoriums = auditoriums;
-    }
+    @Autowired
+    private AuditoriumRepository auditoriumRepository;
 
     @Override
     public List<Auditorium> getAuditoriums() {
-        return auditoriums;
+        Iterable<AuditoriumEntity> all = auditoriumRepository.findAll();
+        return mapper.mapAsList(all, Auditorium.class);
     }
 
     @Override
     public Auditorium getAuditorium(final String name) {
-        Auditorium  res = null;
-
-        for (Auditorium auditorium : auditoriums) {
-            if (name.equals(auditorium.getName())) {
-                res = auditorium;
-            }
-        }
-
-        return res;
+        AuditoriumEntity byName = auditoriumRepository.findByName(name);
+        return mapper.map(byName, Auditorium.class);
     }
 }

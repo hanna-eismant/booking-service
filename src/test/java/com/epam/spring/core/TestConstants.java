@@ -1,5 +1,6 @@
 package com.epam.spring.core;
 
+import com.epam.spring.core.auditoriums.Auditorium;
 import com.epam.spring.core.events.Event;
 import com.epam.spring.core.events.Rating;
 import com.epam.spring.core.events.Show;
@@ -8,23 +9,20 @@ import com.epam.spring.core.users.User;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 public abstract class TestConstants {
     // ********
     // data from test properties files
     // ********
 
-    public static String AUDITORIUM_ONE_NAME = "auditorium test one";
-    public static Integer AUDITORIUM_ONE_SEATS = 24;
-    public static List<Integer> AUDITORIUM_ONE_VIPSEATS = new ArrayList<>(Arrays.asList(4, 5, 6, 7, 8, 9, 10));
-
-    public static String AUDITORIUM_TWO_NAME = "auditorium test two";
-    public static Integer AUDITORIUM_TWO_SEATS = 12;
-    public static List<Integer> AUDITORIUM_TWO_VIPSEATS = new ArrayList<>(Collections.singletonList(2));
+//    public static String AUDITORIUM_ONE_NAME = "auditorium test one";
+//    public static Integer AUDITORIUM_ONE_SEATS = 24;
+//    public static List<Integer> AUDITORIUM_ONE_VIPSEATS = new ArrayList<>(Arrays.asList(4, 5, 6, 7, 8, 9, 10));
+//
+//    public static String AUDITORIUM_TWO_NAME = "auditorium test two";
+//    public static Integer AUDITORIUM_TWO_SEATS = 12;
+//    public static List<Integer> AUDITORIUM_TWO_VIPSEATS = new ArrayList<>(Collections.singletonList(2));
 
 
     // ********
@@ -40,6 +38,8 @@ public abstract class TestConstants {
     public static Event GAMER_EVENT = new Event();
 
     public static Show HOBBIT_SHOW_ONE = new Show();
+
+    public static Auditorium AUDITORIUM_ONE = new Auditorium();
 
     public static Ticket TICKET = new Ticket();
 
@@ -71,10 +71,15 @@ public abstract class TestConstants {
         HOBBIT_EVENT.setBasePrice(8_000.0);
         HOBBIT_EVENT.setRating(Rating.HIGH);
 
+        AUDITORIUM_ONE.setId(1L);
+        AUDITORIUM_ONE.setName("Big party hall");
+        AUDITORIUM_ONE.setSeats(24);
+        AUDITORIUM_ONE.getVipSeats().addAll(Arrays.asList(4, 5, 6, 7, 8, 9, 10));
+
         HOBBIT_SHOW_ONE.setId(1L);
         HOBBIT_SHOW_ONE.setEvent(HOBBIT_EVENT);
         HOBBIT_SHOW_ONE.setDate(HOBBIT_TIME_ONE);
-        HOBBIT_SHOW_ONE.setAuditorium(null);
+        HOBBIT_SHOW_ONE.setAuditorium(AUDITORIUM_ONE);
         HOBBIT_SHOW_ONE.setFreeTicketCount(HOBBIT_FREE_TICKETS_ONE);
 
         GAMER_EVENT.setId(2L);

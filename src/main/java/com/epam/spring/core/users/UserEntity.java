@@ -1,5 +1,6 @@
 package com.epam.spring.core.users;
 
+import com.google.common.base.Objects;
 import org.hibernate.annotations.Type;
 import org.joda.time.LocalDate;
 
@@ -67,5 +68,21 @@ public class UserEntity {
 
     public void setBirthday(final LocalDate _birthday) {
         birthday = _birthday;
+    }
+
+    @Override
+    public boolean equals(final Object _o) {
+        if (this == _o) return true;
+        if (_o == null || getClass() != _o.getClass()) return false;
+        UserEntity that = (UserEntity) _o;
+        return Objects.equal(getId(), that.getId()) &&
+                Objects.equal(getName(), that.getName()) &&
+                Objects.equal(getEmail(), that.getEmail()) &&
+                Objects.equal(getBirthday(), that.getBirthday());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(getId(), getName(), getEmail(), getBirthday());
     }
 }
