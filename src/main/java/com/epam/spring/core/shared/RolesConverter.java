@@ -1,5 +1,6 @@
 package com.epam.spring.core.shared;
 
+import com.epam.spring.core.users.UserRoles;
 import com.google.common.collect.Iterables;
 import org.hsqldb.jdbc.JDBCArray;
 
@@ -10,28 +11,28 @@ import java.util.Collections;
 import java.util.List;
 
 @Converter(autoApply = true)
-public class ListToArrayConveter implements AttributeConverter<List<Integer>, Object> {
+public class RolesConverter implements AttributeConverter<List<UserRoles>, Object> {
 
     @Override
-    public Object convertToDatabaseColumn(final List<Integer> attribute) {
+    public Object convertToDatabaseColumn(final List<UserRoles> attribute) {
         if (attribute == null || attribute.isEmpty()) {
             return null;
         }
-        return Iterables.toArray(attribute, Integer.class);
+        return Iterables.toArray(attribute, UserRoles.class);
     }
 
     @Override
-    public List<Integer> convertToEntityAttribute(final Object dbData) {
+    public List<UserRoles> convertToEntityAttribute(final Object dbData) {
         if (!(dbData instanceof JDBCArray)) {
             return Collections.emptyList();
         }
 
         JDBCArray jdbcArray = (JDBCArray) dbData;
         Object[] internal = jdbcArray.getArrayInternal();
-        List<Integer> result = new ArrayList<>(internal.length);
+        List<UserRoles> result = new ArrayList<>(internal.length);
 
         for (Object anInternal : internal) {
-            result.add((Integer) anInternal);
+            result.add(UserRoles.valueOf(anInternal.toString()));
         }
 
         return result;

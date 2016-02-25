@@ -17,4 +17,5 @@
   <li role="presentation"><a href="/">Home</a></li>
   <li role="presentation"><a href="/users">Users</a></li>
   <li role="presentation"><a href="/events">Events</a></li>
+  <li role="presentation"><a href="/login">Login</a></li>
 </ul>

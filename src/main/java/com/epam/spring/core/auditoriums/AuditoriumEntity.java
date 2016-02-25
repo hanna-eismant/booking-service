@@ -1,5 +1,6 @@
 package com.epam.spring.core.auditoriums;
 
+import com.epam.spring.core.shared.ListToArrayConverter;
 import com.google.common.base.Objects;
 
 import javax.persistence.Column;
@@ -27,7 +28,7 @@ public class AuditoriumEntity {
     private Integer seats;
 
     @Column(name = "vip_seats", columnDefinition = "INTEGER ARRAY")
-    @Convert(converter = com.epam.spring.core.shared.ListToArrayConveter.class)
+    @Convert(converter = ListToArrayConverter.class)
     private List<Integer> vipSeats = new ArrayList<>();
 
     public Long getId() {

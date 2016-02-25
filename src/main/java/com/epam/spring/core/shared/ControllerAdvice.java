@@ -1,5 +1,6 @@
 package com.epam.spring.core.shared;
 
+import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
@@ -53,6 +54,15 @@ public class ControllerAdvice {
     @ExceptionHandler(Exception.class)
     @ResponseStatus(INTERNAL_SERVER_ERROR)
     public ModelAndView internalError(Exception e) {
+        e.printStackTrace();
+        ModelAndView view = new ModelAndView("500");
+        view.addObject("message", e.getMessage());
+        return view;
+    }
+
+    @ExceptionHandler(InternalAuthenticationServiceException.class)
+    @ResponseStatus(INTERNAL_SERVER_ERROR)
+    public ModelAndView authenticationError(Exception e) {
         e.printStackTrace();
         ModelAndView view = new ModelAndView("500");
         view.addObject("message", e.getMessage());

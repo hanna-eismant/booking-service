@@ -14,6 +14,8 @@ public interface BookingFacade {
 
     Map<String, Object> getUserInfo(final String name) throws NotFoundException;
 
+    User getUser(final String name) throws NotFoundException;
+
     List<User> getAllUsersInfo();
 
     List<Event> getAllEventsInfo();

@@ -4,11 +4,16 @@ import com.epam.spring.core.shared.BaseEntity;
 import com.google.common.base.Objects;
 import org.joda.time.LocalDate;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class User extends BaseEntity {
 
     private String name;
+    private String password;
     private String email;
     private LocalDate birthday;
+    private List<UserRoles> roles = new ArrayList<>(1);
 
     public User() {
     }
@@ -43,19 +48,32 @@ public class User extends BaseEntity {
         birthday = _birthday;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(final String _password) {
+        password = _password;
+    }
+
+    public List<UserRoles> getRoles() {
+        return roles;
+    }
+
     @Override
     public boolean equals(final Object _o) {
         if (this == _o) return true;
         if (_o == null || getClass() != _o.getClass()) return false;
         User user = (User) _o;
-        return Objects.equal(getId(), user.getId()) &&
-                Objects.equal(getName(), user.getName()) &&
+        return Objects.equal(getName(), user.getName()) &&
+                Objects.equal(getPassword(), user.getPassword()) &&
                 Objects.equal(getEmail(), user.getEmail()) &&
-                Objects.equal(getBirthday(), user.getBirthday());
+                Objects.equal(getBirthday(), user.getBirthday()) &&
+                Objects.equal(getRoles(), user.getRoles());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(getId(), getName(), getEmail(), getBirthday());
+        return Objects.hashCode(getName(), getPassword(), getEmail(), getBirthday(), getRoles());
     }
 }

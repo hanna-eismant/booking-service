@@ -84,6 +84,11 @@ public class BookingFacadeImpl implements BookingFacade {
     }
 
     @Override
+    public User getUser(final String name) throws NotFoundException {
+        return userService.getByName(name);
+    }
+
+    @Override
     public List<User> getAllUsersInfo() {
         return userService.getAll();
     }
