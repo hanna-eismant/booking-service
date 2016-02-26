@@ -30,6 +30,8 @@ public class CustomUserDetailsService implements UserDetailsService {
             grantedAuthorityList.addAll(user.getRoles().stream().map(
                     role -> new SimpleGrantedAuthority(role.toString())).collect(Collectors.toList()));
 
+//            grantedAuthorityList.add(new SimpleGrantedAuthority("ROLE_ANONYMOUS"));
+
             User userDetails = new User(user.getName(),
                     user.getPassword(), grantedAuthorityList);
             return userDetails;

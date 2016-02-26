@@ -1,0 +1,36 @@
+#parse('layouts/header.vm')
+
+
+<div class="row">
+  <div class="col-xs-6">
+    <h3>Upload users information</h3>
+
+    <form method="post" enctype="multipart/form-data" action="/users/upload">
+
+      <div class="form-group">
+        <input type="file" id="usersInfoFile" name="usersInfoFile" accept=".json">
+        <p class="help-block">Select JSON-file wich store users infromation.</p>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Upload</button>
+
+    </form>
+  </div>
+
+  <div class="col-xs-6">
+    <h3>Upload events information</h3>
+
+    <form method="post" enctype="multipart/form-data" action="/events/upload">
+
+      <div class="form-group">
+        <input type="file" id="eventsInfoFile" name="eventsInfoFile" accept=".json">
+        <p class="help-block">Select JSON-file wich store events infromation.</p>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Upload</button>
+
+    </form>
+  </div>
+</div>
+
+#parse('layouts/footer.vm')

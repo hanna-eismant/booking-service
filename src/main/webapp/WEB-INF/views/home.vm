@@ -1,36 +1,50 @@
 #parse('layouts/header.vm')
 
+<h3>Booking Service</h3>
 
-<div class="row">
-  <div class="col-xs-6">
-    <h3>Upload users information</h3>
-
-    <form method="post" enctype="multipart/form-data" action="/users/upload">
-
-      <div class="form-group">
-        <input type="file" id="usersInfoFile" name="usersInfoFile" accept=".json">
-        <p class="help-block">Select JSON-file wich store users infromation.</p>
-      </div>
-
-      <button type="submit" class="btn btn-primary">Upload</button>
-
-    </form>
-  </div>
-
-  <div class="col-xs-6">
-    <h3>Upload events information</h3>
-
-    <form method="post" enctype="multipart/form-data" action="/events/upload">
-
-      <div class="form-group">
-        <input type="file" id="eventsInfoFile" name="eventsInfoFile" accept=".json">
-        <p class="help-block">Select JSON-file wich store events infromation.</p>
-      </div>
-
-      <button type="submit" class="btn btn-primary">Upload</button>
-
-    </form>
-  </div>
+<p>
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed a lacus mattis, tristique sapien in, fermentum elit.
+  Integer rhoncus eros id arcu molestie laoreet. Quisque vitae odio eleifend tortor congue venenatis. Curabitur sed sem
+  id libero consequat porta. Vivamus consequat arcu nunc. Phasellus molestie tempor nibh, pellentesque ornare metus
+  commodo eu. Mauris sodales facilisis nibh, vel efficitur lacus fringilla a. Proin tempus dictum ullamcorper.
+</p>
+<p>
+  In venenatis, diam in sagittis tincidunt, leo purus pellentesque nisl, non euismod quam enim id sem. Nulla tincidunt
+  orci et tellus mattis, vestibulum feugiat neque porta. Phasellus ut sem leo. In hac habitasse platea dictumst.
+  Suspendisse eleifend commodo neque id mattis. Ut volutpat nibh diam, in fringilla nisl iaculis eget. Praesent sed
+  massa eu ipsum ultrices varius eu at lectus. Ut porttitor lacinia cursus. Nam sollicitudin sapien metus, at sagittis
+  diam maximus id. Integer efficitur finibus leo vitae efficitur. Nulla semper elementum egestas. Aenean sit amet
+  lacinia nunc. Curabitur vitae condimentum lectus. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+</p>
+<p>
+  Praesent ut volutpat tortor. Ut velit felis, mollis tincidunt erat vitae, varius vestibulum nunc. Sed urna arcu,
+  maximus at ornare vitae, viverra non risus. Morbi iaculis ipsum ut lectus sagittis, quis iaculis enim accumsan. Morbi
+  eget malesuada neque. Aliquam risus ante, interdum ac lorem eget, gravida mattis ligula. Mauris at metus et mi
+  pharetra convallis. Donec lobortis quam in nisi pretium, lacinia faucibus dui pretium. Integer mollis erat ac augue
+  rutrum egestas sit amet ut mi. Maecenas nec porta arcu. Duis pretium augue viverra urna ultrices, vel bibendum eros
+  semper. Morbi consequat neque sit amet lacinia dictum. Vestibulum ante ipsum primis in faucibus orci luctus et
+  ultrices posuere cubilia Curae; Suspendisse id laoreet metus.
+</p>
+<p>
+  Quisque nec turpis sagittis, tincidunt lorem a, pharetra metus. Maecenas elit mi, lobortis et ultrices at, lobortis
+  egestas quam. Suspendisse potenti. Vivamus eros lorem, pharetra eget hendrerit id, hendrerit id nisi. Etiam eget
+  mattis lorem, ut viverra eros. Pellentesque pharetra est pulvinar nisl fringilla tristique. Ut tristique nibh ex, non
+  semper mauris consectetur sit amet. Ut non mauris quis elit aliquet dignissim a in tortor. Etiam mattis tortor vel
+  venenatis fringilla. Nulla tortor nulla, molestie a ante at, tempor imperdiet est. Vestibulum sed ligula arcu. Mauris
+  lobortis sit amet mi eget malesuada. Pellentesque eget sem suscipit, ornare mauris sit amet, finibus odio. Nunc
+  sollicitudin sit amet eros non ullamcorper. Nulla nisl nisi, bibendum non ipsum eu, elementum semper libero. Proin
+  sodales ligula in vulputate placerat.
+</p>
+<p>
+  Maecenas eu sollicitudin justo. Ut commodo cursus quam et dignissim. Curabitur vitae dui lacus. Proin eu ultrices
+  dolor. Mauris scelerisque orci lacus, non scelerisque dolor ullamcorper at. Donec sit amet mi sit amet sapien sodales
+  vestibulum eget nec elit. Suspendisse sodales facilisis sem, a semper est varius imperdiet. Maecenas at ex ac sem
+  vestibulum finibus quis a orci. Curabitur congue tellus diam, et venenatis odio dapibus dapibus. Sed eu est semper,
+  fermentum eros eu, lobortis nisl. Cras iaculis facilisis nibh, nec tincidunt libero. Nunc id luctus turpis. Fusce
+  rutrum tortor eget orci ornare, at vestibulum tortor sodales. In efficitur ante vitae ligula venenatis posuere.
+</p>
+<div id="generated">Generated 5 paragraphs, 507 words, 3408 bytes of
+  <a href="http://www.lipsum.com/" title="Lorem Ipsum">Lorem Ipsum</a>
 </div>
 
 #parse('layouts/footer.vm')

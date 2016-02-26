@@ -1,0 +1,7 @@
+#parse('layouts/header.vm')
+
+<h3>Access denied</h3>
+
+<p>You have no permissions to access this page.</p>
+
+#parse('layouts/footer.vm')
