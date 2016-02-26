@@ -92,4 +92,11 @@ CREATE TABLE statistic (
   counter BIGINT
 );
 
+CREATE TABLE IF NOT EXISTS persistent_logins (
+  username varchar(64) not null,
+  series varchar(64) primary key,
+  token varchar(64) not null,
+  last_used timestamp not null
+);
+
 ALTER TABLE statistic ADD CONSTRAINT statistic_name_type UNIQUE (name, type);

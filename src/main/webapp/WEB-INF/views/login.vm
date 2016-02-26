@@ -6,6 +6,8 @@
   <input class="form-control form-group" id="username" name="username" placeholder="Username"/>
   <input class="form-control form-group" type="password" id="password" name="password" placeholder="Password"/>
 
+  <input class="form-control form-group" type="checkbox" id="remember" name="remember"> <label for="remember">Remember me</label>
+
   <button class="btn btn-primary form-control form-group" type="submit">Log In</button>
 </form>
 
