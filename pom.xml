@@ -35,6 +35,7 @@
         <orika.version>1.4.6</orika.version>
         <javassist.version>3.19.0-GA</javassist.version>
         <guava.version>19.0</guava.version>
+        <logger.version>1.7.16</logger.version>
 
         <!-- Tests -->
         <junit.version>4.12</junit.version>
@@ -198,6 +199,24 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>${guava.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${logger.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${logger.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${logger.version}</version>
         </dependency>
 
 
