@@ -30,7 +30,7 @@
     </http>
 
     <authentication-manager>
-        <authentication-provider user-service-ref="customUserDetailsService"/>
+        <authentication-provider ref="daoAuthenticationProvider"/>
     </authentication-manager>
 
     <beans:bean class="com.epam.spring.core.authentication.CustomUserDetailsService"
@@ -39,7 +39,6 @@
     <beans:bean class="org.springframework.security.authentication.dao.DaoAuthenticationProvider"
                 id="daoAuthenticationProvider">
         <beans:property name="userDetailsService" ref="customUserDetailsService"/>
-        <beans:property name="saltSource" ref="saltSource"/>
         <beans:property name="passwordEncoder" ref="bcryptEncoder"/>
     </beans:bean>
 
