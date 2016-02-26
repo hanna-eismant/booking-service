@@ -6,6 +6,7 @@ import com.epam.spring.core.shared.NotFoundException;
 import ma.glasnost.orika.MapperFacade;
 import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,12 +15,15 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
+    @Autowired
     private UserRepository userRepository;
 
     private MapperFacade mapper = Mapper.getMapper();
 
     @Override
-    public User register(String name, String email, LocalDate birthday)
+    public User register(String name, String email, String password, LocalDate birthday)
             throws IllegalArgumentException, DuplicateException {
 
         // check user's name
@@ -38,6 +42,12 @@ public class UserServiceImpl implements UserService {
             throw new DuplicateException("User with email '" + email + "' already exist");
         }
 
+        // check pass
+        if (password == null || password.isEmpty()) {
+            throw new IllegalArgumentException("User password cannot be empty or 'null'");
+        }
+        String encodedPassword = passwordEncoder.encode(password);
+
         // check user birthday
         LocalDate currentDate = LocalDate.now();
         if (birthday == null) {
@@ -47,7 +57,7 @@ public class UserServiceImpl implements UserService {
             throw new IllegalArgumentException("User birthday cannot be in future or today");
         }
 
-        UserEntity userEntity = new UserEntity(name, email, birthday);
+        UserEntity userEntity = new UserEntity(name, email, encodedPassword, birthday);
         UserEntity save = userRepository.save(userEntity);
 
         return mapper.map(save, User.class);

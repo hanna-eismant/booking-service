@@ -1,8 +1,8 @@
 -- users
 INSERT INTO users (id, name, password, email, birthday, roles)
-VALUES (1, 'jhon', 'pass', 'jhon@mail', '1987-05-05', ARRAY['REGISTERED_USER']), -- 10 tickets
-  (2, 'jane', 'pass', 'jane@mail', '1986-10-17', ARRAY['REGISTERED_USER']),      -- 3 tickets
-  (3, 'admin','admin',  'admin@bs.org', '19876-10-17', ARRAY['REGISTERED_USER', 'BOOKING_MANAGER']);
+VALUES (1, 'jhon', 'abfd3c7c73e5f4b3e7a8c09480de6736', 'jhon@mail', '1987-05-05', ARRAY['ROLE_REGISTERED_USER']), -- 10 tickets
+  (2, 'jane', '623808e58d237289b9f26111a94f7007', 'jane@mail', '1986-10-17', ARRAY['ROLE_REGISTERED_USER']),      -- 3 tickets
+  (3, 'admin','9c9e255351867eff01df440cb7bc96cd', 'admin@bs.org', '19876-10-17', ARRAY['ROLE_REGISTERED_USER', 'ROLE_BOOKING_MANAGER']);
 
 -- events
 INSERT INTO events (id, name, base_price, rating)

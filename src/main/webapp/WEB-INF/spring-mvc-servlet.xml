@@ -21,6 +21,7 @@
     <mvc:view-controller path="/administration" view-name="administration"/>
     <mvc:view-controller path="/login" view-name="login"/>
     <mvc:view-controller path="/403" view-name="403"/>
+    <mvc:view-controller path="/error" view-name="500"/>
 
 
     <bean class="org.springframework.web.servlet.view.velocity.VelocityConfigurer"

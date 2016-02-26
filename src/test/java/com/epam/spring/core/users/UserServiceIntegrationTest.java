@@ -22,7 +22,7 @@ public class UserServiceIntegrationTest extends AbstractIntegrationTest {
 
     @Test
     public void testRegister() throws DuplicateException {
-        User user = userService.register(USER_NAME, USER_EMAIL, USER_BIRTHDAY);
+        User user = userService.register(USER_NAME, USER_EMAIL, "pass", USER_BIRTHDAY);
         assertNotNull("Registered user cannot be null", user);
         assertNotNull("Registered user should have id", user.getId());
         assertEquals("Registered user has incorrect name", user.getName(), USER_NAME);
@@ -32,7 +32,7 @@ public class UserServiceIntegrationTest extends AbstractIntegrationTest {
 
     @Test(expected = DuplicateException.class)
     public void testRegisterDuplicate() throws DuplicateException {
-        userService.register(USER_JANE.getName(), USER_JANE.getEmail(), USER_JANE.getBirthday());
+        userService.register(USER_JANE.getName(), USER_JANE.getEmail(), "pass", USER_JANE.getBirthday());
     }
 
     @Test

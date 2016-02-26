@@ -43,8 +43,9 @@ public class UserEntity {
     public UserEntity() {
     }
 
-    public UserEntity(final String _name, final String _email, final LocalDate _birthday) {
+    public UserEntity(final String _name, final String _email, final String _password, final LocalDate _birthday) {
         name = _name;
+        password = _password;
         email = _email;
         birthday = _birthday;
     }

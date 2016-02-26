@@ -133,7 +133,7 @@ public class BookingFacadeImpl implements BookingFacade {
         while (jsonReader.hasNext()) {
             User user = gson.fromJson(jsonReader, User.class);
             try {
-                user = userService.register(user.getName(), user.getEmail(), user.getBirthday());
+                user = userService.register(user.getName(), user.getEmail(), "def_pass", user.getBirthday());
                 success.add(user);
             } catch (Exception e) {
                 e.printStackTrace();
