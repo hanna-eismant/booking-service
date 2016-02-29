@@ -5,9 +5,10 @@ import com.epam.spring.core.users.User;
 import org.joda.time.LocalDateTime;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
 public class DiscountStrategyTenTicketUnitTest {
@@ -15,6 +16,8 @@ public class DiscountStrategyTenTicketUnitTest {
     public static final String EVENT_DATE = "2015-06-06T14:00:00.000";
 
     private DiscountStrategyTenTicketImpl discountStrategyTenTicket;
+
+    @Mock
     private TicketService ticketService;
 
     private User user;
@@ -27,8 +30,8 @@ public class DiscountStrategyTenTicketUnitTest {
 
     @Before
     public void setUp() {
+        MockitoAnnotations.initMocks(this);
         discountStrategyTenTicket = new DiscountStrategyTenTicketImpl();
-        ticketService = mock(TicketService.class);
         discountStrategyTenTicket.setTicketService(ticketService);
 
         createStubUser();
@@ -39,13 +42,13 @@ public class DiscountStrategyTenTicketUnitTest {
         // test not 10th ticket
         when(ticketService.getBookedTicketsCount(user)).thenReturn(5);
         Double discount = discountStrategyTenTicket.calculate(user, null, LocalDateTime.parse(EVENT_DATE));
-        Double expect = 0.0;
-        assertEquals(expect, discount);
+
+        assertThat(discount).as("Discount for 6th ticket should be 0").isEqualTo(0.0);
 
         // test 10th ticket
         when(ticketService.getBookedTicketsCount(user)).thenReturn(9);
         discount = discountStrategyTenTicket.calculate(user, null, LocalDateTime.parse(EVENT_DATE));
-        expect = 0.5;
-        assertEquals(expect, discount);
+
+        assertThat(discount).as("Discount for 10th ticket should be 50%").isEqualTo(0.5);
     }
 }

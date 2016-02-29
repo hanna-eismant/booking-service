@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static com.epam.spring.core.TestConstants.AUDITORIUM_ONE;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class AuditoriumServiceIntegrationTest extends AbstractIntegrationTest {
 
@@ -18,7 +18,9 @@ public class AuditoriumServiceIntegrationTest extends AbstractIntegrationTest {
     public void testGetAuditoriums() {
         List<Auditorium> auditoriums = auditoriumService.getAuditoriums();
 
-        assertNotNull(auditoriums);
-        assertEquals("Auditorium list has incorrect size", 2, auditoriums.size());
+        assertThat(auditoriums).as("Auditorium list cannot be 'null'").isNotNull();
+        assertThat(auditoriums).as("Auditorium list has incorrect size").hasSize(2);
+        assertThat(auditoriums).as("Auditorium list contains incorrect elements").extracting("name")
+                .contains(AUDITORIUM_ONE.getName());
     }
 }

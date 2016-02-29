@@ -10,12 +10,13 @@ import java.util.List;
 
 import static com.epam.spring.core.TestConstants.BASE_PRICE;
 import static com.epam.spring.core.TestConstants.EVENT_NAME;
+import static com.epam.spring.core.TestConstants.GAMER_EVENT;
 import static com.epam.spring.core.TestConstants.HOBBIT_EVENT;
 import static com.epam.spring.core.TestConstants.HOBBIT_SHOW_ONE;
 import static com.epam.spring.core.TestConstants.HOBBIT_TOTAL_TICKETS_ONE;
 import static com.epam.spring.core.TestConstants.RATING;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 public class EventServiceIntegrationTest extends AbstractIntegrationTest {
 
@@ -25,50 +26,65 @@ public class EventServiceIntegrationTest extends AbstractIntegrationTest {
     @Test
     public void testCreate() throws DuplicateException {
         Event event = eventService.create(EVENT_NAME, BASE_PRICE, RATING);
-        assertNotNull("Created event cannot be null", event);
-        assertNotNull("Created event should has id", event.getId());
-        assertEquals("Created event has incorrect name", EVENT_NAME, event.getName());
-        assertEquals("Created event has incorrect base price", BASE_PRICE, event.getBasePrice());
-        assertEquals("Created event has incorrect rating", RATING, event.getRating());
+
+        assertThat(event).as("Created event cannot be null").isNotNull();
+        assertThat(event).as("Created event should has id").isNotNull();
+
+        assertThat(event.getName()).as("Created event has incorrect name").isEqualTo(EVENT_NAME);
+        assertThat(event.getBasePrice()).as("Created event has incorrect base price").isEqualTo(BASE_PRICE);
+        assertThat(event.getRating()).as("Created event has incorrect rating").isEqualTo(RATING);
+
+        assertThat(event.getShows()).as("Show's list for created event cannot be 'null'").isNotNull();
+        assertThat(event.getShows()).as("Created event cannot has any shows").isEmpty();
     }
 
-    @Test(expected = DuplicateException.class)
-    public void testCreateDuplicate() throws DuplicateException {
-        eventService.create(HOBBIT_EVENT.getName(), BASE_PRICE, RATING);
+    @Test
+    public void testCreateDuplicate() {
+        assertThatExceptionOfType(DuplicateException.class).isThrownBy(() -> eventService.create(HOBBIT_EVENT.getName(), BASE_PRICE, RATING));
     }
 
     @Test
     public void testGetById() throws NotFoundException {
         Event event = eventService.getById(HOBBIT_EVENT.getId());
-        assertNotNull("Found event cannot be null", event);
-        assertEquals("Found event has incorrect id", HOBBIT_EVENT.getId(), event.getId());
-        assertEquals("Found event has incorrect name", HOBBIT_EVENT.getName(), event.getName());
-        assertEquals("Found event has incorrect base price", HOBBIT_EVENT.getBasePrice(), event.getBasePrice());
-        assertEquals("Found event has incorrect rating", HOBBIT_EVENT.getRating(), event.getRating());
+
+        assertThat(event).as("Found event cannot be null").isNotNull();
+
+        assertThat(event.getId()).as("Found event has incorrect id").isEqualTo(HOBBIT_EVENT.getId());
+        assertThat(event.getName()).as("Found event has incorrect name").isEqualTo(HOBBIT_EVENT.getName());
+        assertThat(event.getBasePrice()).as("Found event has incorrect base price").isEqualTo(HOBBIT_EVENT.getBasePrice());
+        assertThat(event.getRating()).as("Found event has incorrect rating").isEqualTo(HOBBIT_EVENT.getRating());
+
+        assertThat(event.getShows()).as("Show's list for found event cannot be 'null'").isNotNull();
+        assertThat(event.getShows()).as("Show's list for found event has incorrect size").hasSize(2);
     }
 
-    @Test(expected = NotFoundException.class)
-    public void testGetByIdNonExistent() throws NotFoundException {
-        eventService.getById(1_000L);
+    @Test
+    public void testGetByIdNonExistent() {
+        assertThatExceptionOfType(NotFoundException.class).isThrownBy(() -> eventService.getById(1_000L));
     }
 
     @Test
     public void testGetAll() {
         List<Event> all = eventService.getAll();
-        assertNotNull("Found list of events cannot be null", all);
-        assertEquals("Found list of events has incorrect size", 9, all.size());
+
+        assertThat(all).as("Found list of events cannot be null").isNotNull();
+        assertThat(all).as("Found list of events has incorrect size").hasSize(9);
+        assertThat(all).as("Found list of events has incorrect items").extracting("name").contains(HOBBIT_EVENT.getName(), GAMER_EVENT.getName());
     }
 
     @Test
     public void testGetShowById() throws NotFoundException {
         Show show = eventService.getShowById(HOBBIT_SHOW_ONE.getId());
-        assertNotNull("Found show cannot be null", show);
-        assertEquals("Found show has incorrect id", HOBBIT_SHOW_ONE.getId(), show.getId());
-        assertEquals("Found show has incorrect date", HOBBIT_SHOW_ONE.getDate(), show.getDate());
-        assertEquals("Found show has incorrect auditorium", HOBBIT_SHOW_ONE.getAuditorium(), show.getAuditorium());
-        assertEquals("Found show has incorrect event", HOBBIT_SHOW_ONE.getEvent(), show.getEvent());
-        assertNotNull("Found show has 'null' tickets list", show.getTickets());
-        assertEquals("Found show has incorrect total tickets count", HOBBIT_TOTAL_TICKETS_ONE, show.getTickets().size());
-        assertEquals("Found show has incorrect free tickets count", HOBBIT_SHOW_ONE.getFreeTicketCount(), show.getFreeTicketCount());
+
+        assertThat(show).as("Found show cannot be null").isNotNull();
+
+        assertThat(show.getId()).as("Found show has incorrect id").isEqualTo(HOBBIT_SHOW_ONE.getId());
+        assertThat(show.getDate()).as("Found show has incorrect date").isEqualTo(HOBBIT_SHOW_ONE.getDate());
+        assertThat(show.getAuditorium()).as("Found show has incorrect auditorium").isEqualTo(HOBBIT_SHOW_ONE.getAuditorium());
+        assertThat(show.getEvent()).as("Found show has incorrect event").isEqualTo(HOBBIT_SHOW_ONE.getEvent());
+        assertThat(show.getFreeTicketCount()).as("Found show has incorrect free tickets count").isEqualTo(HOBBIT_SHOW_ONE.getFreeTicketCount());
+
+        assertThat(show.getTickets()).as("Found show has 'null' tickets list").isNotNull();
+        assertThat(show.getTickets()).as("Found show has incorrect total tickets count").hasSize(HOBBIT_TOTAL_TICKETS_ONE);
     }
 }
