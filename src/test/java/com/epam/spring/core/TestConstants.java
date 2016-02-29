@@ -19,9 +19,6 @@ public abstract class TestConstants {
     public static User USER_JHON = new User();
     public static User USER_JANE = new User();
 
-//    public static int JHON_BOOKED_COUNT = 10;
-//    public static int JANE_BOOKED_COUNT = 3;
-
     public static Event HOBBIT_EVENT = new Event();
     public static Event GAMER_EVENT = new Event();
 
@@ -32,16 +29,9 @@ public abstract class TestConstants {
     public static Ticket TICKET = new Ticket();
 
     public static LocalDateTime HOBBIT_TIME_ONE = LocalDateTime.parse("2015-06-06T14:00:00.000");
-    public static LocalDateTime HOBBIT_TIME_TWO = LocalDateTime.parse("2015-06-07T22:00:00.000");
-    public static LocalDateTime GAMER_TIME = LocalDateTime.parse("2015-10-17T20:00:00.000");
 
     public static int HOBBIT_TOTAL_TICKETS_ONE = 24;
     public static int HOBBIT_FREE_TICKETS_ONE = 23;
-//    public static int HOBBIT_TOTAL_TICKETS_TWO = 24;
-//    public static int HOBBIT_FREE_TICKETS_TWO = 24;
-
-    public static int GAMER_TOTAL_TICKETS = 12;
-    public static int GAMER_FREE_TICKETS = 0;
 
     static {
         USER_JHON.setId(1L);
@@ -75,13 +65,10 @@ public abstract class TestConstants {
         GAMER_EVENT.setBasePrice(5_000.0);
         GAMER_EVENT.setRating(Rating.MID);
 
-        // (251, 5, TRUE, '2015-06-06T14:00:00.000', 19200, NULL, 255, NULL),
         TICKET.setId(251L);
         TICKET.setSeat(5);
         TICKET.setVip(true);
-//        TICKET.date = HOBBIT_TIME_ONE;
         TICKET.setBasePrice(19_200d);
-//        TICKET.event = HOBBIT_EVENT;
     }
 
 
@@ -93,6 +80,7 @@ public abstract class TestConstants {
     public static final String USER_NAME = "user";
     public static final String USER_EMAIL = "user@mail";
     public static final String USER_BIRTHDAY_S = "1987-04-04";
+    public static final String USER_PASSWORD = "pass";
     public static final LocalDate USER_BIRTHDAY = LocalDate.parse(USER_BIRTHDAY_S);
 
     // user two

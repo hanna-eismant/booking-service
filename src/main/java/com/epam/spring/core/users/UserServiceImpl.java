@@ -58,6 +58,7 @@ public class UserServiceImpl implements UserService {
         }
 
         UserEntity userEntity = new UserEntity(name, email, encodedPassword, birthday);
+        userEntity.getRoles().add(UserRoles.ROLE_REGISTERED_USER);
         UserEntity save = userRepository.save(userEntity);
 
         return mapper.map(save, User.class);
@@ -92,9 +93,7 @@ public class UserServiceImpl implements UserService {
             throw new NotFoundException("User with email '" + email + "' doesn't exist");
         }
 
-        User result = new User(userEntity.getName(), userEntity.getEmail(), userEntity.getBirthday());
-        result.setId(userEntity.getId());
-        return result;
+        return mapper.map(userEntity, User.class);
     }
 
     @Override

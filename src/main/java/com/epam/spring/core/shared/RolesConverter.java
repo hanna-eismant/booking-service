@@ -1,7 +1,6 @@
 package com.epam.spring.core.shared;
 
 import com.epam.spring.core.users.UserRoles;
-import com.google.common.collect.Iterables;
 import org.hsqldb.jdbc.JDBCArray;
 
 import javax.persistence.AttributeConverter;
@@ -18,7 +17,15 @@ public class RolesConverter implements AttributeConverter<List<UserRoles>, Objec
         if (attribute == null || attribute.isEmpty()) {
             return null;
         }
-        return Iterables.toArray(attribute, UserRoles.class);
+
+        String[] result = new String[attribute.size()];
+
+        for (int i = 0; i < attribute.size(); i++) {
+            UserRoles role = attribute.get(i);
+            result[i] = role.toString();
+        }
+
+        return result;
     }
 
     @Override

@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +40,9 @@ public class UserEntity {
     @Column(columnDefinition = "VARCHAR(255) ARRAY")
     @Convert(converter = RolesConverter.class)
     private List<UserRoles> roles = new ArrayList<>(1);
+
+    @OneToOne(targetEntity = UserAccountEntity.class, mappedBy = "user")
+    private UserAccountEntity userAccount;
 
     public UserEntity() {
     }
@@ -94,10 +98,13 @@ public class UserEntity {
         return roles;
     }
 
-//    public void setRoles(final Set<UserRoles> _roles) {
-//        roles = _roles;
-//    }
+    public UserAccountEntity getUserAccount() {
+        return userAccount;
+    }
 
+    public void setUserAccount(final UserAccountEntity _userAccount) {
+        userAccount = _userAccount;
+    }
 
     @Override
     public boolean equals(final Object _o) {
