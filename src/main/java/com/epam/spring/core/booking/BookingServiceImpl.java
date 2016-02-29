@@ -17,24 +17,33 @@ public class BookingServiceImpl implements BookingService {
     @Autowired
     private TicketService ticketService;
 
+    // private
+
     @Override
     public Ticket bookTicket(User user, Ticket ticket) {
-//        todo: change after refactoring data model
+        // todo: check parameters
 
-//        ticket.setUser(user);
-//        ticket.setDiscountPrice(ticketService.getTicketPrice(ticket.event, ticket.date, ticket.getSeat(), ticket.isVip(), user));
-        return null;//ticketDAO.update(ticket);
+        Double ticketPrice = ticketService.getTicketPrice(ticket, user);
+        ticket.setDiscountPrice(ticketPrice);
+
+        Double money = user.getAccount().getMoney();
+        money -= ticketPrice;
+
+        ticket.setUser(user);
+        user.getAccount().setMoney(money);
+
+        return ticket;
     }
 
     @Override
     public List<Ticket> getTicketsForEvent(Event event, LocalDateTime date) {
-        //        todo: change after refactoring data model
-        return Collections.emptyList(); //ticketDAO.findByEventAndDate(event, date);
+        // todo: change after refactoring data model
+        return Collections.emptyList(); // ticketDAO.findByEventAndDate(event, date);
     }
 
     @Override
     public List<Ticket> getFreeTicketsForEvent(Event event, LocalDateTime date) {
-        //        todo: change after refactoring data model
-        return Collections.emptyList();//ticketDAO.findFreeByEventAndDate(event, date);
+        // todo: change after refactoring data model
+        return Collections.emptyList();// ticketDAO.findFreeByEventAndDate(event, date);
     }
 }

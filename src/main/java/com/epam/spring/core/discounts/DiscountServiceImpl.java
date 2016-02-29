@@ -2,6 +2,7 @@ package com.epam.spring.core.discounts;
 
 import com.epam.spring.core.discounts.strategies.DiscountStrategy;
 import com.epam.spring.core.events.Event;
+import com.epam.spring.core.events.Show;
 import com.epam.spring.core.users.User;
 import org.joda.time.LocalDateTime;
 
@@ -24,6 +25,17 @@ public class DiscountServiceImpl implements DiscountService {
 
         for (DiscountStrategy strategy : discountStrategies) {
             result += strategy.calculate(user, event, date);
+        }
+
+        return result;
+    }
+
+    @Override
+    public Double getDiscount(final User user, final Show show) {
+        Double result = 0.0;
+
+        for (DiscountStrategy strategy : discountStrategies) {
+            result += strategy.calculate(user, show);
         }
 
         return result;

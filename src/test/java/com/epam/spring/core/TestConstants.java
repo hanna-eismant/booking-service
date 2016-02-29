@@ -42,13 +42,13 @@ public abstract class TestConstants {
         USER_JHON.setName("jhon");
         USER_JHON.setEmail("jhon@mail");
         USER_JHON.setBirthday(LocalDate.parse("1987-05-05"));
-        USER_JHON.setAccount(new UserAccount(1L, 100_000L));
+        USER_JHON.setAccount(new UserAccount(1L, 100_000.0));
 
         USER_JANE.setId(2L);
         USER_JANE.setName("jane");
         USER_JANE.setEmail("jane@mail");
         USER_JANE.setBirthday(LocalDate.parse("1986-10-17"));
-        USER_JANE.setAccount(new UserAccount(2L, 100_000L));
+        USER_JANE.setAccount(new UserAccount(2L, 100_000.0));
 
         HOBBIT_EVENT.setId(1L);
         HOBBIT_EVENT.setName("Hobbit");
@@ -71,10 +71,11 @@ public abstract class TestConstants {
         GAMER_EVENT.setBasePrice(5_000.0);
         GAMER_EVENT.setRating(Rating.MID);
 
-        TICKET.setId(251L);
+        TICKET.setId(5L);
         TICKET.setSeat(5);
         TICKET.setVip(true);
         TICKET.setBasePrice(19_200d);
+        TICKET.setShow(HOBBIT_SHOW_ONE);
     }
 
     // ********

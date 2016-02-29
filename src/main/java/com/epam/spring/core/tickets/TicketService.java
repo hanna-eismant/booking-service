@@ -10,6 +10,8 @@ public interface TicketService {
 
     Double getTicketPrice(Event event, LocalDateTime date, Integer seat, boolean isVip, User user);
 
+    Double getTicketPrice(Ticket ticket, User user);
+
     /**
      * Find all booked tickets by user's name.
      *

@@ -44,6 +44,12 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
+    public Double getTicketPrice(final Ticket ticket, final User user) {
+        Double discountPercent = discountService.getDiscount(user, ticket.getShow());
+        return ticket.getBasePrice() * (1 - discountPercent);
+    }
+
+    @Override
     public List<Ticket> getBookedTickets(String userName) {
         // todo: check parameter
 

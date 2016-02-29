@@ -44,7 +44,7 @@ public class UserServiceIntegrationTest extends AbstractIntegrationTest {
                 .doesNotContain(UserRoles.ROLE_BOOKING_MANAGER);
 
         assertThat(user.getAccount()).as("Registered user should have account").isNotNull();
-        assertThat(user.getAccount().getMoney()).as("User account has incorrect money amount").isEqualTo(0L);
+        assertThat(user.getAccount().getMoney()).as("User account has incorrect money amount").isEqualTo(0.0);
     }
 
     @Test()

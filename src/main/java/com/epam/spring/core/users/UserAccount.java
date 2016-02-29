@@ -5,12 +5,12 @@ import com.google.common.base.Objects;
 public class UserAccount {
 
     private Long id;
-    private Long money;
+    private Double money;
 
     public UserAccount() {
     }
 
-    public UserAccount(final Long _id, final Long _money) {
+    public UserAccount(final Long _id, final Double _money) {
         id = _id;
         money = _money;
     }
@@ -23,11 +23,11 @@ public class UserAccount {
         id = _id;
     }
 
-    public Long getMoney() {
+    public Double getMoney() {
         return money;
     }
 
-    public void setMoney(final Long _money) {
+    public void setMoney(final Double _money) {
         money = _money;
     }
 
