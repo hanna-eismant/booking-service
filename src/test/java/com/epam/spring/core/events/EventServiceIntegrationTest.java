@@ -12,6 +12,7 @@ import static com.epam.spring.core.TestConstants.BASE_PRICE;
 import static com.epam.spring.core.TestConstants.EVENT_NAME;
 import static com.epam.spring.core.TestConstants.HOBBIT_EVENT;
 import static com.epam.spring.core.TestConstants.HOBBIT_SHOW_ONE;
+import static com.epam.spring.core.TestConstants.HOBBIT_TOTAL_TICKETS_ONE;
 import static com.epam.spring.core.TestConstants.RATING;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -67,7 +68,7 @@ public class EventServiceIntegrationTest extends AbstractIntegrationTest {
         assertEquals("Found show has incorrect auditorium", HOBBIT_SHOW_ONE.getAuditorium(), show.getAuditorium());
         assertEquals("Found show has incorrect event", HOBBIT_SHOW_ONE.getEvent(), show.getEvent());
         assertNotNull("Found show has 'null' tickets list", show.getTickets());
-        assertEquals("Found show has incorrect total tickets count", HOBBIT_SHOW_ONE.getTickets().size(), show.getTickets().size());
+        assertEquals("Found show has incorrect total tickets count", HOBBIT_TOTAL_TICKETS_ONE, show.getTickets().size());
         assertEquals("Found show has incorrect free tickets count", HOBBIT_SHOW_ONE.getFreeTicketCount(), show.getFreeTicketCount());
     }
 }

@@ -33,14 +33,4 @@ public class BookingFacadeImplIntegrationTest extends AbstractIntegrationTest {
     public void testGetAllUsersInfo() {
         facade.getAllUsersInfo();
     }
-
-//    @Test
-//    public void testGetUserTickets() {
-//
-//    }
-//
-//    @Test
-//    public void testGetEventTickets() {
-//
-//    }
 }
