@@ -23,7 +23,7 @@ public class UserAccountEntity {
     @JoinColumn(name = "user_id")
     private UserEntity user;
 
-    private Long money;
+    private Double money;
 
     public Long getId() {
         return id;
@@ -41,11 +41,11 @@ public class UserAccountEntity {
         user = _user;
     }
 
-    public Long getMoney() {
+    public Double getMoney() {
         return money;
     }
 
-    public void setMoney(final Long _money) {
+    public void setMoney(final Double _money) {
         money = _money;
     }
 

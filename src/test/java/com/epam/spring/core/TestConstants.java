@@ -43,12 +43,14 @@ public abstract class TestConstants {
         USER_JHON.setEmail("jhon@mail");
         USER_JHON.setBirthday(LocalDate.parse("1987-05-05"));
         USER_JHON.setAccount(new UserAccount(1L, 100_000.0));
+        USER_JHON.setPassword("$2a$16$NVlYAowTx7jt.N.UbDMta.pENK20YRB.80xkBF993eewQGpYJHf9q");
 
         USER_JANE.setId(2L);
         USER_JANE.setName("jane");
         USER_JANE.setEmail("jane@mail");
         USER_JANE.setBirthday(LocalDate.parse("1986-10-17"));
         USER_JANE.setAccount(new UserAccount(2L, 100_000.0));
+        USER_JANE.setPassword("$2a$16$NVlYAowTx7jt.N.UbDMta.pENK20YRB.80xkBF993eewQGpYJHf9q");
 
         HOBBIT_EVENT.setId(1L);
         HOBBIT_EVENT.setName("Hobbit");

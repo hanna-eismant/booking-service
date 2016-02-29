@@ -50,6 +50,13 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
+    public Ticket update(final Ticket ticket) {
+        TicketEntity ticketEntity = mapper.map(ticket, TicketEntity.class);
+        ticketEntity = ticketRepository.save(ticketEntity);
+        return mapper.map(ticketEntity, Ticket.class);
+    }
+
+    @Override
     public List<Ticket> getBookedTickets(String userName) {
         // todo: check parameter
 

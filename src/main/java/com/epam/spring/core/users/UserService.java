@@ -73,4 +73,5 @@ public interface UserService {
      */
     List<User> getAll();
 
+    void withdraw(User user, Double amount);
 }

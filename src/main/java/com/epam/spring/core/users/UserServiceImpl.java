@@ -67,7 +67,7 @@ public class UserServiceImpl implements UserService {
 
         UserAccountEntity accountEntity = new UserAccountEntity();
         accountEntity.setUser(userEntity);
-        accountEntity.setMoney(0L);
+        accountEntity.setMoney(0.0);
 
         userEntity.setAccount(accountEntity);
 
@@ -128,5 +128,10 @@ public class UserServiceImpl implements UserService {
     public List<User> getAll() {
         Iterable<UserEntity> allEntities = userRepository.findAll();
         return mapper.mapAsList(allEntities, User.class);
+    }
+
+    @Override
+    public void withdraw(final User user, final Double amount) {
+        userAccountRepository.withdraw(user.getId(), amount);
     }
 }

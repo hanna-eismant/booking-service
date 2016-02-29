@@ -49,7 +49,7 @@ CREATE TABLE user_account (
   START WITH 10
   INCREMENT BY 1 ) PRIMARY KEY,
   user_id BIGINT NOT NULL,
-  money   BIGINT NOT NULL
+  money   DOUBLE NOT NULL
 );
 
 ALTER TABLE user_account ADD CONSTRAINT account_user UNIQUE (user_id);

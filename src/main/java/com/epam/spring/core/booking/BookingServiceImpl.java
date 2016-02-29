@@ -1,12 +1,15 @@
 package com.epam.spring.core.booking;
 
 import com.epam.spring.core.events.Event;
+import com.epam.spring.core.shared.NotFoundException;
 import com.epam.spring.core.tickets.Ticket;
 import com.epam.spring.core.tickets.TicketService;
 import com.epam.spring.core.users.User;
+import com.epam.spring.core.users.UserService;
 import org.joda.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
 import java.util.List;
@@ -17,10 +20,12 @@ public class BookingServiceImpl implements BookingService {
     @Autowired
     private TicketService ticketService;
 
-    // private
+    @Autowired
+    private UserService userService;
 
     @Override
-    public Ticket bookTicket(User user, Ticket ticket) {
+    @Transactional
+    public Ticket bookTicket(User user, Ticket ticket) throws NotFoundException {
         // todo: check parameters
 
         Double ticketPrice = ticketService.getTicketPrice(ticket, user);
@@ -31,6 +36,9 @@ public class BookingServiceImpl implements BookingService {
 
         ticket.setUser(user);
         user.getAccount().setMoney(money);
+
+        userService.withdraw(user, ticketPrice);
+        ticket = ticketService.update(ticket);
 
         return ticket;
     }

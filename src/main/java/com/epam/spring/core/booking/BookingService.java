@@ -1,6 +1,7 @@
 package com.epam.spring.core.booking;
 
 import com.epam.spring.core.events.Event;
+import com.epam.spring.core.shared.NotFoundException;
 import com.epam.spring.core.tickets.Ticket;
 import com.epam.spring.core.users.User;
 import org.joda.time.LocalDateTime;
@@ -15,7 +16,7 @@ public interface BookingService {
      *
      * @return updated ticket with information about user and discount price.
      */
-    Ticket bookTicket(User user, Ticket ticket);
+    Ticket bookTicket(User user, Ticket ticket) throws NotFoundException;
 
     List<Ticket> getTicketsForEvent(Event event, LocalDateTime date);
 

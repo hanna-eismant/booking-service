@@ -31,4 +31,6 @@ public interface TicketService {
      * @return
      */
     List<Ticket> getForShow(Long showId);
+
+    Ticket update(Ticket ticket);
 }
