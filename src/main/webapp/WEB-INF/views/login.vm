@@ -16,4 +16,21 @@
   <button class="btn btn-primary form-control form-group" type="submit">Log In</button>
 </form>
 
+<div class="col-xs-8">
+  <h3>Users:</h3>
+
+  <p>
+    <strong>Administrator:</strong><br/>
+    username: admin<br/>
+    password: admin
+  </p>
+
+  <p>
+    <strong>Registered user:</strong><br/>
+    username: jane<br/>
+    password: pass
+  </p>
+
+</div>
+
 #parse('layouts/footer.vm')
