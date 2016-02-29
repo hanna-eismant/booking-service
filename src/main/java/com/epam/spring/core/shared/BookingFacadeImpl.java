@@ -123,6 +123,13 @@ public class BookingFacadeImpl implements BookingFacade {
     }
 
     @Override
+    public Show getShow(final Long showId) throws NotFoundException {
+        Show show = eventService.getShowById(showId);
+        show.getTickets().sort((o1, o2) -> o1.getSeat() - o2.getSeat());
+        return show;
+    }
+
+    @Override
     public Map<String, List<User>> parseUsers(final InputStream inputStream) throws IOException {
         Reader reader = new InputStreamReader(inputStream);
         JsonReader jsonReader = new JsonReader(reader);
@@ -176,4 +183,3 @@ public class BookingFacadeImpl implements BookingFacade {
         return result;
     }
 }
-

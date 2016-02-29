@@ -1,6 +1,7 @@
 package com.epam.spring.core.shared;
 
 import com.epam.spring.core.events.Event;
+import com.epam.spring.core.events.Show;
 import com.epam.spring.core.users.User;
 
 import java.io.IOException;
@@ -27,4 +28,6 @@ public interface BookingFacade {
     Map<String, List<Event>> parseEvents(InputStream inputStream) throws IOException;
 
     Map<String,Object> getEventTickets(Long showId) throws NotFoundException;
+
+    Show getShow(Long showId) throws NotFoundException;
 }

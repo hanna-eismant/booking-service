@@ -1,0 +1,34 @@
+#parse('layouts/header.vm')
+
+<h3>Book ticket <br/>
+  <small>Event name: $show.event.name</small>
+  <br/>
+  <small>Event date: $show.date.toString("MM/dd/yyyy HH:mm")</small>
+</h3>
+
+<table class="table table-striped">
+  <thead>
+  <tr class="info">
+    <td><strong>Seat number</strong></td>
+    <td><strong>Base price</strong></td>
+    <td></td>
+  </tr>
+  </thead>
+  <tbody>
+      #foreach( $ticket in $show.tickets )
+      <tr>
+        <td>$ticket.seat (*)</td>
+        <td>$ticket.basePrice</td>
+        <td>
+            #if ($show.user == null)
+              <a class="btn btn-primary btn-xs" role="button" href="/tickets/book/$show.id">
+                Book
+              </a>
+            #end
+        </td>
+      </tr>
+      #end
+  </tbody>
+</table>
+
+#parse('layouts/footer.vm')

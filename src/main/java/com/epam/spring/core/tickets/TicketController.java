@@ -1,5 +1,6 @@
 package com.epam.spring.core.tickets;
 
+import com.epam.spring.core.events.Show;
 import com.epam.spring.core.shared.BookingFacade;
 import com.epam.spring.core.shared.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,18 @@ public class TicketController {
 
         ModelAndView view = new ModelAndView("showTicketsPdfView");
         view.addAllObjects(eventTickets);
+
+        return view;
+    }
+
+//    /tickets/book/$show.id
+
+    @RequestMapping(value = "/book/{showId}", method = GET)
+    public ModelAndView getTickets(@PathVariable("showId") Long showId) throws NotFoundException {
+        Show show = bookingFacade.getShow(showId);
+
+        ModelAndView view = new ModelAndView("show_single");
+        view.addObject("show", show);
 
         return view;
     }
