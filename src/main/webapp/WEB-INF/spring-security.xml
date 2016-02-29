@@ -28,6 +28,11 @@
                     default-target-url="/"
                     authentication-failure-url="/error"/>
 
+        <logout invalidate-session="true"
+                delete-cookies="JSESSIONID"
+                logout-url="/logout"
+                logout-success-url="/home"/>
+
         <csrf disabled="true"/>
 
         <remember-me data-source-ref="fileDataSource" remember-me-parameter="remember"/>
