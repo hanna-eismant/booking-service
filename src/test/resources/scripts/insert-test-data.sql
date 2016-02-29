@@ -1,8 +1,8 @@
 -- users
 INSERT INTO users (id, name, password, email, birthday, roles)
-VALUES (1, 'jhon', 'abfd3c7c73e5f4b3e7a8c09480de6736', 'jhon@mail', '1987-05-05', ARRAY['ROLE_REGISTERED_USER']), -- 10 tickets
-  (2, 'jane', '623808e58d237289b9f26111a94f7007', 'jane@mail', '1986-10-17', ARRAY['ROLE_REGISTERED_USER']),      -- 3 tickets
-  (3, 'admin','9c9e255351867eff01df440cb7bc96cd', 'admin@bs.org', '19876-10-17', ARRAY['ROLE_REGISTERED_USER', 'ROLE_BOOKING_MANAGER']);
+VALUES (1, 'jhon', '$2a$16$NVlYAowTx7jt.N.UbDMta.pENK20YRB.80xkBF993eewQGpYJHf9q', 'jhon@mail', '1987-05-05', ARRAY['ROLE_REGISTERED_USER']), -- 10 tickets
+  (2, 'jane', '$2a$16$NVlYAowTx7jt.N.UbDMta.pENK20YRB.80xkBF993eewQGpYJHf9q', 'jane@mail', '1986-10-17', ARRAY['ROLE_REGISTERED_USER']),      -- 3 tickets
+  (3, 'admin','$2a$16$RbuuNgNnEs.PBTe94wSGt.hMmqYcMDJn1xKXLrHU6KgKAxPHrnc3K', 'admin@bs.org', '19876-10-17', ARRAY['ROLE_REGISTERED_USER', 'ROLE_BOOKING_MANAGER']);
 
 -- events
 INSERT INTO events (id, name, base_price, rating)
@@ -28,8 +28,8 @@ VALUES (3, 'The Gamer II', '7000.0', 'MID'),
 
 
 INSERT INTO auditoriums (id, name, seats, vip_seats)
-    VALUES(1, 'Big party hall', 24, ARRAY[4,5,6,7,8,9,10]),
-    (2, 'Family hall', 12, ARRAY[2]);
+VALUES(1, 'Big party hall', 24, ARRAY[4,5,6,7,8,9,10]),
+  (2, 'Family hall', 12, ARRAY[2]);
 
 --
 INSERT INTO shows (id, date, auditorium_id, event_id)
