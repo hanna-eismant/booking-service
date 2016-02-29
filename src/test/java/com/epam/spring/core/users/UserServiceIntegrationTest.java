@@ -40,7 +40,11 @@ public class UserServiceIntegrationTest extends AbstractIntegrationTest {
         boolean matches = passwordEncoder.matches(USER_PASSWORD, user.getPassword());
         assertThat(matches).as("Registered user has incorrect password").isTrue();
 
-        assertThat(user.getRoles()).contains(UserRoles.ROLE_REGISTERED_USER).doesNotContain(UserRoles.ROLE_BOOKING_MANAGER);
+        assertThat(user.getRoles()).as("Registered user has incorrect roles").contains(UserRoles.ROLE_REGISTERED_USER)
+                .doesNotContain(UserRoles.ROLE_BOOKING_MANAGER);
+
+        assertThat(user.getAccount()).as("Registered user should have account").isNotNull();
+        assertThat(user.getAccount().getMoney()).as("User account has incorrect money amount").isEqualTo(0L);
     }
 
     @Test()
@@ -55,8 +59,7 @@ public class UserServiceIntegrationTest extends AbstractIntegrationTest {
 
         assertThat(all).as("Found list of users cannot be null").isNotNull();
         assertThat(all).as("Found list of users has incorrect size").hasSize(3);
-        assertThat(all).as("Found list of users has incorrect users").extracting("name")
-                .contains("admin", USER_JANE.getName(), USER_JHON.getName());
+        assertThat(all).as("Found list of users has incorrect users").extracting("name").contains("admin", USER_JANE.getName(), USER_JHON.getName());
     }
 
     @Test
@@ -75,6 +78,10 @@ public class UserServiceIntegrationTest extends AbstractIntegrationTest {
 
         assertThat(userTest.getRoles()).as("Found user has incorrect roles").contains(UserRoles.ROLE_REGISTERED_USER)
                 .doesNotContain(UserRoles.ROLE_BOOKING_MANAGER);
+
+        assertThat(userTest.getAccount()).as("Found user should have account").isNotNull();
+        assertThat(userTest.getAccount().getMoney()).as("User account has incorrect money amount")
+                .isEqualTo(USER_JANE.getAccount().getMoney());
     }
 
     @Test
@@ -93,6 +100,10 @@ public class UserServiceIntegrationTest extends AbstractIntegrationTest {
 
         assertThat(userTest.getRoles()).as("Found user has incorrect roles").contains(UserRoles.ROLE_REGISTERED_USER)
                 .doesNotContain(UserRoles.ROLE_BOOKING_MANAGER);
+
+        assertThat(userTest.getAccount()).as("Found user should have account").isNotNull();
+        assertThat(userTest.getAccount().getMoney()).as("User account has incorrect money amount")
+                .isEqualTo(USER_JANE.getAccount().getMoney());
     }
 
     @Test
@@ -111,6 +122,10 @@ public class UserServiceIntegrationTest extends AbstractIntegrationTest {
 
         assertThat(userTest.getRoles()).as("Found user has incorrect roles").contains(UserRoles.ROLE_REGISTERED_USER)
                 .doesNotContain(UserRoles.ROLE_BOOKING_MANAGER);
+
+        assertThat(userTest.getAccount()).as("Found user should have account").isNotNull();
+        assertThat(userTest.getAccount().getMoney()).as("User account has incorrect money amount")
+                .isEqualTo(USER_JANE.getAccount().getMoney());
     }
 
     @Test

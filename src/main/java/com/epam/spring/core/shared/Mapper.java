@@ -1,5 +1,13 @@
 package com.epam.spring.core.shared;
 
+import ma.glasnost.orika.MapperFacade;
+import ma.glasnost.orika.MapperFactory;
+import ma.glasnost.orika.converter.builtin.PassThroughConverter;
+import ma.glasnost.orika.impl.DefaultMapperFactory;
+
+import org.joda.time.LocalDate;
+import org.joda.time.LocalDateTime;
+
 import com.epam.spring.core.auditoriums.Auditorium;
 import com.epam.spring.core.auditoriums.AuditoriumEntity;
 import com.epam.spring.core.events.Event;
@@ -7,13 +15,9 @@ import com.epam.spring.core.events.EventEntity;
 import com.epam.spring.core.events.Show;
 import com.epam.spring.core.events.ShowEntity;
 import com.epam.spring.core.users.User;
+import com.epam.spring.core.users.UserAccount;
+import com.epam.spring.core.users.UserAccountEntity;
 import com.epam.spring.core.users.UserEntity;
-import ma.glasnost.orika.MapperFacade;
-import ma.glasnost.orika.MapperFactory;
-import ma.glasnost.orika.converter.builtin.PassThroughConverter;
-import ma.glasnost.orika.impl.DefaultMapperFactory;
-import org.joda.time.LocalDate;
-import org.joda.time.LocalDateTime;
 
 public class Mapper {
 
@@ -24,6 +28,10 @@ public class Mapper {
         mapperFactory.getConverterFactory().registerConverter(new PassThroughConverter(LocalDateTime.class));
 
         mapperFactory.classMap(UserEntity.class, User.class)
+                .byDefault()
+                .register();
+
+        mapperFactory.classMap(UserAccountEntity.class, UserAccount.class)
                 .byDefault()
                 .register();
 

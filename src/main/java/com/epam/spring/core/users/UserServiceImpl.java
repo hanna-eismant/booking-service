@@ -8,6 +8,7 @@ import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -20,9 +21,13 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private UserAccountRepository userAccountRepository;
+
     private MapperFacade mapper = Mapper.getMapper();
 
     @Override
+    @Transactional
     public User register(String name, String email, String password, LocalDate birthday)
             throws IllegalArgumentException, DuplicateException {
 
@@ -59,9 +64,16 @@ public class UserServiceImpl implements UserService {
 
         UserEntity userEntity = new UserEntity(name, email, encodedPassword, birthday);
         userEntity.getRoles().add(UserRoles.ROLE_REGISTERED_USER);
-        UserEntity save = userRepository.save(userEntity);
 
-        return mapper.map(save, User.class);
+        UserAccountEntity accountEntity = new UserAccountEntity();
+        accountEntity.setUser(userEntity);
+        accountEntity.setMoney(0L);
+
+        userEntity.setAccount(accountEntity);
+
+        UserEntity saveUser = userRepository.save(userEntity);
+
+        return mapper.map(saveUser, User.class);
     }
 
     @Override

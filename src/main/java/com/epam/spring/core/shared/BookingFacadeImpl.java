@@ -71,14 +71,15 @@ public class BookingFacadeImpl implements BookingFacade {
             throw new NotFoundException("User doesn't exist");
         }
 
-        int ticketsCount = ticketService.getBookedTicketsCount(user);
+        Long ticketsCount = ticketService.getBookedTicketsCount(user);
 
-        Map<String, Object> result = new HashMap<>(4);
+        Map<String, Object> result = new HashMap<>(5);
 
         result.put("name", user.getName());
         result.put("email", user.getEmail());
         result.put("birthday", user.getBirthday());
         result.put("ticketsCount", ticketsCount);
+        result.put("money", user.getAccount().getMoney());
 
         return result;
     }

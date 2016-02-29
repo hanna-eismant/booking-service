@@ -21,7 +21,7 @@ public interface TicketService {
     /**
      * Calculate how many tickets has booked by specified user.
      */
-    int getBookedTicketsCount(User user);
+    Long getBookedTicketsCount(User user);
 
     /**
      *

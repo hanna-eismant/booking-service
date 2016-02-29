@@ -11,6 +11,9 @@ public interface TicketRepository extends CrudRepository<TicketEntity, Long> {
     @Query("SELECT t FROM TicketEntity t WHERE t.user.name = :user_name")
     List<TicketEntity> findByUser(@Param("user_name") String userName);
 
+    @Query("SELECT COUNT(t) FROM TicketEntity t WHERE t.user.name = :user_name")
+    Long countByUser(@Param("user_name") String userName);
+
     @Query("SELECT t FROM TicketEntity t WHERE t.show.id = :show_id")
     List<TicketEntity> findByShow(@Param("show_id")Long showId);
 }

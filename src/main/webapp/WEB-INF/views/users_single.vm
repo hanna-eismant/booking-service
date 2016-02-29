@@ -17,6 +17,10 @@
     <td>$birthday</td>
   </tr>
   <tr>
+    <td>money amount:</td>
+    <td>$money</td>
+  </tr>
+  <tr>
     <td>booked tickets:</td>
     <td>$ticketsCount tickets (<a href="/tickets/$name/user_tickets.pdf">download pdf</a>)</td>
   </tr>

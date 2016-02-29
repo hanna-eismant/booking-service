@@ -13,6 +13,7 @@ public class User extends BaseEntity {
     private String password;
     private String email;
     private LocalDate birthday;
+    private UserAccount account;
     private List<UserRoles> roles = new ArrayList<>(1);
 
     public User() {
@@ -56,6 +57,14 @@ public class User extends BaseEntity {
         password = _password;
     }
 
+    public UserAccount getAccount() {
+        return account;
+    }
+
+    public void setAccount(final UserAccount _account) {
+        account = _account;
+    }
+
     public List<UserRoles> getRoles() {
         return roles;
     }
@@ -69,11 +78,11 @@ public class User extends BaseEntity {
                 Objects.equal(getPassword(), user.getPassword()) &&
                 Objects.equal(getEmail(), user.getEmail()) &&
                 Objects.equal(getBirthday(), user.getBirthday()) &&
-                Objects.equal(getRoles(), user.getRoles());
+                Objects.equal(getAccount(), user.getAccount());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(getName(), getPassword(), getEmail(), getBirthday(), getRoles());
+        return Objects.hashCode(getName(), getPassword(), getEmail(), getBirthday(), getAccount());
     }
 }

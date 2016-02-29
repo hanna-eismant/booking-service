@@ -6,6 +6,7 @@ import com.epam.spring.core.events.Rating;
 import com.epam.spring.core.events.Show;
 import com.epam.spring.core.tickets.Ticket;
 import com.epam.spring.core.users.User;
+import com.epam.spring.core.users.UserAccount;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 
@@ -18,6 +19,9 @@ public abstract class TestConstants {
     // ********
     public static User USER_JHON = new User();
     public static User USER_JANE = new User();
+
+    public static Long JHON_BOOKED_COUNT = 10L;
+    public static Long JANE_BOOKED_COUNT = 3L;
 
     public static Event HOBBIT_EVENT = new Event();
     public static Event GAMER_EVENT = new Event();
@@ -38,11 +42,13 @@ public abstract class TestConstants {
         USER_JHON.setName("jhon");
         USER_JHON.setEmail("jhon@mail");
         USER_JHON.setBirthday(LocalDate.parse("1987-05-05"));
+        USER_JHON.setAccount(new UserAccount(1L, 100_000L));
 
         USER_JANE.setId(2L);
         USER_JANE.setName("jane");
         USER_JANE.setEmail("jane@mail");
         USER_JANE.setBirthday(LocalDate.parse("1986-10-17"));
+        USER_JANE.setAccount(new UserAccount(2L, 100_000L));
 
         HOBBIT_EVENT.setId(1L);
         HOBBIT_EVENT.setName("Hobbit");
@@ -70,7 +76,6 @@ public abstract class TestConstants {
         TICKET.setVip(true);
         TICKET.setBasePrice(19_200d);
     }
-
 
     // ********
     // new data for test (will be inserted thru tests)

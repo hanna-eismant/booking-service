@@ -45,19 +45,24 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public List<Ticket> getBookedTickets(String userName) {
+        // todo: check parameter
+
         List<TicketEntity> ticketEntities = ticketRepository.findByUser(userName);
         return mapper.mapAsList(ticketEntities, Ticket.class);
     }
 
     @Override
     public List<Ticket> getForShow(final Long showId) {
+        // todo: check parameter
+
         List<TicketEntity> ticketEntities = ticketRepository.findByShow(showId);
         return mapper.mapAsList(ticketEntities, Ticket.class);
     }
 
     @Override
-    public int getBookedTicketsCount(User user) {
-        // todo: create special request to get count
-        return 0;//getBookedTickets(user).size();
+    public Long getBookedTicketsCount(User user) {
+        // todo: check name
+
+        return ticketRepository.countByUser(user.getName());
     }
 }

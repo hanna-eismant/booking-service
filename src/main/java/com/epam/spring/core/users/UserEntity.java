@@ -5,9 +5,11 @@ import com.google.common.base.Objects;
 import org.hibernate.annotations.Type;
 import org.joda.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -41,8 +43,8 @@ public class UserEntity {
     @Convert(converter = RolesConverter.class)
     private List<UserRoles> roles = new ArrayList<>(1);
 
-    @OneToOne(targetEntity = UserAccountEntity.class, mappedBy = "user")
-    private UserAccountEntity userAccount;
+    @OneToOne(targetEntity = UserAccountEntity.class, mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private UserAccountEntity account;
 
     public UserEntity() {
     }
@@ -98,12 +100,12 @@ public class UserEntity {
         return roles;
     }
 
-    public UserAccountEntity getUserAccount() {
-        return userAccount;
+    public UserAccountEntity getAccount() {
+        return account;
     }
 
-    public void setUserAccount(final UserAccountEntity _userAccount) {
-        userAccount = _userAccount;
+    public void setAccount(final UserAccountEntity _userAccount) {
+        account = _userAccount;
     }
 
     @Override

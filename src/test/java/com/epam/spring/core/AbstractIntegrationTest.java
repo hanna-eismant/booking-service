@@ -12,7 +12,7 @@ import static org.springframework.test.context.jdbc.Sql.ExecutionPhase.BEFORE_TE
 @ContextConfiguration("classpath:spring-test.xml")
 @SqlGroup({
         @Sql(executionPhase = BEFORE_TEST_METHOD, scripts = "classpath:scripts/recreate-db.sql"),
-        @Sql(executionPhase = BEFORE_TEST_METHOD, scripts = "classpath:scripts/insert-test-data.sql")
+        @Sql(executionPhase = BEFORE_TEST_METHOD, scripts = "classpath:scripts/insert-sample-data.sql")
 })
 public abstract class AbstractIntegrationTest {
 }

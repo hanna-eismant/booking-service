@@ -40,13 +40,13 @@ public class DiscountStrategyTenTicketUnitTest {
     @Test
     public void testCalculate() {
         // test not 10th ticket
-        when(ticketService.getBookedTicketsCount(user)).thenReturn(5);
+        when(ticketService.getBookedTicketsCount(user)).thenReturn(5L);
         Double discount = discountStrategyTenTicket.calculate(user, null, LocalDateTime.parse(EVENT_DATE));
 
         assertThat(discount).as("Discount for 6th ticket should be 0").isEqualTo(0.0);
 
         // test 10th ticket
-        when(ticketService.getBookedTicketsCount(user)).thenReturn(9);
+        when(ticketService.getBookedTicketsCount(user)).thenReturn(9L);
         discount = discountStrategyTenTicket.calculate(user, null, LocalDateTime.parse(EVENT_DATE));
 
         assertThat(discount).as("Discount for 10th ticket should be 50%").isEqualTo(0.5);

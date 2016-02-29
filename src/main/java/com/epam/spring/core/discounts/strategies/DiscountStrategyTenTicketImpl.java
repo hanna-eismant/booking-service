@@ -22,7 +22,7 @@ public class DiscountStrategyTenTicketImpl implements DiscountStrategy {
 
     @Override
     public Double calculate(User user, Event event, LocalDateTime date) {
-        int ticketsCount = ticketService.getBookedTicketsCount(user);
+        Long ticketsCount = ticketService.getBookedTicketsCount(user);
 
         if ((ticketsCount % 10) == 9) { // todo: magic numbers!
             return 0.5;
