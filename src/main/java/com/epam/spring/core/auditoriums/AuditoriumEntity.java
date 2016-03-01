@@ -1,6 +1,6 @@
 package com.epam.spring.core.auditoriums;
 
-import com.epam.spring.core.shared.ListToArrayConverter;
+import com.epam.spring.core.shared.converters.ListToArrayConverter;
 import com.google.common.base.Objects;
 
 import javax.persistence.Column;
@@ -65,12 +65,12 @@ public class AuditoriumEntity {
 
     @Override
     public boolean equals(final Object _o) {
-        if (this == _o) return true;
-        if (_o == null || getClass() != _o.getClass()) return false;
+        if (this == _o)
+            return true;
+        if (_o == null || getClass() != _o.getClass())
+            return false;
         AuditoriumEntity that = (AuditoriumEntity) _o;
-        return Objects.equal(getId(), that.getId()) &&
-                Objects.equal(getName(), that.getName()) &&
-                Objects.equal(getSeats(), that.getSeats());
+        return Objects.equal(getId(), that.getId()) && Objects.equal(getName(), that.getName()) && Objects.equal(getSeats(), that.getSeats());
     }
 
     @Override

@@ -1,10 +1,7 @@
 package com.epam.spring.core.events;
 
-import com.epam.spring.core.auditoriums.AuditoriumEntity;
-import com.epam.spring.core.tickets.TicketEntity;
-import com.google.common.base.Objects;
-import org.hibernate.annotations.Type;
-import org.joda.time.LocalDateTime;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,8 +14,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-import java.util.LinkedHashSet;
-import java.util.Set;
+
+import org.hibernate.annotations.Type;
+import org.joda.time.LocalDateTime;
+
+import com.epam.spring.core.auditoriums.AuditoriumEntity;
+import com.epam.spring.core.tickets.TicketEntity;
+import com.google.common.base.Objects;
 
 @Entity
 @Table(name = "shows")
@@ -95,14 +97,13 @@ public class ShowEntity {
 
     @Override
     public boolean equals(final Object _o) {
-        if (this == _o) return true;
-        if (_o == null || getClass() != _o.getClass()) return false;
+        if (this == _o)
+            return true;
+        if (_o == null || getClass() != _o.getClass())
+            return false;
         ShowEntity that = (ShowEntity) _o;
-        return getFreeTicketCount() == that.getFreeTicketCount() &&
-                Objects.equal(getId(), that.getId()) &&
-                Objects.equal(getEvent(), that.getEvent()) &&
-                Objects.equal(getDate(), that.getDate()) &&
-                Objects.equal(getAuditorium(), that.getAuditorium());
+        return getFreeTicketCount() == that.getFreeTicketCount() && Objects.equal(getId(), that.getId()) && Objects.equal(getEvent(), that.getEvent()) &&
+                Objects.equal(getDate(), that.getDate()) && Objects.equal(getAuditorium(), that.getAuditorium());
     }
 
     @Override

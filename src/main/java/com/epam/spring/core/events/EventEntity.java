@@ -1,6 +1,7 @@
 package com.epam.spring.core.events;
 
-import com.google.common.base.Objects;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,8 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.util.LinkedHashSet;
-import java.util.Set;
+
+import com.google.common.base.Objects;
 
 @Entity
 @Table(name = "events")
@@ -83,12 +84,12 @@ public class EventEntity {
 
     @Override
     public boolean equals(final Object _o) {
-        if (this == _o) return true;
-        if (_o == null || getClass() != _o.getClass()) return false;
+        if (this == _o)
+            return true;
+        if (_o == null || getClass() != _o.getClass())
+            return false;
         EventEntity that = (EventEntity) _o;
-        return Objects.equal(getId(), that.getId()) &&
-                Objects.equal(getName(), that.getName()) &&
-                Objects.equal(getBasePrice(), that.getBasePrice()) &&
+        return Objects.equal(getId(), that.getId()) && Objects.equal(getName(), that.getName()) && Objects.equal(getBasePrice(), that.getBasePrice()) &&
                 getRating() == that.getRating();
     }
 

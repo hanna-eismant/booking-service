@@ -1,9 +1,7 @@
 package com.epam.spring.core.users;
 
-import com.epam.spring.core.shared.RolesConverter;
-import com.google.common.base.Objects;
-import org.hibernate.annotations.Type;
-import org.joda.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -15,8 +13,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import java.util.ArrayList;
-import java.util.List;
+
+import org.hibernate.annotations.Type;
+import org.joda.time.LocalDate;
+
+import com.epam.spring.core.shared.converters.RolesConverter;
+import com.google.common.base.Objects;
 
 @Entity
 @Table(name = "users")
@@ -110,15 +112,13 @@ public class UserEntity {
 
     @Override
     public boolean equals(final Object _o) {
-        if (this == _o) return true;
-        if (_o == null || getClass() != _o.getClass()) return false;
+        if (this == _o)
+            return true;
+        if (_o == null || getClass() != _o.getClass())
+            return false;
         UserEntity that = (UserEntity) _o;
-        return Objects.equal(getId(), that.getId()) &&
-                Objects.equal(getName(), that.getName()) &&
-                Objects.equal(getPassword(), that.getPassword()) &&
-                Objects.equal(getEmail(), that.getEmail()) &&
-                Objects.equal(getBirthday(), that.getBirthday()) &&
-                Objects.equal(getRoles(), that.getRoles());
+        return Objects.equal(getId(), that.getId()) && Objects.equal(getName(), that.getName()) && Objects.equal(getPassword(), that.getPassword()) &&
+                Objects.equal(getEmail(), that.getEmail()) && Objects.equal(getBirthday(), that.getBirthday()) && Objects.equal(getRoles(), that.getRoles());
     }
 
     @Override

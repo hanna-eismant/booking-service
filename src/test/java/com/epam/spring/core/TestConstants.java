@@ -21,7 +21,7 @@ public abstract class TestConstants {
     public static User USER_JANE = new User();
 
     public static Long JHON_BOOKED_COUNT = 10L;
-    public static Long JANE_BOOKED_COUNT = 3L;
+    public static Long JANE_BOOKED_COUNT = 4L;
 
     public static Event HOBBIT_EVENT = new Event();
     public static Event GAMER_EVENT = new Event();
@@ -30,12 +30,14 @@ public abstract class TestConstants {
 
     public static Auditorium AUDITORIUM_ONE = new Auditorium();
 
-    public static Ticket TICKET = new Ticket();
+    public static Ticket TICKET_FREE = new Ticket();
+    public static Ticket TICKET_JHON = new Ticket();
+    public static Ticket TICKET_JANE = new Ticket();
 
     public static LocalDateTime HOBBIT_TIME_ONE = LocalDateTime.parse("2015-06-06T14:00:00.000");
 
     public static int HOBBIT_TOTAL_TICKETS_ONE = 24;
-    public static int HOBBIT_FREE_TICKETS_ONE = 23;
+    public static int HOBBIT_FREE_TICKETS_ONE = 22;
 
     static {
         USER_JHON.setId(1L);
@@ -49,7 +51,7 @@ public abstract class TestConstants {
         USER_JANE.setName("jane");
         USER_JANE.setEmail("jane@mail");
         USER_JANE.setBirthday(LocalDate.parse("1986-10-17"));
-        USER_JANE.setAccount(new UserAccount(2L, 100_000.0));
+        USER_JANE.setAccount(new UserAccount(2L, 3_000.0));
         USER_JANE.setPassword("$2a$16$NVlYAowTx7jt.N.UbDMta.pENK20YRB.80xkBF993eewQGpYJHf9q");
 
         HOBBIT_EVENT.setId(1L);
@@ -73,11 +75,27 @@ public abstract class TestConstants {
         GAMER_EVENT.setBasePrice(5_000.0);
         GAMER_EVENT.setRating(Rating.MID);
 
-        TICKET.setId(5L);
-        TICKET.setSeat(5);
-        TICKET.setVip(true);
-        TICKET.setBasePrice(19_200d);
-        TICKET.setShow(HOBBIT_SHOW_ONE);
+        TICKET_FREE.setId(5L);
+        TICKET_FREE.setSeat(5);
+        TICKET_FREE.setVip(true);
+        TICKET_FREE.setBasePrice(19_200d);
+        TICKET_FREE.setShow(HOBBIT_SHOW_ONE);
+
+        TICKET_JHON.setId(2L);
+        TICKET_JHON.setSeat(2);
+        TICKET_JHON.setVip(false);
+        TICKET_JHON.setBasePrice(9_600d);
+        TICKET_JHON.setDiscountPrice(4_800d);
+        TICKET_JHON.setShow(HOBBIT_SHOW_ONE);
+        TICKET_JHON.setUser(USER_JHON);
+
+        TICKET_JANE.setId(3L);
+        TICKET_JANE.setSeat(3);
+        TICKET_JANE.setVip(false);
+        TICKET_JANE.setBasePrice(9_600d);
+        TICKET_JANE.setDiscountPrice(9_600d);
+        TICKET_JANE.setShow(HOBBIT_SHOW_ONE);
+        TICKET_JANE.setUser(USER_JANE);
     }
 
     // ********

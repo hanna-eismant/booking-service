@@ -71,14 +71,13 @@ public class User extends BaseEntity {
 
     @Override
     public boolean equals(final Object _o) {
-        if (this == _o) return true;
-        if (_o == null || getClass() != _o.getClass()) return false;
+        if (this == _o)
+            return true;
+        if (_o == null || getClass() != _o.getClass())
+            return false;
         User user = (User) _o;
-        return Objects.equal(getName(), user.getName()) &&
-                Objects.equal(getPassword(), user.getPassword()) &&
-                Objects.equal(getEmail(), user.getEmail()) &&
-                Objects.equal(getBirthday(), user.getBirthday()) &&
-                Objects.equal(getAccount(), user.getAccount());
+        return Objects.equal(getName(), user.getName()) && Objects.equal(getPassword(), user.getPassword()) && Objects.equal(getEmail(), user.getEmail()) &&
+                Objects.equal(getBirthday(), user.getBirthday()) && Objects.equal(getAccount(), user.getAccount());
     }
 
     @Override

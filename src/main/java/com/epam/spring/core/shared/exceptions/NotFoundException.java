@@ -1,6 +1,7 @@
-package com.epam.spring.core.shared;
+package com.epam.spring.core.shared.exceptions;
 
 public class NotFoundException extends Exception {
+
     public NotFoundException() {
         super();
     }
@@ -17,8 +18,7 @@ public class NotFoundException extends Exception {
         super(cause);
     }
 
-    protected NotFoundException(final String message, final Throwable cause,
-                                final boolean enableSuppression, final boolean writableStackTrace) {
+    protected NotFoundException(final String message, final Throwable cause, final boolean enableSuppression, final boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
 }

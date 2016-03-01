@@ -9,5 +9,5 @@ public interface UserAccountRepository extends CrudRepository<UserAccountEntity,
 
     @Modifying
     @Query("UPDATE UserAccountEntity a SET a.money = (a.money - :amount) WHERE a.user.id = :user_id")
-    void withdraw(@Param("user_id")Long userId, @Param("amount")Double amount);
+    void withdraw(@Param("user_id") Long userId, @Param("amount") Double amount);
 }

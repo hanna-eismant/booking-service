@@ -1,5 +1,10 @@
 package com.epam.spring.core.shared;
 
+import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
+import static org.springframework.http.HttpStatus.NOT_FOUND;
+
+import javax.servlet.ServletException;
+
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -7,10 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.util.NestedServletException;
 
-import javax.servlet.ServletException;
-
-import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
-import static org.springframework.http.HttpStatus.NOT_FOUND;
+import com.epam.spring.core.shared.exceptions.NotFoundException;
 
 @org.springframework.web.bind.annotation.ControllerAdvice
 public class ControllerAdvice {

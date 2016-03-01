@@ -1,12 +1,13 @@
 package com.epam.spring.core.events;
 
-import com.epam.spring.core.shared.BaseEntity;
-import com.google.common.base.Objects;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.epam.spring.core.shared.BaseEntity;
+import com.google.common.base.Objects;
 
 @Component
 @Scope("prototype")
@@ -56,12 +57,12 @@ public class Event extends BaseEntity {
 
     @Override
     public boolean equals(final Object _o) {
-        if (this == _o) return true;
-        if (_o == null || getClass() != _o.getClass()) return false;
+        if (this == _o)
+            return true;
+        if (_o == null || getClass() != _o.getClass())
+            return false;
         Event event = (Event) _o;
-        return Objects.equal(getId(), event.getId()) &&
-                Objects.equal(getName(), event.getName()) &&
-                Objects.equal(getBasePrice(), event.getBasePrice()) &&
+        return Objects.equal(getId(), event.getId()) && Objects.equal(getName(), event.getName()) && Objects.equal(getBasePrice(), event.getBasePrice()) &&
                 getRating() == event.getRating();
     }
 

@@ -1,10 +1,12 @@
 package com.epam.spring.core.tickets;
 
-import com.epam.spring.core.events.Event;
-import com.epam.spring.core.users.User;
+import java.util.List;
+
 import org.joda.time.LocalDateTime;
 
-import java.util.List;
+import com.epam.spring.core.events.Event;
+import com.epam.spring.core.shared.exceptions.NotFoundException;
+import com.epam.spring.core.users.User;
 
 public interface TicketService {
 
@@ -15,7 +17,8 @@ public interface TicketService {
     /**
      * Find all booked tickets by user's name.
      *
-     * @param userName user's name for search.
+     * @param userName
+     *            user's name for search.
      * @return list of all booked tickets by user. If user has no booked tickets then return empty list.
      */
     List<Ticket> getBookedTickets(String userName);
@@ -33,4 +36,6 @@ public interface TicketService {
     List<Ticket> getForShow(Long showId);
 
     Ticket update(Ticket ticket);
+
+    Ticket getById(Long id) throws NotFoundException;
 }

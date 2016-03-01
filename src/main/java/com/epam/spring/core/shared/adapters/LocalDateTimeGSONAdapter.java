@@ -1,12 +1,13 @@
-package com.epam.spring.core.shared;
+package com.epam.spring.core.shared.adapters;
+
+import java.io.IOException;
+
+import org.joda.time.LocalDateTime;
 
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
-import org.joda.time.LocalDateTime;
-
-import java.io.IOException;
 
 public class LocalDateTimeGSONAdapter extends TypeAdapter<LocalDateTime> {
 

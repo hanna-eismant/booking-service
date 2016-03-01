@@ -1,10 +1,10 @@
 package com.epam.spring.core.tickets;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
-
-import java.util.List;
 
 public interface TicketRepository extends CrudRepository<TicketEntity, Long> {
 
@@ -15,5 +15,5 @@ public interface TicketRepository extends CrudRepository<TicketEntity, Long> {
     Long countByUser(@Param("user_name") String userName);
 
     @Query("SELECT t FROM TicketEntity t WHERE t.show.id = :show_id ORDER BY t.seat")
-    List<TicketEntity> findByShow(@Param("show_id")Long showId);
+    List<TicketEntity> findByShow(@Param("show_id") Long showId);
 }

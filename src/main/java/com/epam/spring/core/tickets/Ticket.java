@@ -64,16 +64,14 @@ public class Ticket extends BaseEntity {
 
     @Override
     public boolean equals(final Object _o) {
-        if (this == _o) return true;
-        if (_o == null || getClass() != _o.getClass()) return false;
+        if (this == _o)
+            return true;
+        if (_o == null || getClass() != _o.getClass())
+            return false;
         Ticket ticket = (Ticket) _o;
-        return isVip() == ticket.isVip() &&
-                Objects.equal(getId(), ticket.getId()) &&
-                Objects.equal(getUser(), ticket.getUser()) &&
-                Objects.equal(getSeat(), ticket.getSeat()) &&
-                Objects.equal(getBasePrice(), ticket.getBasePrice()) &&
-                Objects.equal(getDiscountPrice(), ticket.getDiscountPrice()) &&
-                Objects.equal(getShow(), ticket.getShow());
+        return isVip() == ticket.isVip() && Objects.equal(getId(), ticket.getId()) && Objects.equal(getUser(), ticket.getUser()) &&
+                Objects.equal(getSeat(), ticket.getSeat()) && Objects.equal(getBasePrice(), ticket.getBasePrice()) &&
+                Objects.equal(getDiscountPrice(), ticket.getDiscountPrice()) && Objects.equal(getShow(), ticket.getShow());
     }
 
     @Override

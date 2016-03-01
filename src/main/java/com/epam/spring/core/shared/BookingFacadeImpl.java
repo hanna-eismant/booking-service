@@ -1,8 +1,14 @@
 package com.epam.spring.core.shared;
 
+import com.epam.spring.core.booking.BookingService;
 import com.epam.spring.core.events.Event;
 import com.epam.spring.core.events.EventService;
 import com.epam.spring.core.events.Show;
+import com.epam.spring.core.shared.adapters.LocalDateGSONAdapter;
+import com.epam.spring.core.shared.adapters.LocalDateTimeGSONAdapter;
+import com.epam.spring.core.shared.exceptions.NotEnoughMoneyException;
+import com.epam.spring.core.shared.exceptions.NotFoundException;
+import com.epam.spring.core.shared.exceptions.TicketAlreadyBookedException;
 import com.epam.spring.core.tickets.Ticket;
 import com.epam.spring.core.tickets.TicketService;
 import com.epam.spring.core.users.User;
@@ -38,6 +44,9 @@ public class BookingFacadeImpl implements BookingFacade {
 
     @Autowired
     private TicketService ticketService;
+
+    @Autowired
+    private BookingService bookingService;
 
     @PostConstruct
     private void init() {
@@ -127,6 +136,11 @@ public class BookingFacadeImpl implements BookingFacade {
         Show show = eventService.getShowById(showId);
         show.getTickets().sort((o1, o2) -> o1.getSeat() - o2.getSeat());
         return show;
+    }
+
+    @Override
+    public Ticket bookTicket(final String userName, final Long ticketId) throws NotFoundException, TicketAlreadyBookedException, NotEnoughMoneyException {
+        return bookingService.bookTicket(userName, ticketId);
     }
 
     @Override

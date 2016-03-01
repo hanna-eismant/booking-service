@@ -1,9 +1,5 @@
 package com.epam.spring.core.tickets;
 
-import com.epam.spring.core.events.ShowEntity;
-import com.epam.spring.core.users.UserEntity;
-import com.google.common.base.Objects;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +8,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.epam.spring.core.events.ShowEntity;
+import com.epam.spring.core.users.UserEntity;
+import com.google.common.base.Objects;
 
 @Entity
 @Table(name = "tickets")
@@ -99,16 +99,14 @@ public class TicketEntity {
 
     @Override
     public boolean equals(final Object _o) {
-        if (this == _o) return true;
-        if (_o == null || getClass() != _o.getClass()) return false;
+        if (this == _o)
+            return true;
+        if (_o == null || getClass() != _o.getClass())
+            return false;
         TicketEntity that = (TicketEntity) _o;
-        return isVip() == that.isVip() &&
-                Objects.equal(getId(), that.getId()) &&
-                Objects.equal(getSeat(), that.getSeat()) &&
-                Objects.equal(getBasePrice(), that.getBasePrice()) &&
-                Objects.equal(getDiscountPrice(), that.getDiscountPrice()) &&
-                Objects.equal(getShow(), that.getShow()) &&
-                Objects.equal(getUser(), that.getUser());
+        return isVip() == that.isVip() && Objects.equal(getId(), that.getId()) && Objects.equal(getSeat(), that.getSeat()) &&
+                Objects.equal(getBasePrice(), that.getBasePrice()) && Objects.equal(getDiscountPrice(), that.getDiscountPrice()) &&
+                Objects.equal(getShow(), that.getShow()) && Objects.equal(getUser(), that.getUser());
     }
 
     @Override

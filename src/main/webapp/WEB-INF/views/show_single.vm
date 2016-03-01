@@ -17,13 +17,14 @@
   <tbody>
       #foreach( $ticket in $show.tickets )
       <tr>
-        <td>$ticket.seat (*)</td>
+        <td>$ticket.seat #if($ticket.isVip)(VIP)#end</td>
         <td>$ticket.basePrice</td>
         <td>
-            #if ($show.user == null)
-              <a class="btn btn-primary btn-xs" role="button" href="/tickets/book/$show.id">
-                Book
-              </a>
+            #if (!$ticket.user)
+
+              <form action="/tickets/book/$ticket.id" method="POST">
+                <input type="submit" class="btn btn-primary btn-xs" value="Book" />
+              </form>
             #end
         </td>
       </tr>

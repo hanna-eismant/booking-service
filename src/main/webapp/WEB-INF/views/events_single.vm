@@ -30,7 +30,7 @@
         </td>
         <td>
             #if ($show.freeTicketCount != 0)
-              <a class="btn btn-primary btn-xs" role="button" href="/tickets/book/$show.id">
+              <a class="btn btn-primary btn-xs" role="button" href="/events/shows/$show.id">
                 Book ticket
               </a>
             #end

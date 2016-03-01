@@ -1,12 +1,13 @@
 package com.epam.spring.core.discounts.strategies;
 
-import com.epam.spring.core.users.User;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import com.epam.spring.core.users.User;
 
 public class DiscountStrategyBirthdayUnitTest {
 

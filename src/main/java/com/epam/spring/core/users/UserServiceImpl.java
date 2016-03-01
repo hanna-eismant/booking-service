@@ -1,8 +1,8 @@
 package com.epam.spring.core.users;
 
-import com.epam.spring.core.shared.DuplicateException;
 import com.epam.spring.core.shared.Mapper;
-import com.epam.spring.core.shared.NotFoundException;
+import com.epam.spring.core.shared.exceptions.DuplicateException;
+import com.epam.spring.core.shared.exceptions.NotFoundException;
 import ma.glasnost.orika.MapperFacade;
 import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +28,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public User register(String name, String email, String password, LocalDate birthday)
-            throws IllegalArgumentException, DuplicateException {
+    public User register(String name, String email, String password, LocalDate birthday) throws IllegalArgumentException, DuplicateException {
 
         // check user's name
         if (name == null || name.isEmpty()) {

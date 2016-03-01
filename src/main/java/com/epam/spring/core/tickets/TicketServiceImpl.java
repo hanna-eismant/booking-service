@@ -4,6 +4,7 @@ import com.epam.spring.core.discounts.DiscountService;
 import com.epam.spring.core.events.Event;
 import com.epam.spring.core.events.Rating;
 import com.epam.spring.core.shared.Mapper;
+import com.epam.spring.core.shared.exceptions.NotFoundException;
 import com.epam.spring.core.users.User;
 import ma.glasnost.orika.MapperFacade;
 import org.joda.time.LocalDateTime;
@@ -53,6 +54,22 @@ public class TicketServiceImpl implements TicketService {
     public Ticket update(final Ticket ticket) {
         TicketEntity ticketEntity = mapper.map(ticket, TicketEntity.class);
         ticketEntity = ticketRepository.save(ticketEntity);
+        return mapper.map(ticketEntity, Ticket.class);
+    }
+
+    @Override
+    public Ticket getById(final Long id) throws NotFoundException {
+        // check id
+        if (id == null) {
+            throw new IllegalArgumentException("Id for search cannot be 'null'");
+        }
+
+        TicketEntity ticketEntity = ticketRepository.findOne(id);
+
+        if (ticketEntity == null) {
+            throw new NotFoundException("Ticket with id '" + id + "' doesn't exist");
+        }
+
         return mapper.map(ticketEntity, Ticket.class);
     }
 

@@ -33,11 +33,12 @@ public class UserAccount {
 
     @Override
     public boolean equals(final Object _o) {
-        if (this == _o) return true;
-        if (_o == null || getClass() != _o.getClass()) return false;
+        if (this == _o)
+            return true;
+        if (_o == null || getClass() != _o.getClass())
+            return false;
         UserAccount that = (UserAccount) _o;
-        return Objects.equal(getId(), that.getId()) &&
-                Objects.equal(getMoney(), that.getMoney());
+        return Objects.equal(getId(), that.getId()) && Objects.equal(getMoney(), that.getMoney());
     }
 
     @Override

@@ -27,25 +27,15 @@ public class Mapper {
         mapperFactory.getConverterFactory().registerConverter(new PassThroughConverter(LocalDate.class));
         mapperFactory.getConverterFactory().registerConverter(new PassThroughConverter(LocalDateTime.class));
 
-        mapperFactory.classMap(UserEntity.class, User.class)
-                .byDefault()
-                .register();
+        mapperFactory.classMap(UserEntity.class, User.class).byDefault().register();
 
-        mapperFactory.classMap(UserAccountEntity.class, UserAccount.class)
-                .byDefault()
-                .register();
+        mapperFactory.classMap(UserAccountEntity.class, UserAccount.class).byDefault().register();
 
-        mapperFactory.classMap(EventEntity.class, Event.class)
-                .byDefault()
-                .register();
+        mapperFactory.classMap(EventEntity.class, Event.class).byDefault().register();
 
-        mapperFactory.classMap(ShowEntity.class, Show.class)
-                .byDefault()
-                .register();
+        mapperFactory.classMap(ShowEntity.class, Show.class).byDefault().register();
 
-        mapperFactory.classMap(AuditoriumEntity.class, Auditorium.class)
-                .byDefault()
-                .register();
+        mapperFactory.classMap(AuditoriumEntity.class, Auditorium.class).byDefault().register();
     }
 
     public static MapperFacade getMapper() {

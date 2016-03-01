@@ -1,8 +1,8 @@
 package com.epam.spring.core.events;
 
 import com.epam.spring.core.AbstractIntegrationTest;
-import com.epam.spring.core.shared.DuplicateException;
-import com.epam.spring.core.shared.NotFoundException;
+import com.epam.spring.core.shared.exceptions.DuplicateException;
+import com.epam.spring.core.shared.exceptions.NotFoundException;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

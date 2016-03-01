@@ -1,13 +1,17 @@
 package com.epam.spring.core.shared;
 
-import com.epam.spring.core.events.Event;
-import com.epam.spring.core.events.Show;
-import com.epam.spring.core.users.User;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
+
+import com.epam.spring.core.events.Event;
+import com.epam.spring.core.events.Show;
+import com.epam.spring.core.shared.exceptions.NotEnoughMoneyException;
+import com.epam.spring.core.shared.exceptions.NotFoundException;
+import com.epam.spring.core.shared.exceptions.TicketAlreadyBookedException;
+import com.epam.spring.core.tickets.Ticket;
+import com.epam.spring.core.users.User;
 
 public interface BookingFacade {
 
@@ -27,7 +31,9 @@ public interface BookingFacade {
 
     Map<String, List<Event>> parseEvents(InputStream inputStream) throws IOException;
 
-    Map<String,Object> getEventTickets(Long showId) throws NotFoundException;
+    Map<String, Object> getEventTickets(Long showId) throws NotFoundException;
 
     Show getShow(Long showId) throws NotFoundException;
+
+    Ticket bookTicket(String userName, Long ticketId) throws NotFoundException, TicketAlreadyBookedException, NotEnoughMoneyException;
 }

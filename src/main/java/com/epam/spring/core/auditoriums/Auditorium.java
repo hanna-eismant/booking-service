@@ -52,12 +52,12 @@ public class Auditorium {
 
     @Override
     public boolean equals(final Object _o) {
-        if (this == _o) return true;
-        if (_o == null || getClass() != _o.getClass()) return false;
+        if (this == _o)
+            return true;
+        if (_o == null || getClass() != _o.getClass())
+            return false;
         Auditorium that = (Auditorium) _o;
-        return  Objects.equal(getId(), that.getId()) &&
-                Objects.equal(getName(), that.getName()) &&
-                Objects.equal(getSeats(), that.getSeats());
+        return Objects.equal(getId(), that.getId()) && Objects.equal(getName(), that.getName()) && Objects.equal(getSeats(), that.getSeats());
     }
 
     @Override

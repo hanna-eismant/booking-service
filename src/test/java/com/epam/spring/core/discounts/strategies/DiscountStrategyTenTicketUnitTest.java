@@ -1,15 +1,16 @@
 package com.epam.spring.core.discounts.strategies;
 
-import com.epam.spring.core.tickets.TicketService;
-import com.epam.spring.core.users.User;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.when;
+
 import org.joda.time.LocalDateTime;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.when;
+import com.epam.spring.core.tickets.TicketService;
+import com.epam.spring.core.users.User;
 
 public class DiscountStrategyTenTicketUnitTest {
 

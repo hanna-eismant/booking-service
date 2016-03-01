@@ -1,7 +1,5 @@
 package com.epam.spring.core.users;
 
-import com.google.common.base.Objects;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -10,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.google.common.base.Objects;
 
 @Entity
 @Table(name = "user_account")
@@ -51,12 +51,12 @@ public class UserAccountEntity {
 
     @Override
     public boolean equals(final Object _o) {
-        if (this == _o) return true;
-        if (_o == null || getClass() != _o.getClass()) return false;
+        if (this == _o)
+            return true;
+        if (_o == null || getClass() != _o.getClass())
+            return false;
         UserAccountEntity that = (UserAccountEntity) _o;
-        return Objects.equal(getId(), that.getId()) &&
-                Objects.equal(getUser(), that.getUser()) &&
-                Objects.equal(getMoney(), that.getMoney());
+        return Objects.equal(getId(), that.getId()) && Objects.equal(getUser(), that.getUser()) && Objects.equal(getMoney(), that.getMoney());
     }
 
     @Override

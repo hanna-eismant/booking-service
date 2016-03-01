@@ -17,9 +17,8 @@ import java.util.Map;
 public class ShowTicketsPdfView extends AbstractPdfView {
 
     @Override
-    protected void buildPdfDocument(final Map<String, Object> model, final Document document, final PdfWriter writer,
-                                    final HttpServletRequest request, final HttpServletResponse response)
-            throws Exception {
+    protected void buildPdfDocument(final Map<String, Object> model, final Document document, final PdfWriter writer, final HttpServletRequest request,
+            final HttpServletResponse response) throws Exception {
 
         Show show = (Show) model.get("show");
 

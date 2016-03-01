@@ -1,5 +1,11 @@
 package com.epam.spring.core.tickets;
 
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import com.epam.spring.core.shared.AbstractPdfView;
 import com.epam.spring.core.users.User;
 import com.itextpdf.text.Document;
@@ -8,17 +14,11 @@ import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.List;
-import java.util.Map;
-
 public class UserTicketsPdfView extends AbstractPdfView {
 
     @Override
-    protected void buildPdfDocument(final Map<String, Object> model, final Document document, final PdfWriter writer,
-                                    final HttpServletRequest request, final HttpServletResponse response)
-            throws Exception {
+    protected void buildPdfDocument(final Map<String, Object> model, final Document document, final PdfWriter writer, final HttpServletRequest request,
+            final HttpServletResponse response) throws Exception {
         User user = (User) model.get("user");
 
         String headerText = "Tickets booked by " + user.getName() + " (" + user.getEmail() + ")";

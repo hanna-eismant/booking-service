@@ -2,9 +2,9 @@ package com.epam.spring.core.events;
 
 import com.epam.spring.core.auditoriums.Auditorium;
 import com.epam.spring.core.auditoriums.AuditoriumService;
-import com.epam.spring.core.shared.DuplicateException;
 import com.epam.spring.core.shared.Mapper;
-import com.epam.spring.core.shared.NotFoundException;
+import com.epam.spring.core.shared.exceptions.DuplicateException;
+import com.epam.spring.core.shared.exceptions.NotFoundException;
 import com.epam.spring.core.tickets.Ticket;
 import com.epam.spring.core.tickets.TicketService;
 import ma.glasnost.orika.MapperFacade;
@@ -33,8 +33,7 @@ public class EventServiceImpl implements EventService {
     private TicketService ticketService;
 
     @Override
-    public Event create(String name, Double basePrice, Rating rating)
-            throws IllegalArgumentException, DuplicateException {
+    public Event create(String name, Double basePrice, Rating rating) throws IllegalArgumentException, DuplicateException {
 
         // check event name
         if (name == null || name.isEmpty()) {
@@ -111,13 +110,12 @@ public class EventServiceImpl implements EventService {
         List<Ticket> tickets = new ArrayList<>();
 
         for (int seat = 0; seat < auditorium.getSeats(); seat++) {
-            Double ticketPrice =
-                    ticketService.getTicketPrice(event, date, seat, auditorium.getVipSeats().contains(seat), null);
+            Double ticketPrice = ticketService.getTicketPrice(event, date, seat, auditorium.getVipSeats().contains(seat), null);
             // todo: change after refactor data model
             // Ticket ticket = new Ticket(date, event, seat, auditorium.getVipSeats().contains(seat), ticketPrice);
             // todo: save all tickets at once
-//            ticket = ticketDAO.create(ticket);
-//            tickets.add(ticket);
+            // ticket = ticketDAO.create(ticket);
+            // tickets.add(ticket);
         }
 
         return tickets;

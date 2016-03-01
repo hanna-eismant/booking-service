@@ -1,17 +1,20 @@
 package com.epam.spring.core.tickets;
 
-import com.epam.spring.core.events.Show;
 import com.epam.spring.core.shared.BookingFacade;
-import com.epam.spring.core.shared.NotFoundException;
+import com.epam.spring.core.shared.exceptions.NotEnoughMoneyException;
+import com.epam.spring.core.shared.exceptions.NotFoundException;
+import com.epam.spring.core.shared.exceptions.TicketAlreadyBookedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.security.Principal;
 import java.util.Map;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @Controller
 @RequestMapping("/tickets")
@@ -40,15 +43,9 @@ public class TicketController {
         return view;
     }
 
-//    /tickets/book/$show.id
-
-    @RequestMapping(value = "/book/{showId}", method = GET)
-    public ModelAndView getTickets(@PathVariable("showId") Long showId) throws NotFoundException {
-        Show show = bookingFacade.getShow(showId);
-
-        ModelAndView view = new ModelAndView("show_single");
-        view.addObject("show", show);
-
-        return view;
+    @RequestMapping(value = "/book/{ticketId}", method = POST)
+    public String book(@PathVariable("ticketId") Long ticketId, Principal principal) throws NotFoundException, TicketAlreadyBookedException, NotEnoughMoneyException {
+        Ticket ticket = bookingFacade.bookTicket(principal.getName(), ticketId);
+        return "redirect:/events/shows/" + ticket.getShow().getId();
     }
 }

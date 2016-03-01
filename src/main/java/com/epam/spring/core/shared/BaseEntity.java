@@ -2,7 +2,7 @@ package com.epam.spring.core.shared;
 
 import java.io.Serializable;
 
-public abstract class BaseEntity implements Serializable{
+public abstract class BaseEntity implements Serializable {
 
     private Long id;
 

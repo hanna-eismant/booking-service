@@ -1,5 +1,14 @@
 package com.epam.spring.core.shared;
 
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.servlet.view.AbstractView;
+
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -7,13 +16,6 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.pdf.PdfWriter;
-import org.springframework.web.servlet.view.AbstractView;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.ByteArrayOutputStream;
-import java.io.OutputStream;
-import java.util.Map;
 
 public abstract class AbstractPdfView extends AbstractView {
 
@@ -26,8 +28,7 @@ public abstract class AbstractPdfView extends AbstractView {
     }
 
     @Override
-    protected void renderMergedOutputModel(final Map<String, Object> model,
-                                           final HttpServletRequest request, final HttpServletResponse response)
+    protected void renderMergedOutputModel(final Map<String, Object> model, final HttpServletRequest request, final HttpServletResponse response)
             throws Exception {
 
         // IE workaround: write into byte array first.
@@ -48,8 +49,8 @@ public abstract class AbstractPdfView extends AbstractView {
         writeToResponse(response, baos);
     }
 
-    protected abstract void buildPdfDocument(Map<String, Object> model, Document document, PdfWriter writer,
-                                             HttpServletRequest request, HttpServletResponse response) throws Exception;
+    protected abstract void buildPdfDocument(Map<String, Object> model, Document document, PdfWriter writer, HttpServletRequest request,
+            HttpServletResponse response) throws Exception;
 
     @Override
     protected boolean generatesDownloadContent() {
@@ -64,8 +65,7 @@ public abstract class AbstractPdfView extends AbstractView {
         return PdfWriter.getInstance(document, os);
     }
 
-    protected void prepareWriter(Map<String, Object> model, PdfWriter writer, HttpServletRequest request)
-            throws DocumentException {
+    protected void prepareWriter(Map<String, Object> model, PdfWriter writer, HttpServletRequest request) throws DocumentException {
 
         writer.setViewerPreferences(getViewerPreferences());
     }

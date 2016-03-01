@@ -3,21 +3,21 @@ INSERT INTO users (id, name, password, email, birthday, roles)
 VALUES (1, 'jhon', '$2a$16$NVlYAowTx7jt.N.UbDMta.pENK20YRB.80xkBF993eewQGpYJHf9q', 'jhon@mail', '1987-05-05',
         ARRAY ['ROLE_REGISTERED_USER']), -- 10 tickets
   (2, 'jane', '$2a$16$NVlYAowTx7jt.N.UbDMta.pENK20YRB.80xkBF993eewQGpYJHf9q', 'jane@mail', '1986-10-17',
-   ARRAY ['ROLE_REGISTERED_USER']), -- 3 tickets
+   ARRAY ['ROLE_REGISTERED_USER']), -- 4 tickets
   (3, 'admin', '$2a$16$RbuuNgNnEs.PBTe94wSGt.hMmqYcMDJn1xKXLrHU6KgKAxPHrnc3K', 'admin@bs.org', '19876-10-17',
    ARRAY ['ROLE_REGISTERED_USER', 'ROLE_BOOKING_MANAGER']);
 
 -- users account
 INSERT INTO user_account (id, user_id, money)
 VALUES (1, 1, 100000),
-  (2, 2, 100000),
+  (2, 2, 3000),
   (3, 3, 100000);
 
 -- events
 INSERT INTO events (id, name, base_price, rating)
 VALUES (1, 'Hobbit', '8000.0', 'HIGH');
 -- 2015-06-06T14:00:00.000 -> total 24 tickets
---                         -> free 23 tickets
+--                         -> free 22 tickets
 -- 2015-06-07T22:00:00.000 -> total 24 tickets
 --                         -> free 24 tickets
 
@@ -50,7 +50,7 @@ VALUES (1, '2015-06-06T14:00:00.000', 1, 1),
 INSERT INTO tickets (id, seat, is_vip, price, discount_price, show_id, user_id)
 VALUES (1, 1, FALSE, 9600, NULL, 1, NULL),
   (2, 2, FALSE, 9600, 4800, 1, 1), -- 10
-  (3, 3, FALSE, 9600, NULL, 1, NULL),
+  (3, 3, FALSE, 9600, 9600, 1, 2),
   (4, 4, FALSE, 9600, NULL, 1, NULL),
   (5, 5, TRUE, 19200, NULL, 1, NULL),
   (6, 6, TRUE, 19200, NULL, 1, NULL),

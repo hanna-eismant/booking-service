@@ -1,6 +1,7 @@
 package com.epam.spring.core.shared;
 
 public class Statistic extends BaseEntity {
+
     private String name;
     private String type;
     private Long counter;

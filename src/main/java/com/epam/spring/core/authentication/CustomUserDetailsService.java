@@ -1,7 +1,7 @@
 package com.epam.spring.core.authentication;
 
 import com.epam.spring.core.shared.BookingFacade;
-import com.epam.spring.core.shared.NotFoundException;
+import com.epam.spring.core.shared.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -20,20 +20,17 @@ public class CustomUserDetailsService implements UserDetailsService {
     private BookingFacade bookingFacade;
 
     @Override
-    public UserDetails loadUserByUsername(final String username)
-            throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
 
         try {
             com.epam.spring.core.users.User user = bookingFacade.getUser(username);
             List<GrantedAuthority> grantedAuthorityList = new ArrayList<>(1);
 
-            grantedAuthorityList.addAll(user.getRoles().stream().map(
-                    role -> new SimpleGrantedAuthority(role.toString())).collect(Collectors.toList()));
+            grantedAuthorityList.addAll(user.getRoles().stream().map(role -> new SimpleGrantedAuthority(role.toString())).collect(Collectors.toList()));
 
-//            grantedAuthorityList.add(new SimpleGrantedAuthority("ROLE_ANONYMOUS"));
+            // grantedAuthorityList.add(new SimpleGrantedAuthority("ROLE_ANONYMOUS"));
 
-            User userDetails = new User(user.getName(),
-                    user.getPassword(), grantedAuthorityList);
+            User userDetails = new User(user.getName(), user.getPassword(), grantedAuthorityList);
             return userDetails;
 
         } catch (NotFoundException _e) {

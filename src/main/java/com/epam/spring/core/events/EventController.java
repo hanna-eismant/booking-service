@@ -1,7 +1,13 @@
 package com.epam.spring.core.events;
 
-import com.epam.spring.core.shared.BookingFacade;
-import com.epam.spring.core.shared.NotFoundException;
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,13 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
-import java.util.Map;
-
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
+import com.epam.spring.core.shared.BookingFacade;
+import com.epam.spring.core.shared.exceptions.NotFoundException;
 
 @Controller
 @RequestMapping("/events")
@@ -43,9 +44,17 @@ public class EventController {
         view.addObject("event", event);
 
         return view;
-
     }
 
+    @RequestMapping(value = "/shows/{showId}", method = GET)
+    public ModelAndView getTickets(@PathVariable("showId") Long showId) throws NotFoundException {
+        Show show = bookingFacade.getShow(showId);
+
+        ModelAndView view = new ModelAndView("show_single");
+        view.addObject("show", show);
+
+        return view;
+    }
 
     @RequestMapping(value = "/upload", method = POST)
     public ModelAndView upload(@RequestParam MultipartFile eventsInfoFile) throws IOException {

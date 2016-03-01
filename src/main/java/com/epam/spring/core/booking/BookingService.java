@@ -1,24 +1,19 @@
 package com.epam.spring.core.booking;
 
-import com.epam.spring.core.events.Event;
-import com.epam.spring.core.shared.NotFoundException;
+import com.epam.spring.core.shared.exceptions.NotEnoughMoneyException;
+import com.epam.spring.core.shared.exceptions.NotFoundException;
+import com.epam.spring.core.shared.exceptions.TicketAlreadyBookedException;
 import com.epam.spring.core.tickets.Ticket;
-import com.epam.spring.core.users.User;
-import org.joda.time.LocalDateTime;
-
-import java.util.List;
 
 public interface BookingService {
 
     /**
-     * Assign ticket to user.
-     * Inside this method final price (with discount) is calculated and set to ticket.
+     * If ticket is already booked by this user → do nothing. If ticket is already booked by another user → throw exception
      *
-     * @return updated ticket with information about user and discount price.
+     *
+     * @param userName
+     * @param ticketId
+     * @return
      */
-    Ticket bookTicket(User user, Ticket ticket) throws NotFoundException;
-
-    List<Ticket> getTicketsForEvent(Event event, LocalDateTime date);
-
-    List<Ticket> getFreeTicketsForEvent(Event event, LocalDateTime date);
+    Ticket bookTicket(String userName, Long ticketId) throws NotFoundException, TicketAlreadyBookedException, NotEnoughMoneyException;
 }

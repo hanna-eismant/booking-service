@@ -1,10 +1,11 @@
 package com.epam.spring.core.users;
 
-import com.epam.spring.core.shared.DuplicateException;
-import com.epam.spring.core.shared.NotFoundException;
+import java.util.List;
+
 import org.joda.time.LocalDate;
 
-import java.util.List;
+import com.epam.spring.core.shared.exceptions.DuplicateException;
+import com.epam.spring.core.shared.exceptions.NotFoundException;
 
 public interface UserService {
 

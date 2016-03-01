@@ -1,8 +1,8 @@
 package com.epam.spring.core.users;
 
 import com.epam.spring.core.AbstractIntegrationTest;
-import com.epam.spring.core.shared.DuplicateException;
-import com.epam.spring.core.shared.NotFoundException;
+import com.epam.spring.core.shared.exceptions.DuplicateException;
+import com.epam.spring.core.shared.exceptions.NotFoundException;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -80,8 +80,7 @@ public class UserServiceIntegrationTest extends AbstractIntegrationTest {
                 .doesNotContain(UserRoles.ROLE_BOOKING_MANAGER);
 
         assertThat(userTest.getAccount()).as("Found user should have account").isNotNull();
-        assertThat(userTest.getAccount().getMoney()).as("User account has incorrect money amount")
-                .isEqualTo(USER_JANE.getAccount().getMoney());
+        assertThat(userTest.getAccount().getMoney()).as("User account has incorrect money amount").isEqualTo(USER_JANE.getAccount().getMoney());
     }
 
     @Test
@@ -102,8 +101,7 @@ public class UserServiceIntegrationTest extends AbstractIntegrationTest {
                 .doesNotContain(UserRoles.ROLE_BOOKING_MANAGER);
 
         assertThat(userTest.getAccount()).as("Found user should have account").isNotNull();
-        assertThat(userTest.getAccount().getMoney()).as("User account has incorrect money amount")
-                .isEqualTo(USER_JANE.getAccount().getMoney());
+        assertThat(userTest.getAccount().getMoney()).as("User account has incorrect money amount").isEqualTo(USER_JANE.getAccount().getMoney());
     }
 
     @Test
@@ -124,8 +122,7 @@ public class UserServiceIntegrationTest extends AbstractIntegrationTest {
                 .doesNotContain(UserRoles.ROLE_BOOKING_MANAGER);
 
         assertThat(userTest.getAccount()).as("Found user should have account").isNotNull();
-        assertThat(userTest.getAccount().getMoney()).as("User account has incorrect money amount")
-                .isEqualTo(USER_JANE.getAccount().getMoney());
+        assertThat(userTest.getAccount().getMoney()).as("User account has incorrect money amount").isEqualTo(USER_JANE.getAccount().getMoney());
     }
 
     @Test

@@ -1,13 +1,15 @@
-package com.epam.spring.core.shared;
+package com.epam.spring.core.shared.converters;
 
-import com.epam.spring.core.users.UserRoles;
-import org.hsqldb.jdbc.JDBCArray;
-
-import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import javax.persistence.AttributeConverter;
+import javax.persistence.Converter;
+
+import org.hsqldb.jdbc.JDBCArray;
+
+import com.epam.spring.core.users.UserRoles;
 
 @Converter(autoApply = true)
 public class RolesConverter implements AttributeConverter<List<UserRoles>, Object> {

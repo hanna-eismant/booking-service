@@ -1,4 +1,4 @@
-package com.epam.spring.core.shared;
+package com.epam.spring.core.shared.exceptions;
 
 public class DuplicateException extends Exception {
 

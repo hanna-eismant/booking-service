@@ -1,13 +1,14 @@
 package com.epam.spring.core.events;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.joda.time.LocalDateTime;
+
 import com.epam.spring.core.auditoriums.Auditorium;
 import com.epam.spring.core.shared.BaseEntity;
 import com.epam.spring.core.tickets.Ticket;
 import com.google.common.base.Objects;
-import org.joda.time.LocalDateTime;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Show extends BaseEntity {
 
@@ -64,14 +65,13 @@ public class Show extends BaseEntity {
 
     @Override
     public boolean equals(final Object _o) {
-        if (this == _o) return true;
-        if (_o == null || getClass() != _o.getClass()) return false;
+        if (this == _o)
+            return true;
+        if (_o == null || getClass() != _o.getClass())
+            return false;
         Show show = (Show) _o;
-        return getFreeTicketCount() == show.getFreeTicketCount() &&
-                Objects.equal(getId(), show.getId()) &&
-                Objects.equal(getEvent(), show.getEvent()) &&
-                Objects.equal(getDate(), show.getDate()) &&
-                Objects.equal(getAuditorium(), show.getAuditorium());
+        return getFreeTicketCount() == show.getFreeTicketCount() && Objects.equal(getId(), show.getId()) && Objects.equal(getEvent(), show.getEvent()) &&
+                Objects.equal(getDate(), show.getDate()) && Objects.equal(getAuditorium(), show.getAuditorium());
     }
 
     @Override
