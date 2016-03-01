@@ -20,6 +20,7 @@ public class DiscountServiceImpl implements DiscountService {
     }
 
     @Override
+    @Deprecated
     public Double getDiscount(User user, Event event, LocalDateTime date) {
         Double result = 0.0;
 

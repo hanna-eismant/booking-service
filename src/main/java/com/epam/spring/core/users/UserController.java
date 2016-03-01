@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 
@@ -43,6 +44,11 @@ public class UserController {
         view.addAllObjects(userInfo);
 
         return view;
+    }
+
+    @RequestMapping(value = "/my-account")
+    public ModelAndView getMyAccount(Principal principal) throws NotFoundException {
+        return get(principal.getName());
     }
 
     @RequestMapping(value = "/upload", method = POST)

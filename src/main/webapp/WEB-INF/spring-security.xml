@@ -17,7 +17,10 @@
         <intercept-url pattern="/tickets/**/event_tickets.pdf" access="hasRole('ROLE_BOOKING_MANAGER')"/>
         <intercept-url pattern="/administration**/**" access="hasRole('ROLE_BOOKING_MANAGER')"/>
 
-        <intercept-url pattern="/users**/**" access="hasRole('ROLE_REGISTERED_USER')"/>
+        <intercept-url pattern="/users/my-account" access="hasRole('ROLE_REGISTERED_USER')"/>
+
+        <intercept-url pattern="/users**/**" access="hasRole('ROLE_BOOKING_MANAGER')"/>
+
         <intercept-url pattern="/events**/**" access="hasRole('ROLE_REGISTERED_USER')"/>
 
         <intercept-url pattern="/**" access="permitAll"/>

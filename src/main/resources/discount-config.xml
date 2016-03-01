@@ -15,7 +15,6 @@
                 <bean class="com.epam.spring.core.discounts.strategies.DiscountStrategyTenTicketImpl"
                       id="discountStrategyTenTicket"
                       lazy-init="true">
-                    <property name="userService" ref="userService"/>
                     <property name="ticketService" ref="ticketService"/>
                 </bean>
             </list>

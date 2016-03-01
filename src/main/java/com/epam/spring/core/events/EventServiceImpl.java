@@ -1,7 +1,6 @@
 package com.epam.spring.core.events;
 
 import com.epam.spring.core.auditoriums.Auditorium;
-import com.epam.spring.core.auditoriums.AuditoriumService;
 import com.epam.spring.core.shared.Mapper;
 import com.epam.spring.core.shared.exceptions.DuplicateException;
 import com.epam.spring.core.shared.exceptions.NotFoundException;
@@ -11,6 +10,7 @@ import ma.glasnost.orika.MapperFacade;
 import org.joda.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,12 +27,10 @@ public class EventServiceImpl implements EventService {
     private ShowRepository showRepository;
 
     @Autowired
-    private AuditoriumService auditoriumService;
-
-    @Autowired
     private TicketService ticketService;
 
     @Override
+    @Transactional
     public Event create(String name, Double basePrice, Rating rating) throws IllegalArgumentException, DuplicateException {
 
         // check event name
@@ -60,6 +58,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
+    @Transactional
     public Event getById(Long id) throws NotFoundException {
         // check id
         if (id == null) {
@@ -81,6 +80,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
+    @Transactional
     public Show getShowById(final Long showId) throws NotFoundException {
         // check id
         if (showId == null) {
