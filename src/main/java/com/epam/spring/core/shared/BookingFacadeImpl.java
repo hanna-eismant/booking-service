@@ -1,5 +1,6 @@
 package com.epam.spring.core.shared;
 
+import com.epam.spring.core.api.soap.SoapUser;
 import com.epam.spring.core.booking.BookingService;
 import com.epam.spring.core.events.Event;
 import com.epam.spring.core.events.EventService;
@@ -16,6 +17,7 @@ import com.epam.spring.core.users.UserService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
+import ma.glasnost.orika.MapperFacade;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +49,8 @@ public class BookingFacadeImpl implements BookingFacade {
 
     @Autowired
     private BookingService bookingService;
+
+    private MapperFacade mapper = Mapper.getMapper();
 
     @PostConstruct
     private void init() {
@@ -96,6 +100,12 @@ public class BookingFacadeImpl implements BookingFacade {
     @Override
     public User getUser(final String name) throws NotFoundException {
         return userService.getByName(name);
+    }
+
+    @Override
+    public SoapUser getSoapUser(final String userName) throws NotFoundException {
+        User user = userService.getByName(userName);
+        return mapper.map(user, SoapUser.class);
     }
 
     @Override

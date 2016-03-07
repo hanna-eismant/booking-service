@@ -24,9 +24,23 @@
         </init-param>
     </servlet>
 
+    <servlet>
+        <servlet-name>spring-soap</servlet-name>
+        <servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>WEB-INF/spring-soap-servlet.xml</param-value>
+        </init-param>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>spring-mvc</servlet-name>
         <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>spring-soap</servlet-name>
+        <url-pattern>/api/*</url-pattern>
     </servlet-mapping>
 
     <filter>

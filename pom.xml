@@ -14,11 +14,13 @@
         <!-- Spring and another main libs -->
         <spring.version>4.2.2.RELEASE</spring.version>
         <spring-security.version>4.0.3.RELEASE</spring-security.version>
+        <spring-ws.version>2.2.4.RELEASE</spring-ws.version>
         <aspectj.version>1.8.7</aspectj.version>
         <javax.inject.version>1</javax.inject.version>
         <servletapi.version>2.5</servletapi.version>
         <cio.version>2.4</cio.version>
         <cupload.version>1.2.2</cupload.version>
+        <wsdl4j.version>1.6.3</wsdl4j.version>
 
         <!-- Database -->
         <hsqldb.version>2.3.2</hsqldb.version>
@@ -91,6 +93,21 @@
             <artifactId>spring-security-config</artifactId>
             <version>${spring-security.version}</version>
             <scope>runtime</scope>
+        </dependency>
+
+        <!-- Spring Web Services -->
+
+        <dependency>
+            <groupId>org.springframework.ws</groupId>
+            <artifactId>spring-ws-core</artifactId>
+            <version>${spring-ws.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>wsdl4j</groupId>
+            <artifactId>wsdl4j</artifactId>
+            <version>${wsdl4j.version}</version>
         </dependency>
 
         <!-- Testing -->
@@ -279,6 +296,30 @@
                 <configuration>
                     <warName>bs</warName>
                     <packagingIncludes>**/*</packagingIncludes>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.jvnet.jaxb2.maven2</groupId>
+                <artifactId>maven-jaxb2-plugin</artifactId>
+                <version>0.13.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <schemaLanguage>WSDL</schemaLanguage>
+                    <generatePackage>com.epam.spring.core.soap.client</generatePackage>
+                    <forceRegenerate>false</forceRegenerate>
+                    <generateDirectory>${project.basedir}/src/clients/java</generateDirectory>
+                    <schemas>
+                        <schema>
+                            <url>http://localhost:8080/api/soap/userDefinition.wsdl</url>
+                        </schema>
+                    </schemas>
                 </configuration>
             </plugin>
 

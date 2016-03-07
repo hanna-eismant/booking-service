@@ -1,10 +1,6 @@
 package com.epam.spring.core.shared;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
-import java.util.Map;
-
+import com.epam.spring.core.api.soap.SoapUser;
 import com.epam.spring.core.events.Event;
 import com.epam.spring.core.events.Show;
 import com.epam.spring.core.shared.exceptions.NotEnoughMoneyException;
@@ -12,6 +8,11 @@ import com.epam.spring.core.shared.exceptions.NotFoundException;
 import com.epam.spring.core.shared.exceptions.TicketAlreadyBookedException;
 import com.epam.spring.core.tickets.Ticket;
 import com.epam.spring.core.users.User;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
+import java.util.Map;
 
 public interface BookingFacade {
 
@@ -36,4 +37,6 @@ public interface BookingFacade {
     Show getShow(Long showId) throws NotFoundException;
 
     Ticket bookTicket(String userName, Long ticketId) throws NotFoundException, TicketAlreadyBookedException, NotEnoughMoneyException;
+
+    SoapUser getSoapUser(final String userName) throws NotFoundException;
 }

@@ -1,5 +1,6 @@
 package com.epam.spring.core.shared;
 
+import com.epam.spring.core.api.soap.SoapUser;
 import ma.glasnost.orika.MapperFacade;
 import ma.glasnost.orika.MapperFactory;
 import ma.glasnost.orika.converter.builtin.PassThroughConverter;
@@ -28,6 +29,7 @@ public class Mapper {
         mapperFactory.getConverterFactory().registerConverter(new PassThroughConverter(LocalDateTime.class));
 
         mapperFactory.classMap(UserEntity.class, User.class).byDefault().register();
+        mapperFactory.classMap(User.class, SoapUser.class).byDefault().register();
 
         mapperFactory.classMap(UserAccountEntity.class, UserAccount.class).byDefault().register();
 
