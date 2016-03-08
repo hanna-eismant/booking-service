@@ -312,7 +312,7 @@
                 </executions>
                 <configuration>
                     <schemaLanguage>WSDL</schemaLanguage>
-                    <generatePackage>com.epam.spring.core.soap.client</generatePackage>
+                    <generatePackage>com.epam.spring.core.soap.client.gen</generatePackage>
                     <forceRegenerate>false</forceRegenerate>
                     <generateDirectory>${project.basedir}/src/clients/java</generateDirectory>
                     <schemas>

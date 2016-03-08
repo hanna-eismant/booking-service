@@ -1,9 +1,0 @@
-package com.epam.spring.core.soap;
-
-public class Runner {
-
-    public static void main(String[] args) {
-
-    }
-
-}
