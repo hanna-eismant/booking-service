@@ -7,6 +7,7 @@ import com.epam.spring.core.events.EventService;
 import com.epam.spring.core.events.Show;
 import com.epam.spring.core.shared.adapters.LocalDateGSONAdapter;
 import com.epam.spring.core.shared.adapters.LocalDateTimeGSONAdapter;
+import com.epam.spring.core.shared.exceptions.DuplicateException;
 import com.epam.spring.core.shared.exceptions.NotEnoughMoneyException;
 import com.epam.spring.core.shared.exceptions.NotFoundException;
 import com.epam.spring.core.shared.exceptions.TicketAlreadyBookedException;
@@ -77,6 +78,12 @@ public class BookingFacadeImpl implements BookingFacade {
     }
 
     @Override
+    public void registerUser(final String name, final String email, final String password, final LocalDate birthday)
+            throws DuplicateException {
+        userService.register(name, email, password, birthday);
+    }
+
+    @Override
     public Map<String, Object> getUserInfo(final String name) throws NotFoundException {
         User user = userService.getByName(name);
 
@@ -111,6 +118,12 @@ public class BookingFacadeImpl implements BookingFacade {
     @Override
     public List<User> getAllUsersInfo() {
         return userService.getAll();
+    }
+
+    @Override
+    public List<SoapUser> getAllSoapUsersInfo() {
+        List<User> users = userService.getAll();
+        return mapper.mapAsList(users, SoapUser.class);
     }
 
     @Override

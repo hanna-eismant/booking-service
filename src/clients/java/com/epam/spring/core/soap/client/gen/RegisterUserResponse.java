@@ -25,7 +25,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="user" type="{http://epam.com/spring/core/api/soap}soapUser"/&gt;
+ *         &lt;element name="status" type="{http://www.w3.org/2001/XMLSchema}boolean"/&gt;
+ *         &lt;element name="message" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -36,36 +37,54 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "user"
+    "status",
+    "message"
 })
-@XmlRootElement(name = "getUserInfoResponse", namespace = "http://epam.com/spring/core/api/soap")
-public class GetUserInfoResponse {
+@XmlRootElement(name = "registerUserResponse", namespace = "http://epam.com/spring/core/api/soap")
+public class RegisterUserResponse {
 
+    protected boolean status;
     @XmlElement(required = true)
-    protected SoapUser user;
+    protected String message;
 
     /**
-     * Gets the value of the user property.
+     * Gets the value of the status property.
      * 
-     * @return
-     *     possible object is
-     *     {@link SoapUser }
-     *     
      */
-    public SoapUser getUser() {
-        return user;
+    public boolean isStatus() {
+        return status;
     }
 
     /**
-     * Sets the value of the user property.
+     * Sets the value of the status property.
+     * 
+     */
+    public void setStatus(boolean value) {
+        this.status = value;
+    }
+
+    /**
+     * Gets the value of the message property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getMessage() {
+        return message;
+    }
+
+    /**
+     * Sets the value of the message property.
      * 
      * @param value
      *     allowed object is
-     *     {@link SoapUser }
+     *     {@link String }
      *     
      */
-    public void setUser(SoapUser value) {
-        this.user = value;
+    public void setMessage(String value) {
+        this.message = value;
     }
 
 }

@@ -1,7 +1,10 @@
 
 package com.epam.spring.core.api.soap;
 
+import javax.xml.bind.JAXBElement;
+import javax.xml.bind.annotation.XmlElementDecl;
 import javax.xml.bind.annotation.XmlRegistry;
+import javax.xml.namespace.QName;
 
 
 /**
@@ -21,12 +24,21 @@ import javax.xml.bind.annotation.XmlRegistry;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _GetUsersRequest_QNAME = new QName("http://epam.com/spring/core/api/soap", "getUsersRequest");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.epam.spring.core.api.soap
      * 
      */
     public ObjectFactory() {
+    }
+
+    /**
+     * Create an instance of {@link RegisterUserRequest }
+     * 
+     */
+    public RegisterUserRequest createRegisterUserRequest() {
+        return new RegisterUserRequest();
     }
 
     /**
@@ -54,11 +66,36 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link RegisterUserResponse }
+     * 
+     */
+    public RegisterUserResponse createRegisterUserResponse() {
+        return new RegisterUserResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetUsersResponse }
+     * 
+     */
+    public GetUsersResponse createGetUsersResponse() {
+        return new GetUsersResponse();
+    }
+
+    /**
      * Create an instance of {@link SoapUserAccount }
      * 
      */
     public SoapUserAccount createSoapUserAccount() {
         return new SoapUserAccount();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Object }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://epam.com/spring/core/api/soap", name = "getUsersRequest")
+    public JAXBElement<Object> createGetUsersRequest(Object value) {
+        return new JAXBElement<Object>(_GetUsersRequest_QNAME, Object.class, null, value);
     }
 
 }

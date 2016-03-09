@@ -10,24 +10,25 @@ package com.epam.spring.core.soap.client.gen;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for soapUser complex type.
+ * <p>Java class for anonymous complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="soapUser"&gt;
+ * &lt;complexType&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="account" type="{http://epam.com/spring/core/api/soap}soapUserAccount" minOccurs="0"/&gt;
- *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/&gt;
- *         &lt;element name="email" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
- *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
- *         &lt;element name="password" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+ *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *         &lt;element name="email" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *         &lt;element name="password" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *         &lt;element name="birthday" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -37,67 +38,46 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "soapUser", namespace = "http://epam.com/spring/core/api/soap", propOrder = {
-    "account",
-    "id",
-    "email",
+@XmlType(name = "", propOrder = {
     "name",
-    "password"
+    "email",
+    "password",
+    "birthday"
 })
-public class SoapUser {
+@XmlRootElement(name = "registerUserRequest", namespace = "http://epam.com/spring/core/api/soap")
+public class RegisterUserRequest {
 
-    protected SoapUserAccount account;
-    protected Long id;
-    protected String email;
+    @XmlElement(required = true)
     protected String name;
+    @XmlElement(required = true)
+    protected String email;
+    @XmlElement(required = true)
     protected String password;
+    @XmlElement(required = true)
+    protected String birthday;
 
     /**
-     * Gets the value of the account property.
+     * Gets the value of the name property.
      * 
      * @return
      *     possible object is
-     *     {@link SoapUserAccount }
+     *     {@link String }
      *     
      */
-    public SoapUserAccount getAccount() {
-        return account;
+    public String getName() {
+        return name;
     }
 
     /**
-     * Sets the value of the account property.
+     * Sets the value of the name property.
      * 
      * @param value
      *     allowed object is
-     *     {@link SoapUserAccount }
+     *     {@link String }
      *     
      */
-    public void setAccount(SoapUserAccount value) {
-        this.account = value;
-    }
-
-    /**
-     * Gets the value of the id property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Long }
-     *     
-     */
-    public Long getId() {
-        return id;
-    }
-
-    /**
-     * Sets the value of the id property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Long }
-     *     
-     */
-    public void setId(Long value) {
-        this.id = value;
+    public void setName(String value) {
+        this.name = value;
     }
 
     /**
@@ -125,30 +105,6 @@ public class SoapUser {
     }
 
     /**
-     * Gets the value of the name property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Sets the value of the name property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setName(String value) {
-        this.name = value;
-    }
-
-    /**
      * Gets the value of the password property.
      * 
      * @return
@@ -170,6 +126,30 @@ public class SoapUser {
      */
     public void setPassword(String value) {
         this.password = value;
+    }
+
+    /**
+     * Gets the value of the birthday property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getBirthday() {
+        return birthday;
+    }
+
+    /**
+     * Sets the value of the birthday property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setBirthday(String value) {
+        this.birthday = value;
     }
 
 }
