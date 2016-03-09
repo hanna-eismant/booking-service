@@ -38,7 +38,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "", propOrder = {
     "user"
 })
-@XmlRootElement(name = "getUserInfoResponse")
+@XmlRootElement(name = "getUserInfoResponse", namespace = "http://epam.com/spring/core/api/soap")
 public class GetUserInfoResponse {
 
     @XmlElement(required = true)

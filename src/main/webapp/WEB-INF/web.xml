@@ -31,6 +31,10 @@
             <param-name>contextConfigLocation</param-name>
             <param-value>WEB-INF/spring-soap-servlet.xml</param-value>
         </init-param>
+        <init-param>
+            <param-name>transformWsdlLocations</param-name>
+            <param-value>true</param-value>
+        </init-param>
     </servlet>
 
     <servlet-mapping>

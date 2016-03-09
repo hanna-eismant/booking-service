@@ -11,12 +11,12 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 @Endpoint
 public class UserEndpoint {
 
-    private static final String NAMESPACE_URI =  "http://epam.com/spring/core/api/soap";
+    private static final String NAMESPACE_URI = "http://epam.com/spring/core/api/soap";
 
     @Autowired
     private BookingFacade bookingFacade;
 
-    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getUserInfo")
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getUserInfoRequest")
     @ResponsePayload
     public GetUserInfoResponse getUserInfo(@RequestPayload GetUserInfoRequest request) throws NotFoundException {
         String userName = request.getName();

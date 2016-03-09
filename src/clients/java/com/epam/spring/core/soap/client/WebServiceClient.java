@@ -7,7 +7,7 @@ import org.springframework.ws.soap.client.core.SoapActionCallback;
 
 public class WebServiceClient extends WebServiceGatewaySupport {
 
-    public static final String SOAP_URI = "http://localhost:8080/api/soap/getUserInfo";
+    public static final String SOAP_URI = "http://localhost:8080/api/soap";
 
 
     public GetUserInfoResponse getUserByName(String name) {

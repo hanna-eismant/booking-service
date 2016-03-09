@@ -37,7 +37,7 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "soapUser", propOrder = {
+@XmlType(name = "soapUser", namespace = "http://epam.com/spring/core/api/soap", propOrder = {
     "account",
     "id",
     "email",
