@@ -10,21 +10,21 @@ package com.epam.spring.core.soap.client.gen;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for soapUserAccount complex type.
+ * <p>Java class for anonymous complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="soapUserAccount"&gt;
+ * &lt;complexType&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long"/&gt;
- *         &lt;element name="money" type="{http://www.w3.org/2001/XMLSchema}double"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -34,14 +34,13 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "soapUserAccount", namespace = "http://epam.com/spring/core/api/soap", propOrder = {
-    "id",
-    "money"
+@XmlType(name = "", propOrder = {
+    "id"
 })
-public class SoapUserAccount {
+@XmlRootElement(name = "getShowRequest", namespace = "http://epam.com/spring/core/api/soap")
+public class GetShowRequest {
 
     protected long id;
-    protected double money;
 
     /**
      * Gets the value of the id property.
@@ -57,22 +56,6 @@ public class SoapUserAccount {
      */
     public void setId(long value) {
         this.id = value;
-    }
-
-    /**
-     * Gets the value of the money property.
-     * 
-     */
-    public double getMoney() {
-        return money;
-    }
-
-    /**
-     * Sets the value of the money property.
-     * 
-     */
-    public void setMoney(double value) {
-        this.money = value;
     }
 
 }

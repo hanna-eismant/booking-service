@@ -25,8 +25,9 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="status" type="{http://www.w3.org/2001/XMLSchema}boolean"/&gt;
- *         &lt;element name="message" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *         &lt;element name="basePrice" type="{http://www.w3.org/2001/XMLSchema}double"/&gt;
+ *         &lt;element name="rating" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -37,54 +38,81 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "status",
-    "message"
+    "name",
+    "basePrice",
+    "rating"
 })
-@XmlRootElement(name = "registerUserResponse", namespace = "http://epam.com/spring/core/api/soap")
-public class RegisterUserResponse {
+@XmlRootElement(name = "createEventRequest", namespace = "http://epam.com/spring/core/api/soap")
+public class CreateEventRequest {
 
-    protected boolean status;
     @XmlElement(required = true)
-    protected String message;
+    protected String name;
+    protected double basePrice;
+    @XmlElement(required = true)
+    protected String rating;
 
     /**
-     * Gets the value of the status property.
-     * 
-     */
-    public boolean isStatus() {
-        return status;
-    }
-
-    /**
-     * Sets the value of the status property.
-     * 
-     */
-    public void setStatus(boolean value) {
-        this.status = value;
-    }
-
-    /**
-     * Gets the value of the message property.
+     * Gets the value of the name property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getMessage() {
-        return message;
+    public String getName() {
+        return name;
     }
 
     /**
-     * Sets the value of the message property.
+     * Sets the value of the name property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setMessage(String value) {
-        this.message = value;
+    public void setName(String value) {
+        this.name = value;
+    }
+
+    /**
+     * Gets the value of the basePrice property.
+     * 
+     */
+    public double getBasePrice() {
+        return basePrice;
+    }
+
+    /**
+     * Sets the value of the basePrice property.
+     * 
+     */
+    public void setBasePrice(double value) {
+        this.basePrice = value;
+    }
+
+    /**
+     * Gets the value of the rating property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getRating() {
+        return rating;
+    }
+
+    /**
+     * Sets the value of the rating property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setRating(String value) {
+        this.rating = value;
     }
 
 }

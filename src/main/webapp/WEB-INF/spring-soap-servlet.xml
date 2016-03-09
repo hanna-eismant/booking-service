@@ -17,9 +17,9 @@
 
     <ws:annotation-driven/>
 
-    <ws:dynamic-wsdl id="userDefinition"
-                     portTypeName="Users"
+    <ws:dynamic-wsdl id="servicesDefinition"
+                     portTypeName="services"
                      locationUri="http://localhost:8080/api/soap">
-        <ws:xsd location="/WEB-INF/schemas/user.xsd"/>
+        <ws:xsd location="/WEB-INF/schemas/soap.xsd"/>
     </ws:dynamic-wsdl>
 </beans>

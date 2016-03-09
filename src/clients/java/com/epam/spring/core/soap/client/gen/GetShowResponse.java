@@ -10,21 +10,22 @@ package com.epam.spring.core.soap.client.gen;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for soapUserAccount complex type.
+ * <p>Java class for anonymous complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="soapUserAccount"&gt;
+ * &lt;complexType&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long"/&gt;
- *         &lt;element name="money" type="{http://www.w3.org/2001/XMLSchema}double"/&gt;
+ *         &lt;element name="user" type="{http://epam.com/spring/core/api/soap}soapShow"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -34,45 +35,37 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "soapUserAccount", namespace = "http://epam.com/spring/core/api/soap", propOrder = {
-    "id",
-    "money"
+@XmlType(name = "", propOrder = {
+    "user"
 })
-public class SoapUserAccount {
+@XmlRootElement(name = "getShowResponse", namespace = "http://epam.com/spring/core/api/soap")
+public class GetShowResponse {
 
-    protected long id;
-    protected double money;
+    @XmlElement(required = true)
+    protected SoapShow user;
 
     /**
-     * Gets the value of the id property.
+     * Gets the value of the user property.
      * 
+     * @return
+     *     possible object is
+     *     {@link SoapShow }
+     *     
      */
-    public long getId() {
-        return id;
+    public SoapShow getUser() {
+        return user;
     }
 
     /**
-     * Sets the value of the id property.
+     * Sets the value of the user property.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link SoapShow }
+     *     
      */
-    public void setId(long value) {
-        this.id = value;
-    }
-
-    /**
-     * Gets the value of the money property.
-     * 
-     */
-    public double getMoney() {
-        return money;
-    }
-
-    /**
-     * Sets the value of the money property.
-     * 
-     */
-    public void setMoney(double value) {
-        this.money = value;
+    public void setUser(SoapShow value) {
+        this.user = value;
     }
 
 }

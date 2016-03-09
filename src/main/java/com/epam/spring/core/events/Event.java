@@ -1,16 +1,11 @@
 package com.epam.spring.core.events;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
-
 import com.epam.spring.core.shared.BaseEntity;
 import com.google.common.base.Objects;
 
-@Component
-@Scope("prototype")
+import java.util.ArrayList;
+import java.util.List;
+
 public class Event extends BaseEntity {
 
     private String name;

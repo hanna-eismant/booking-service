@@ -12,7 +12,7 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 import java.util.List;
 
 @Endpoint
-public class UserEndpoint {
+public class UsersEndpoint {
 
     private static final String NAMESPACE_URI = "http://epam.com/spring/core/api/soap";
 

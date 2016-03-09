@@ -40,8 +40,8 @@ import javax.xml.bind.annotation.XmlType;
     "status",
     "message"
 })
-@XmlRootElement(name = "registerUserResponse", namespace = "http://epam.com/spring/core/api/soap")
-public class RegisterUserResponse {
+@XmlRootElement(name = "createEventResponse", namespace = "http://epam.com/spring/core/api/soap")
+public class CreateEventResponse {
 
     protected boolean status;
     @XmlElement(required = true)

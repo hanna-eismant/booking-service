@@ -336,7 +336,7 @@
                     <generateDirectory>${project.basedir}/src/clients/java</generateDirectory>
                     <schemas>
                         <schema>
-                            <url>http://localhost:8080/api/soap/userDefinition.wsdl</url>
+                            <url>http://localhost:8080/api/soap/servicesDefinition.wsdl</url>
                         </schema>
                     </schemas>
                 </configuration>

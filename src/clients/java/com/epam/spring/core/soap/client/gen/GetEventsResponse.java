@@ -26,7 +26,7 @@ import java.util.List;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="usersList" type="{http://epam.com/spring/core/api/soap}soapUser" maxOccurs="unbounded" minOccurs="0"/&gt;
+ *         &lt;element name="eventsList" type="{http://epam.com/spring/core/api/soap}soapEvent" maxOccurs="unbounded" minOccurs="0"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -37,40 +37,40 @@ import java.util.List;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "usersList"
+    "eventsList"
 })
-@XmlRootElement(name = "getUsersResponse", namespace = "http://epam.com/spring/core/api/soap")
-public class GetUsersResponse {
+@XmlRootElement(name = "getEventsResponse", namespace = "http://epam.com/spring/core/api/soap")
+public class GetEventsResponse {
 
-    protected List<SoapUser> usersList;
+    protected List<SoapEvent> eventsList;
 
     /**
-     * Gets the value of the usersList property.
+     * Gets the value of the eventsList property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the usersList property.
+     * This is why there is not a <CODE>set</CODE> method for the eventsList property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getUsersList().add(newItem);
+     *    getEventsList().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link SoapUser }
+     * {@link SoapEvent }
      * 
      * 
      */
-    public List<SoapUser> getUsersList() {
-        if (usersList == null) {
-            usersList = new ArrayList<SoapUser>();
+    public List<SoapEvent> getEventsList() {
+        if (eventsList == null) {
+            eventsList = new ArrayList<SoapEvent>();
         }
-        return this.usersList;
+        return this.eventsList;
     }
 
 }
