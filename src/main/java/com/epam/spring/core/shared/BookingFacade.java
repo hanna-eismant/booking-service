@@ -1,5 +1,7 @@
 package com.epam.spring.core.shared;
 
+import com.epam.spring.core.api.soap.SoapEvent;
+import com.epam.spring.core.api.soap.SoapShow;
 import com.epam.spring.core.api.soap.SoapUser;
 import com.epam.spring.core.events.Event;
 import com.epam.spring.core.events.Show;
@@ -45,4 +47,12 @@ public interface BookingFacade {
     List<SoapUser> getAllSoapUsersInfo();
 
     void registerUser(String name, String email, String password, LocalDate birthday) throws DuplicateException;
+
+    List<SoapEvent> getAllSoapEvents();
+
+    SoapEvent getSoapEvent(Long eventId) throws NotFoundException;
+
+    SoapShow getSoapShow(Long showId) throws NotFoundException;
+
+    void createEvent(String name, double basePrice, String rating);
 }

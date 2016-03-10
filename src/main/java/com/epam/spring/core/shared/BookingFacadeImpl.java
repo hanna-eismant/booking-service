@@ -1,5 +1,7 @@
 package com.epam.spring.core.shared;
 
+import com.epam.spring.core.api.soap.SoapEvent;
+import com.epam.spring.core.api.soap.SoapShow;
 import com.epam.spring.core.api.soap.SoapUser;
 import com.epam.spring.core.booking.BookingService;
 import com.epam.spring.core.events.Event;
@@ -159,6 +161,30 @@ public class BookingFacadeImpl implements BookingFacade {
         Show show = eventService.getShowById(showId);
         show.getTickets().sort((o1, o2) -> o1.getSeat() - o2.getSeat());
         return show;
+    }
+
+    @Override
+    public List<SoapEvent> getAllSoapEvents() {
+        List<Event> events = eventService.getAll();
+        return mapper.mapAsList(events, SoapEvent.class);
+    }
+
+    @Override
+    public SoapEvent getSoapEvent(final Long eventId) throws NotFoundException {
+        Event event = eventService.getById(eventId);
+        SoapEvent map = mapper.map(event, SoapEvent.class);
+        return map;
+    }
+
+    @Override
+    public SoapShow getSoapShow(final Long showId) throws NotFoundException {
+        Show show = eventService.getShowById(showId);
+        return mapper.map(show, SoapShow.class);
+    }
+
+    @Override
+    public void createEvent(final String name, final double basePrice, final String rating) {
+           // todo
     }
 
     @Override

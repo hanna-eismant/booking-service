@@ -100,7 +100,7 @@
     <xs:element name="getEventResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="user" type="tns:soapEvent"/>
+                <xs:element name="event" type="tns:soapEvent"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -108,7 +108,7 @@
     <xs:element name="getShowResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="user" type="tns:soapShow"/>
+                <xs:element name="show" type="tns:soapShow"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>

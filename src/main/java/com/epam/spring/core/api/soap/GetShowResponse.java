@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="user" type="{http://epam.com/spring/core/api/soap}soapShow"/>
+ *         &lt;element name="show" type="{http://epam.com/spring/core/api/soap}soapShow"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -29,36 +29,36 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "user"
+    "show"
 })
 @XmlRootElement(name = "getShowResponse", namespace = "http://epam.com/spring/core/api/soap")
 public class GetShowResponse {
 
     @XmlElement(required = true)
-    protected SoapShow user;
+    protected SoapShow show;
 
     /**
-     * Gets the value of the user property.
+     * Gets the value of the show property.
      * 
      * @return
      *     possible object is
      *     {@link SoapShow }
      *     
      */
-    public SoapShow getUser() {
-        return user;
+    public SoapShow getShow() {
+        return show;
     }
 
     /**
-     * Sets the value of the user property.
+     * Sets the value of the show property.
      * 
      * @param value
      *     allowed object is
      *     {@link SoapShow }
      *     
      */
-    public void setUser(SoapShow value) {
-        this.user = value;
+    public void setShow(SoapShow value) {
+        this.show = value;
     }
 
 }

@@ -1,6 +1,5 @@
 package com.epam.spring.core.shared;
 
-import com.epam.spring.core.api.soap.SoapUser;
 import ma.glasnost.orika.MapperFacade;
 import ma.glasnost.orika.MapperFactory;
 import ma.glasnost.orika.converter.builtin.PassThroughConverter;
@@ -9,6 +8,10 @@ import ma.glasnost.orika.impl.DefaultMapperFactory;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 
+import com.epam.spring.core.api.soap.SoapEvent;
+import com.epam.spring.core.api.soap.SoapShow;
+import com.epam.spring.core.api.soap.SoapUser;
+import com.epam.spring.core.api.soap.SoapUserAccount;
 import com.epam.spring.core.auditoriums.Auditorium;
 import com.epam.spring.core.auditoriums.AuditoriumEntity;
 import com.epam.spring.core.events.Event;
@@ -32,10 +35,20 @@ public class Mapper {
         mapperFactory.classMap(User.class, SoapUser.class).byDefault().register();
 
         mapperFactory.classMap(UserAccountEntity.class, UserAccount.class).byDefault().register();
+        mapperFactory.classMap(UserAccount.class, SoapUserAccount.class).byDefault().register();
 
         mapperFactory.classMap(EventEntity.class, Event.class).byDefault().register();
+        mapperFactory.classMap(Event.class, SoapEvent.class)
+                .byDefault()
+                .field("shows", "showsList")
+                .register();
 
         mapperFactory.classMap(ShowEntity.class, Show.class).byDefault().register();
+        mapperFactory.classMap(Show.class, SoapShow.class)
+                .byDefault()
+                .field("event.id", "eventId")
+                .field("auditorium.name", "auditorium")
+                .register();
 
         mapperFactory.classMap(AuditoriumEntity.class, Auditorium.class).byDefault().register();
     }

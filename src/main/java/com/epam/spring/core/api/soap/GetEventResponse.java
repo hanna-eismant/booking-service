@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="user" type="{http://epam.com/spring/core/api/soap}soapEvent"/>
+ *         &lt;element name="event" type="{http://epam.com/spring/core/api/soap}soapEvent"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -29,36 +29,36 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "user"
+    "event"
 })
 @XmlRootElement(name = "getEventResponse", namespace = "http://epam.com/spring/core/api/soap")
 public class GetEventResponse {
 
     @XmlElement(required = true)
-    protected SoapEvent user;
+    protected SoapEvent event;
 
     /**
-     * Gets the value of the user property.
+     * Gets the value of the event property.
      * 
      * @return
      *     possible object is
      *     {@link SoapEvent }
      *     
      */
-    public SoapEvent getUser() {
-        return user;
+    public SoapEvent getEvent() {
+        return event;
     }
 
     /**
-     * Sets the value of the user property.
+     * Sets the value of the event property.
      * 
      * @param value
      *     allowed object is
      *     {@link SoapEvent }
      *     
      */
-    public void setUser(SoapEvent value) {
-        this.user = value;
+    public void setEvent(SoapEvent value) {
+        this.event = value;
     }
 
 }
