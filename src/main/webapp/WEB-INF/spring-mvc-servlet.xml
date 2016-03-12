@@ -14,7 +14,11 @@
     <import resource="classpath:spring.xml"/>
 
     <context:annotation-config/>
-    <mvc:annotation-driven/>
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean class="com.epam.spring.core.api.rest.Ticket2PdfConverter"/>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
 
     <mvc:view-controller path="/" view-name="home"/>
     <mvc:view-controller path="/home" view-name="home"/>

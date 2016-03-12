@@ -63,6 +63,18 @@ public class Ticket extends BaseEntity {
     }
 
     @Override
+    public String toString() {
+        return "Ticket{" +
+                "user=" + user +
+                ", seat=" + seat +
+                ", isVip=" + isVip +
+                ", basePrice=" + basePrice +
+                ", discountPrice=" + discountPrice +
+                ", show=" + show +
+                '}';
+    }
+
+    @Override
     public boolean equals(final Object _o) {
         if (this == _o)
             return true;
