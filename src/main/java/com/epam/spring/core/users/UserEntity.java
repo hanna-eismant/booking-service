@@ -1,9 +1,7 @@
 package com.epam.spring.core.users;
 
-import com.epam.spring.core.shared.RolesConverter;
-import com.google.common.base.Objects;
-import org.hibernate.annotations.Type;
-import org.joda.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Convert;
@@ -11,10 +9,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import java.util.ArrayList;
-import java.util.List;
+
+import org.hibernate.annotations.Type;
+import org.joda.time.LocalDate;
+
+import com.epam.spring.core.shared.RolesConverter;
+import com.google.common.base.Objects;
 
 @Entity
 @Table(name = "users")
@@ -40,9 +41,6 @@ public class UserEntity {
     @Column(columnDefinition = "VARCHAR(255) ARRAY")
     @Convert(converter = RolesConverter.class)
     private List<UserRoles> roles = new ArrayList<>(1);
-
-    @OneToOne(targetEntity = UserAccountEntity.class, mappedBy = "user")
-    private UserAccountEntity userAccount;
 
     public UserEntity() {
     }
@@ -96,14 +94,6 @@ public class UserEntity {
 
     public List<UserRoles> getRoles() {
         return roles;
-    }
-
-    public UserAccountEntity getUserAccount() {
-        return userAccount;
-    }
-
-    public void setUserAccount(final UserAccountEntity _userAccount) {
-        userAccount = _userAccount;
     }
 
     @Override
