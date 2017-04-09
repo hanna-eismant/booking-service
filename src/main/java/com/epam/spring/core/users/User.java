@@ -14,6 +14,8 @@ public class User extends BaseEntity {
     private String email;
     private LocalDate birthday;
     private List<UserRoles> roles = new ArrayList<>(1);
+    
+    I won't be build
 
     public User() {
     }
