@@ -77,5 +77,5 @@ public class User extends BaseEntity {
         return Objects.hashCode(getName(), getPassword(), getEmail(), getBirthday(), getRoles());
     }
     
-    public void test() {}
+    public int test() {}
 }
